@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EmailCapture from '../components/EmailCapture.astro';
+---
+
+<BaseLayout
+  title="Tokyo in Season"
+  description="Japanese culture, in its right season — from inside the tea room. Tea ceremony experiences in Tokyo compared and reviewed by an Urasenke practitioner."
+>
+  <!-- Hero -->
+  <section class="mb-16 text-center">
+    <h1 class="font-serif text-4xl sm:text-5xl text-sumi leading-tight mb-4">
+      Tokyo in Season
+    </h1>
+    <p class="text-lg text-sumi/70 max-w-xl mx-auto leading-relaxed">
+      Japanese culture, in its right season — from inside the tea room.
+    </p>
+    <p class="text-sm text-sumi/50 mt-3 max-w-lg mx-auto">
+      Tea ceremony experiences in Tokyo, compared and priced by an Urasenke practitioner who actually practices.
+    </p>
+  </section>
+
+  <!-- Money pages grid -->
+  <section class="mb-16">
+    <h2 class="font-serif text-2xl text-sumi mb-6">Find the right experience</h2>
+    <div class="grid sm:grid-cols-2 gap-4">
+      {[
+        {
+          href: '/tokyo-tea-ceremony-compared',
+          title: 'All Tokyo Experiences Compared',
+          desc: 'Side-by-side table: price, area, chairs available, kimono add-on, group vs private.',
+          badge: 'Best first stop',
+        },
+        {
+          href: '/tokyo-tea-ceremony-price-index',
+          title: 'Tokyo Tea Ceremony Price Index',
+          desc: 'Quarterly dataset: median prices by area, full methodology, downloadable CSV.',
+          badge: 'Cited by AI',
+        },
+        {
+          href: '/private-vs-group-tea-ceremony',
+          title: 'Private vs Group: Which to Book?',
+          desc: 'When the extra cost is worth it — and when it isn\'t.',
+          badge: null,
+        },
+        {
+          href: '/tea-ceremony-without-seiza',
+          title: 'Best Ceremonies If You Can\'t Sit Seiza',
+          desc: 'Chair-friendly options for travellers with knee or back issues.',
+          badge: null,
+        },
+      ].map(card => (
+        <a href={card.href} class="group block border border-warm-gray-mid rounded-lg p-5 hover:border-matcha transition-colors">
+          {card.badge && (
+            <span class="text-xs font-medium text-matcha bg-matcha/10 rounded px-2 py-0.5 mb-2 inline-block">{card.badge}</span>
+          )}
+          <h3 class="font-serif text-lg text-sumi group-hover:text-matcha transition-colors mb-1">{card.title}</h3>
+          <p class="text-sm text-sumi/60">{card.desc}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <EmailCapture />
+
+  <!-- About the author -->
+  <section class="mt-12 text-sm text-sumi/60 border-t border-warm-gray pt-8">
+    <p>
+      This site is run by Ayaka, a Tokyo-based Urasenke tea ceremony student. I started this
+      because most "best tea ceremony" lists are written by people who went once.
+      Every experience I recommend is one I'd send my own guests to.
+      <a href="/about" class="text-matcha underline ml-1">More about me →</a>
+    </p>
+  </section>
+</BaseLayout>

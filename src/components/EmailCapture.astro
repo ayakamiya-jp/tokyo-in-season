@@ -1,0 +1,37 @@
+---
+interface Props {
+  variant?: 'inline' | 'exit';
+}
+const { variant = 'inline' } = Astro.props;
+---
+
+<aside class:list={[
+  "email-capture rounded-lg p-6 my-8 text-center",
+  variant === 'exit' ? "border-2 border-matcha" : "bg-warm-gray",
+]}>
+  <p class="font-serif text-xl text-sumi mb-1">Free: Tea Ceremony Etiquette Guide</p>
+  <p class="text-sm text-warm-gray-mid mb-4">
+    The exact do's and don'ts I teach first-time guests — as a practising Urasenke student.
+    No spam. Unsubscribe any time.
+  </p>
+  <form
+    action="https://buttondown.com/api/emails/embed-subscribe/tokyoteaceremony"
+    method="post"
+    target="_blank"
+    class="flex flex-col sm:flex-row gap-2 max-w-md mx-auto"
+  >
+    <input
+      type="email"
+      name="email"
+      placeholder="your@email.com"
+      required
+      class="flex-1 border border-warm-gray-mid rounded px-3 py-2 text-sm text-sumi focus:outline-none focus:ring-2 focus:ring-matcha"
+    />
+    <button
+      type="submit"
+      class="bg-matcha hover:bg-matcha-light text-white font-sans font-medium px-5 py-2 rounded text-sm transition-colors duration-200"
+    >
+      Send me the guide
+    </button>
+  </form>
+</aside>

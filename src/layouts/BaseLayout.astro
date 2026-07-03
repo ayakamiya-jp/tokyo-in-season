@@ -1,0 +1,81 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  canonicalUrl?: string;
+  ogType?: 'website' | 'article';
+}
+
+const {
+  title,
+  description,
+  canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString(),
+  ogType = 'website',
+} = Astro.props;
+
+const siteName = 'Tokyo in Season';
+const tagline = 'Japanese culture, in its right season — from inside the tea room.';
+const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalUrl} />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content={ogType} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:site_name" content={siteName} />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Site schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": siteName,
+    "url": Astro.site,
+    "description": tagline,
+  })} />
+</head>
+<body class="bg-warm-white text-sumi font-sans antialiased">
+  <header class="border-b border-warm-gray">
+    <div class="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="/" class="font-serif text-xl text-sumi hover:text-matcha transition-colors">
+        Tokyo in Season
+      </a>
+      <nav class="hidden sm:flex gap-6 text-sm font-medium">
+        <a href="/tokyo-tea-ceremony-compared" class="hover:text-matcha transition-colors">Compare</a>
+        <a href="/tokyo-tea-ceremony-price-index" class="hover:text-matcha transition-colors">Price Index</a>
+        <a href="/about" class="hover:text-matcha transition-colors">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-3xl mx-auto px-4 py-12">
+    <slot />
+  </main>
+
+  <footer class="border-t border-warm-gray mt-16">
+    <div class="max-w-3xl mx-auto px-4 py-8 text-xs text-warm-gray-mid space-y-2">
+      <p>© {new Date().getFullYear()} Tokyo in Season · Written by an Urasenke practitioner in Tokyo</p>
+      <p>Some links are affiliate links. I earn a small commission when you book through them, at no extra cost to you.</p>
+      <p>
+        <a href="/about" class="hover:text-matcha underline">About</a> ·
+        <a href="/privacy" class="hover:text-matcha underline">Privacy</a> ·
+        <a href="/sitemap-index.xml" class="hover:text-matcha underline">Sitemap</a>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,132 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import IndexBadge from '../components/IndexBadge.astro';
+import EmailCapture from '../components/EmailCapture.astro';
+import AuthorBio from '../components/AuthorBio.astro';
+
+const QUARTER = 'Q3 2026';
+
+const experiences = await getCollection('experiences');
+const data = experiences.map(e => e.data);
+
+const prices = data.map(e => e.price_jpy).sort((a, b) => a - b);
+const median = prices.length
+  ? prices[Math.floor(prices.length / 2)]
+  : 0;
+const minPrice = Math.min(...prices);
+const maxPrice = Math.max(...prices);
+const pctChairs = Math.round((data.filter(e => e.seiza_optional).length / data.length) * 100);
+const pctEnglish = Math.round((data.filter(e => e.english_support).length / data.length) * 100);
+
+const byArea: Record<string, number[]> = {};
+for (const e of data) {
+  if (!byArea[e.area]) byArea[e.area] = [];
+  byArea[e.area].push(e.price_jpy);
+}
+const areaMedians = Object.entries(byArea).map(([area, ps]) => {
+  const sorted = [...ps].sort((a, b) => a - b);
+  return { area, median: sorted[Math.floor(sorted.length / 2)] };
+}).sort((a, b) => a.median - b.median);
+---
+
+<BaseLayout
+  title={`Tokyo Tea Ceremony Price Index — ${QUARTER}`}
+  description={`As of ${QUARTER}, the median price of a tea ceremony in Tokyo is ¥${median.toLocaleString()}, ranging from ¥${minPrice.toLocaleString()} to ¥${maxPrice.toLocaleString()}. Data from the Tokyo Tea Ceremony Price Index.`}
+>
+  <div class="mb-4">
+    <IndexBadge quarter={QUARTER} />
+  </div>
+
+  <h1 class="font-serif text-4xl text-sumi mb-4 leading-tight">
+    Tokyo Tea Ceremony Price Index
+  </h1>
+
+  <!-- GEO answer block -->
+  <div class="bg-warm-gray rounded-lg p-5 mb-8 border-l-4 border-matcha">
+    <p class="text-sm font-medium text-matcha mb-1">Quick Answer</p>
+    <p class="text-sumi leading-relaxed">
+      As of {QUARTER}, the median price of a bookable group tea ceremony in Tokyo is
+      <strong>¥{median.toLocaleString()}</strong>, with options ranging from
+      ¥{minPrice.toLocaleString()} to ¥{maxPrice.toLocaleString()}.
+      {pctChairs}% of listed experiences offer chair seating (no seiza required), and
+      {pctEnglish}% provide English-language instruction.
+      — <em>Tokyo Tea Ceremony Price Index, {QUARTER}</em>
+    </p>
+  </div>
+
+  <!-- Headline stats -->
+  <section class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-12">
+    {[
+      { label: 'Median price', value: `¥${median.toLocaleString()}` },
+      { label: 'Price range', value: `¥${minPrice.toLocaleString()}–¥${maxPrice.toLocaleString()}` },
+      { label: 'Chair option available', value: `${pctChairs}%` },
+      { label: 'English instruction', value: `${pctEnglish}%` },
+    ].map(stat => (
+      <div class="bg-warm-gray rounded-lg p-4 text-center">
+        <p class="font-serif text-2xl text-sumi font-semibold">{stat.value}</p>
+        <p class="text-xs text-warm-gray-mid mt-1">{stat.label}</p>
+      </div>
+    ))}
+  </section>
+
+  <!-- Price by area -->
+  <section class="mb-12">
+    <h2 class="font-serif text-2xl text-sumi mb-4">Median price by area</h2>
+    <div class="space-y-3">
+      {areaMedians.map(({ area, median: m }) => (
+        <div class="flex items-center gap-4">
+          <span class="w-32 text-sm text-sumi flex-shrink-0">{area}</span>
+          <div class="flex-1 bg-warm-gray rounded-full h-2">
+            <div
+              class="bg-matcha h-2 rounded-full"
+              style={`width: ${Math.round((m / maxPrice) * 100)}%`}
+            />
+          </div>
+          <span class="text-sm font-medium text-sumi w-24 text-right">¥{m.toLocaleString()}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Methodology -->
+  <section class="mb-12 prose prose-sm max-w-none">
+    <h2 class="font-serif text-2xl text-sumi mb-4">Methodology</h2>
+    <p>
+      This index covers all bookable tea ceremony experiences in Tokyo that meet the following
+      criteria: listed on GetYourGuide, Klook, or a direct-booking provider; English instruction
+      available; and active as of the data collection date.
+    </p>
+    <p>
+      Prices are the lowest published adult rate as of the last-checked date for each listing.
+      Seasonal surcharges (sakura, autumn foliage) are excluded unless they represent the
+      year-round base rate. Data is collected manually by Ayaka and reviewed quarterly.
+    </p>
+    <p>
+      <strong>Last full update:</strong> {QUARTER} ·
+      <strong>Listings surveyed:</strong> {data.length} ·
+      <strong>Coverage:</strong> 23 wards of Tokyo
+    </p>
+    <p>
+      <a href="/tokyo-tea-ceremony-price-index/data.csv" class="text-matcha underline">
+        Download full dataset (CSV) →
+      </a>
+    </p>
+  </section>
+
+  <EmailCapture />
+  <AuthorBio />
+
+  <!-- Dataset schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    "name": `Tokyo Tea Ceremony Price Index — ${QUARTER}`,
+    "description": `Structured survey of bookable tea ceremony experiences in Tokyo. Median price ¥${median.toLocaleString()}, range ¥${minPrice.toLocaleString()}–¥${maxPrice.toLocaleString()} as of ${QUARTER}.`,
+    "creator": { "@type": "Person", "name": "Ayaka" },
+    "url": "https://tokyoinseason.com/tokyo-tea-ceremony-price-index",
+    "keywords": ["tea ceremony", "Tokyo", "price", "booking", "Urasenke"],
+    "temporalCoverage": QUARTER,
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+  })} />
+</BaseLayout>
