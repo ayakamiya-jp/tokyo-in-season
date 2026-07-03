@@ -10,17 +10,16 @@ const QUARTER = 'Q3 2026';
 const experiences = await getCollection('experiences');
 const data = experiences.map(e => e.data);
 
-const prices = data.map(e => e.price_jpy).sort((a, b) => a - b);
-const median = prices.length
-  ? prices[Math.floor(prices.length / 2)]
-  : 0;
-const minPrice = Math.min(...prices);
-const maxPrice = Math.max(...prices);
-const pctChairs = Math.round((data.filter(e => e.seiza_optional).length / data.length) * 100);
-const pctEnglish = Math.round((data.filter(e => e.english_support).length / data.length) * 100);
+const prices = data.map(e => e.price_jpy).filter((p): p is number => p != null).sort((a, b) => a - b);
+const median = prices.length ? prices[Math.floor(prices.length / 2)] : 0;
+const minPrice = prices.length ? Math.min(...prices) : 0;
+const maxPrice = prices.length ? Math.max(...prices) : 0;
+const pctChairs = Math.round((data.filter(e => e.seiza_optional === true).length / data.length) * 100);
+const pctEnglish = Math.round((data.filter(e => e.english_support === true).length / data.length) * 100);
 
 const byArea: Record<string, number[]> = {};
 for (const e of data) {
+  if (e.price_jpy == null) continue;
   if (!byArea[e.area]) byArea[e.area] = [];
   byArea[e.area].push(e.price_jpy);
 }
