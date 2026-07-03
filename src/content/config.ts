@@ -38,6 +38,7 @@ const experiences = defineCollection({
     practitioner_rating: z.enum(['A', 'B', 'C']),
     last_checked: z.coerce.date(),
     editor_note: z.string(),
+    price_usd: z.number().optional(),
     price_note: z.string().optional(),
     notes: z.string().optional(),
     platform_only: z.boolean().optional(),
