@@ -3,7 +3,7 @@
   "provider": "direct",
   "affiliate_url": "https://www.getyourguide.com/tokyo-l193/tokyo-geisha-tea-ceremony-with-dance-performance-t1305233/?partner_id=V4M9L5E",
   "official_url": "https://www.getyourguide.com/tokyo-l193/tokyo-geisha-tea-ceremony-with-dance-performance-t1305233/",
-  "price_jpy": null,
+  "price_jpy": 11000,
   "duration_min": null,
   "area": "Fukagawa",
   "english_support": null,
@@ -15,5 +15,5 @@
   "practitioner_rating": "C",
   "editor_note": "Reviews are weak, and the atmosphere is far from a formal tea gathering.",
   "last_checked": "2026-07-04",
-  "price_note": "PENDING - fetch price."
+  "price_note": "from ¥11,000"
 }

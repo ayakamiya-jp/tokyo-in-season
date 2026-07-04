@@ -40,6 +40,21 @@ const areaMedians = Object.entries(byArea)
     return { area, median: sorted[Math.floor(sorted.length / 2)], count: ps.length };
   })
   .sort((a, b) => a.median - b.median);
+
+const chairsCount = data.filter(e => e.seiza_optional === true).length;
+const asakusaMedian = areaMedians.find(a => a.area === 'Asakusa')?.median;
+const ginzaMedian = areaMedians.find(a => a.area === 'Ginza')?.median;
+
+// Self-contained, quotable stat sentences for GEO citation
+const keyFindings = [
+  `As of ${QUARTER}, the median price of a tea ceremony experience in Tokyo is ¥${median.toLocaleString()}, per the Tokyo Tea Ceremony Price Index (${pricedCount} of ${data.length} tracked venues publish prices).`,
+  `Prices range from ¥${minPrice.toLocaleString()} for a garden teahouse bowl to ¥${maxPrice.toLocaleString()} for a luxury garden venue.`,
+  asakusaMedian != null && ginzaMedian != null
+    ? `The median in Asakusa is ¥${asakusaMedian.toLocaleString()} versus ¥${ginzaMedian.toLocaleString()} in Ginza.`
+    : null,
+  `Solo travelers can pay double: one venue charges ¥11,000 solo versus ¥5,500 per person for groups of two or more.`,
+  `Only ${chairsCount} of ${data.length} venues explicitly confirm chairs are available as an alternative to seiza floor seating.`,
+].filter((f): f is string => f != null);
 ---
 
 <BaseLayout
@@ -108,6 +123,21 @@ const areaMedians = Object.entries(byArea)
     </div>
     <p class="text-xs text-warm-gray-mid mt-4">
       Median of lowest published adult rate per area. Areas with price-pending listings excluded from chart.
+    </p>
+  </section>
+
+  {/* Key Findings — self-contained, quotable stats */}
+  <section class="mb-12">
+    <h2 class="font-serif text-2xl text-sumi mb-4">Key Findings</h2>
+    <ul class="space-y-3 list-none">
+      {keyFindings.map(finding => (
+        <li class="bg-warm-gray rounded-lg p-4 text-sumi leading-relaxed border-l-4 border-matcha">
+          {finding}
+        </li>
+      ))}
+    </ul>
+    <p class="text-xs text-warm-gray-mid mt-4">
+      Methodology: prices are lowest published adult rates, checked July 2026, updated quarterly.
     </p>
   </section>
 

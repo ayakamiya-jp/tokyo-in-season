@@ -1,9 +1,11 @@
 /**
  * update-experiences.ts
  *
- * For each experience where price_note contains "PENDING":
- *   - provider=gyg + official_url present: fetch HTML, read product:price:amount meta tag,
- *     update the data file, set last_checked to today.
+ * For each experience where price_jpy is missing:
+ *   - provider=gyg + official_url present: fetch HTML, read product:price:amount meta tag
+ *     (falling back to JSON-LD offers if the meta tag is absent), update the data file,
+ *     set last_checked to today. JPY prices go to price_jpy; other currencies (typically
+ *     USD) go to price_usd alongside the currency actually found.
  *   - provider=gyg + no official_url: print a warning.
  *   - provider=direct: print to console for manual checking. Never guess prices.
  *
@@ -25,6 +27,7 @@ interface Experience {
   official_url?: string | null;
   price_jpy?: number | null;
   price_usd?: number | null;
+  price_currency?: string | null;
   rating?: number | null;
   review_count?: number | null;
   price_note?: string;
@@ -144,8 +147,9 @@ function applyResult(exp: Experience, result: FetchResult, url: string): string 
     exp.price_jpy = Math.round(price_amount);
     exp.price_note = `¥${exp.price_jpy.toLocaleString()} — fetched from ${url} on ${TODAY}`;
   } else {
-    // USD or unknown currency: store as price_usd, leave price_jpy null for manual JPY entry
+    // USD or unknown currency: store the value + currency as found, leave price_jpy null for manual JPY entry
     exp.price_usd = price_amount;
+    exp.price_currency = currency ?? 'unknown';
     exp.price_jpy = null;
     exp.price_note = `${currency ?? '?'} ${price_amount} — fetched from ${url} on ${TODAY}. Convert to JPY before publishing.`;
   }
@@ -166,6 +170,7 @@ async function main() {
     .sort();
 
   const manualFlags: string[] = [];
+  const summary: Record<string, string>[] = [];
   let fetched = 0;
   let skipped = 0;
 
@@ -173,7 +178,7 @@ async function main() {
     const filePath = join(EXPERIENCES_DIR, file);
     const exp: Experience = JSON.parse(readFileSync(filePath, 'utf8'));
 
-    if (!exp.price_note?.includes('PENDING')) continue;
+    if (exp.price_jpy != null) continue; // price already known — nothing to do
 
     const id = file.replace('.json', '');
 
@@ -186,9 +191,15 @@ async function main() {
       continue;
     }
 
+    if (exp.provider !== 'gyg') {
+      skipped++;
+      continue;
+    }
+
     // GYG with no URL — warn and skip
     if (!exp.official_url) {
       console.log(`⚠  ${id} — provider=gyg but no official_url. Add the URL to fetch price.`);
+      summary.push({ id, status: '⚠ no official_url', price: '—' });
       skipped++;
       continue;
     }
@@ -201,9 +212,20 @@ async function main() {
       exp.last_checked = TODAY;
       writeFileSync(filePath, JSON.stringify(exp, null, 2), 'utf8');
       console.log(msg);
+
+      const saved: Experience = JSON.parse(readFileSync(filePath, 'utf8'));
+      const price =
+        saved.price_jpy != null
+          ? `¥${saved.price_jpy.toLocaleString()}`
+          : saved.price_usd != null
+            ? `${saved.price_currency ?? 'USD'} ${saved.price_usd}`
+            : '—';
+      summary.push({ id, status: msg.startsWith('✓') ? '✓ updated' : msg, price });
       fetched++;
     } catch (err) {
-      console.log(`✗ ${(err as Error).message}`);
+      const msg = (err as Error).message;
+      console.log(`✗ ${msg}`);
+      summary.push({ id, status: `✗ ${msg}`, price: '—' });
       skipped++;
     }
 
@@ -212,6 +234,7 @@ async function main() {
 
   console.log('\n── Summary ─────────────────────────────────────');
   console.log(`Fetched/updated: ${fetched}  Skipped/failed: ${skipped}`);
+  if (summary.length > 0) console.table(summary);
 
   if (manualFlags.length > 0) {
     console.log('\n── Manual price checks needed (direct providers) ──');

@@ -3,7 +3,7 @@
   "provider": "direct",
   "affiliate_url": null,
   "official_url": "https://jidaiya.biz/japanese_culture/tea-ceremony",
-  "price_jpy": null,
+  "price_jpy": 5500,
   "duration_min": null,
   "area": "Asakusa",
   "english_support": true,
@@ -15,5 +15,5 @@
   "practitioner_rating": "B",
   "editor_note": "Kimono and tea with chairs available, but the space is a studio rather than a tea room — enjoyable, though firmly an 'experience' rather than the real setting.",
   "last_checked": "2026-07-04",
-  "price_note": "PENDING - fetch price."
+  "price_note": "Solo travelers pay ¥11,000; ¥5,500 pp for two or more, tax incl."
 }

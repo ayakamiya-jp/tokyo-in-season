@@ -3,7 +3,7 @@
   "provider": "direct",
   "affiliate_url": null,
   "official_url": "https://happo-en.com/banquet/plans/cultural-experience/",
-  "price_jpy": null,
+  "price_jpy": 16500,
   "duration_min": null,
   "area": "Shirokanedai",
   "english_support": null,
@@ -15,5 +15,5 @@
   "practitioner_rating": "B",
   "editor_note": "A genuinely beautiful garden venue, and the experience can be custom-designed to your group on request.",
   "last_checked": "2026-07-04",
-  "price_note": "PENDING - fetch price."
+  "price_note": "from ¥16,500"
 }
