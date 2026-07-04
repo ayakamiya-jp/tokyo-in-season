@@ -100,7 +100,6 @@ const listItems = sorted
     <tbody>
       {sorted.map((exp, i) => {
         const cfg = ratingConfig[exp.practitioner_rating];
-        const isC = exp.practitioner_rating === 'C';
 
         return (
           <tr class:list={['border-b border-warm-gray-mid', i % 2 === 0 ? 'bg-white' : 'bg-warm-gray/30']}>
@@ -130,7 +129,7 @@ const listItems = sorted
 
             {/* Practitioner's note */}
             <td class="p-3 align-top">
-              <p class:list={['text-sm leading-relaxed', isC ? 'text-red-600' : 'text-sumi/70']}>
+              <p class="text-sm leading-relaxed text-sumi/70">
                 {exp.editor_note}
               </p>
             </td>
