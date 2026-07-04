@@ -1,0 +1,305 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EmailCapture from '../components/EmailCapture.astro';
+import AuthorBio from '../components/AuthorBio.astro';
+import HeroImage from '../components/HeroImage.astro';
+import AffiliateButton from '../components/AffiliateButton.astro';
+import AffiliateNote from '../components/AffiliateNote.astro';
+import FaqBlock from '../components/FaqBlock.astro';
+import privateVsGroupHero from '../assets/hero/private-vs-group-hero.svg';
+
+const PUBLISH_DATE = '2026-07-04';
+const dateFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const TITLE = 'Private vs Group Tea Ceremony in Tokyo: Which Should You Book? (2026)';
+const DESCRIPTION = "Group is cheaper (median ~¥6,000, some from ¥3,500) and takes the pressure off first-timers. Private suits occasions and control — but the premium ranges from ¥1,000 to double the price, so check the venue's math first.";
+
+const faqItems = [
+  {
+    question: 'Is a private tea ceremony worth the extra money?',
+    answer: 'If the premium is small (e.g. ¥1,000 at Chazen) and you want to ask questions or control the pace — yes, easily. If it\'s several times the group price, it\'s worth it for occasions, not for a standard first visit.',
+  },
+  {
+    question: 'Can solo travelers join group tea ceremonies in Tokyo?',
+    answer: 'Yes, most group sessions welcome solo guests. But check pricing: at least one venue charges solo visitors double the per-person group rate.',
+  },
+  {
+    question: 'Can you take photos during a private tea ceremony?',
+    answer: 'Usually more freely than in group sessions — but always ask your host first. In private sessions, hosts can often build in time for photos.',
+  },
+];
+---
+
+<BaseLayout
+  title={TITLE}
+  description={DESCRIPTION}
+  ogType="article"
+  showCompareCta
+>
+  <HeroImage
+    src={privateVsGroupHero}
+    alt="Two tea settings side by side: a single solitary chawan and cushion on the left for a private ceremony, and a row of three closer-together chawan and cushions on the right for a group ceremony"
+  />
+
+  <p class="text-sm text-warm-gray-mid mb-2">
+    <time datetime={PUBLISH_DATE}>{dateFormatter.format(new Date(PUBLISH_DATE))}</time>
+  </p>
+  <AffiliateNote />
+
+  <h1 class="font-serif font-semibold text-4xl text-sumi mb-4 leading-tight">
+    Private vs Group Tea Ceremony in Tokyo: Which Should You Book?
+  </h1>
+
+  {/* GEO answer block */}
+  <div class="bg-sakura-light rounded-lg p-5 mb-8 border-l-4 border-sakura-deep">
+    <p class="text-sm font-medium text-sakura-deep mb-1">Quick Answer</p>
+    <p class="text-sumi leading-relaxed text-sm">
+      Book a group session if this is your first tea ceremony and you mainly want to experience
+      the ritual — it's cheaper (median around ¥6,000, some from ¥3,500) and the presence of other
+      guests actually takes pressure off you. Book private if you're marking an occasion, need
+      control over pace and seating, or want to ask real questions — but check the math first: the
+      private premium ranges from about ¥1,000 extra at some venues to more than double the
+      per-person price at others.
+    </p>
+  </div>
+
+  <div class="prose max-w-none text-sumi">
+    <h2>The price math nobody shows you</h2>
+    <p>
+      From the <a href="/tokyo-tea-ceremony-price-index">Tokyo Tea Ceremony Price Index</a>,
+      here's what "going private" actually costs in Tokyo right now:
+    </p>
+    <ul>
+      <li>
+        <strong>Chazen (Asakusa/Ginza):</strong> shared session ¥3,500 → private ¥4,500. A ¥1,000
+        premium — one of the best private deals in the city.
+      </li>
+      <li>
+        <strong>Asakusa Jidaiya:</strong> ¥5,500 per person for two or more → ¥11,000 if you're
+        solo. Solo travelers effectively pay the private premium whether they want privacy or not.
+      </li>
+      <li>
+        <strong>Kobohji Temple (Mita):</strong> private ceremony at ¥20,000 per person — the top
+        of our index.
+      </li>
+      <li>
+        <strong>Maikoya, Shizu-Kokoro, Shibuya venues:</strong> private options exist; pricing
+        varies by group size, so ask when booking.
+      </li>
+    </ul>
+    <p>
+      The pattern: <strong>private is not one product</strong>. At one venue it's a ¥1,000
+      upgrade; at another it's a luxury experience at 5x the group median. Never assume — check
+      the specific venue's math on our <a href="/tokyo-tea-ceremony-compared">comparison table</a>.
+    </p>
+  </div>
+
+  <div class="space-y-6 my-6 not-prose">
+    <div class="border border-warm-gray-mid rounded-lg p-5">
+      <h3 class="font-sans font-semibold text-lg text-sumi mb-2">Chazen — Asakusa</h3>
+      <p class="text-sm text-sumi/80 mb-4">
+        A properly built tea room with tsukubai water basin and nijiriguchi crawl-through entrance
+        — rare among tourist venues. ¥3,500 shared, ¥4,500 private. The Ginza branch runs the same
+        pricing next door to the Kabuki-za theatre.
+      </p>
+      <AffiliateButton
+        network="direct"
+        official_url="https://teaceremony-tokyo.jp/asakusa/"
+        price_jpy={4500}
+        label="Book Chazen Direct"
+      />
+    </div>
+
+    <div class="border border-warm-gray-mid rounded-lg p-5">
+      <h3 class="font-sans font-semibold text-lg text-sumi mb-2">Asakusa Jidaiya</h3>
+      <p class="text-sm text-sumi/80 mb-4">
+        Kimono and tea with chairs available, though the space is a studio rather than a tea room
+        — an enjoyable "experience" rather than a formal setting. ¥5,500 pp for two or more;
+        ¥11,000 solo.
+      </p>
+      <AffiliateButton
+        network="direct"
+        official_url="https://jidaiya.biz/japanese_culture/tea-ceremony"
+        price_jpy={5500}
+        label="Book Jidaiya Direct"
+      />
+    </div>
+
+    <div class="border border-warm-gray-mid rounded-lg p-5">
+      <h3 class="font-sans font-semibold text-lg text-sumi mb-2">Private Tea Ceremony — Kobohji Temple, Mita</h3>
+      <p class="text-sm text-sumi/80 mb-4">
+        ¥20,000 per person, with the rare option to wear an Oshima Tsumugi silk haori — a genuine
+        luxury booking rather than a first-timer's ceremony.
+      </p>
+      <AffiliateButton
+        network="getyourguide"
+        affiliate_url="https://www.getyourguide.com/tokyo-l193/tokyo-private-japanese-traditional-tea-ceremony-t590976/?partner_id=V4M9L5E"
+        price_jpy={20000}
+      />
+    </div>
+  </div>
+
+  <div class="prose max-w-none text-sumi">
+    <h2>When a group session is actually the better choice</h2>
+    <p>
+      This surprises people, but as someone who practices tea: <strong>a first-timer is often
+      more comfortable in a group.</strong>
+    </p>
+    <p>
+      In my experience on the practicing side: having other guests in the room takes the spotlight
+      off you — you're part of a gathering, not a solo performance being watched. And here's
+      something visitors rarely realize: conversation flowing warmly among the guests is itself
+      one of the things that delights a host. A lively, comfortable room is a successful tea
+      gathering; you being relaxed is part of the gift.
+    </p>
+    <p>
+      There's also a practical point: beginners find it deeply reassuring to have someone to copy,
+      and in a group you can simply follow the guest ahead of you. One insider caveat: the first
+      guest (the <em>shokyaku</em>, seated closest to the host) has a distinct role and does things
+      nobody else does — so as a first-timer, don't volunteer for that seat, and enjoy watching
+      from further down the line. Add the lower price and easier booking, and for most travelers
+      the group session is the right default.
+    </p>
+    <p>
+      Group sessions suit you if: it's your first ceremony, you're traveling solo on a budget
+      (though watch those solo surcharges), you enjoy shared experiences, or you just want the
+      cultural taste without ceremony around the ceremony.
+    </p>
+
+    <h2>When private is genuinely worth it</h2>
+    <p>
+      <strong>Occasions.</strong> Proposals, anniversaries, a quiet hour with a parent — a private
+      room turns the ceremony into a memory with only your people in it.
+    </p>
+    <p>
+      <strong>Control.</strong> Pace, seating (chairs without an audience), photography timing,
+      dietary questions about the sweets — everything is negotiable when the session is yours. If
+      mobility is a concern, private removes the worry of holding up a group. (See our guide on
+      <a href="/tea-ceremony-without-seiza">tea ceremonies if you can't sit seiza</a> for
+      chair-friendly options either way.)
+    </p>
+    <p>
+      <strong>Depth.</strong> With no other guests, you can ask the host about every utensil, the
+      scroll, the season's meaning — and get real answers instead of a script. If you've read a
+      little about tea and want to go beyond the demonstration, this is where private earns its
+      price.
+    </p>
+    <p>
+      <strong>Groups of friends.</strong> Here's the quiet math trick: at venues that price
+      privately per session or offer group rates, four people booking together sometimes pay
+      barely more per person than joining a shared session — you get a private room at group
+      prices. Ask for the per-group rate.
+    </p>
+  </div>
+
+  <div class="space-y-6 my-6 not-prose">
+    <div class="border border-warm-gray-mid rounded-lg p-5">
+      <h3 class="font-sans font-semibold text-lg text-sumi mb-2">Maikoya — Asakusa &amp; Shinjuku</h3>
+      <p class="text-sm text-sumi/80 mb-4">
+        Private bookings, kimono dressing, even nerikiri sweet-making add-ons — ¥6,300 with kimono
+        including hair styling. Ask about per-group pricing if you're booking as a party.
+      </p>
+      <AffiliateButton
+        network="klook"
+        affiliate_url="https://www.klook.com/en-US/activity/137057-tea-ceremony-with-kimono-experience-in-tokyo/?aid=1326641"
+        price_jpy={6300}
+      />
+    </div>
+
+    <div class="border border-warm-gray-mid rounded-lg p-5">
+      <h3 class="font-sans font-semibold text-lg text-sumi mb-2">Shizu-Kokoro Tea Ceremony School — Asakusa</h3>
+      <p class="text-sm text-sumi/80 mb-4">
+        The instructor has taught in the US and runs an actual tea school — the closest a visitor
+        gets to a real keiko practice lesson. Private sessions available; ask about pricing when
+        booking.
+      </p>
+      <AffiliateButton
+        network="direct"
+        official_url="https://www.teaceremony.co/"
+        price_jpy={4620}
+      />
+    </div>
+
+    <div class="border border-warm-gray-mid rounded-lg p-5">
+      <h3 class="font-sans font-semibold text-lg text-sumi mb-2">Private Tea Ceremony — Shibuya</h3>
+      <p class="text-sm text-sumi/80 mb-4">
+        A 1–4 person private format at ¥3,900 per person — one of the more affordable ways into a
+        private room. Platform-only operator, not independently verified by us yet.
+      </p>
+      <AffiliateButton
+        network="getyourguide"
+        affiliate_url="https://www.getyourguide.com/tokyo-l193/tokyo-tea-ceremony-in-shibuya-tokyo-t610317/?partner_id=V4M9L5E"
+        price_jpy={3900}
+      />
+    </div>
+  </div>
+
+  <div class="prose max-w-none text-sumi">
+    <h2>The middle path most people miss</h2>
+    <p>
+      Several Tokyo venues run <strong>small-group sessions</strong> (under 8-10 guests) that give
+      you most of private's calm at group prices — the Casual Tea Ceremony in Asakusa caps at 8,
+      and Jugetsudo at 10. If your worry is "I don't want a 20-person tourist crowd" rather than "I
+      need my own room," a small-group cap solves it for thousands of yen less.
+    </p>
+  </div>
+
+  <div class="space-y-6 my-6 not-prose">
+    <div class="border border-warm-gray-mid rounded-lg p-5">
+      <h3 class="font-sans font-semibold text-lg text-sumi mb-2">Casual Tea Ceremony — Tokyo Tourist Lounge, Asakusa</h3>
+      <p class="text-sm text-sumi/80 mb-4">
+        Capped at 8 guests, ¥4,500, one hour, photos welcome and wheelchair accessible. Honest
+        about being casual rather than formal — book it knowing it's relaxed, not ceremonial.
+      </p>
+      <AffiliateButton
+        network="getyourguide"
+        affiliate_url="https://www.getyourguide.com/tokyo-l193/tokyo-casual-japanese-tea-ceremony-with-matcha-tasting-t1094221/?partner_id=V4M9L5E"
+        price_jpy={4500}
+      />
+    </div>
+
+    <div class="border border-warm-gray-mid rounded-lg p-5">
+      <h3 class="font-sans font-semibold text-lg text-sumi mb-2">Jugetsudo — Kabukiza Tower, Ginza</h3>
+      <p class="text-sm text-sumi/80 mb-4">
+        Capped at 10 guests, ¥6,000, in a Kengo Kuma-designed space with a matcha starter set
+        included. A light, simplified tasting rather than a full ceremony.
+      </p>
+      <AffiliateButton
+        network="direct"
+        official_url="https://reserva.be/jugetsudo"
+        price_jpy={6000}
+      />
+    </div>
+  </div>
+
+  <FaqBlock items={faqItems} />
+
+  <div class="mt-8 text-sm text-sumi/70 border-t border-warm-gray pt-6">
+    <p>
+      Prices from the <a href="/tokyo-tea-ceremony-price-index" class="text-matcha underline">Tokyo Tea Ceremony Price Index</a>,
+      checked July 2026, updated quarterly. Some links are affiliate links — we may earn a small commission at no extra cost to you.
+    </p>
+  </div>
+
+  <EmailCapture />
+  <AuthorBio />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    'headline': TITLE,
+    'description': DESCRIPTION,
+    'datePublished': PUBLISH_DATE,
+    'author': {
+      '@type': 'Person',
+      'name': 'Suzu',
+      'url': 'https://tokyoinseason.com/about',
+    },
+    'publisher': {
+      '@type': 'Organization',
+      'name': 'Tokyo in Season',
+      'url': 'https://tokyoinseason.com',
+    },
+    'mainEntityOfPage': 'https://tokyoinseason.com/private-vs-group-tea-ceremony-tokyo',
+  })} />
+</BaseLayout>
