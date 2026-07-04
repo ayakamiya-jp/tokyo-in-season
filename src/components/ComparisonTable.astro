@@ -171,18 +171,29 @@ const listItems = sorted
 
             {/* Book */}
             <td class="p-3 align-top">
-              {url
+              {exp.affiliate_url
                 ? (
                   <a
-                    href={url}
+                    href={exp.affiliate_url}
                     target="_blank"
-                    rel={exp.affiliate_url ? 'noopener sponsored' : 'noopener noreferrer'}
+                    rel="noopener sponsored"
                     class="inline-block text-xs font-medium bg-matcha hover:bg-matcha-light text-white rounded px-3 py-1.5 transition-colors whitespace-nowrap"
                   >
-                    {exp.affiliate_url ? 'Book →' : 'View →'}
+                    Book →
                   </a>
                 )
-                : <span class="text-xs text-warm-gray-mid">—</span>
+                : exp.official_url
+                  ? (
+                    <a
+                      href={exp.official_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-block text-xs font-medium text-matcha border border-matcha hover:bg-matcha/10 rounded px-3 py-1.5 transition-colors whitespace-nowrap"
+                    >
+                      Official site →
+                    </a>
+                  )
+                  : <span class="text-xs text-warm-gray-mid">—</span>
               }
             </td>
           </tr>
