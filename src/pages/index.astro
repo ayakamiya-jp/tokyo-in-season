@@ -50,23 +50,37 @@ import priceIndexHero from '../assets/hero/price-index-hero.jpg';
           desc: 'Quarterly dataset: median prices by area, full methodology, downloadable CSV.',
           badge: 'Updated quarterly',
         },
-        {
-          href: '/private-vs-group-tea-ceremony-tokyo',
-          title: 'Private vs Group: Which to Book?',
-          desc: 'When the extra cost is worth it — and when it isn\'t.',
-          badge: null,
-        },
-        {
-          href: '/tea-ceremony-without-seiza',
-          title: 'Best Ceremonies If You Can\'t Sit Seiza',
-          desc: 'Chair-friendly options for travellers with knee or back issues.',
-          badge: null,
-        },
       ].map(card => (
         <a href={card.href} class="group block border border-warm-gray-mid rounded-lg p-5 hover:border-matcha transition-colors">
           {card.badge && (
             <span class="text-xs font-medium text-matcha bg-matcha/10 rounded px-2 py-0.5 mb-2 inline-block">{card.badge}</span>
           )}
+          <h3 class="font-sans font-semibold text-lg text-sumi group-hover:text-matcha transition-colors mb-1">{card.title}</h3>
+          <p class="text-sm text-sumi/70">{card.desc}</p>
+        </a>
+      ))}
+    </div>
+
+    <h3 class="font-serif font-semibold text-xl text-sumi mt-10 mb-4">Decision guides</h3>
+    <div class="grid sm:grid-cols-3 gap-4">
+      {[
+        {
+          href: '/tea-ceremony-asakusa-vs-ginza-omotesando',
+          title: 'Asakusa vs Ginza vs Omotesando',
+          desc: 'Which area fits your trip — price, atmosphere, and depth compared.',
+        },
+        {
+          href: '/private-vs-group-tea-ceremony-tokyo',
+          title: 'Private vs Group: Which to Book?',
+          desc: 'When the extra cost is worth it — and when it isn\'t.',
+        },
+        {
+          href: '/tea-ceremony-without-seiza',
+          title: 'Best Ceremonies If You Can\'t Sit Seiza',
+          desc: 'Chair-friendly options for travellers with knee or back issues.',
+        },
+      ].map(card => (
+        <a href={card.href} class="group block border border-warm-gray-mid rounded-lg p-5 hover:border-matcha transition-colors">
           <h3 class="font-sans font-semibold text-lg text-sumi group-hover:text-matcha transition-colors mb-1">{card.title}</h3>
           <p class="text-sm text-sumi/70">{card.desc}</p>
         </a>

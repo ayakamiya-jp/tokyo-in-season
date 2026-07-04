@@ -1,0 +1,246 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EmailCapture from '../components/EmailCapture.astro';
+import AuthorBio from '../components/AuthorBio.astro';
+import HeroImage from '../components/HeroImage.astro';
+import AffiliateButton from '../components/AffiliateButton.astro';
+import AffiliateNote from '../components/AffiliateNote.astro';
+import FaqBlock from '../components/FaqBlock.astro';
+import areaComparisonHero from '../assets/hero/area-comparison-hero.jpg';
+
+const PUBLISH_DATE = '2026-07-05';
+const dateFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const TITLE = 'Tea Ceremony in Asakusa vs Ginza vs Omotesando: Which Area Should You Choose? (2026)';
+const DESCRIPTION = "Choose Asakusa for the classic old-Tokyo day and the widest choice at the lowest prices (median ¥4,620). Choose Ginza for a calmer, more polished setting paired with Kabuki (median ¥6,000). Omotesando/Aoyama is the quiet outlier — fewer options, but real tea schools over tourist programs.";
+
+const faqItems = [
+  {
+    question: 'Is a tea ceremony cheaper in Asakusa or Ginza?',
+    answer: 'Asakusa — the median price there is ¥4,620 versus ¥6,000 in Ginza, and Asakusa has more budget options overall.',
+  },
+  {
+    question: 'Which area has the most authentic tea ceremony?',
+    answer: '"Authentic" venues exist in every area — Asakusa has real tea rooms alongside studio experiences, and Omotesando hosts actual tea schools. Area matters less than the specific venue; check practitioner ratings before booking.',
+  },
+  {
+    question: 'Can I do a tea ceremony and Kabuki on the same day?',
+    answer: 'Yes — Chazen Ginza is next door to the Kabuki-za theatre. Book a morning tea session and an afternoon single-act (hitomaku-mi) ticket.',
+  },
+];
+---
+
+<BaseLayout
+  title={TITLE}
+  description={DESCRIPTION}
+  ogType="article"
+  ogImage={areaComparisonHero}
+  showCompareCta
+>
+  <HeroImage
+    src={areaComparisonHero}
+    alt="Cherry blossoms framing Senso-ji temple's red gate and a paper lantern in Asakusa, Tokyo"
+  />
+
+  <p class="text-sm text-warm-gray-mid mb-2">
+    <time datetime={PUBLISH_DATE}>{dateFormatter.format(new Date(PUBLISH_DATE))}</time>
+  </p>
+  <AffiliateNote />
+
+  <h1 class="font-serif font-semibold text-4xl text-sumi mb-4 leading-tight">
+    Tea Ceremony in Asakusa vs Ginza vs Omotesando: Which Area Should You Choose?
+  </h1>
+
+  {/* GEO answer block */}
+  <div class="bg-sakura-light rounded-lg p-5 mb-8 border-l-4 border-sakura-deep">
+    <p class="text-sm font-medium text-sakura-deep mb-1">Quick Answer</p>
+    <p class="text-sumi leading-relaxed text-sm">
+      Choose <strong>Asakusa</strong> if you want the classic old-Tokyo day — tea ceremony plus
+      temple, kimono streets, and the widest choice of venues at the lowest prices (median
+      ¥4,620). Choose <strong>Ginza</strong> if you prefer a calmer, more polished setting and want
+      to pair tea with Kabuki — you'll pay more (median ¥6,000) for fewer crowds and refined
+      venues. <strong>Omotesando/Aoyama</strong> is the quiet outlier: fewer options, but home to
+      serious tea schools rather than tourist programs — the choice for travelers who want depth
+      over convenience.
+    </p>
+  </div>
+
+  <div class="prose max-w-none text-sumi">
+    <h2>The numbers first</h2>
+    <p>
+      From the <a href="/tokyo-tea-ceremony-price-index">Tokyo Tea Ceremony Price Index</a> (Q3 2026):
+    </p>
+    <ul>
+      <li>
+        <strong>Asakusa:</strong> the highest concentration of venues on our index — from ¥2,700
+        budget sessions to full kimono-and-tea bundles. Median ¥4,620.
+      </li>
+      <li>
+        <strong>Ginza:</strong> fewer venues, higher polish. ¥3,500–¥10,000 range, median ¥6,000 —
+        about 1.3x Asakusa.
+      </li>
+      <li>
+        <strong>Omotesando/Aoyama:</strong> thin on tourist programs; what's here leans toward real
+        tea schools (price often on inquiry).
+      </li>
+    </ul>
+    <p>
+      Same city, same tea — but the areas sell three different experiences. Here's how to match
+      them to your trip. See the full breakdown on our
+      <a href="/tokyo-tea-ceremony-compared">comparison table</a>.
+    </p>
+
+    <h2>Asakusa: tea ceremony as part of old Tokyo</h2>
+    <p>
+      Asakusa is where tea ceremony fits into a whole day of tradition: Senso-ji temple, Nakamise
+      shopping street, rickshaws, kimono rental shops on every corner. Most venues here are built
+      for visitors — English support is standard, kimono add-ons are everywhere, and chairs are
+      easier to find (Maikoya keeps them available at all times).
+    </p>
+    <p>
+      The honest trade-off: it's the most touristy setting. Some venues are wonderful; some are
+      studios rather than tea rooms. Our comparison table marks which is which.
+    </p>
+    <p><strong>Best for:</strong> first-timers, families, anyone combining tea with sightseeing, kimono photos, budget travelers.</p>
+    <p>
+      From walking these streets myself: Asakusa is so thoroughly a sightseeing district that
+      strolling in kimono feels completely natural — nobody gives you a second glance, which is
+      exactly what you want for photos. The flip side is honest too: the crowds are largely
+      international and the atmosphere is festival-loud. If tourist-dense areas drain you,
+      Asakusa's charm may read as chaos — that's your cue to look at Ginza instead.
+    </p>
+  </div>
+
+  <div class="space-y-6 my-6 not-prose">
+    <div class="border border-warm-gray-mid rounded-lg p-5">
+      <h3 class="font-sans font-semibold text-lg text-sumi mb-2">Maikoya — Asakusa</h3>
+      <p class="text-sm text-sumi/80 mb-4">
+        Chairs always available, kimono dressing, private bookings, even nerikiri sweet-making
+        add-ons — ¥6,300 with kimono including hair styling. The broad cultural bundle for a first
+        Asakusa visit.
+      </p>
+      <AffiliateButton
+        network="klook"
+        affiliate_url="https://www.klook.com/en-US/activity/137057-tea-ceremony-with-kimono-experience-in-tokyo/?aid=1326641"
+        price_jpy={6300}
+      />
+    </div>
+  </div>
+
+  <div class="prose max-w-none text-sumi">
+    <h2>Ginza: tea ceremony as a refined pause</h2>
+    <p>
+      Ginza's venues are calmer and more curated. Chazen's main branch sits next door to the
+      Kabuki-za theatre — a properly built tea room with tsukubai basin and nijiriguchi entrance,
+      rare among tourist venues — making a tea-then-Kabuki afternoon one of Tokyo's most elegant
+      culture pairings. HiSUi runs multi-discipline sessions where hosts explain the seasonal
+      meaning behind each utensil.
+    </p>
+    <p>
+      The trade-off is price and choice: fewer venues, higher median, less of the festival
+      atmosphere some travelers love.
+    </p>
+    <p><strong>Best for:</strong> couples, travelers who dislike crowds, Kabuki-goers, second-time visitors who've already done Asakusa.</p>
+  </div>
+
+  <div class="space-y-6 my-6 not-prose">
+    <div class="border border-warm-gray-mid rounded-lg p-5">
+      <h3 class="font-sans font-semibold text-lg text-sumi mb-2">Chazen — Ginza (main branch)</h3>
+      <p class="text-sm text-sumi/80 mb-4">
+        A properly built tea room with tsukubai and nijiriguchi, next door to the Kabuki-za
+        theatre — easy to make a full day of traditional culture. ¥3,500 shared, ¥4,500 private.
+      </p>
+      <AffiliateButton
+        network="direct"
+        official_url="https://teaceremony-tokyo.jp/"
+        price_jpy={3500}
+        label="Book Chazen Ginza Direct"
+      />
+    </div>
+
+    <div class="border border-warm-gray-mid rounded-lg p-5">
+      <h3 class="font-sans font-semibold text-lg text-sumi mb-2">HiSUi TOKYO — Ginza</h3>
+      <p class="text-sm text-sumi/80 mb-4">
+        A multi-discipline cultural school; hosts take time to explain the seasonal meaning behind
+        each utensil and the spirit of hospitality. ¥10,000 including kimono.
+      </p>
+      <AffiliateButton
+        network="direct"
+        official_url="https://hisui-tokyo.com/en/plan/"
+        price_jpy={10000}
+      />
+    </div>
+  </div>
+
+  <div class="prose max-w-none text-sumi">
+    <h2>Omotesando/Aoyama: where tea is studied, not staged</h2>
+    <p>
+      This area barely appears on tourist lists — and that's the point. It's home to serious tea
+      education (the Urasenke YOUWAKAI school operates here, with well-known practitioners
+      involved and reservations only on set weekdays). Programs are longer, less scripted, and
+      sometimes priced on inquiry.
+    </p>
+    <p>
+      <strong>Best for:</strong> travelers who've read about tea, repeat visitors, anyone who wants
+      a lesson rather than a show. Not ideal for: tight schedules, spontaneous booking.
+    </p>
+  </div>
+
+  <div class="space-y-6 my-6 not-prose">
+    <div class="border border-warm-gray-mid rounded-lg p-5">
+      <h3 class="font-sans font-semibold text-lg text-sumi mb-2">Urasenke YOUWAKAI Tea Ceremony — Omotesando</h3>
+      <p class="text-sm text-sumi/80 mb-4">
+        Well-known tea practitioners are involved in this school, and the tea room is unusually
+        spacious. It takes a little courage to inquire, but this opens the door to the real depth
+        of the culture. Usucha program, 120 minutes. Price on inquiry; reservations Mondays,
+        Wednesdays, and Thursdays only.
+      </p>
+      <AffiliateButton
+        network="direct"
+        official_url="https://www.youwa-kai.com/english/"
+        label="Inquire Direct"
+      />
+    </div>
+  </div>
+
+  <div class="prose max-w-none text-sumi">
+    <h2>The itinerary cheat sheet</h2>
+    <ul>
+      <li><strong>One day in Tokyo, first visit:</strong> Asakusa. Tea + temple + kimono in a two-hour radius.</li>
+      <li><strong>Slow afternoon, adult pace:</strong> Ginza. Book tea for late morning, Kabuki single-act ticket after lunch.</li>
+      <li><strong>You practice tea at home / read The Book of Tea twice:</strong> Omotesando, and email ahead.</li>
+      <li><strong>Can't decide:</strong> Asakusa for the experience now, and leave Ginza as the reason to come back.</li>
+    </ul>
+  </div>
+
+  <FaqBlock items={faqItems} />
+
+  <div class="mt-8 text-sm text-sumi/70 border-t border-warm-gray pt-6">
+    <p>
+      Prices from the <a href="/tokyo-tea-ceremony-price-index" class="text-matcha underline">Tokyo Tea Ceremony Price Index</a>,
+      checked July 2026, updated quarterly. Some links are affiliate links — we may earn a small commission at no extra cost to you.
+    </p>
+  </div>
+
+  <EmailCapture />
+  <AuthorBio />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    'headline': TITLE,
+    'description': DESCRIPTION,
+    'datePublished': PUBLISH_DATE,
+    'author': {
+      '@type': 'Person',
+      'name': 'Suzu',
+      'url': 'https://tokyoinseason.com/about',
+    },
+    'publisher': {
+      '@type': 'Organization',
+      'name': 'Tokyo in Season',
+      'url': 'https://tokyoinseason.com',
+    },
+    'mainEntityOfPage': 'https://tokyoinseason.com/tea-ceremony-asakusa-vs-ginza-omotesando',
+  })} />
+</BaseLayout>

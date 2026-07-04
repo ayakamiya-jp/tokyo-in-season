@@ -32,7 +32,7 @@ bookable group tea ceremony in Tokyo is ¥[X], ranging from ¥[min] to ¥[max]."
 ### Decision pages (high intent, AI-friendly)
 - /tokyo-tea-ceremony-compared — side-by-side comparison of all listed experiences
 - /private-vs-group-tea-ceremony-tokyo — structured comparison of booking types
-- /asakusa-vs-ginza-vs-omotesando — area comparison with price data
+- /tea-ceremony-asakusa-vs-ginza-omotesando — area comparison with price data
 - /tea-ceremony-without-seiza — chair-friendly options for travellers
 
 ### Pillar content
