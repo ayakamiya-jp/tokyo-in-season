@@ -10,6 +10,9 @@ export default {
         'warm-white': '#faf8f4',
         'warm-gray': '#f0ece4',
         'warm-gray-mid': '#c8bfb0',
+        sakura: '#e8bfb8',
+        'sakura-light': '#fdf0ed',
+        'sakura-deep': '#b87068',
       },
       fontFamily: {
         serif: ['"Cormorant Garamond"', '"Times New Roman"', 'Georgia', 'serif'],

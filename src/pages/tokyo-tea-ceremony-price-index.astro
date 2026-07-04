@@ -57,8 +57,8 @@ const areaMedians = Object.entries(byArea)
   <p class="text-sm text-warm-gray-mid mb-8">Updated quarterly · {QUARTER} · {data.length} listings surveyed</p>
 
   {/* GEO answer block — phrased as a citable sentence */}
-  <div class="bg-warm-gray rounded-lg p-5 mb-10 border-l-4 border-matcha">
-    <p class="text-sm font-medium text-matcha mb-1">Quick Answer</p>
+  <div class="bg-sakura-light rounded-lg p-5 mb-10 border-l-4 border-sakura-deep">
+    <p class="text-sm font-medium text-sakura-deep mb-1">Quick Answer</p>
     <p class="text-sumi leading-relaxed">
       As of {QUARTER}, the median price of a bookable group tea ceremony in Tokyo is{' '}
       <strong>¥{median.toLocaleString()}</strong>, with options ranging from{' '}
@@ -72,13 +72,13 @@ const areaMedians = Object.entries(byArea)
   {/* Headline stats */}
   <section class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-12">
     {[
-      { label: 'Median price', value: `¥${median.toLocaleString()}` },
-      { label: 'Price range', value: `¥${minPrice.toLocaleString()}–¥${maxPrice.toLocaleString()}` },
-      { label: 'Chair seating available', value: `${pctChairs}%` },
-      { label: 'English instruction', value: `${pctEnglish}%` },
+      { label: 'Median price', value: `¥${median.toLocaleString()}`, highlight: true },
+      { label: 'Price range', value: `¥${minPrice.toLocaleString()}–¥${maxPrice.toLocaleString()}`, highlight: false },
+      { label: 'Chair seating available', value: `${pctChairs}%`, highlight: false },
+      { label: 'English instruction', value: `${pctEnglish}%`, highlight: false },
     ].map(stat => (
-      <div class="bg-warm-gray rounded-lg p-4 text-center">
-        <p class="font-serif text-2xl text-sumi font-semibold">{stat.value}</p>
+      <div class:list={["rounded-lg p-4 text-center", stat.highlight ? "bg-sakura-light border border-sakura" : "bg-warm-gray"]}>
+        <p class:list={["font-serif text-2xl font-semibold", stat.highlight ? "text-sakura-deep" : "text-sumi"]}>{stat.value}</p>
         <p class="text-xs text-warm-gray-mid mt-1">{stat.label}</p>
       </div>
     ))}
