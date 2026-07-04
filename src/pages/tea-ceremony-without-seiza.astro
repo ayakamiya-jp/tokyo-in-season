@@ -4,6 +4,7 @@ import EmailCapture from '../components/EmailCapture.astro';
 import AuthorBio from '../components/AuthorBio.astro';
 import HeroImage from '../components/HeroImage.astro';
 import AffiliateButton from '../components/AffiliateButton.astro';
+import AffiliateNote from '../components/AffiliateNote.astro';
 import FaqBlock from '../components/FaqBlock.astro';
 import seizaHero from '../assets/hero/seiza-hero.jpg';
 
@@ -30,7 +31,6 @@ const faqItems = [
   title="Best Tea Ceremonies in Tokyo If You Can't Sit Seiza (2026)"
   description="Yes, you can enjoy a real tea ceremony in Tokyo without sitting seiza. Confirmed chair-friendly venues, what to say when booking, and a practitioner's honest take on floor sitting."
   ogType="article"
-  hasAffiliateLinks
 >
   <HeroImage
     src={seizaHero}
@@ -40,6 +40,7 @@ const faqItems = [
   <p class="text-sm text-warm-gray-mid mb-2">
     <time datetime={PUBLISH_DATE}>{dateFormatter.format(new Date(PUBLISH_DATE))}</time>
   </p>
+  <AffiliateNote />
 
   <h1 class="font-serif font-semibold text-4xl text-sumi mb-4 leading-tight">
     Best Tea Ceremonies in Tokyo If You Can't Sit Seiza
@@ -170,7 +171,7 @@ const faqItems = [
   <div class="mt-8 text-sm text-sumi/70 border-t border-warm-gray pt-6">
     <p>
       Prices and seating data from the <a href="/tokyo-tea-ceremony-price-index" class="text-matcha underline">Tokyo Tea Ceremony Price Index</a>,
-      checked July 2026, updated quarterly. Some links are affiliate links — we may earn a small commission at no extra cost to you.
+      checked July 2026, updated quarterly.
     </p>
   </div>
 

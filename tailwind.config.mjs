@@ -13,6 +13,8 @@ export default {
         sakura: '#e8bfb8',
         'sakura-light': '#fdf0ed',
         'sakura-deep': '#b87068',
+        // #727272 on warm-white (#faf8f4) = 4.54:1 — the darkest gray that still clears WCAG AA (4.5:1) at small text sizes
+        'legal-gray': '#727272',
       },
       fontFamily: {
         serif: ['"Cormorant Garamond"', '"Times New Roman"', 'Georgia', 'serif'],

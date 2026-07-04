@@ -5,7 +5,6 @@ interface Props {
   canonicalUrl?: string;
   ogType?: 'website' | 'article';
   wide?: boolean;
-  hasAffiliateLinks?: boolean;
 }
 
 const {
@@ -14,7 +13,6 @@ const {
   canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString(),
   ogType = 'website',
   wide = false,
-  hasAffiliateLinks = false,
 } = Astro.props;
 
 const siteName = 'Tokyo in Season';
@@ -68,13 +66,6 @@ const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
     </div>
   </header>
 
-  {hasAffiliateLinks && (
-    <div class="bg-sakura-light border-b border-sakura text-center text-xs text-sumi/80 py-2 px-4">
-      Some links are affiliate links — we may earn a small commission at no extra cost to you.
-      <a href="/disclaimer" class="underline hover:text-matcha ml-1">Learn more</a>
-    </div>
-  )}
-
   <main class:list={["mx-auto px-4 py-12", wide ? "max-w-6xl" : "max-w-3xl"]}>
     <slot />
   </main>
@@ -82,7 +73,7 @@ const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
   <footer class="border-t border-warm-gray mt-16">
     <div class="max-w-3xl mx-auto px-4 py-8 text-xs text-warm-gray-mid space-y-2">
       <p>© {new Date().getFullYear()} Tokyo in Season · Written by an Urasenke practitioner in Tokyo</p>
-      <p>Some links are affiliate links. I earn a small commission when you book through them, at no extra cost to you.</p>
+      <p>Some links are affiliate links — we may earn a small commission at no extra cost to you.</p>
       <p>
         <a href="/about" class="hover:text-matcha underline">About</a> ·
         <a href="/disclaimer" class="hover:text-matcha underline">Disclaimer</a> ·

@@ -6,6 +6,7 @@ import IndexBadge from '../components/IndexBadge.astro';
 import EmailCapture from '../components/EmailCapture.astro';
 import AuthorBio from '../components/AuthorBio.astro';
 import HeroImage from '../components/HeroImage.astro';
+import AffiliateNote from '../components/AffiliateNote.astro';
 import comparedHero from '../assets/hero/compared-hero.jpg';
 
 const QUARTER = 'Q3 2026';
@@ -21,7 +22,6 @@ const priced = experiences.filter(e => e.price_jpy != null).length;
   description={`All ${experiences.length} bookable tea ceremony experiences in Tokyo compared side by side: price, area, chairs available, kimono add-on, and private booking. Rated by an Urasenke practitioner.`}
   ogType="website"
   wide
-  hasAffiliateLinks
 >
   <HeroImage
     src={comparedHero}
@@ -31,6 +31,7 @@ const priced = experiences.filter(e => e.price_jpy != null).length;
   <div class="mb-4">
     <IndexBadge quarter={QUARTER} />
   </div>
+  <AffiliateNote />
 
   <h1 class="font-serif font-semibold text-4xl text-sumi mb-4 leading-tight">
     Tokyo Tea Ceremony Experiences Compared

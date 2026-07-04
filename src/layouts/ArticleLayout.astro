@@ -2,6 +2,7 @@
 import BaseLayout from './BaseLayout.astro';
 import EmailCapture from '../components/EmailCapture.astro';
 import AuthorBio from '../components/AuthorBio.astro';
+import AffiliateNote from '../components/AffiliateNote.astro';
 
 interface Props {
   title: string;
@@ -18,7 +19,7 @@ const { title, description, publishDate, updatedDate, tags = [], hasAffiliateLin
 const dateFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 ---
 
-<BaseLayout title={title} description={description} ogType="article" hasAffiliateLinks={hasAffiliateLinks}>
+<BaseLayout title={title} description={description} ogType="article">
   <article>
     <header class="mb-10">
       {tags.length > 0 && (
@@ -41,6 +42,7 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric', month:
           <span> · Updated <time datetime={updatedDate.toISOString()}>{dateFormatter.format(updatedDate)}</time></span>
         )}
       </p>
+      {hasAffiliateLinks && <AffiliateNote />}
     </header>
 
     <div class="prose max-w-none text-sumi">
