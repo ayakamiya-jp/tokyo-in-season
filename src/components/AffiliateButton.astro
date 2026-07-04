@@ -1,12 +1,18 @@
 ---
 interface Props {
-  url: string;
+  affiliate_url?: string | null;
+  official_url?: string | null;
   network: 'getyourguide' | 'klook' | 'direct';
   label?: string;
   price_jpy?: number;
 }
 
-const { url, network, label, price_jpy } = Astro.props;
+const { affiliate_url, official_url, network, label, price_jpy } = Astro.props;
+
+const href = affiliate_url ?? official_url ?? null;
+if (!href) return;
+
+const isAffiliate = !!affiliate_url;
 
 const networkLabel = {
   getyourguide: 'Book on GetYourGuide',
@@ -19,9 +25,9 @@ const priceText = price_jpy ? ` · from ¥${price_jpy.toLocaleString()}` : '';
 ---
 
 <a
-  href={url}
+  href={href}
   target="_blank"
-  rel="noopener sponsored"
+  rel={isAffiliate ? 'noopener sponsored' : 'noopener noreferrer'}
   class="inline-flex items-center gap-2 bg-matcha hover:bg-matcha-light text-white font-sans font-medium px-6 py-3 rounded-md transition-colors duration-200 text-sm"
 >
   {displayLabel}{priceText}
@@ -30,6 +36,8 @@ const priceText = price_jpy ? ` · from ¥${price_jpy.toLocaleString()}` : '';
     <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
   </svg>
 </a>
-<p class="text-xs text-warm-gray-mid mt-1">
-  This is an affiliate link. I earn a small commission at no extra cost to you.
-</p>
+{isAffiliate && (
+  <p class="text-xs text-warm-gray-mid mt-1">
+    This is an affiliate link. I earn a small commission at no extra cost to you.
+  </p>
+)}
