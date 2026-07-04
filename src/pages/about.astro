@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import EmailCapture from '../components/EmailCapture.astro';
+import HeroImage from '../components/HeroImage.astro';
+import aboutHero from '../assets/hero/about-hero.jpg';
 ---
 
 <BaseLayout
@@ -9,7 +11,12 @@ import EmailCapture from '../components/EmailCapture.astro';
   ogType="website"
 >
   <h1 class="font-serif font-semibold text-4xl text-sumi mb-2 leading-tight">About</h1>
-  <p class="text-warm-gray-mid text-sm mb-12">Tokyo in Season</p>
+  <p class="text-warm-gray-mid text-sm mb-8">Tokyo in Season</p>
+
+  <HeroImage
+    src={aboutHero}
+    alt="A quiet tea setting with porcelain cups, a stoneware teapot, and dried branches on a wooden table"
+  />
 
   <div class="prose max-w-none text-sumi leading-relaxed space-y-6">
 

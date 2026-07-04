@@ -1,12 +1,19 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import EmailCapture from '../components/EmailCapture.astro';
+import HeroImage from '../components/HeroImage.astro';
+import indexHero from '../assets/hero/index-hero.jpg';
 ---
 
 <BaseLayout
   title="Tokyo in Season"
   description="Japanese culture, in its right season — from inside the tea room. Tea ceremony experiences in Tokyo compared and reviewed by an Urasenke practitioner."
 >
+  <HeroImage
+    src={indexHero}
+    alt="A woman in kimono in a traditional Japanese tea room, looking toward a shoji-screened window and garden"
+  />
+
   <!-- Hero -->
   <section class="mb-16 text-center">
     <h1 class="font-serif font-semibold text-4xl sm:text-5xl text-sumi leading-tight mb-4">

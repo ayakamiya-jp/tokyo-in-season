@@ -4,6 +4,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import IndexBadge from '../components/IndexBadge.astro';
 import EmailCapture from '../components/EmailCapture.astro';
 import AuthorBio from '../components/AuthorBio.astro';
+import HeroImage from '../components/HeroImage.astro';
+import priceIndexHero from '../assets/hero/price-index-hero.jpg';
 
 const QUARTER = 'Q3 2026';
 const QUARTER_DATE = '2026-09-30'; // end of quarter for schema temporalCoverage
@@ -62,6 +64,11 @@ const keyFindings = [
   description={`As of ${QUARTER}, the median price of a bookable tea ceremony in Tokyo is ¥${median.toLocaleString()}, ranging from ¥${minPrice.toLocaleString()} to ¥${maxPrice.toLocaleString()}. Data from the Tokyo Tea Ceremony Price Index, updated quarterly.`}
   ogType="website"
 >
+  <HeroImage
+    src={priceIndexHero}
+    alt="A traditional tea ceremony setup on tatami mats, with an iron kettle, bamboo whisk, and chawan bowls"
+  />
+
   <div class="mb-4">
     <IndexBadge quarter={QUARTER} />
   </div>
