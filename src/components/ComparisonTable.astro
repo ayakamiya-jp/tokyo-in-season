@@ -30,14 +30,14 @@ interface Props {
 
 const { experiences, quarter } = Astro.props;
 
-// Sort: A → B → C, then GYG-bookable listings first, then by price ascending (null prices last)
+// Sort: A → B → C, then affiliate-bookable listings (GYG or Klook) first, then by price ascending (null prices last)
 const ratingOrder = { A: 0, B: 1, C: 2 };
 const sorted = [...experiences].sort((a, b) => {
   const rd = ratingOrder[a.practitioner_rating] - ratingOrder[b.practitioner_rating];
   if (rd !== 0) return rd;
-  const aHasGyg = a.affiliate_url != null;
-  const bHasGyg = b.affiliate_url != null;
-  if (aHasGyg !== bHasGyg) return aHasGyg ? -1 : 1;
+  const aHasAffiliate = a.affiliate_url != null || a.klook_affiliate_url != null;
+  const bHasAffiliate = b.affiliate_url != null || b.klook_affiliate_url != null;
+  if (aHasAffiliate !== bHasAffiliate) return aHasAffiliate ? -1 : 1;
   if (a.price_jpy == null && b.price_jpy == null) return 0;
   if (a.price_jpy == null) return 1;
   if (b.price_jpy == null) return -1;
