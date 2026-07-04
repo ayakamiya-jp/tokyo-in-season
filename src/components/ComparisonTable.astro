@@ -79,10 +79,11 @@ const listItems = sorted
     Sorted by practitioner rating, then price · Data: Tokyo Tea Ceremony Price Index {quarter}
   </p>
 
-  <table class="w-full text-sm border-collapse min-w-[700px]">
+  <table class="w-full text-sm border-collapse min-w-[820px]">
     <thead>
       <tr class="bg-warm-gray text-left text-xs uppercase tracking-wide">
-        <th class="p-3 font-sans font-semibold text-sumi border-b border-warm-gray-mid w-[35%]">Experience</th>
+        <th class="p-3 font-sans font-semibold text-sumi border-b border-warm-gray-mid w-[22%]">Experience</th>
+        <th class="p-3 font-sans font-semibold text-sumi border-b border-warm-gray-mid w-[28%]">Practitioner's note</th>
         <th class="p-3 font-sans font-semibold text-sumi border-b border-warm-gray-mid">Price</th>
         <th class="p-3 font-sans font-semibold text-sumi border-b border-warm-gray-mid">Area</th>
         <th class="p-3 font-sans font-semibold text-sumi border-b border-warm-gray-mid">Duration</th>
@@ -95,13 +96,12 @@ const listItems = sorted
     <tbody>
       {sorted.map((exp, i) => {
         const cfg = ratingConfig[exp.practitioner_rating];
-        const url = bookingUrl(exp);
         const isC = exp.practitioner_rating === 'C';
 
         return (
           <tr class:list={['border-b border-warm-gray-mid', i % 2 === 0 ? 'bg-white' : 'bg-warm-gray/30']}>
 
-            {/* Name + rating + badges */}
+            {/* Name + rating badge */}
             <td class="p-3 align-top">
               <div class="flex flex-wrap gap-1.5 mb-1.5">
                 <span class:list={['inline-block text-xs font-medium rounded px-2 py-0.5', cfg.classes]}>
@@ -109,7 +109,7 @@ const listItems = sorted
                 </span>
                 {exp.platform_only && (
                   <span class="inline-block text-xs rounded px-2 py-0.5 bg-amber-50 text-amber-700 border border-amber-200">
-                    Books via platform only
+                    Platform only
                   </span>
                 )}
               </div>
@@ -122,18 +122,13 @@ const listItems = sorted
                   ★ {exp.rating} · {exp.review_count?.toLocaleString()} reviews
                 </p>
               )}
-              {/* For C-rated: show editor_note inline as the "why" */}
-              {isC && (
-                <p class="text-xs text-red-600 mt-1.5 leading-snug italic">
-                  {exp.editor_note}
-                </p>
-              )}
-              {/* For A/B: show editor_note as a softer annotation */}
-              {!isC && (
-                <p class="text-xs text-sumi/60 mt-1 leading-snug italic">
-                  {exp.editor_note}
-                </p>
-              )}
+            </td>
+
+            {/* Practitioner's note */}
+            <td class="p-3 align-top">
+              <p class:list={['text-xs leading-relaxed italic', isC ? 'text-red-600' : 'text-sumi/60']}>
+                {exp.editor_note}
+              </p>
             </td>
 
             {/* Price */}
