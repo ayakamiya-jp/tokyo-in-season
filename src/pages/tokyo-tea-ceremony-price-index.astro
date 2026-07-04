@@ -66,7 +66,7 @@ const keyFindings = [
     <IndexBadge quarter={QUARTER} />
   </div>
 
-  <h1 class="font-serif text-4xl text-sumi mb-4 leading-tight">
+  <h1 class="font-serif font-semibold text-4xl text-sumi mb-4 leading-tight">
     Tokyo Tea Ceremony Price Index
   </h1>
   <p class="text-sm text-warm-gray-mid mb-8">Updated quarterly · {QUARTER} · {data.length} listings surveyed</p>
@@ -101,7 +101,7 @@ const keyFindings = [
 
   {/* Price by area */}
   <section class="mb-12">
-    <h2 class="font-serif text-2xl text-sumi mb-6">Median price by area</h2>
+    <h2 class="font-serif font-semibold text-2xl text-sumi mb-6">Median price by area</h2>
     <div class="space-y-3">
       {areaMedians.map(({ area, median: m, count }) => (
         <div class="flex items-center gap-3">
@@ -128,7 +128,7 @@ const keyFindings = [
 
   {/* Key Findings — self-contained, quotable stats */}
   <section class="mb-12">
-    <h2 class="font-serif text-2xl text-sumi mb-4">Key Findings</h2>
+    <h2 class="font-serif font-semibold text-2xl text-sumi mb-4">Key Findings</h2>
     <ul class="space-y-3 list-none">
       {keyFindings.map(finding => (
         <li class="bg-warm-gray rounded-lg p-4 text-sumi leading-relaxed border-l-4 border-matcha">
@@ -155,7 +155,7 @@ const keyFindings = [
 
   {/* Methodology */}
   <section class="mb-12" id="methodology">
-    <h2 class="font-serif text-2xl text-sumi mb-4">Methodology</h2>
+    <h2 class="font-serif font-semibold text-2xl text-sumi mb-4">Methodology</h2>
     <div class="prose prose-lg max-w-none text-sumi/80 space-y-3">
       <p>
         The Tokyo Tea Ceremony Price Index is a structured manual survey of bookable tea ceremony
