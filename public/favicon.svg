@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Sakura-light background circle -->
+  <circle cx="32" cy="32" r="32" fill="#fdf0ed"/>
+
+  <!-- Everything below is shifted up 2.5 so the full composition
+       (steam tip to cloth edge) centers on the badge, not just the bowl -->
+  <g transform="translate(0,-2.5)">
+    <!-- Kobukusa: silk cloth peeking out beneath the bowl -->
+    <rect x="16" y="45" width="32" height="13" rx="1.5" fill="#f2ddd7"/>
+
+    <!-- Bowl body: chawan side profile, flattened/squat proportions.
+         Cream-glazed body (like raku/cream-glaze ware) instead of matcha green,
+         so the green reads only in the tea itself. -->
+    <path d="
+      M 15 29
+      C 13 36  18 44  23 46
+      L 41 46
+      C 46 44  51 36  49 29
+      C 45 24  19 24  15 29
+      Z
+    " fill="#e8dcc4"/>
+
+    <!-- Matcha surface: set below the rim so a band of cream lip shows above it,
+         rather than the tea reading as filled to the brim -->
+    <ellipse cx="32" cy="32" rx="15" ry="4" fill="#4e7250"/>
+
+    <!-- Highlight traces the matcha surface's own rim (not the cream bowl lip) -->
+    <path d="M 17 32 Q 32 24 47 32" stroke="#7a9e7e" stroke-width="1.2" fill="none" opacity="0.8"/>
+
+    <!-- Foot ring (kodai): the small raised foot on the base -->
+    <rect x="25" y="45" width="14" height="4" rx="2" fill="#c9b896"/>
+
+    <!-- Steam: three wisps in sakura-deep, stronger S-curves, shortened -->
+    <path d="M 24 23 C 20 20  27 16  22 13" stroke="#e8bfb8" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+    <path d="M 32 21 C 28 18  35 14  30 11" stroke="#e8bfb8" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+    <path d="M 40 23 C 36 20  43 16  38 13" stroke="#e8bfb8" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+  </g>
+</svg>
