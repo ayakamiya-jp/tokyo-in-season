@@ -4,6 +4,7 @@ interface Experience {
   provider: 'gyg' | 'klook' | 'direct';
   official_url?: string | null;
   affiliate_url?: string | null;
+  klook_affiliate_url?: string | null;
   price_jpy?: number | null;
   price_usd?: number | null;
   duration_min?: number | null;
@@ -79,7 +80,7 @@ const listItems = sorted
     Sorted by practitioner rating, then price · Data: Tokyo Tea Ceremony Price Index {quarter}
   </p>
 
-  <table class="w-full text-sm border-collapse min-w-[820px]">
+  <table class="w-full text-sm border-collapse min-w-[900px]">
     <thead>
       <tr class="bg-warm-gray text-left text-xs uppercase tracking-wide">
         <th class="p-3 font-sans font-semibold text-sumi border-b border-warm-gray-mid w-[22%]">Experience</th>
@@ -164,31 +165,54 @@ const listItems = sorted
               {bool(exp.private_available)}
             </td>
 
-            {/* Book */}
+            {/* Book — primary: GYG affiliate; fallback: Klook affiliate; fallback: official site */}
             <td class="p-3 align-top">
               {exp.affiliate_url
                 ? (
-                  <a
-                    href={exp.affiliate_url}
-                    target="_blank"
-                    rel="noopener sponsored"
-                    class="inline-block text-xs font-medium bg-matcha hover:bg-matcha-light text-white rounded px-3 py-1.5 transition-colors whitespace-nowrap"
-                  >
-                    Book →
-                  </a>
+                  <div>
+                    <a
+                      href={exp.affiliate_url}
+                      target="_blank"
+                      rel="noopener sponsored"
+                      class="inline-block text-xs font-medium bg-matcha hover:bg-matcha-light text-white rounded px-3 py-1.5 transition-colors whitespace-nowrap"
+                    >
+                      Book →
+                    </a>
+                    {exp.klook_affiliate_url && (
+                      <a
+                        href={exp.klook_affiliate_url}
+                        target="_blank"
+                        rel="noopener sponsored"
+                        class="block text-xs text-warm-gray-mid hover:text-matcha mt-1.5 whitespace-nowrap transition-colors"
+                      >
+                        Also on Klook →
+                      </a>
+                    )}
+                  </div>
                 )
-                : exp.official_url
+                : exp.klook_affiliate_url
                   ? (
                     <a
-                      href={exp.official_url}
+                      href={exp.klook_affiliate_url}
                       target="_blank"
-                      rel="noopener noreferrer"
-                      class="inline-block text-xs font-medium text-matcha border border-matcha hover:bg-matcha/10 rounded px-3 py-1.5 transition-colors whitespace-nowrap"
+                      rel="noopener sponsored"
+                      class="inline-block text-xs font-medium bg-matcha hover:bg-matcha-light text-white rounded px-3 py-1.5 transition-colors whitespace-nowrap"
                     >
-                      Official site →
+                      Book →
                     </a>
                   )
-                  : <span class="text-xs text-warm-gray-mid">—</span>
+                  : exp.official_url
+                    ? (
+                      <a
+                        href={exp.official_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-block text-xs font-medium text-matcha border border-matcha hover:bg-matcha/10 rounded px-3 py-1.5 transition-colors whitespace-nowrap"
+                      >
+                        Official site →
+                      </a>
+                    )
+                    : <span class="text-xs text-warm-gray-mid">—</span>
               }
             </td>
           </tr>

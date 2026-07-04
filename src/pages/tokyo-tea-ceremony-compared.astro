@@ -18,6 +18,7 @@ const priced = experiences.filter(e => e.price_jpy != null).length;
   title={`Tokyo Tea Ceremony Experiences Compared — ${QUARTER}`}
   description={`All ${experiences.length} bookable tea ceremony experiences in Tokyo compared side by side: price, area, chairs available, kimono add-on, and private booking. Rated by an Urasenke practitioner.`}
   ogType="website"
+  wide
 >
   <div class="mb-4">
     <IndexBadge quarter={QUARTER} />

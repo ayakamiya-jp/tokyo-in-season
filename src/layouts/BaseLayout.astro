@@ -4,6 +4,7 @@ interface Props {
   description: string;
   canonicalUrl?: string;
   ogType?: 'website' | 'article';
+  wide?: boolean;
 }
 
 const {
@@ -11,6 +12,7 @@ const {
   description,
   canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString(),
   ogType = 'website',
+  wide = false,
 } = Astro.props;
 
 const siteName = 'Tokyo in Season';
@@ -26,6 +28,7 @@ const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
   <title>{fullTitle}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonicalUrl} />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍵</text></svg>" />
 
   <!-- Open Graph -->
   <meta property="og:title" content={fullTitle} />
@@ -62,7 +65,7 @@ const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
     </div>
   </header>
 
-  <main class="max-w-3xl mx-auto px-4 py-12">
+  <main class:list={["mx-auto px-4 py-12", wide ? "max-w-6xl" : "max-w-3xl"]}>
     <slot />
   </main>
 

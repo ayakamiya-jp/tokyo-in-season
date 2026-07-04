@@ -1,8 +1,8 @@
 {
   "name": "Shibuya Authentic Tea Ceremony (50 min)",
   "provider": "gyg",
-  "affiliate_url": null,
-  "official_url": null,
+  "affiliate_url": "https://www.getyourguide.com/tokyo-l193/tea-ceremony-experience-t757554/?partner_id=V4M9L5E",
+  "official_url": "https://www.getyourguide.com/tokyo-l193/tea-ceremony-experience-t757554/",
   "price_jpy": null,
   "duration_min": 50,
   "area": "Shibuya",
@@ -14,7 +14,7 @@
   "school": "none-stated",
   "practitioner_rating": "C",
   "editor_note": "Platform-only operator, not independently verified — book with expectations set accordingly.",
-  "last_checked": "2026-07-03",
+  "last_checked": "2026-07-04",
   "price_note": "PENDING - fetch price.",
   "platform_only": true
 }

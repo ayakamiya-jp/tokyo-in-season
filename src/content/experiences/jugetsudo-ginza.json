@@ -2,7 +2,7 @@
   "name": "Jugetsudo Tea Ceremony (Kabukiza Tower)",
   "provider": "direct",
   "affiliate_url": null,
-  "official_url": null,
+  "official_url": "https://reserva.be/jugetsudo",
   "price_jpy": 6000,
   "duration_min": 45,
   "area": "Ginza",
@@ -14,6 +14,6 @@
   "school": "none-stated",
   "practitioner_rating": "C",
   "editor_note": "A very light, simplified matcha tasting rather than anything close to a ceremony.",
-  "last_checked": "2026-07-03",
+  "last_checked": "2026-07-04",
   "notes": "Kengo Kuma-designed cafe; matcha starter set included as gift"
 }

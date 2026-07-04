@@ -19,6 +19,7 @@ const experiences = defineCollection({
     name: z.string(),
     provider: z.enum(['gyg', 'klook', 'direct']),
     affiliate_url: z.string().url().nullable().optional(),
+    klook_affiliate_url: z.string().url().nullable().optional(),
     official_url: z.string().url().nullable().optional(),
     price_jpy: z.number().nullable().optional(),
     duration_min: z.number().nullable().optional(),
