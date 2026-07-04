@@ -1,4 +1,7 @@
 ---
+const BUTTONDOWN_USERNAME = 'tokyoteaceremony'; // ← replace with your Buttondown username if different
+const THANK_YOU_URL = 'https://tokyoinseason.com/thank-you';
+
 interface Props {
   variant?: 'inline' | 'exit';
 }
@@ -9,23 +12,24 @@ const { variant = 'inline' } = Astro.props;
   "email-capture rounded-xl p-6 my-8 text-center",
   variant === 'exit' ? "border-2 border-sakura-deep" : "bg-sakura-light border border-sakura",
 ]}>
-  <p class="font-serif text-xl text-sumi mb-1">Free: Tea Ceremony Etiquette Guide</p>
+  <p class="font-serif text-xl text-sumi mb-1">
+    Get the free guide: Tea Ceremony Etiquette for First-Time Guests
+  </p>
   <p class="text-sm text-warm-gray-mid mb-4">
     The exact do's and don'ts I teach first-time guests — as a practising Urasenke student.
-    No spam. Unsubscribe any time.
   </p>
   <form
-    action="https://buttondown.com/api/emails/embed-subscribe/tokyoteaceremony"
+    action={`https://buttondown.com/api/emails/embed-subscribe/${BUTTONDOWN_USERNAME}`}
     method="post"
-    target="_blank"
     class="flex flex-col sm:flex-row gap-2 max-w-md mx-auto"
   >
+    <input type="hidden" name="next" value={THANK_YOU_URL} />
     <input
       type="email"
       name="email"
       placeholder="your@email.com"
       required
-      class="flex-1 border border-warm-gray-mid rounded px-3 py-2 text-sm text-sumi focus:outline-none focus:ring-2 focus:ring-matcha"
+      class="flex-1 border border-sakura rounded px-3 py-2 text-sm text-sumi bg-warm-white focus:outline-none focus:ring-2 focus:ring-sakura-deep"
     />
     <button
       type="submit"
@@ -34,4 +38,5 @@ const { variant = 'inline' } = Astro.props;
       Send me the guide
     </button>
   </form>
+  <p class="text-xs text-warm-gray-mid mt-3">No spam. Unsubscribe any time.</p>
 </aside>
