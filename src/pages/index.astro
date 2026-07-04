@@ -9,7 +9,7 @@ import EmailCapture from '../components/EmailCapture.astro';
 >
   <!-- Hero -->
   <section class="mb-16 text-center">
-    <h1 class="font-serif text-4xl sm:text-5xl text-sumi leading-tight mb-4">
+    <h1 class="font-serif font-semibold text-4xl sm:text-5xl text-sumi leading-tight mb-4">
       Tokyo in Season
     </h1>
     <p class="text-lg text-sumi/70 max-w-xl mx-auto leading-relaxed">
@@ -22,7 +22,7 @@ import EmailCapture from '../components/EmailCapture.astro';
 
   <!-- Money pages grid -->
   <section class="mb-16">
-    <h2 class="font-serif text-2xl text-sumi mb-6">Find the right experience</h2>
+    <h2 class="font-serif font-semibold text-2xl text-sumi mb-6">Find the right experience</h2>
     <div class="grid sm:grid-cols-2 gap-4">
       {[
         {
@@ -54,7 +54,7 @@ import EmailCapture from '../components/EmailCapture.astro';
           {card.badge && (
             <span class="text-xs font-medium text-matcha bg-matcha/10 rounded px-2 py-0.5 mb-2 inline-block">{card.badge}</span>
           )}
-          <h3 class="font-serif text-lg text-sumi group-hover:text-matcha transition-colors mb-1">{card.title}</h3>
+          <h3 class="font-sans font-semibold text-lg text-sumi group-hover:text-matcha transition-colors mb-1">{card.title}</h3>
           <p class="text-sm text-sumi/70">{card.desc}</p>
         </a>
       ))}
