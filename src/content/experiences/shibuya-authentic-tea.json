@@ -3,7 +3,7 @@
   "provider": "gyg",
   "affiliate_url": "https://www.getyourguide.com/tokyo-l193/tea-ceremony-experience-t757554/?partner_id=V4M9L5E",
   "official_url": "https://www.getyourguide.com/tokyo-l193/tea-ceremony-experience-t757554/",
-  "price_jpy": null,
+  "price_jpy": 6500,
   "duration_min": 50,
   "area": "Shibuya",
   "english_support": true,
@@ -15,6 +15,6 @@
   "practitioner_rating": "C",
   "editor_note": "Platform-only operator, not independently verified — book with expectations set accordingly.",
   "last_checked": "2026-07-04",
-  "price_note": "PENDING - fetch price.",
+  "price_note": "¥6,500 per person, verified 2026-07-04",
   "platform_only": true
 }

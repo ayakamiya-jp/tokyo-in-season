@@ -48,7 +48,7 @@ const ginzaMedian = areaMedians.find(a => a.area === 'Ginza')?.median;
 // Self-contained, quotable stat sentences for GEO citation
 const keyFindings = [
   `As of ${QUARTER}, the median price of a tea ceremony experience in Tokyo is ¥${median.toLocaleString()}, per the Tokyo Tea Ceremony Price Index (${pricedCount} of ${data.length} tracked venues publish prices).`,
-  `Prices range from ¥${minPrice.toLocaleString()} for a garden teahouse bowl to ¥${maxPrice.toLocaleString()} for a luxury garden venue.`,
+  `Prices range from ¥${minPrice.toLocaleString()} to ¥${maxPrice.toLocaleString()} across tracked venues.`,
   asakusaMedian != null && ginzaMedian != null
     ? `The median in Asakusa is ¥${asakusaMedian.toLocaleString()} versus ¥${ginzaMedian.toLocaleString()} in Ginza.`
     : null,
