@@ -4,8 +4,8 @@
   "affiliate_url": null,
   "official_url": null,
   "price_jpy": null,
-  "duration_min": null,
-  "area": "Aoyama",
+  "duration_min": 120,
+  "area": "Omotesando",
   "english_support": null,
   "seiza_optional": null,
   "kimono_addon": null,
@@ -14,7 +14,7 @@
   "school": "Urasenke",
   "practitioner_rating": "A",
   "editor_note": "Well-known tea practitioners are involved in this school, and the tea room is unusually spacious. It takes a little courage to inquire, but this opens the door to the real depth of the culture.",
-  "last_checked": "2026-07-03",
-  "notes": "Same school as author. Priority for a first-hand review visit; strongest E-E-A-T tie-in on the list.",
-  "price_note": "PENDING - fetch price."
+  "last_checked": "2026-07-04",
+  "notes": "Usucha (thin tea) program. Hosted with involvement of Sosei Ajioka. Reservations accepted Mondays, Wednesdays, and Thursdays only. Same school as author — priority for first-hand review visit.",
+  "price_note": "PENDING — manual check required."
 }
