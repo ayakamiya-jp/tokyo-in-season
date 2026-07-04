@@ -63,6 +63,7 @@ const keyFindings = [
   title={`Tokyo Tea Ceremony Price Index — ${QUARTER}`}
   description={`As of ${QUARTER}, the median price of a bookable tea ceremony in Tokyo is ¥${median.toLocaleString()}, ranging from ¥${minPrice.toLocaleString()} to ¥${maxPrice.toLocaleString()}. Data from the Tokyo Tea Ceremony Price Index, updated quarterly.`}
   ogType="website"
+  ogImage={priceIndexHero}
 >
   <HeroImage
     src={priceIndexHero}
@@ -198,6 +199,11 @@ const keyFindings = [
         <li><strong>Prices confirmed:</strong> {pricedCount} of {data.length}</li>
         <li><strong>Coverage:</strong> 23 wards of Tokyo</li>
       </ul>
+      <p class="text-sm not-prose mt-3">
+        <a href="/downloads/tokyo-tea-ceremony-price-index.csv" download class="text-matcha underline hover:text-matcha-light">
+          Download the full dataset (CSV) →
+        </a>
+      </p>
     </div>
   </section>
 
@@ -231,5 +237,10 @@ const keyFindings = [
     'license': 'https://creativecommons.org/licenses/by/4.0/',
     'isAccessibleForFree': true,
     'mainEntityOfPage': 'https://tokyoinseason.com/tokyo-tea-ceremony-price-index',
+    'distribution': {
+      '@type': 'DataDownload',
+      'encodingFormat': 'text/csv',
+      'contentUrl': 'https://tokyoinseason.com/downloads/tokyo-tea-ceremony-price-index.csv',
+    },
   })} />
 </BaseLayout>
