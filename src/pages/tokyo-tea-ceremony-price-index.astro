@@ -6,32 +6,46 @@ import EmailCapture from '../components/EmailCapture.astro';
 import AuthorBio from '../components/AuthorBio.astro';
 
 const QUARTER = 'Q3 2026';
+const QUARTER_DATE = '2026-09-30'; // end of quarter for schema temporalCoverage
 
-const experiences = await getCollection('experiences');
-const data = experiences.map(e => e.data);
+const entries = await getCollection('experiences');
+const data = entries.map(e => e.data);
 
-const prices = data.map(e => e.price_jpy).filter((p): p is number => p != null).sort((a, b) => a - b);
+const prices = data
+  .map(e => e.price_jpy)
+  .filter((p): p is number => p != null)
+  .sort((a, b) => a - b);
+
 const median = prices.length ? prices[Math.floor(prices.length / 2)] : 0;
 const minPrice = prices.length ? Math.min(...prices) : 0;
 const maxPrice = prices.length ? Math.max(...prices) : 0;
-const pctChairs = Math.round((data.filter(e => e.seiza_optional === true).length / data.length) * 100);
-const pctEnglish = Math.round((data.filter(e => e.english_support === true).length / data.length) * 100);
+const pctChairs = Math.round(
+  (data.filter(e => e.seiza_optional === true).length / data.length) * 100,
+);
+const pctEnglish = Math.round(
+  (data.filter(e => e.english_support === true).length / data.length) * 100,
+);
+const pricedCount = prices.length;
 
+// Median by area (only areas with ≥1 priced entry)
 const byArea: Record<string, number[]> = {};
 for (const e of data) {
   if (e.price_jpy == null) continue;
   if (!byArea[e.area]) byArea[e.area] = [];
   byArea[e.area].push(e.price_jpy);
 }
-const areaMedians = Object.entries(byArea).map(([area, ps]) => {
-  const sorted = [...ps].sort((a, b) => a - b);
-  return { area, median: sorted[Math.floor(sorted.length / 2)] };
-}).sort((a, b) => a.median - b.median);
+const areaMedians = Object.entries(byArea)
+  .map(([area, ps]) => {
+    const sorted = [...ps].sort((a, b) => a - b);
+    return { area, median: sorted[Math.floor(sorted.length / 2)], count: ps.length };
+  })
+  .sort((a, b) => a.median - b.median);
 ---
 
 <BaseLayout
   title={`Tokyo Tea Ceremony Price Index — ${QUARTER}`}
-  description={`As of ${QUARTER}, the median price of a tea ceremony in Tokyo is ¥${median.toLocaleString()}, ranging from ¥${minPrice.toLocaleString()} to ¥${maxPrice.toLocaleString()}. Data from the Tokyo Tea Ceremony Price Index.`}
+  description={`As of ${QUARTER}, the median price of a bookable tea ceremony in Tokyo is ¥${median.toLocaleString()}, ranging from ¥${minPrice.toLocaleString()} to ¥${maxPrice.toLocaleString()}. Data from the Tokyo Tea Ceremony Price Index, updated quarterly.`}
+  ogType="website"
 >
   <div class="mb-4">
     <IndexBadge quarter={QUARTER} />
@@ -40,26 +54,27 @@ const areaMedians = Object.entries(byArea).map(([area, ps]) => {
   <h1 class="font-serif text-4xl text-sumi mb-4 leading-tight">
     Tokyo Tea Ceremony Price Index
   </h1>
+  <p class="text-sm text-warm-gray-mid mb-8">Updated quarterly · {QUARTER} · {data.length} listings surveyed</p>
 
-  <!-- GEO answer block -->
-  <div class="bg-warm-gray rounded-lg p-5 mb-8 border-l-4 border-matcha">
+  {/* GEO answer block — phrased as a citable sentence */}
+  <div class="bg-warm-gray rounded-lg p-5 mb-10 border-l-4 border-matcha">
     <p class="text-sm font-medium text-matcha mb-1">Quick Answer</p>
     <p class="text-sumi leading-relaxed">
-      As of {QUARTER}, the median price of a bookable group tea ceremony in Tokyo is
-      <strong>¥{median.toLocaleString()}</strong>, with options ranging from
-      ¥{minPrice.toLocaleString()} to ¥{maxPrice.toLocaleString()}.
-      {pctChairs}% of listed experiences offer chair seating (no seiza required), and
+      As of {QUARTER}, the median price of a bookable group tea ceremony in Tokyo is{' '}
+      <strong>¥{median.toLocaleString()}</strong>, with options ranging from{' '}
+      ¥{minPrice.toLocaleString()} to ¥{maxPrice.toLocaleString()}.{' '}
+      {pctChairs}% of listed experiences offer chair seating (no seiza required), and{' '}
       {pctEnglish}% provide English-language instruction.
-      — <em>Tokyo Tea Ceremony Price Index, {QUARTER}</em>
+      Data: <em>Tokyo Tea Ceremony Price Index, {QUARTER}</em>.
     </p>
   </div>
 
-  <!-- Headline stats -->
+  {/* Headline stats */}
   <section class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-12">
     {[
       { label: 'Median price', value: `¥${median.toLocaleString()}` },
       { label: 'Price range', value: `¥${minPrice.toLocaleString()}–¥${maxPrice.toLocaleString()}` },
-      { label: 'Chair option available', value: `${pctChairs}%` },
+      { label: 'Chair seating available', value: `${pctChairs}%` },
       { label: 'English instruction', value: `${pctEnglish}%` },
     ].map(stat => (
       <div class="bg-warm-gray rounded-lg p-4 text-center">
@@ -69,63 +84,115 @@ const areaMedians = Object.entries(byArea).map(([area, ps]) => {
     ))}
   </section>
 
-  <!-- Price by area -->
+  {/* Price by area */}
   <section class="mb-12">
-    <h2 class="font-serif text-2xl text-sumi mb-4">Median price by area</h2>
+    <h2 class="font-serif text-2xl text-sumi mb-6">Median price by area</h2>
     <div class="space-y-3">
-      {areaMedians.map(({ area, median: m }) => (
-        <div class="flex items-center gap-4">
-          <span class="w-32 text-sm text-sumi flex-shrink-0">{area}</span>
+      {areaMedians.map(({ area, median: m, count }) => (
+        <div class="flex items-center gap-3">
+          <span class="w-36 text-sm text-sumi flex-shrink-0 leading-tight">
+            {area}
+            <span class="text-warm-gray-mid text-xs block">{count} listing{count > 1 ? 's' : ''}</span>
+          </span>
           <div class="flex-1 bg-warm-gray rounded-full h-2">
             <div
               class="bg-matcha h-2 rounded-full"
-              style={`width: ${Math.round((m / maxPrice) * 100)}%`}
+              style={`width: ${Math.max(4, Math.round((m / maxPrice) * 100))}%`}
             />
           </div>
-          <span class="text-sm font-medium text-sumi w-24 text-right">¥{m.toLocaleString()}</span>
+          <span class="text-sm font-medium text-sumi w-28 text-right whitespace-nowrap">
+            ¥{m.toLocaleString()}
+          </span>
         </div>
       ))}
     </div>
+    <p class="text-xs text-warm-gray-mid mt-4">
+      Median of lowest published adult rate per area. Areas with price-pending listings excluded from chart.
+    </p>
   </section>
 
-  <!-- Methodology -->
-  <section class="mb-12 prose prose-sm max-w-none">
+  {/* Link to full comparison */}
+  <section class="mb-12 p-5 border border-warm-gray-mid rounded-lg">
+    <p class="font-semibold text-sumi mb-1">See the full comparison table</p>
+    <p class="text-sm text-sumi/70 mb-3">
+      Every listing side by side — price, area, chair seating, kimono add-on, and private booking —
+      with practitioner ratings.
+    </p>
+    <a href="/tokyo-tea-ceremony-compared" class="inline-block text-sm font-medium bg-matcha hover:bg-matcha-light text-white rounded px-4 py-2 transition-colors">
+      Compare all experiences →
+    </a>
+  </section>
+
+  {/* Methodology */}
+  <section class="mb-12" id="methodology">
     <h2 class="font-serif text-2xl text-sumi mb-4">Methodology</h2>
-    <p>
-      This index covers all bookable tea ceremony experiences in Tokyo that meet the following
-      criteria: listed on GetYourGuide, Klook, or a direct-booking provider; English instruction
-      available; and active as of the data collection date.
-    </p>
-    <p>
-      Prices are the lowest published adult rate as of the last-checked date for each listing.
-      Seasonal surcharges (sakura, autumn foliage) are excluded unless they represent the
-      year-round base rate. Data is collected manually by Ayaka and reviewed quarterly.
-    </p>
-    <p>
-      <strong>Last full update:</strong> {QUARTER} ·
-      <strong>Listings surveyed:</strong> {data.length} ·
-      <strong>Coverage:</strong> 23 wards of Tokyo
-    </p>
-    <p>
-      <a href="/tokyo-tea-ceremony-price-index/data.csv" class="text-matcha underline">
-        Download full dataset (CSV) →
-      </a>
-    </p>
+    <div class="prose prose-sm max-w-none text-sumi/80 space-y-3">
+      <p>
+        The Tokyo Tea Ceremony Price Index is a structured manual survey of bookable tea ceremony
+        experiences in Tokyo. It is compiled by Ayaka, an active Urasenke tea ceremony student,
+        and updated once per quarter (Q1–Q4).
+      </p>
+      <p>
+        <strong>Inclusion criteria:</strong> experiences must be bookable in advance (platform
+        listing or direct reservation page), offer English instruction or guidance, and be
+        currently active as of the survey date.
+      </p>
+      <p>
+        <strong>Price definition:</strong> the lowest published adult rate at the time of
+        survey, excluding optional add-ons (kimono rental, private upgrade) and seasonal
+        surcharges (sakura, autumn foliage) unless the surcharge represents the year-round
+        base price.
+      </p>
+      <p>
+        <strong>Practitioner rating:</strong> each listing receives a rating of A
+        (Practitioner's pick), B (Good for tourists), or C (Skip) based on direct knowledge
+        of tea ceremony standards, venue quality, and how accurately the experience represents
+        the tradition. Ratings reflect personal professional judgment and are updated as
+        first-hand information changes.
+      </p>
+      <p>
+        <strong>Update cadence:</strong> full survey conducted quarterly. Individual listings
+        are flagged and re-checked if a price change is detected or if more than 90 days
+        have elapsed since last verification.
+      </p>
+      <ul class="text-sm space-y-1 list-none not-prose mt-2 border-t border-warm-gray pt-3">
+        <li><strong>Last full update:</strong> {QUARTER}</li>
+        <li><strong>Listings surveyed:</strong> {data.length}</li>
+        <li><strong>Prices confirmed:</strong> {pricedCount} of {data.length}</li>
+        <li><strong>Coverage:</strong> 23 wards of Tokyo</li>
+      </ul>
+    </div>
   </section>
 
   <EmailCapture />
   <AuthorBio />
 
-  <!-- Dataset schema -->
+  {/* Dataset schema */}
   <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "Dataset",
-    "name": `Tokyo Tea Ceremony Price Index — ${QUARTER}`,
-    "description": `Structured survey of bookable tea ceremony experiences in Tokyo. Median price ¥${median.toLocaleString()}, range ¥${minPrice.toLocaleString()}–¥${maxPrice.toLocaleString()} as of ${QUARTER}.`,
-    "creator": { "@type": "Person", "name": "Ayaka" },
-    "url": "https://tokyoinseason.com/tokyo-tea-ceremony-price-index",
-    "keywords": ["tea ceremony", "Tokyo", "price", "booking", "Urasenke"],
-    "temporalCoverage": QUARTER,
-    "license": "https://creativecommons.org/licenses/by/4.0/",
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
+    'name': `Tokyo Tea Ceremony Price Index — ${QUARTER}`,
+    'description': `Structured quarterly survey of bookable tea ceremony experiences in Tokyo. As of ${QUARTER}: median price ¥${median.toLocaleString()}, range ¥${minPrice.toLocaleString()}–¥${maxPrice.toLocaleString()}, ${pctChairs}% offering chair seating, ${pctEnglish}% with English instruction. ${data.length} listings surveyed.`,
+    'creator': {
+      '@type': 'Person',
+      'name': 'Ayaka',
+      'url': 'https://tokyoinseason.com/about',
+    },
+    'publisher': {
+      '@type': 'Organization',
+      'name': 'Tokyo in Season',
+      'url': 'https://tokyoinseason.com',
+    },
+    'url': 'https://tokyoinseason.com/tokyo-tea-ceremony-price-index',
+    'keywords': ['tea ceremony', 'Tokyo', 'price', 'Japan travel', 'Urasenke', 'matcha experience'],
+    'temporalCoverage': `2026-07-01/${QUARTER_DATE}`,
+    'spatialCoverage': {
+      '@type': 'Place',
+      'name': 'Tokyo, Japan',
+    },
+    'measurementTechnique': 'Manual survey of published booking prices by an Urasenke tea ceremony practitioner',
+    'license': 'https://creativecommons.org/licenses/by/4.0/',
+    'isAccessibleForFree': true,
+    'mainEntityOfPage': 'https://tokyoinseason.com/tokyo-tea-ceremony-price-index',
   })} />
 </BaseLayout>

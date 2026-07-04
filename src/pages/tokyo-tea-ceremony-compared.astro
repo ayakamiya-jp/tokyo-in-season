@@ -1,0 +1,72 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ComparisonTable from '../components/ComparisonTable.astro';
+import IndexBadge from '../components/IndexBadge.astro';
+import EmailCapture from '../components/EmailCapture.astro';
+import AuthorBio from '../components/AuthorBio.astro';
+
+const QUARTER = 'Q3 2026';
+
+const entries = await getCollection('experiences');
+const experiences = entries.map(e => e.data);
+
+const priced = experiences.filter(e => e.price_jpy != null).length;
+---
+
+<BaseLayout
+  title={`Tokyo Tea Ceremony Experiences Compared — ${QUARTER}`}
+  description={`All ${experiences.length} bookable tea ceremony experiences in Tokyo compared side by side: price, area, chairs available, kimono add-on, and private booking. Rated by an Urasenke practitioner.`}
+  ogType="website"
+>
+  <div class="mb-4">
+    <IndexBadge quarter={QUARTER} />
+  </div>
+
+  <h1 class="font-serif text-4xl text-sumi mb-4 leading-tight">
+    Tokyo Tea Ceremony Experiences Compared
+  </h1>
+
+  {/* GEO answer block */}
+  <div class="bg-warm-gray rounded-lg p-5 mb-8 border-l-4 border-matcha">
+    <p class="text-sm font-medium text-matcha mb-1">Quick Answer</p>
+    <p class="text-sumi leading-relaxed text-sm">
+      This table covers {experiences.length} bookable tea ceremony experiences in Tokyo as of {QUARTER},
+      with prices confirmed for {priced} of them.
+      Entries are sorted by practitioner rating — <strong>Practitioner's pick</strong> (A) at the top,
+      <strong>Good for tourists</strong> (B) in the middle, and <strong>Skip — here's why</strong> (C) at the bottom —
+      then by price within each group. Ratings are by Ayaka, an active Urasenke student.
+    </p>
+  </div>
+
+  <ComparisonTable experiences={experiences} quarter={QUARTER} />
+
+  {/* Legend */}
+  <div class="mt-6 mb-12 p-4 bg-warm-gray rounded-lg text-sm space-y-2">
+    <p class="font-semibold text-sumi text-xs uppercase tracking-wide mb-2">Rating key</p>
+    <div class="flex flex-wrap gap-3">
+      <div class="flex items-center gap-2">
+        <span class="inline-block text-xs font-medium rounded px-2 py-0.5 bg-matcha text-white">Practitioner's pick</span>
+        <span class="text-xs text-sumi/70">I'd send my own guests here</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="inline-block text-xs font-medium rounded px-2 py-0.5 bg-warm-gray text-sumi border border-warm-gray-mid">Good for tourists</span>
+        <span class="text-xs text-sumi/70">Solid choice, right expectations</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="inline-block text-xs font-medium rounded px-2 py-0.5 bg-red-50 text-red-700 border border-red-200">Skip — here's why</span>
+        <span class="text-xs text-sumi/70">Reason shown in the row</span>
+      </div>
+    </div>
+  </div>
+
+  <EmailCapture />
+  <AuthorBio />
+
+  <div class="mt-8 text-sm text-sumi/60 border-t border-warm-gray pt-6">
+    <p>
+      Price data from the <a href="/tokyo-tea-ceremony-price-index" class="text-matcha underline">Tokyo Tea Ceremony Price Index</a>,
+      updated quarterly. Prices are the lowest published adult rate; seasonal surcharges excluded.
+    </p>
+  </div>
+</BaseLayout>

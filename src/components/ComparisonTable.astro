@@ -1,23 +1,25 @@
 ---
-import AffiliateButton from './AffiliateButton.astro';
-
 interface Experience {
   name: string;
-  provider: string;
-  affiliate_url: string;
-  affiliate_network: 'getyourguide' | 'klook' | 'direct';
-  price_jpy: number;
-  duration_min: number;
+  provider: 'gyg' | 'klook' | 'direct';
+  official_url?: string | null;
+  affiliate_url?: string | null;
+  price_jpy?: number | null;
+  price_usd?: number | null;
+  duration_min?: number | null;
   area: string;
-  english_support: boolean;
-  seiza_optional: boolean;
-  kimono_addon: boolean;
-  private_available: boolean;
-  group_size_max: number;
-  rating?: number;
-  review_count?: number;
+  english_support?: boolean | null;
+  seiza_optional?: boolean | null;
+  kimono_addon?: boolean | null;
+  private_available?: boolean | null;
+  group_size?: string | null;
+  rating?: number | null;
+  review_count?: number | null;
   school: string;
+  practitioner_rating: 'A' | 'B' | 'C';
   editor_note: string;
+  price_note?: string;
+  platform_only?: boolean;
 }
 
 interface Props {
@@ -27,62 +29,179 @@ interface Props {
 
 const { experiences, quarter } = Astro.props;
 
-const sorted = [...experiences].sort((a, b) => a.price_jpy - b.price_jpy);
-const icon = (v: boolean) => v ? '✓' : '—';
+// Sort: A → B → C, then by price ascending (null prices last)
+const ratingOrder = { A: 0, B: 1, C: 2 };
+const sorted = [...experiences].sort((a, b) => {
+  const rd = ratingOrder[a.practitioner_rating] - ratingOrder[b.practitioner_rating];
+  if (rd !== 0) return rd;
+  if (a.price_jpy == null && b.price_jpy == null) return 0;
+  if (a.price_jpy == null) return 1;
+  if (b.price_jpy == null) return -1;
+  return a.price_jpy - b.price_jpy;
+});
+
+const ratingConfig = {
+  A: {
+    label: "Practitioner's pick",
+    classes: 'bg-matcha text-white',
+  },
+  B: {
+    label: 'Good for tourists',
+    classes: 'bg-warm-gray text-sumi border border-warm-gray-mid',
+  },
+  C: {
+    label: 'Skip — here\'s why',
+    classes: 'bg-red-50 text-red-700 border border-red-200',
+  },
+};
+
+const bool = (v: boolean | null | undefined) =>
+  v === true ? '✓' : v === false ? '—' : '?';
+const boolClass = (v: boolean | null | undefined) =>
+  v === true ? 'text-matcha font-bold' : v === false ? 'text-warm-gray-mid' : 'text-warm-gray-mid italic';
+
+const bookingUrl = (exp: Experience) => exp.affiliate_url ?? exp.official_url ?? null;
+
+// ItemList schema: only entries with a booking URL
+const listItems = sorted
+  .map((exp, i) => ({ exp, i }))
+  .filter(({ exp }) => bookingUrl(exp) !== null)
+  .map(({ exp, i }) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: exp.name,
+    url: bookingUrl(exp),
+  }));
 ---
 
-<div class="overflow-x-auto my-8">
-  <p class="text-xs text-warm-gray-mid mb-2">
-    Sorted by price · Data: Tokyo Tea Ceremony Price Index {quarter}
+<div class="overflow-x-auto my-8 -mx-4 sm:mx-0">
+  <p class="text-xs text-warm-gray-mid mb-3 px-4 sm:px-0">
+    Sorted by practitioner rating, then price · Data: Tokyo Tea Ceremony Price Index {quarter}
   </p>
-  <table class="w-full text-sm border-collapse">
+
+  <table class="w-full text-sm border-collapse min-w-[700px]">
     <thead>
-      <tr class="bg-warm-gray text-left">
-        <th class="p-3 font-sans font-semibold text-sumi border-b border-warm-gray-mid">Experience</th>
+      <tr class="bg-warm-gray text-left text-xs uppercase tracking-wide">
+        <th class="p-3 font-sans font-semibold text-sumi border-b border-warm-gray-mid w-[35%]">Experience</th>
         <th class="p-3 font-sans font-semibold text-sumi border-b border-warm-gray-mid">Price</th>
         <th class="p-3 font-sans font-semibold text-sumi border-b border-warm-gray-mid">Area</th>
         <th class="p-3 font-sans font-semibold text-sumi border-b border-warm-gray-mid">Duration</th>
-        <th class="p-3 font-sans font-semibold text-sumi border-b border-warm-gray-mid">Chairs</th>
-        <th class="p-3 font-sans font-semibold text-sumi border-b border-warm-gray-mid">Kimono</th>
-        <th class="p-3 font-sans font-semibold text-sumi border-b border-warm-gray-mid">Private</th>
+        <th class="p-3 font-sans font-semibold text-sumi border-b border-warm-gray-mid text-center">Chairs</th>
+        <th class="p-3 font-sans font-semibold text-sumi border-b border-warm-gray-mid text-center">Kimono</th>
+        <th class="p-3 font-sans font-semibold text-sumi border-b border-warm-gray-mid text-center">Private</th>
         <th class="p-3 font-sans font-semibold text-sumi border-b border-warm-gray-mid">Book</th>
       </tr>
     </thead>
     <tbody>
-      {sorted.map((exp, i) => (
-        <tr class:list={["border-b border-warm-gray-mid", i % 2 === 0 ? "bg-white" : "bg-warm-gray/40"]}>
-          <td class="p-3">
-            <p class="font-semibold text-sumi">{exp.name}</p>
-            <p class="text-xs text-warm-gray-mid">{exp.provider} · {exp.school}</p>
-            {exp.rating && (
-              <p class="text-xs text-matcha mt-0.5">★ {exp.rating} ({exp.review_count?.toLocaleString()} reviews)</p>
-            )}
-            <p class="text-xs italic text-sumi/70 mt-1">"{exp.editor_note}"</p>
-          </td>
-          <td class="p-3 font-semibold text-sumi whitespace-nowrap">¥{exp.price_jpy.toLocaleString()}</td>
-          <td class="p-3 text-sumi">{exp.area}</td>
-          <td class="p-3 text-sumi whitespace-nowrap">{exp.duration_min} min</td>
-          <td class:list={["p-3 text-center", exp.seiza_optional ? "text-matcha font-bold" : "text-warm-gray-mid"]}>{icon(exp.seiza_optional)}</td>
-          <td class:list={["p-3 text-center", exp.kimono_addon ? "text-matcha font-bold" : "text-warm-gray-mid"]}>{icon(exp.kimono_addon)}</td>
-          <td class:list={["p-3 text-center", exp.private_available ? "text-matcha font-bold" : "text-warm-gray-mid"]}>{icon(exp.private_available)}</td>
-          <td class="p-3">
-            <AffiliateButton url={exp.affiliate_url} network={exp.affiliate_network} price_jpy={exp.price_jpy} />
-          </td>
-        </tr>
-      ))}
+      {sorted.map((exp, i) => {
+        const cfg = ratingConfig[exp.practitioner_rating];
+        const url = bookingUrl(exp);
+        const isC = exp.practitioner_rating === 'C';
+
+        return (
+          <tr class:list={['border-b border-warm-gray-mid', i % 2 === 0 ? 'bg-white' : 'bg-warm-gray/30']}>
+
+            {/* Name + rating + badges */}
+            <td class="p-3 align-top">
+              <div class="flex flex-wrap gap-1.5 mb-1.5">
+                <span class:list={['inline-block text-xs font-medium rounded px-2 py-0.5', cfg.classes]}>
+                  {cfg.label}
+                </span>
+                {exp.platform_only && (
+                  <span class="inline-block text-xs rounded px-2 py-0.5 bg-amber-50 text-amber-700 border border-amber-200">
+                    Books via platform only
+                  </span>
+                )}
+              </div>
+              <p class="font-semibold text-sumi leading-snug">{exp.name}</p>
+              {exp.school !== 'none-stated' && (
+                <p class="text-xs text-matcha mt-0.5">{exp.school}</p>
+              )}
+              {exp.rating != null && (
+                <p class="text-xs text-warm-gray-mid mt-0.5">
+                  ★ {exp.rating} · {exp.review_count?.toLocaleString()} reviews
+                </p>
+              )}
+              {/* For C-rated: show editor_note inline as the "why" */}
+              {isC && (
+                <p class="text-xs text-red-600 mt-1.5 leading-snug italic">
+                  {exp.editor_note}
+                </p>
+              )}
+              {/* For A/B: show editor_note as a softer annotation */}
+              {!isC && (
+                <p class="text-xs text-sumi/60 mt-1 leading-snug italic">
+                  {exp.editor_note}
+                </p>
+              )}
+            </td>
+
+            {/* Price */}
+            <td class="p-3 align-top font-semibold text-sumi whitespace-nowrap">
+              {exp.price_jpy != null
+                ? `¥${exp.price_jpy.toLocaleString()}`
+                : exp.price_usd != null
+                  ? `~$${exp.price_usd}`
+                  : <span class="text-warm-gray-mid font-normal text-xs">TBC</span>
+              }
+            </td>
+
+            {/* Area */}
+            <td class="p-3 align-top text-sumi whitespace-nowrap">{exp.area}</td>
+
+            {/* Duration */}
+            <td class="p-3 align-top text-sumi whitespace-nowrap">
+              {exp.duration_min != null ? `${exp.duration_min} min` : <span class="text-warm-gray-mid">?</span>}
+            </td>
+
+            {/* Chairs (seiza_optional) */}
+            <td class:list={['p-3 align-top text-center', boolClass(exp.seiza_optional)]}>
+              {bool(exp.seiza_optional)}
+            </td>
+
+            {/* Kimono addon */}
+            <td class:list={['p-3 align-top text-center', boolClass(exp.kimono_addon)]}>
+              {bool(exp.kimono_addon)}
+            </td>
+
+            {/* Private available */}
+            <td class:list={['p-3 align-top text-center', boolClass(exp.private_available)]}>
+              {bool(exp.private_available)}
+            </td>
+
+            {/* Book */}
+            <td class="p-3 align-top">
+              {url
+                ? (
+                  <a
+                    href={url}
+                    target="_blank"
+                    rel={exp.affiliate_url ? 'noopener sponsored' : 'noopener noreferrer'}
+                    class="inline-block text-xs font-medium bg-matcha hover:bg-matcha-light text-white rounded px-3 py-1.5 transition-colors whitespace-nowrap"
+                  >
+                    {exp.affiliate_url ? 'Book →' : 'View →'}
+                  </a>
+                )
+                : <span class="text-xs text-warm-gray-mid">—</span>
+              }
+            </td>
+          </tr>
+        );
+      })}
     </tbody>
   </table>
+
+  <p class="text-xs text-warm-gray-mid mt-3 px-4 sm:px-0">
+    ✓ = confirmed · — = not available · ? = not yet verified ·
+    "Books via platform only" = operator not independently reviewed by this site
+  </p>
 </div>
 
 <script type="application/ld+json" set:html={JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  "name": `Tokyo Tea Ceremony Experiences — ${quarter}`,
-  "description": "Curated list of bookable tea ceremony experiences in Tokyo, ranked by price.",
-  "itemListElement": sorted.map((exp, i) => ({
-    "@type": "ListItem",
-    "position": i + 1,
-    "name": exp.name,
-    "url": exp.affiliate_url,
-  })),
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  'name': `Tokyo Tea Ceremony Experiences — ${quarter}`,
+  'description': 'Curated list of bookable tea ceremony experiences in Tokyo, rated by an Urasenke practitioner.',
+  'numberOfItems': listItems.length,
+  'itemListElement': listItems,
 })} />
