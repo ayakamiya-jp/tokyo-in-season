@@ -1,0 +1,207 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EmailCapture from '../components/EmailCapture.astro';
+import AuthorBio from '../components/AuthorBio.astro';
+import HeroImage from '../components/HeroImage.astro';
+import AffiliateButton from '../components/AffiliateButton.astro';
+import FaqBlock from '../components/FaqBlock.astro';
+import seizaHero from '../assets/hero/seiza-hero.svg';
+
+const PUBLISH_DATE = '2026-07-04';
+const dateFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const faqItems = [
+  {
+    question: 'Is it rude to ask for a chair at a tea ceremony?',
+    answer: 'No. Requesting one in advance is considerate, not rude — it lets the host prepare the room properly.',
+  },
+  {
+    question: 'Can elderly guests or people with knee replacements do a tea ceremony in Tokyo?',
+    answer: 'Yes. Choose a confirmed-chair venue (Maikoya, Casual Tea Ceremony Asakusa) or request seating in advance elsewhere. The Hamarikyu teahouse requires no floor sitting at all.',
+  },
+  {
+    question: 'Do Japanese people find seiza hard too?',
+    answer: 'Honestly, yes — extended seiza is challenging even for practitioners, and numb legs happen in real tea gatherings.',
+  },
+];
+---
+
+<BaseLayout
+  title="Best Tea Ceremonies in Tokyo If You Can't Sit Seiza (2026)"
+  description="Yes, you can enjoy a real tea ceremony in Tokyo without sitting seiza. Confirmed chair-friendly venues, what to say when booking, and a practitioner's honest take on floor sitting."
+  ogType="article"
+  hasAffiliateLinks
+>
+  <HeroImage
+    src={seizaHero}
+    alt="An empty low chair with a cushion beside a small tea table set with a chawan, in a tatami tea room"
+  />
+
+  <p class="text-sm text-warm-gray-mid mb-2">
+    <time datetime={PUBLISH_DATE}>{dateFormatter.format(new Date(PUBLISH_DATE))}</time>
+  </p>
+
+  <h1 class="font-serif font-semibold text-4xl text-sumi mb-4 leading-tight">
+    Best Tea Ceremonies in Tokyo If You Can't Sit Seiza
+  </h1>
+
+  {/* GEO answer block */}
+  <div class="bg-sakura-light rounded-lg p-5 mb-8 border-l-4 border-sakura-deep">
+    <p class="text-sm font-medium text-sakura-deep mb-1">Quick Answer</p>
+    <p class="text-sumi leading-relaxed text-sm">
+      Yes, you can enjoy a real tea ceremony in Tokyo without sitting seiza. Maikoya (Asakusa and
+      Shinjuku) keeps chairs available at all times, the Casual Tea Ceremony at Tokyo Tourist
+      Lounge in Asakusa offers chairs and is wheelchair accessible, and the Nakajima-no-Ochaya
+      teahouse in Hamarikyu Gardens serves matcha at tables with garden views. At most other
+      venues, chairs can be arranged — but only if you ask when you book, not when you arrive.
+    </p>
+  </div>
+
+  <div class="prose max-w-none text-sumi">
+    <p>
+      Here's a number that surprised even me while compiling the
+      <a href="/tokyo-tea-ceremony-price-index">Tokyo Tea Ceremony Price Index</a>: of the 18
+      venues we track, <strong>only 4 explicitly confirm that chairs are available</strong> as an
+      alternative to seiza floor seating. It's not that the others refuse — most will accommodate
+      you — but almost nobody publishes their seating policy. For travelers with bad knees, hip
+      replacements, or simply no practice sitting on their heels, that silence is enough to make
+      them skip the experience entirely.
+    </p>
+    <p>That would be a shame. So let's fix it.</p>
+
+    <h2>First, from someone who sits seiza every week</h2>
+    <p>
+      I practice Urasenke tea, which means a lot of time on my heels — and I'll tell you honestly:
+      seiza is hard even for Japanese practitioners. Legs fall asleep. It happens in real tea
+      gatherings, to people who have trained for years.
+    </p>
+    <p>
+      In my own weekly lessons, taking a break when your legs go numb is completely normal —
+      nobody apologizes for it. (How strictly this is handled varies by teacher, but the principle
+      holds.) And I have yet to meet a single person, in six years of practice, who claims seiza
+      is comfortable.
+    </p>
+    <p>
+      So please drop the idea that needing a chair makes you a lesser guest. What hosts actually
+      care about is your attention, not your knees.
+    </p>
+
+    <h2>Venues with confirmed chairs (no negotiation needed)</h2>
+  </div>
+
+  <div class="space-y-6 my-6 not-prose">
+    <div class="border border-warm-gray-mid rounded-lg p-5">
+      <div class="flex items-center gap-2 mb-2">
+        <h3 class="font-sans font-semibold text-lg text-sumi">Maikoya — Asakusa &amp; Shinjuku</h3>
+        <span class="text-xs font-medium rounded px-2 py-0.5 bg-warm-gray text-sumi border border-warm-gray-mid">Good for tourists</span>
+      </div>
+      <p class="text-sm text-sumi/80 mb-4">
+        Chairs are always available, stated plainly in their program. Sessions run 45–90 minutes
+        with optional kimono dressing (¥6,300 with kimono and hair styling). If you want the full
+        cultural bundle with zero seating anxiety, this is the safe pick.
+      </p>
+      <AffiliateButton
+        network="klook"
+        affiliate_url="https://www.klook.com/en-US/activity/137057-tea-ceremony-with-kimono-experience-in-tokyo/?aid=1326641"
+        price_jpy={6300}
+      />
+    </div>
+
+    <div class="border border-warm-gray-mid rounded-lg p-5">
+      <div class="flex items-center gap-2 mb-2">
+        <h3 class="font-sans font-semibold text-lg text-sumi">Casual Tea Ceremony — Tokyo Tourist Lounge, Asakusa</h3>
+        <span class="text-xs font-medium rounded px-2 py-0.5 bg-red-50 text-red-700 border border-red-200">Skip — here's why</span>
+      </div>
+      <p class="text-sm text-sumi/80 mb-4">
+        Around ¥4,500, one hour, photos welcome — and the venue is wheelchair accessible with
+        chairs available. It's honest about being casual rather than formal, which we respect.
+        Book it knowing it's a relaxed session, not a formal ceremony.
+      </p>
+      <AffiliateButton
+        network="getyourguide"
+        affiliate_url="https://www.getyourguide.com/tokyo-l193/tokyo-casual-japanese-tea-ceremony-with-matcha-tasting-t1094221/?partner_id=V4M9L5E"
+        price_jpy={4500}
+      />
+    </div>
+
+    <div class="border border-warm-gray-mid rounded-lg p-5">
+      <div class="flex items-center gap-2 mb-2">
+        <h3 class="font-sans font-semibold text-lg text-sumi">Nakajima-no-Ochaya — Hamarikyu Gardens</h3>
+        <span class="text-xs font-medium rounded px-2 py-0.5 bg-warm-gray text-sumi border border-warm-gray-mid">Good for tourists</span>
+      </div>
+      <p class="text-sm text-sumi/80 mb-4">
+        Not a ceremony at all: a historic garden teahouse where ¥850 (plus ¥300 garden entry) buys
+        you a bowl of matcha and a seasonal sweet at a table, overlooking a pond built for shoguns.
+        If your knees vetoed the ceremony but you still want the taste and the calm, start here.
+      </p>
+      <AffiliateButton
+        network="direct"
+        official_url="https://tabelog.com/tokyo/A1314/A131401/13036639/"
+        price_jpy={850}
+      />
+    </div>
+  </div>
+
+  <div class="prose max-w-none text-sumi">
+    <h2>Venues where you should ask at booking</h2>
+    <p>
+      Chazen (Asakusa/Ginza), Shizu-Kokoro, and most other venues on our
+      <a href="/tokyo-tea-ceremony-compared">index</a> conduct sessions in traditional tatami
+      rooms and don't publish a seating policy. In practice, hosts handle first-timers and stiff
+      knees every single day — a short message at booking ("Is chair or bench seating possible?")
+      almost always solves it. The key is asking <strong>in advance</strong>: rearranging a tea
+      room after guests arrive is genuinely disruptive, and you'll start the session feeling like
+      a problem instead of a guest.
+    </p>
+    <p>
+      From the host's side: older guests and anyone with a reason using a chair is entirely
+      ordinary. Speaking as someone inside this world — hosts would far rather you tell them in
+      advance than watch you quietly suffer through the session. Advance notice isn't an
+      imposition; it's a kindness.
+    </p>
+
+    <h2>If you want to try seiza anyway</h2>
+    <p>
+      Some guests want the full floor experience. Here's the practitioner's compromise: let the
+      host offer you an easier position for most of the session — they will — and return to a
+      kneeling position <strong>just for the moments of bowing</strong>. It takes ten seconds, and
+      hosts notice the gesture far more than they'd notice an hour of suffering. If even that's
+      not possible, a seated bow is completely acceptable. Nobody is grading you.
+    </p>
+    <p>
+      One more practical tip: wear or bring <strong>loose trousers</strong>. Jeans that fight your
+      knees make every seating position worse, chair or not.
+    </p>
+  </div>
+
+  <FaqBlock items={faqItems} />
+
+  <div class="mt-8 text-sm text-sumi/70 border-t border-warm-gray pt-6">
+    <p>
+      Prices and seating data from the <a href="/tokyo-tea-ceremony-price-index" class="text-matcha underline">Tokyo Tea Ceremony Price Index</a>,
+      checked July 2026, updated quarterly. Some links are affiliate links — we may earn a small commission at no extra cost to you.
+    </p>
+  </div>
+
+  <EmailCapture />
+  <AuthorBio />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    'headline': "Best Tea Ceremonies in Tokyo If You Can't Sit Seiza (2026)",
+    'description': 'Yes, you can enjoy a real tea ceremony in Tokyo without sitting seiza. Confirmed chair-friendly venues, what to say when booking, and a practitioner\'s honest take on floor sitting.',
+    'datePublished': PUBLISH_DATE,
+    'author': {
+      '@type': 'Person',
+      'name': 'Suzu',
+      'url': 'https://tokyoinseason.com/about',
+    },
+    'publisher': {
+      '@type': 'Organization',
+      'name': 'Tokyo in Season',
+      'url': 'https://tokyoinseason.com',
+    },
+    'mainEntityOfPage': 'https://tokyoinseason.com/tea-ceremony-without-seiza',
+  })} />
+</BaseLayout>

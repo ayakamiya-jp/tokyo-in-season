@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 700" width="1920" height="700" role="img" aria-labelledby="seizaHeroTitle">
+  <title id="seizaHeroTitle">An empty low chair with a cushion beside a small tea table set with a chawan, in a tatami tea room</title>
+
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#faf8f4" />
+      <stop offset="100%" stop-color="#f0ece4" />
+    </linearGradient>
+    <linearGradient id="paperGlow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#fdf0ed" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#fdf0ed" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1920" height="700" fill="url(#bgGrad)" />
+
+  <!-- tatami mat lines, receding perspective -->
+  <g stroke="#736b61" stroke-opacity="0.14" stroke-width="2">
+    <line x1="0" y1="560" x2="1920" y2="560" />
+    <line x1="0" y1="610" x2="1920" y2="610" />
+    <line x1="0" y1="660" x2="1920" y2="660" />
+    <line x1="160" y1="560" x2="60" y2="700" />
+    <line x1="480" y1="560" x2="440" y2="700" />
+    <line x1="800" y1="560" x2="800" y2="700" />
+    <line x1="1120" y1="560" x2="1160" y2="700" />
+    <line x1="1440" y1="560" x2="1520" y2="700" />
+    <line x1="1760" y1="560" x2="1900" y2="700" />
+  </g>
+
+  <!-- shoji screen, right side -->
+  <g transform="translate(1400,60)">
+    <rect x="0" y="0" width="480" height="500" fill="#fdf0ed" fill-opacity="0.35" />
+    <rect x="0" y="0" width="480" height="500" fill="none" stroke="#3d5a3e" stroke-opacity="0.25" stroke-width="6" />
+    <g stroke="#3d5a3e" stroke-opacity="0.18" stroke-width="3">
+      <line x1="0" y1="125" x2="480" y2="125" />
+      <line x1="0" y1="250" x2="480" y2="250" />
+      <line x1="0" y1="375" x2="480" y2="375" />
+      <line x1="120" y1="0" x2="120" y2="500" />
+      <line x1="240" y1="0" x2="240" y2="500" />
+      <line x1="360" y1="0" x2="360" y2="500" />
+    </g>
+  </g>
+  <rect x="1400" y="60" width="480" height="500" fill="url(#paperGlow)" />
+
+  <!-- low wooden chair / stool with cushion, empty -->
+  <g transform="translate(430,330)">
+    <!-- back legs -->
+    <line x1="30" y1="150" x2="10" y2="260" stroke="#3d5a3e" stroke-width="10" stroke-linecap="round" />
+    <line x1="230" y1="150" x2="250" y2="260" stroke="#3d5a3e" stroke-width="10" stroke-linecap="round" />
+    <!-- seat frame -->
+    <rect x="0" y="120" width="260" height="34" rx="6" fill="#3d5a3e" />
+    <!-- front legs -->
+    <line x1="20" y1="150" x2="0" y2="270" stroke="#3d5a3e" stroke-width="12" stroke-linecap="round" />
+    <line x1="240" y1="150" x2="260" y2="270" stroke="#3d5a3e" stroke-width="12" stroke-linecap="round" />
+    <!-- cushion -->
+    <rect x="-10" y="70" width="280" height="56" rx="16" fill="#e8bfb8" />
+    <rect x="-10" y="70" width="280" height="56" rx="16" fill="none" stroke="#b87068" stroke-opacity="0.4" stroke-width="3" />
+  </g>
+
+  <!-- low table with chawan and whisk -->
+  <g transform="translate(820,380)">
+    <rect x="-20" y="90" width="360" height="26" rx="5" fill="#1a1a1a" fill-opacity="0.75" />
+    <line x1="0" y1="116" x2="-15" y2="200" stroke="#1a1a1a" stroke-opacity="0.75" stroke-width="9" stroke-linecap="round" />
+    <line x1="320" y1="116" x2="335" y2="200" stroke="#1a1a1a" stroke-opacity="0.75" stroke-width="9" stroke-linecap="round" />
+
+    <!-- chawan bowl -->
+    <path d="M 60 90 Q 60 40 115 40 Q 170 40 170 90 Z" fill="#faf8f4" stroke="#1a1a1a" stroke-opacity="0.7" stroke-width="4" />
+    <ellipse cx="115" cy="90" rx="55" ry="10" fill="none" stroke="#1a1a1a" stroke-opacity="0.5" stroke-width="3" />
+
+    <!-- steam -->
+    <path d="M 95 30 Q 85 5 100 -20" fill="none" stroke="#7a9e7e" stroke-width="4" stroke-linecap="round" opacity="0.6" />
+    <path d="M 120 30 Q 130 0 115 -25" fill="none" stroke="#7a9e7e" stroke-width="4" stroke-linecap="round" opacity="0.6" />
+
+    <!-- chasen whisk, resting -->
+    <g transform="translate(220,55) rotate(20)">
+      <rect x="0" y="0" width="10" height="34" rx="3" fill="#7a9e7e" />
+      <g stroke="#7a9e7e" stroke-width="2.5" stroke-linecap="round">
+        <line x1="1" y1="0" x2="-6" y2="-20" />
+        <line x1="4" y1="0" x2="1" y2="-22" />
+        <line x1="7" y1="0" x2="9" y2="-22" />
+        <line x1="10" y1="0" x2="16" y2="-20" />
+      </g>
+    </g>
+  </g>
+
+  <!-- single branch, seasonal accent -->
+  <g transform="translate(120,90)" stroke="#3d5a3e" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.55">
+    <path d="M0 0 C 40 20, 60 60, 50 120" />
+    <circle cx="18" cy="18" r="7" fill="#e8bfb8" stroke="none" />
+    <circle cx="42" cy="55" r="7" fill="#e8bfb8" stroke="none" />
+    <circle cx="50" cy="100" r="7" fill="#e8bfb8" stroke="none" />
+  </g>
+</svg>
