@@ -9,7 +9,7 @@ export default {
         'matcha-light': '#7a9e7e',
         'warm-white': '#faf8f4',
         'warm-gray': '#f0ece4',
-        'warm-gray-mid': '#c8bfb0',
+        'warm-gray-mid': '#736b61',
         sakura: '#e8bfb8',
         'sakura-light': '#fdf0ed',
         'sakura-deep': '#b87068',
@@ -23,7 +23,14 @@ export default {
           css: {
             color: theme('colors.sumi'),
             a: { color: theme('colors.matcha') },
+            p: { fontWeight: '500' },
             'h1,h2,h3': { fontFamily: theme('fontFamily.serif').join(', ') },
+          },
+        },
+        lg: {
+          css: {
+            fontSize: '18px',
+            lineHeight: '1.7',
           },
         },
       }),

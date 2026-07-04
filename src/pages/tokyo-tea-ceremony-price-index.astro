@@ -48,9 +48,9 @@ const ginzaMedian = areaMedians.find(a => a.area === 'Ginza')?.median;
 // Self-contained, quotable stat sentences for GEO citation
 const keyFindings = [
   `As of ${QUARTER}, the median price of a tea ceremony experience in Tokyo is ¥${median.toLocaleString()}, per the Tokyo Tea Ceremony Price Index (${pricedCount} of ${data.length} tracked venues publish prices).`,
-  `Prices range from ¥${minPrice.toLocaleString()} to ¥${maxPrice.toLocaleString()} across tracked venues.`,
+  `Prices range from ¥${minPrice.toLocaleString()} for a garden teahouse bowl of matcha to ¥${maxPrice.toLocaleString()} at the top end.`,
   asakusaMedian != null && ginzaMedian != null
-    ? `The median in Asakusa is ¥${asakusaMedian.toLocaleString()} versus ¥${ginzaMedian.toLocaleString()} in Ginza.`
+    ? `The median price in Asakusa is ¥${asakusaMedian.toLocaleString()}, versus ¥${ginzaMedian.toLocaleString()} in Ginza.`
     : null,
   `Solo travelers can pay double: one venue charges ¥11,000 solo versus ¥5,500 per person for groups of two or more.`,
   `Only ${chairsCount} of ${data.length} venues explicitly confirm chairs are available as an alternative to seiza floor seating.`,
@@ -137,7 +137,7 @@ const keyFindings = [
       ))}
     </ul>
     <p class="text-xs text-warm-gray-mid mt-4">
-      Methodology: prices are lowest published adult rates, checked July 2026, updated quarterly.
+      Prices are the lowest published adult per-person rates, read in JPY, as of July 2026. Updated quarterly.
     </p>
   </section>
 
@@ -156,7 +156,7 @@ const keyFindings = [
   {/* Methodology */}
   <section class="mb-12" id="methodology">
     <h2 class="font-serif text-2xl text-sumi mb-4">Methodology</h2>
-    <div class="prose prose-sm max-w-none text-sumi/80 space-y-3">
+    <div class="prose prose-lg max-w-none text-sumi/80 space-y-3">
       <p>
         The Tokyo Tea Ceremony Price Index is a structured manual survey of bookable tea ceremony
         experiences in Tokyo. It is compiled by Suzu, an active Urasenke tea ceremony student,

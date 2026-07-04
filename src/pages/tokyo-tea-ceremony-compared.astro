@@ -19,6 +19,7 @@ const priced = experiences.filter(e => e.price_jpy != null).length;
   description={`All ${experiences.length} bookable tea ceremony experiences in Tokyo compared side by side: price, area, chairs available, kimono add-on, and private booking. Rated by an Urasenke practitioner.`}
   ogType="website"
   wide
+  hasAffiliateLinks
 >
   <div class="mb-4">
     <IndexBadge quarter={QUARTER} />
@@ -64,7 +65,7 @@ const priced = experiences.filter(e => e.price_jpy != null).length;
   <EmailCapture />
   <AuthorBio />
 
-  <div class="mt-8 text-sm text-sumi/60 border-t border-warm-gray pt-6">
+  <div class="mt-8 text-sm text-sumi/70 border-t border-warm-gray pt-6">
     <p>
       Price data from the <a href="/tokyo-tea-ceremony-price-index" class="text-matcha underline">Tokyo Tea Ceremony Price Index</a>,
       updated quarterly. Prices are the lowest published adult rate; seasonal surcharges excluded.

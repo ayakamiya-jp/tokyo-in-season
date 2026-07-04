@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const LAST_UPDATED = 'July 4, 2026';
+const CONTACT_EMAIL = 'hello@tokyoinseason.com';
+---
+
+<BaseLayout
+  title="Privacy Policy"
+  description="Privacy policy for Tokyo in Season: what data we collect, how the newsletter works, and your rights under GDPR."
+  ogType="website"
+>
+  <h1 class="font-serif text-4xl text-sumi mb-2 leading-tight">Privacy Policy</h1>
+  <p class="text-warm-gray-mid text-sm mb-12">Last updated {LAST_UPDATED}</p>
+
+  <div class="prose prose-lg max-w-none font-serif text-sumi leading-relaxed space-y-6">
+
+    <h2 class="font-serif text-2xl text-sumi mt-10 mb-4 not-prose">What we collect</h2>
+    <p>
+      When you sign up for our free newsletter, we collect the email address you provide through
+      the signup form. We don't collect any other personal information on this site — there are
+      no accounts, and we don't track you individually for advertising purposes.
+    </p>
+
+    <h2 class="font-serif text-2xl text-sumi mt-10 mb-4 not-prose">Why we collect it</h2>
+    <p>
+      Your email address is used solely to send you the free guide you requested and, if you
+      remain subscribed, occasional newsletter updates — new venue openings, price changes, and
+      what's genuinely worth booking. We do not sell, rent, or share your email address with
+      third parties for their own marketing.
+    </p>
+
+    <h2 class="font-serif text-2xl text-sumi mt-10 mb-4 not-prose">Who processes it</h2>
+    <p>
+      Newsletter signups and delivery are handled by{' '}
+      <a href="https://buttondown.com" target="_blank" rel="noopener noreferrer" class="text-matcha underline">Buttondown</a>,
+      our email service provider. Buttondown stores your email address on our behalf and sends
+      emails to you when we publish an update. You can review Buttondown's own privacy practices
+      on their website.
+    </p>
+
+    <h2 class="font-serif text-2xl text-sumi mt-10 mb-4 not-prose">Unsubscribing</h2>
+    <p>
+      Every email we send includes an unsubscribe link. Clicking it removes you from the list
+      immediately — no need to contact us first, though you're welcome to.
+    </p>
+
+    <h2 class="font-serif text-2xl text-sumi mt-10 mb-4 not-prose">Affiliate links and cookies</h2>
+    <p>
+      Some links on this site are affiliate links (including links to GetYourGuide and Klook).
+      Clicking one of these links may set a cookie on the destination platform's site so that,
+      if you book, the platform can attribute the booking to us and pay a commission. We don't
+      control these cookies directly — they're set by the platform you're redirected to, subject
+      to that platform's own privacy policy. See our{' '}
+      <a href="/disclaimer" class="text-matcha underline">Disclaimer</a> for more on our affiliate
+      relationships.
+    </p>
+
+    <h2 class="font-serif text-2xl text-sumi mt-10 mb-4 not-prose">Your rights (GDPR)</h2>
+    <p>
+      If you're located in the European Economic Area or UK, you have the right to access the
+      personal data we hold about you, request that we correct or delete it, and object to or
+      restrict how we use it. Since the only data we hold is your email address and subscription
+      status, most requests are handled by simply unsubscribing or asking us to delete your
+      record. To make a request, contact us at{' '}
+      <a href={`mailto:${CONTACT_EMAIL}`} class="text-matcha underline">{CONTACT_EMAIL}</a> and
+      we'll respond within a reasonable time.
+    </p>
+
+    <h2 class="font-serif text-2xl text-sumi mt-10 mb-4 not-prose">Contact</h2>
+    <p>
+      Questions about this policy or your data can be sent to{' '}
+      <a href={`mailto:${CONTACT_EMAIL}`} class="text-matcha underline">{CONTACT_EMAIL}</a>.
+    </p>
+
+  </div>
+
+  <div class="mt-16 pt-8 border-t border-warm-gray">
+    <p class="text-sm">
+      <a href="/disclaimer" class="text-matcha hover:underline">Disclaimer →</a>
+    </p>
+  </div>
+</BaseLayout>

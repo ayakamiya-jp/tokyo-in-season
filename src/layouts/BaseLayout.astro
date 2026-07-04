@@ -5,6 +5,7 @@ interface Props {
   canonicalUrl?: string;
   ogType?: 'website' | 'article';
   wide?: boolean;
+  hasAffiliateLinks?: boolean;
 }
 
 const {
@@ -13,6 +14,7 @@ const {
   canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString(),
   ogType = 'website',
   wide = false,
+  hasAffiliateLinks = false,
 } = Astro.props;
 
 const siteName = 'Tokyo in Season';
@@ -40,7 +42,7 @@ const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 
   <!-- Site schema -->
   <script type="application/ld+json" set:html={JSON.stringify({
@@ -65,6 +67,13 @@ const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
     </div>
   </header>
 
+  {hasAffiliateLinks && (
+    <div class="bg-sakura-light border-b border-sakura text-center text-xs text-sumi/80 py-2 px-4">
+      Some links are affiliate links — we may earn a small commission at no extra cost to you.
+      <a href="/disclaimer" class="underline hover:text-matcha ml-1">Learn more</a>
+    </div>
+  )}
+
   <main class:list={["mx-auto px-4 py-12", wide ? "max-w-6xl" : "max-w-3xl"]}>
     <slot />
   </main>
@@ -75,6 +84,7 @@ const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
       <p>Some links are affiliate links. I earn a small commission when you book through them, at no extra cost to you.</p>
       <p>
         <a href="/about" class="hover:text-matcha underline">About</a> ·
+        <a href="/disclaimer" class="hover:text-matcha underline">Disclaimer</a> ·
         <a href="/privacy" class="hover:text-matcha underline">Privacy</a> ·
         <a href="/sitemap-index.xml" class="hover:text-matcha underline">Sitemap</a>
       </p>

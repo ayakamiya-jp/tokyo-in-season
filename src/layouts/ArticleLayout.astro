@@ -10,14 +10,15 @@ interface Props {
   updatedDate?: Date;
   category?: string;
   tags?: string[];
+  hasAffiliateLinks?: boolean;
 }
 
-const { title, description, publishDate, updatedDate, tags = [] } = Astro.props;
+const { title, description, publishDate, updatedDate, tags = [], hasAffiliateLinks = false } = Astro.props;
 
 const dateFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 ---
 
-<BaseLayout title={title} description={description} ogType="article">
+<BaseLayout title={title} description={description} ogType="article" hasAffiliateLinks={hasAffiliateLinks}>
   <article>
     <header class="mb-10">
       {tags.length > 0 && (

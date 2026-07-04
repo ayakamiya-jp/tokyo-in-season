@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const LAST_UPDATED = 'July 4, 2026';
+const CONTACT_EMAIL = 'hello@tokyoinseason.com';
+---
+
+<BaseLayout
+  title="Disclaimer"
+  description="Disclaimer for Tokyo in Season: information accuracy, pricing, booking responsibility, and affiliate relationships."
+  ogType="website"
+>
+  <h1 class="font-serif text-4xl text-sumi mb-2 leading-tight">Disclaimer</h1>
+  <p class="text-warm-gray-mid text-sm mb-12">Last updated {LAST_UPDATED}</p>
+
+  <div class="prose prose-lg max-w-none font-serif text-sumi leading-relaxed space-y-6">
+
+    <h2 class="font-serif text-2xl text-sumi mt-10 mb-4 not-prose">Information accuracy</h2>
+    <p>
+      Tokyo in Season publishes prices, availability, schedules, and descriptions of tea ceremony
+      and other cultural experiences as a reference. We check listings regularly and note when
+      each page was last updated, but providers change their prices, hours, and offerings without
+      notice, and we cannot guarantee that everything on this site is current or error-free at the
+      moment you read it.
+    </p>
+
+    <h2 class="font-serif text-2xl text-sumi mt-10 mb-4 not-prose">Always verify before booking</h2>
+    <p>
+      Before you book or pay for any experience mentioned on this site, confirm the current price,
+      availability, and details directly with the provider or booking platform. Treat everything
+      here as a starting point for your own research, not a substitute for it.
+    </p>
+
+    <h2 class="font-serif text-2xl text-sumi mt-10 mb-4 not-prose">We are not a party to your booking</h2>
+    <p>
+      Tokyo in Season is an independent review and comparison site. We do not sell tickets, take
+      payments, or operate any of the experiences we write about. When you book through a link on
+      this site, your contract is with the booking platform (such as GetYourGuide or Klook) or the
+      experience provider directly — not with us. Any dispute about a booking, cancellation,
+      refund, or the experience itself should be directed to the provider or platform you booked
+      through.
+    </p>
+
+    <h2 class="font-serif text-2xl text-sumi mt-10 mb-4 not-prose">Affiliate relationships</h2>
+    <p>
+      Some links on this site are affiliate links, including links to GetYourGuide and Klook. If
+      you click one of these links and make a booking, we may earn a small commission at no extra
+      cost to you. This does not influence our practitioner ratings or editorial opinions — we
+      rate every experience the way we would recommend it to a friend, regardless of whether it
+      pays a commission.
+    </p>
+
+    <h2 class="font-serif text-2xl text-sumi mt-10 mb-4 not-prose">Questions</h2>
+    <p>
+      If you have questions about this disclaimer, contact us at{' '}
+      <a href={`mailto:${CONTACT_EMAIL}`} class="text-matcha underline">{CONTACT_EMAIL}</a>.
+    </p>
+
+  </div>
+
+  <div class="mt-16 pt-8 border-t border-warm-gray">
+    <p class="text-sm">
+      <a href="/privacy" class="text-matcha hover:underline">Privacy Policy →</a>
+    </p>
+  </div>
+</BaseLayout>
