@@ -5,7 +5,7 @@ import AuthorBio from '../components/AuthorBio.astro';
 import HeroImage from '../components/HeroImage.astro';
 import AffiliateButton from '../components/AffiliateButton.astro';
 import FaqBlock from '../components/FaqBlock.astro';
-import seizaHero from '../assets/hero/seiza-hero.svg';
+import seizaHero from '../assets/hero/seiza-hero.jpg';
 
 const PUBLISH_DATE = '2026-07-04';
 const dateFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
@@ -34,7 +34,7 @@ const faqItems = [
 >
   <HeroImage
     src={seizaHero}
-    alt="An empty low chair with a cushion beside a small tea table set with a chawan, in a tatami tea room"
+    alt="A quiet traditional Japanese tatami room with open shoji screens looking out onto a garden"
   />
 
   <p class="text-sm text-warm-gray-mid mb-2">
@@ -91,10 +91,7 @@ const faqItems = [
 
   <div class="space-y-6 my-6 not-prose">
     <div class="border border-warm-gray-mid rounded-lg p-5">
-      <div class="flex items-center gap-2 mb-2">
-        <h3 class="font-sans font-semibold text-lg text-sumi">Maikoya — Asakusa &amp; Shinjuku</h3>
-        <span class="text-xs font-medium rounded px-2 py-0.5 bg-warm-gray text-sumi border border-warm-gray-mid">Good for tourists</span>
-      </div>
+      <h3 class="font-sans font-semibold text-lg text-sumi mb-2">Maikoya — Asakusa &amp; Shinjuku</h3>
       <p class="text-sm text-sumi/80 mb-4">
         Chairs are always available, stated plainly in their program. Sessions run 45–90 minutes
         with optional kimono dressing (¥6,300 with kimono and hair styling). If you want the full
@@ -108,10 +105,7 @@ const faqItems = [
     </div>
 
     <div class="border border-warm-gray-mid rounded-lg p-5">
-      <div class="flex items-center gap-2 mb-2">
-        <h3 class="font-sans font-semibold text-lg text-sumi">Casual Tea Ceremony — Tokyo Tourist Lounge, Asakusa</h3>
-        <span class="text-xs font-medium rounded px-2 py-0.5 bg-red-50 text-red-700 border border-red-200">Skip — here's why</span>
-      </div>
+      <h3 class="font-sans font-semibold text-lg text-sumi mb-2">Casual Tea Ceremony — Tokyo Tourist Lounge, Asakusa</h3>
       <p class="text-sm text-sumi/80 mb-4">
         Around ¥4,500, one hour, photos welcome — and the venue is wheelchair accessible with
         chairs available. It's honest about being casual rather than formal, which we respect.
@@ -125,10 +119,7 @@ const faqItems = [
     </div>
 
     <div class="border border-warm-gray-mid rounded-lg p-5">
-      <div class="flex items-center gap-2 mb-2">
-        <h3 class="font-sans font-semibold text-lg text-sumi">Nakajima-no-Ochaya — Hamarikyu Gardens</h3>
-        <span class="text-xs font-medium rounded px-2 py-0.5 bg-warm-gray text-sumi border border-warm-gray-mid">Good for tourists</span>
-      </div>
+      <h3 class="font-sans font-semibold text-lg text-sumi mb-2">Nakajima-no-Ochaya — Hamarikyu Gardens</h3>
       <p class="text-sm text-sumi/80 mb-4">
         Not a ceremony at all: a historic garden teahouse where ¥850 (plus ¥300 garden entry) buys
         you a bowl of matcha and a seasonal sweet at a table, overlooking a pond built for shoguns.
