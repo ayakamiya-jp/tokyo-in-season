@@ -1,10 +1,13 @@
 ---
+import StickyCompareCta from '../components/StickyCompareCta.astro';
+
 interface Props {
   title: string;
   description: string;
   canonicalUrl?: string;
   ogType?: 'website' | 'article';
   wide?: boolean;
+  showCompareCta?: boolean;
 }
 
 const {
@@ -13,6 +16,7 @@ const {
   canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString(),
   ogType = 'website',
   wide = false,
+  showCompareCta = false,
 } = Astro.props;
 
 const siteName = 'Tokyo in Season';
@@ -59,16 +63,18 @@ const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
         Tokyo in Season
       </a>
       <nav class="hidden sm:flex gap-6 text-sm font-medium">
-        <a href="/tokyo-tea-ceremony-compared" class="hover:text-matcha transition-colors">Compare</a>
-        <a href="/tokyo-tea-ceremony-price-index" class="hover:text-matcha transition-colors">Price Index</a>
-        <a href="/about" class="hover:text-matcha transition-colors">About</a>
+        <a href="/tokyo-tea-ceremony-compared" class="underline decoration-warm-gray-mid/40 hover:decoration-matcha hover:text-matcha underline-offset-4 transition-colors">Compare</a>
+        <a href="/tokyo-tea-ceremony-price-index" class="underline decoration-warm-gray-mid/40 hover:decoration-matcha hover:text-matcha underline-offset-4 transition-colors">Price Index</a>
+        <a href="/about" class="underline decoration-warm-gray-mid/40 hover:decoration-matcha hover:text-matcha underline-offset-4 transition-colors">About</a>
       </nav>
     </div>
   </header>
 
-  <main class:list={["mx-auto px-4 py-12", wide ? "max-w-6xl" : "max-w-3xl"]}>
+  <main class:list={["mx-auto px-4 py-6 sm:py-12", wide ? "max-w-6xl" : "max-w-3xl"]}>
     <slot />
   </main>
+
+  {showCompareCta && <StickyCompareCta />}
 
   <footer class="border-t border-warm-gray mt-16">
     <div class="max-w-3xl mx-auto px-4 py-8 text-xs text-warm-gray-mid space-y-2">

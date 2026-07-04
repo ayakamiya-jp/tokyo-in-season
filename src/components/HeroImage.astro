@@ -10,13 +10,13 @@ interface Props {
 const { src, alt } = Astro.props;
 ---
 
-<div class="mb-10 rounded-xl overflow-hidden">
+<div class="mb-4 sm:mb-10 rounded-xl overflow-hidden">
   <Image
     src={src}
     alt={alt}
     widths={[480, 800, 1200, 1600]}
     sizes="(min-width: 1024px) 1152px, 100vw"
-    class="w-full h-auto max-h-[420px] object-cover"
+    class="w-full h-auto max-h-[160px] sm:max-h-[420px] object-cover"
     loading="eager"
     fetchpriority="high"
   />

@@ -1,0 +1,13 @@
+---
+interface Props {
+  label?: string;
+}
+const { label = 'Compare all venues' } = Astro.props;
+---
+
+<a
+  href="/tokyo-tea-ceremony-compared"
+  class="fixed bottom-4 inset-x-4 sm:inset-x-auto sm:left-auto sm:right-6 z-40 flex items-center justify-center gap-2 bg-matcha hover:bg-matcha-light text-white font-sans font-medium text-sm rounded-full shadow-lg px-5 py-3 transition-colors"
+>
+  {label} →
+</a>
