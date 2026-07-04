@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EmailCapture from '../components/EmailCapture.astro';
+---
+
+<BaseLayout
+  title="About — Tokyo in Season"
+  description="Tokyo in Season is written by Suzu, an Urasenke tea ceremony practitioner based in Tokyo. She reviews cultural experiences for Western travelers who want to understand what they're bowing to."
+  ogType="website"
+>
+  <h1 class="font-serif text-4xl text-sumi mb-2 leading-tight">About</h1>
+  <p class="text-warm-gray-mid text-sm mb-12">Tokyo in Season</p>
+
+  <div class="prose prose-lg max-w-none font-serif text-sumi leading-relaxed space-y-6">
+
+    <p>
+      My first bowl of matcha was whisked for me when I was in kindergarten. My mother practiced
+      the Urasenke school of tea ceremony, and for me, tea was simply part of the furniture of
+      childhood — the smell of tatami, the sound of hot water, sweets I was told to eat before
+      the tea, never after.
+    </p>
+
+    <p>
+      I lost my mother when I was in high school. For years, her tea utensils and kimono sat in
+      our home, and I couldn't decide what weighed more: the thought of them going unused, or the
+      question I had never asked her — why did she love this so much, for her whole life?
+    </p>
+
+    <p>
+      Six years ago, I began formal training in the Urasenke tradition to find out. I'm still
+      finding out. That is rather the point of tea; nobody finishes.
+    </p>
+
+    <h2 class="font-serif text-2xl text-sumi mt-10 mb-4 not-prose">Why this site exists</h2>
+
+    <p>
+      Fifteen years ago, when we lived in the United States, my mother held a small, informal
+      tea gathering for neighbors and friends. I still remember their faces. Nobody was performing
+      "Japaneseness" and nobody was consuming it — something real was being handed from one person
+      to another, and everyone in the room could feel it.
+    </p>
+
+    <p>
+      Today, matcha is everywhere and tea ceremony is a line item on Tokyo itineraries. Some of
+      what's on offer is wonderful. Some of it is a costume with a whisk. If you're the kind of
+      traveler who wants to understand what you're bowing to — not just photograph it — it is
+      genuinely hard to tell the difference from a booking page.
+    </p>
+
+    <p>
+      That's the gap this site exists to close. I review Tokyo's cultural experiences the way a
+      practitioner would choose for a friend visiting from abroad: honestly, seasonally, and with
+      respect for the people doing it right.
+    </p>
+
+    <h2 class="font-serif text-2xl text-sumi mt-10 mb-4 not-prose">How I review</h2>
+
+    <p>
+      I live in Tokyo, work in English professionally, and practice tea under my own teacher.
+      One note of honesty: in the tea world, a student does not attend lessons at other teachers'
+      schools — it is a matter of etiquette and loyalty. So where I haven't experienced a venue
+      first-hand, I say so plainly, and I assess it as a practitioner reading the program: what's
+      served, how it's taught, what the room tells you. Where something is a tourist show rather
+      than the real thing, I'll tell you that too — some of them are still worth your time, as
+      long as you know what you're booking.
+    </p>
+
+    <p>
+      Everything here follows the seasons, because tea does, and because Japan does. Welcome —
+      I'm glad you found your way here.
+    </p>
+
+    <p class="text-right font-serif italic text-lg text-sumi/70 mt-8 not-prose">— Suzu</p>
+
+  </div>
+
+  <div class="mt-16 pt-8 border-t border-warm-gray">
+    <div class="flex flex-wrap gap-6 text-sm">
+      <a href="/tokyo-tea-ceremony-compared" class="text-matcha hover:underline">
+        Compare all Tokyo tea ceremonies →
+      </a>
+      <a href="/tokyo-tea-ceremony-price-index" class="text-matcha hover:underline">
+        Price Index →
+      </a>
+    </div>
+  </div>
+
+  <div class="mt-12">
+    <EmailCapture />
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    'name': 'Suzu',
+    'url': 'https://tokyoinseason.com/about',
+    'description': 'Urasenke tea ceremony practitioner based in Tokyo. Writer of Tokyo in Season.',
+    'knowsAbout': ['Japanese tea ceremony', 'Urasenke', 'Tokyo cultural experiences', 'Chado'],
+    'worksFor': {
+      '@type': 'Organization',
+      'name': 'Tokyo in Season',
+      'url': 'https://tokyoinseason.com',
+    },
+  })} />
+</BaseLayout>
