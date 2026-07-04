@@ -21,16 +21,13 @@ export default {
       typography: (theme) => ({
         DEFAULT: {
           css: {
-            color: theme('colors.sumi'),
+            // Softened from solid sumi (#1a1a1a) — full-strength black at body
+            // size read as too dark/heavy next to the rest of the site's
+            // text-sumi/70 copy. This keeps body paragraphs in that same
+            // family without overriding color utilities per-page.
+            color: 'rgb(26 26 26 / 0.8)',
             a: { color: theme('colors.matcha') },
-            p: { fontWeight: '500' },
-            'h1,h2,h3': { fontFamily: theme('fontFamily.serif').join(', ') },
-          },
-        },
-        lg: {
-          css: {
-            fontSize: '18px',
-            lineHeight: '1.7',
+            'h1,h2,h3': { fontFamily: theme('fontFamily.serif').join(', '), fontWeight: '600' },
           },
         },
       }),
