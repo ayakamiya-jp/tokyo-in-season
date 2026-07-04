@@ -1,8 +1,10 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import EmailCapture from '../components/EmailCapture.astro';
 import HeroImage from '../components/HeroImage.astro';
 import indexHero from '../assets/hero/index-hero.jpg';
+import indexFooter from '../assets/hero/index-footer.jpg';
 ---
 
 <BaseLayout
@@ -11,7 +13,7 @@ import indexHero from '../assets/hero/index-hero.jpg';
 >
   <HeroImage
     src={indexHero}
-    alt="A woman in kimono in a traditional Japanese tea room, looking toward a shoji-screened window and garden"
+    alt="A tatami tea room with shoji screens open to a Japanese garden and pond"
   />
 
   <!-- Hero -->
@@ -79,4 +81,14 @@ import indexHero from '../assets/hero/index-hero.jpg';
       <a href="/about" class="text-matcha underline ml-1">More about me →</a>
     </p>
   </section>
+
+  <div class="mt-12 rounded-xl overflow-hidden">
+    <Image
+      src={indexFooter}
+      alt="A bowl of matcha tea on a tatami mat"
+      widths={[400, 800, 1200]}
+      sizes="(min-width: 1024px) 768px, 100vw"
+      class="w-full h-auto max-h-[280px] object-cover"
+    />
+  </div>
 </BaseLayout>
