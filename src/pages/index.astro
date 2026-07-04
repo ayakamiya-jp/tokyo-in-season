@@ -5,11 +5,13 @@ import EmailCapture from '../components/EmailCapture.astro';
 import HeroImage from '../components/HeroImage.astro';
 import indexHero from '../assets/hero/index-hero.jpg';
 import indexFooter from '../assets/hero/index-footer.jpg';
+import priceIndexHero from '../assets/hero/price-index-hero.jpg';
 ---
 
 <BaseLayout
   title="Tokyo in Season"
   description="Japanese culture, in its right season — from inside the tea room. Tea ceremony experiences in Tokyo compared and reviewed by an Urasenke practitioner."
+  ogImage={priceIndexHero}
 >
   <HeroImage
     src={indexHero}
