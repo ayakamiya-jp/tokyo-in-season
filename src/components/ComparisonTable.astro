@@ -1,10 +1,14 @@
 ---
+import { buildViatorAffiliateUrl } from '../utils/viator';
+
 interface Experience {
   name: string;
-  provider: 'gyg' | 'klook' | 'direct';
+  provider: 'gyg' | 'klook' | 'viator' | 'direct';
   official_url?: string | null;
   affiliate_url?: string | null;
   klook_affiliate_url?: string | null;
+  viator_product_url?: string | null;
+  viator_variants?: { label: string; url: string }[] | null;
   price_jpy?: number | null;
   price_usd?: number | null;
   duration_min?: number | null;
@@ -30,13 +34,26 @@ interface Props {
 
 const { experiences, quarter } = Astro.props;
 
-// Sort: A → B → C, then affiliate-bookable listings (GYG or Klook) first, then by price ascending (null prices last)
+// Booking links in priority order: GYG affiliate, then Viator, then Klook affiliate.
+// Exactly one is shown as the primary CTA; the rest appear as small "Also on X" links.
+function affiliateLinks(exp: Experience): { label: string; url: string }[] {
+  const links: { label: string; url: string }[] = [];
+  if (exp.affiliate_url) links.push({ label: 'GetYourGuide', url: exp.affiliate_url });
+  if (exp.viator_product_url) links.push({ label: 'Viator', url: buildViatorAffiliateUrl(exp.viator_product_url) });
+  for (const variant of exp.viator_variants ?? []) {
+    links.push({ label: `Viator (${variant.label})`, url: buildViatorAffiliateUrl(variant.url) });
+  }
+  if (exp.klook_affiliate_url) links.push({ label: 'Klook', url: exp.klook_affiliate_url });
+  return links;
+}
+
+// Sort: A → B → C, then affiliate-bookable listings (GYG, Viator, or Klook) first, then by price ascending (null prices last)
 const ratingOrder = { A: 0, B: 1, C: 2 };
 const sorted = [...experiences].sort((a, b) => {
   const rd = ratingOrder[a.practitioner_rating] - ratingOrder[b.practitioner_rating];
   if (rd !== 0) return rd;
-  const aHasAffiliate = a.affiliate_url != null || a.klook_affiliate_url != null;
-  const bHasAffiliate = b.affiliate_url != null || b.klook_affiliate_url != null;
+  const aHasAffiliate = affiliateLinks(a).length > 0;
+  const bHasAffiliate = affiliateLinks(b).length > 0;
   if (aHasAffiliate !== bHasAffiliate) return aHasAffiliate ? -1 : 1;
   if (a.price_jpy == null && b.price_jpy == null) return 0;
   if (a.price_jpy == null) return 1;
@@ -64,7 +81,7 @@ const bool = (v: boolean | null | undefined) =>
 const boolClass = (v: boolean | null | undefined) =>
   v === true ? 'text-matcha font-bold' : v === false ? 'text-warm-gray-mid' : 'text-warm-gray-mid italic';
 
-const bookingUrl = (exp: Experience) => exp.affiliate_url ?? exp.official_url ?? null;
+const bookingUrl = (exp: Experience) => affiliateLinks(exp)[0]?.url ?? exp.official_url ?? null;
 
 // ItemList schema: only entries with a booking URL
 const listItems = sorted
@@ -100,6 +117,7 @@ const listItems = sorted
     <tbody>
       {sorted.map((exp, i) => {
         const cfg = ratingConfig[exp.practitioner_rating];
+        const links = affiliateLinks(exp);
 
         return (
           <tr class:list={['border-b border-warm-gray-mid', i % 2 === 0 ? 'bg-white' : 'bg-warm-gray/30']}>
@@ -167,54 +185,43 @@ const listItems = sorted
               {bool(exp.private_available)}
             </td>
 
-            {/* Book — primary: GYG affiliate; fallback: Klook affiliate; fallback: official site */}
+            {/* Book — primary: first available of GYG, Viator, Klook affiliate; fallback: official site */}
             <td class="p-3 align-top">
-              {exp.affiliate_url
+              {links.length > 0
                 ? (
                   <div>
                     <a
-                      href={exp.affiliate_url}
+                      href={links[0].url}
                       target="_blank"
                       rel="noopener sponsored"
                       class="inline-block text-xs font-medium bg-matcha hover:bg-matcha-light text-white rounded px-3 py-1.5 transition-colors whitespace-nowrap"
                     >
                       Book →
                     </a>
-                    {exp.klook_affiliate_url && (
+                    {links.slice(1).map(link => (
                       <a
-                        href={exp.klook_affiliate_url}
+                        href={link.url}
                         target="_blank"
                         rel="noopener sponsored"
                         class="block text-xs text-warm-gray-mid underline hover:text-matcha mt-1.5 whitespace-nowrap transition-colors"
                       >
-                        Also on Klook →
+                        Also on {link.label} →
                       </a>
-                    )}
+                    ))}
                   </div>
                 )
-                : exp.klook_affiliate_url
+                : exp.official_url
                   ? (
                     <a
-                      href={exp.klook_affiliate_url}
+                      href={exp.official_url}
                       target="_blank"
-                      rel="noopener sponsored"
-                      class="inline-block text-xs font-medium bg-matcha hover:bg-matcha-light text-white rounded px-3 py-1.5 transition-colors whitespace-nowrap"
+                      rel="noopener noreferrer"
+                      class="inline-block text-xs font-medium text-matcha border border-matcha hover:bg-matcha/10 rounded px-3 py-1.5 transition-colors whitespace-nowrap"
                     >
-                      Book →
+                      Official site →
                     </a>
                   )
-                  : exp.official_url
-                    ? (
-                      <a
-                        href={exp.official_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="inline-block text-xs font-medium text-matcha border border-matcha hover:bg-matcha/10 rounded px-3 py-1.5 transition-colors whitespace-nowrap"
-                      >
-                        Official site →
-                      </a>
-                    )
-                    : <span class="text-xs text-warm-gray-mid">—</span>
+                  : <span class="text-xs text-warm-gray-mid">—</span>
               }
             </td>
           </tr>
