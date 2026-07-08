@@ -2,7 +2,7 @@
 interface Props {
   affiliate_url?: string | null;
   official_url?: string | null;
-  network: 'getyourguide' | 'klook' | 'direct';
+  network: 'getyourguide' | 'klook' | 'viator' | 'direct';
   label?: string;
   price_jpy?: number;
 }
@@ -17,6 +17,7 @@ const isAffiliate = !!affiliate_url;
 const networkLabel = {
   getyourguide: 'Book on GetYourGuide',
   klook: 'Book on Klook',
+  viator: 'Book on Viator',
   direct: 'Book Direct',
 }[network];
 

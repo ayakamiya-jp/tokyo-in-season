@@ -31,7 +31,7 @@ const experiences = defineCollection({
     area: z.enum([
       'Asakusa', 'Ginza', 'Omotesando', 'Aoyama', 'Shinjuku', 'Shibuya',
       'Yanaka', 'Hamarikyu', 'Shiodome', 'Nezu', 'Fukagawa',
-      'Mita', 'Shirokanedai', 'Other',
+      'Mita', 'Shirokanedai', 'Sumida', 'Other',
     ]),
     english_support: z.boolean().nullable().optional(),
     seiza_optional: z.boolean().nullable().optional(),
