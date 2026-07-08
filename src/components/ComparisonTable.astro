@@ -34,26 +34,29 @@ interface Props {
 
 const { experiences, quarter } = Astro.props;
 
-// Booking links in priority order: GYG affiliate, then Viator, then Klook affiliate.
-// Exactly one is shown as the primary CTA; the rest appear as small "Also on X" links.
-function affiliateLinks(exp: Experience): { label: string; url: string }[] {
-  const links: { label: string; url: string }[] = [];
-  if (exp.affiliate_url) links.push({ label: 'GetYourGuide', url: exp.affiliate_url });
-  if (exp.viator_product_url) links.push({ label: 'Viator', url: buildViatorAffiliateUrl(exp.viator_product_url) });
-  for (const variant of exp.viator_variants ?? []) {
-    links.push({ label: `Viator (${variant.label})`, url: buildViatorAffiliateUrl(variant.url) });
-  }
-  if (exp.klook_affiliate_url) links.push({ label: 'Klook', url: exp.klook_affiliate_url });
-  return links;
+// Primary booking link: exactly one, in priority order GYG > Viator > Klook.
+// Network name is never shown to the reader (just "Book →") — duplicate/backup
+// networks for the same product are not displayed at all.
+function primaryLink(exp: Experience): { label: string; url: string } | null {
+  if (exp.affiliate_url) return { label: 'GetYourGuide', url: exp.affiliate_url };
+  if (exp.viator_product_url) return { label: 'Viator', url: buildViatorAffiliateUrl(exp.viator_product_url) };
+  if (exp.klook_affiliate_url) return { label: 'Klook', url: exp.klook_affiliate_url };
+  return null;
 }
 
-// Sort: A → B → C, then affiliate-bookable listings (GYG, Viator, or Klook) first, then by price ascending (null prices last)
+// Variant links are a genuinely different service (private session, sweets-making
+// add-on, etc.), not a backup network — shown as their own "Book (Label)" buttons.
+function variantLinks(exp: Experience): { label: string; url: string }[] {
+  return (exp.viator_variants ?? []).map(v => ({ label: v.label, url: buildViatorAffiliateUrl(v.url) }));
+}
+
+// Sort: A → B → C, then bookable listings first, then by price ascending (null prices last)
 const ratingOrder = { A: 0, B: 1, C: 2 };
 const sorted = [...experiences].sort((a, b) => {
   const rd = ratingOrder[a.practitioner_rating] - ratingOrder[b.practitioner_rating];
   if (rd !== 0) return rd;
-  const aHasAffiliate = affiliateLinks(a).length > 0;
-  const bHasAffiliate = affiliateLinks(b).length > 0;
+  const aHasAffiliate = primaryLink(a) != null;
+  const bHasAffiliate = primaryLink(b) != null;
   if (aHasAffiliate !== bHasAffiliate) return aHasAffiliate ? -1 : 1;
   if (a.price_jpy == null && b.price_jpy == null) return 0;
   if (a.price_jpy == null) return 1;
@@ -81,7 +84,7 @@ const bool = (v: boolean | null | undefined) =>
 const boolClass = (v: boolean | null | undefined) =>
   v === true ? 'text-matcha font-bold' : v === false ? 'text-warm-gray-mid' : 'text-warm-gray-mid italic';
 
-const bookingUrl = (exp: Experience) => affiliateLinks(exp)[0]?.url ?? exp.official_url ?? null;
+const bookingUrl = (exp: Experience) => primaryLink(exp)?.url ?? exp.official_url ?? null;
 
 // ItemList schema: only entries with a booking URL
 const listItems = sorted
@@ -117,7 +120,8 @@ const listItems = sorted
     <tbody>
       {sorted.map((exp, i) => {
         const cfg = ratingConfig[exp.practitioner_rating];
-        const links = affiliateLinks(exp);
+        const primary = primaryLink(exp);
+        const variants = variantLinks(exp);
 
         return (
           <tr class:list={['border-b border-warm-gray-mid', i % 2 === 0 ? 'bg-white' : 'bg-warm-gray/30']}>
@@ -185,27 +189,27 @@ const listItems = sorted
               {bool(exp.private_available)}
             </td>
 
-            {/* Book — primary: first available of GYG, Viator, Klook affiliate; fallback: official site */}
+            {/* Book — one primary link (network name never shown), plus a button per genuine variant (private, sweets-making, etc.) */}
             <td class="p-3 align-top">
-              {links.length > 0
+              {primary
                 ? (
                   <div>
                     <a
-                      href={links[0].url}
+                      href={primary.url}
                       target="_blank"
                       rel="noopener sponsored"
                       class="inline-block text-xs font-medium bg-matcha hover:bg-matcha-light text-white rounded px-3 py-1.5 transition-colors whitespace-nowrap"
                     >
                       Book →
                     </a>
-                    {links.slice(1).map(link => (
+                    {variants.map(variant => (
                       <a
-                        href={link.url}
+                        href={variant.url}
                         target="_blank"
                         rel="noopener sponsored"
                         class="inline-block text-xs font-medium text-matcha border border-matcha hover:bg-matcha/10 rounded px-3 py-1.5 mt-1.5 whitespace-nowrap transition-colors"
                       >
-                        {link.label} →
+                        Book ({variant.label}) →
                       </a>
                     ))}
                   </div>
