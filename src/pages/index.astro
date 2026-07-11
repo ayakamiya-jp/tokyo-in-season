@@ -10,6 +10,7 @@ import comparedHero from '../assets/hero/compared-hero.jpg';
 import areaComparisonHero from '../assets/hero/area-comparison-hero.jpg';
 import privateVsGroupHero from '../assets/hero/private-vs-group-hero.jpg';
 import seizaHero from '../assets/hero/seiza-hero.jpg';
+import questionsHero from '../assets/hero/questions-hero.jpg';
 ---
 
 <BaseLayout
@@ -101,6 +102,13 @@ import seizaHero from '../assets/hero/seiza-hero.jpg';
           desc: 'Chair-friendly options for travellers with knee or back issues.',
           image: seizaHero,
           alt: 'A quiet traditional Japanese tatami room with open shoji screens looking out onto a garden',
+        },
+        {
+          href: '/questions-before-booking-tea-ceremony-tokyo',
+          title: '10 Questions to Ask Before You Book',
+          desc: 'The questions behind almost every bad review — asked for you.',
+          image: questionsHero,
+          alt: 'A tokonoma alcove with a hanging scroll and ikebana flower arrangement in a tatami tea room',
         },
       ].map(card => (
         <a href={card.href} class="group block border border-warm-gray-mid rounded-lg overflow-hidden hover:border-matcha transition-colors">
