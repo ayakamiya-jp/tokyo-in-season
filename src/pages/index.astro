@@ -83,6 +83,13 @@ import questionsHero from '../assets/hero/questions-hero.jpg';
     <div class="grid sm:grid-cols-3 gap-4">
       {[
         {
+          href: '/questions-before-booking-tea-ceremony-tokyo',
+          title: '10 Questions to Ask Before You Book',
+          desc: 'The questions behind almost every bad review — asked for you.',
+          image: questionsHero,
+          alt: 'A tokonoma alcove with a hanging scroll and ikebana flower arrangement in a tatami tea room',
+        },
+        {
           href: '/tea-ceremony-asakusa-vs-ginza-omotesando',
           title: 'Asakusa vs Ginza vs Omotesando',
           desc: 'Which area fits your trip — price, atmosphere, and depth compared.',
@@ -102,13 +109,6 @@ import questionsHero from '../assets/hero/questions-hero.jpg';
           desc: 'Chair-friendly options for travellers with knee or back issues.',
           image: seizaHero,
           alt: 'A quiet traditional Japanese tatami room with open shoji screens looking out onto a garden',
-        },
-        {
-          href: '/questions-before-booking-tea-ceremony-tokyo',
-          title: '10 Questions to Ask Before You Book',
-          desc: 'The questions behind almost every bad review — asked for you.',
-          image: questionsHero,
-          alt: 'A tokonoma alcove with a hanging scroll and ikebana flower arrangement in a tatami tea room',
         },
       ].map(card => (
         <a href={card.href} class="group block border border-warm-gray-mid rounded-lg overflow-hidden hover:border-matcha transition-colors">
