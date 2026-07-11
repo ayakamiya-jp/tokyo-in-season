@@ -79,13 +79,13 @@ const priced = experiences.filter(e => e.price_jpy != null).length;
     </p>
   </div>
 
-  <figure class="my-10 rounded-xl overflow-hidden">
+  <figure class="my-10 rounded-xl overflow-hidden max-w-md mx-auto">
     <Image
       src={matchaBowlInline}
       alt="A bowl of freshly whisked matcha in a floral-rimmed chawan on a lacquered table"
       widths={[400, 800, 1200]}
-      sizes="(min-width: 1024px) 768px, 100vw"
-      class="w-full h-auto max-h-[360px] object-cover"
+      sizes="(min-width: 768px) 448px, 100vw"
+      class="w-full h-auto"
     />
     <figcaption class="text-xs text-warm-gray-mid mt-2 text-center">
       What it actually looks like — matcha, whisked, at one of the sessions in this table.
