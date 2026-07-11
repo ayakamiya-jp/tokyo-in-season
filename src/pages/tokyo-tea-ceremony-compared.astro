@@ -9,7 +9,6 @@ import AuthorBio from '../components/AuthorBio.astro';
 import HeroImage from '../components/HeroImage.astro';
 import AffiliateNote from '../components/AffiliateNote.astro';
 import comparedHero from '../assets/hero/compared-hero.jpg';
-import matchaBowlInline from '../assets/content/matcha-bowl-inline.jpg';
 
 const QUARTER = 'Q3 2026';
 
@@ -78,19 +77,6 @@ const priced = experiences.filter(e => e.price_jpy != null).length;
       yourself if it's what you're looking for.
     </p>
   </div>
-
-  <figure class="my-10 rounded-xl overflow-hidden max-w-md mx-auto">
-    <Image
-      src={matchaBowlInline}
-      alt="A bowl of freshly whisked matcha in a floral-rimmed chawan on a lacquered table"
-      widths={[400, 800, 1200]}
-      sizes="(min-width: 768px) 448px, 100vw"
-      class="w-full h-auto"
-    />
-    <figcaption class="text-xs text-warm-gray-mid mt-2 text-center">
-      What it actually looks like — matcha, whisked, at one of the sessions in this table.
-    </figcaption>
-  </figure>
 
   <EmailCapture />
   <AuthorBio />
