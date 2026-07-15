@@ -1,0 +1,166 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EmailCapture from '../components/EmailCapture.astro';
+import AuthorBio from '../components/AuthorBio.astro';
+import HeroImage from '../components/HeroImage.astro';
+import AffiliateNote from '../components/AffiliateNote.astro';
+import wagashiTrio from '../assets/content/photo-wagashi-trio.jpeg';
+import wagashiGreenPink from '../assets/content/photo-wagashi-green-pink.jpeg';
+import wagashiPersimmon from '../assets/content/photo-wagashi-persimmon.jpeg';
+
+const PUBLISH_DATE = '2026-07-15';
+const dateFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const TITLE = 'Wagashi 101: The Sweets Served at a Japanese Tea Ceremony (2026)';
+const DESCRIPTION = "Wagashi are the traditional sweets served just before matcha at a tea ceremony — timed to balance the tea's bitterness, with shape, color, and name almost always tied to the season. Namagashi vs higashi, kōhaku-tō, and how to eat them, explained by a practicing Urasenke student.";
+---
+
+<BaseLayout
+  title={TITLE}
+  description={DESCRIPTION}
+  ogType="article"
+  ogImage={wagashiTrio}
+  showCompareCta
+>
+  <HeroImage
+    src={wagashiTrio}
+    alt="A trio of soft nerikiri wagashi sweets in seasonal shapes and colors, arranged on a black lacquer tray"
+  />
+
+  <p class="text-sm text-warm-gray-mid mb-2">
+    <time datetime={PUBLISH_DATE}>{dateFormatter.format(new Date(PUBLISH_DATE))}</time>
+  </p>
+  <AffiliateNote />
+
+  <h1 class="font-serif font-semibold text-4xl text-sumi mb-4 leading-tight">
+    Wagashi 101: The Sweets Served at a Japanese Tea Ceremony
+  </h1>
+
+  {/* GEO answer block */}
+  <div class="bg-sakura-light rounded-lg p-5 mb-8 border-l-4 border-sakura-deep">
+    <p class="text-sm font-medium text-sakura-deep mb-1">Quick Answer</p>
+    <p class="text-sumi leading-relaxed text-sm">
+      Wagashi are the traditional sweets served just before matcha at a tea ceremony — their
+      sweetness is timed to balance the tea's bitterness, and their shape, color, and name almost
+      always reference the current season. There are two main types you'll encounter:
+      <strong>namagashi</strong> (soft, sculpted sweets — the elegant ones you've seen in photos)
+      and <strong>higashi</strong> (dry, pressed sugar sweets, often used in simpler or seasonal
+      settings).
+    </p>
+  </div>
+
+  <div class="prose max-w-none text-sumi">
+    <h2>Why the sweet comes before the tea</h2>
+    <p>
+      This surprises most first-time guests: you eat the wagashi <em>before</em> drinking, not
+      alongside it. The sugar prepares your palate so the tea's bitterness reads as balanced
+      rather than sharp — the two are designed as a pair, not separate courses.
+    </p>
+    <p>
+      In my own practice, the rule is simple and always the same: the sweet is eaten before the
+      tea, never alongside it, and never bitten into whole. I use the kuromoji pick to cut it into
+      small pieces first — no exceptions, no matter how tempting a whole bite looks.
+    </p>
+
+    <h2>Namagashi: the sculpted sweets</h2>
+    <p>
+      These are the wagashi people photograph — soft, often made from <em>nerikiri</em> (sweetened
+      white bean paste, shaped and colored by hand) or wrapped around a bean-jam center. What makes
+      them remarkable is how much they say without words: a single sweet is often named after a
+      season, a poem, or a fleeting moment — a persimmon in autumn, a hydrangea in the rainy
+      season, cherry blossoms in spring.
+    </p>
+  </div>
+
+  <div class="my-8 rounded-xl overflow-hidden">
+    <Image
+      src={wagashiGreenPink}
+      alt="A pink and green nerikiri wagashi shaped like a chrysanthemum on a black lacquer tray"
+      widths={[400, 800, 1200]}
+      sizes="(min-width: 1024px) 768px, 100vw"
+      class="w-full h-auto max-h-[420px] object-cover"
+    />
+  </div>
+
+  <div class="prose max-w-none text-sumi">
+    <p>
+      The pink-and-green sweet in the photo above is a chrysanthemum motif — the kind of seasonal
+      detail a host chooses deliberately, often weeks in advance, to match the exact week of your
+      visit.
+    </p>
+    <p>
+      <strong>Etiquette note:</strong> don't bite directly into a whole namagashi. Use the small
+      pick (<em>kuromoji</em>) provided to cut it into bite-sized pieces first, eating one piece at
+      a time.
+    </p>
+  </div>
+
+  <div class="my-8 rounded-xl overflow-hidden">
+    <Image
+      src={wagashiPersimmon}
+      alt="A persimmon-shaped namagashi wagashi sweet, an autumn motif, on a black lacquer tray"
+      widths={[400, 800, 1200]}
+      sizes="(min-width: 1024px) 768px, 100vw"
+      class="w-full h-auto max-h-[420px] object-cover"
+    />
+  </div>
+
+  <div class="prose max-w-none text-sumi">
+    <h2>Higashi: the dry sweets</h2>
+    <p>
+      Higashi are pressed sugar or rice-flour sweets — harder, lighter, often stamped with seasonal
+      shapes (a maple leaf, a wave pattern, a New Year motif). They're common in simpler tea
+      gatherings and are traditionally what's served alongside usucha (thin tea) in some settings,
+      though practice varies.
+    </p>
+
+    <h2>Kōhaku-tō: the jewel-like sweet</h2>
+    <p>
+      The amber, jelly-like sweet you may see on a tea plate — made from agar and sugar, often cut
+      into small glassy blocks — is kōhaku-tō. It isn't a recent trend; it's a long-standing
+      confection with real history. What's changed is visibility: its jewel-like look has made it
+      newly popular on social media, but the sweet itself has been part of the wagashi world for a
+      long time.
+    </p>
+
+    <h2>What to look for as a guest</h2>
+    <ul>
+      <li>
+        <strong>The shape and color usually name the season</strong> — ask your host what the
+        sweet represents. It's one of the most welcomed questions you can ask (see our
+        <a href="/questions-before-booking-tea-ceremony-tokyo">10 questions before you book</a> guide).
+      </li>
+      <li>
+        <strong>One sweet, rarely more</strong> — wagashi at a ceremony are a small, deliberate
+        pause, not a dessert course.
+      </li>
+      <li>
+        <strong>The wrapping matters too</strong> — many are served on seasonal washi paper,
+        itself part of the presentation.
+      </li>
+    </ul>
+  </div>
+
+  <EmailCapture />
+  <AuthorBio />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    'headline': TITLE,
+    'description': DESCRIPTION,
+    'datePublished': PUBLISH_DATE,
+    'author': {
+      '@type': 'Person',
+      'name': 'Suzu',
+      'url': 'https://tokyoinseason.com/about',
+    },
+    'publisher': {
+      '@type': 'Organization',
+      'name': 'Tokyo in Season',
+      'url': 'https://tokyoinseason.com',
+    },
+    'mainEntityOfPage': 'https://tokyoinseason.com/wagashi-tea-ceremony-sweets',
+  })} />
+</BaseLayout>
