@@ -84,6 +84,13 @@ import wagashiTrio from '../assets/content/photo-wagashi-trio.jpeg';
     <div class="grid sm:grid-cols-3 gap-4">
       {[
         {
+          href: '/wagashi-tea-ceremony-sweets',
+          title: 'Wagashi 101: The Sweets Served at Tea',
+          desc: 'Namagashi vs higashi, kōhaku-tō, and how to eat them properly.',
+          image: wagashiTrio,
+          alt: 'A trio of soft nerikiri wagashi sweets in seasonal shapes and colors, arranged on a black lacquer tray',
+        },
+        {
           href: '/questions-before-booking-tea-ceremony-tokyo',
           title: '10 Questions to Ask Before You Book',
           desc: 'The questions behind almost every bad review — asked for you.',
@@ -110,13 +117,6 @@ import wagashiTrio from '../assets/content/photo-wagashi-trio.jpeg';
           desc: 'Chair-friendly options for travellers with knee or back issues.',
           image: seizaHero,
           alt: 'A quiet traditional Japanese tatami room with open shoji screens looking out onto a garden',
-        },
-        {
-          href: '/wagashi-tea-ceremony-sweets',
-          title: 'Wagashi 101: The Sweets Served at Tea',
-          desc: 'Namagashi vs higashi, kōhaku-tō, and how to eat them properly.',
-          image: wagashiTrio,
-          alt: 'A trio of soft nerikiri wagashi sweets in seasonal shapes and colors, arranged on a black lacquer tray',
         },
       ].map(card => (
         <a href={card.href} class="group block border border-warm-gray-mid rounded-lg overflow-hidden hover:border-matcha transition-colors">
