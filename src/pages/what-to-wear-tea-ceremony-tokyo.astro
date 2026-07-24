@@ -1,0 +1,175 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EmailCapture from '../components/EmailCapture.astro';
+import AuthorBio from '../components/AuthorBio.astro';
+import HeroImage from '../components/HeroImage.astro';
+import AffiliateNote from '../components/AffiliateNote.astro';
+import FaqBlock from '../components/FaqBlock.astro';
+import whatToWearHero from '../assets/hero/what-to-wear-hero.jpg';
+
+const PUBLISH_DATE = '2026-07-24';
+const dateFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const TITLE = 'What to Wear to a Tea Ceremony in Tokyo (2026)';
+const DESCRIPTION = "You don't need a kimono for a Tokyo tea ceremony — wear something modest you can sit comfortably in, loose trousers are safest, and bring socks, since bare feet on tatami are the one real mistake. Skip strong perfume and take off rings, watches, and bracelets that could scratch a host's utensils.";
+
+const faqItems = [
+  {
+    question: 'Can I wear jeans to a tea ceremony in Tokyo?',
+    answer: "At a tourist-facing venue, yes — no one will turn you away. One caveat worth taking seriously: tight, restrictive jeans and seiza are a genuinely bad combination. If jeans are what you have, make them your loosest pair.",
+  },
+  {
+    question: 'Do I have to take my shoes off?',
+    answer: 'Yes — every tea room is a shoes-off space, which is exactly why socks matter.',
+  },
+  {
+    question: 'Is there a dress code for tourists at a Japanese tea ceremony?',
+    answer: 'No formal dress code. Modest, comfortable clothing plus clean socks covers it. The unwritten rules are about scent and jewelry, not style.',
+  },
+  {
+    question: 'Should I wear a kimono to a tea ceremony?',
+    answer: "Optional and never expected. It's a lovely experience in itself, but it's a separate decision from the tea.",
+  },
+];
+---
+
+<BaseLayout
+  title={TITLE}
+  description={DESCRIPTION}
+  ogType="article"
+  ogImage={whatToWearHero}
+  showCompareCta
+>
+  <HeroImage
+    src={whatToWearHero}
+    alt="Rows of colorful fabric zori sandals displayed on a shop shelf"
+  />
+
+  <p class="text-sm text-warm-gray-mid mb-2">
+    <time datetime={PUBLISH_DATE}>{dateFormatter.format(new Date(PUBLISH_DATE))}</time>
+  </p>
+  <AffiliateNote />
+
+  <h1 class="font-serif font-semibold text-4xl text-sumi mb-4 leading-tight">
+    What to Wear to a Tea Ceremony in Tokyo
+  </h1>
+
+  {/* GEO answer block */}
+  <div class="bg-sakura-light rounded-lg p-5 mb-8 border-l-4 border-sakura-deep">
+    <p class="text-sm font-medium text-sakura-deep mb-1">Quick Answer</p>
+    <p class="text-sumi leading-relaxed text-sm">
+      You don't need a kimono. Wear something modest that you can sit comfortably in — loose
+      trousers are the safest choice — and bring socks, because bare feet on tatami are the one
+      real mistake. Skip strong perfume, and take off rings, watches, and bracelets that could
+      scratch a host's utensils. Nothing else is required, and no venue will turn you away for
+      jeans.
+    </p>
+  </div>
+
+  <div class="prose max-w-none text-sumi">
+    <p>
+      Most guests worry about this far more than they need to. Nobody is inspecting your outfit.
+      But a handful of small choices genuinely affect how comfortable your session is — and two of
+      them protect things that can't be replaced.
+    </p>
+
+    <h2>The one non-negotiable: socks</h2>
+    <p>
+      Bare feet on tatami are considered inconsiderate. If there's one dress rule to follow, this
+      is it.
+    </p>
+    <p>
+      Plain white socks are the classic choice, and here's the practitioner's view: most
+      tourist-facing venues won't enforce this, and nobody will stop you at the door. But turning
+      up in socks — white or otherwise — quietly marks you as someone who knows. Colour matters far
+      less than simply having them on. If you're in sandals, tuck a pair into your bag and put them
+      on before you step onto the mats.
+    </p>
+
+    <h2>What to actually wear</h2>
+    <p>
+      <strong>Bottoms: trousers, loose ones.</strong> This is the single most useful thing on this
+      page. Skirts are allowed, but they create problems at both lengths — short ones get awkward
+      the moment you kneel, and long ones can tangle around your legs as you stand up from a
+      kneeling position, which is exactly the moment you don't want to be unsteady. Loose trousers
+      sidestep all of it.
+    </p>
+    <p>
+      <strong>Tops:</strong> anything modest. Sleeves that don't drag are practical, since you'll
+      be reaching forward for the bowl and the sweet with both hands.
+    </p>
+    <p>
+      <strong>Layers:</strong> tea rooms are often quiet, still spaces without strong air
+      conditioning. In summer, thin layers you can adjust beat one heavy outfit.
+    </p>
+    <p>
+      <strong>Shoes:</strong> you'll take them off, so slip-on shoes save you fumbling at the
+      entrance while others wait.
+    </p>
+
+    <h2>What to take off (or leave behind)</h2>
+    <p>
+      <strong>Rings, watches, bracelets.</strong> This isn't formality — it's protection. Tea
+      bowls are often handmade, sometimes antique, occasionally irreplaceable, and you'll hold one
+      with both hands. One ring against a 200-year-old bowl is a story nobody wants.
+    </p>
+    <p>
+      <strong>Strong perfume.</strong> The tea room is a world of subtle scents: tatami, charcoal,
+      the tea itself. Heavy fragrance doesn't compete with that — it erases it, for everyone in the
+      room.
+    </p>
+    <p><strong>Long nails,</strong> if you can. Same reason as the rings.</p>
+    <p>
+      <strong>Hair:</strong> if it's long, tie it up. Bring a hair tie — you'll be leaning forward
+      over bowls and sweets, and you'll be glad you did.
+    </p>
+
+    <h2>Do you need to wear a kimono?</h2>
+    <p>
+      No. Not one venue in our
+      <a href="/tokyo-tea-ceremony-compared">comparison of 18 Tokyo tea ceremonies</a> requires it,
+      and guests in ordinary clothes are entirely normal.
+    </p>
+    <p>
+      That said, kimono dressing is offered as an add-on at several venues — around ¥6,300 at
+      Maikoya including hair styling, and as a paid option at Chazen and others. Whether it's worth
+      it depends on what you want out of the day: a kimono makes the photographs, not the tea.
+    </p>
+    <p>
+      If you do rent one, one practical note: you'll be sitting on the floor and reaching forward,
+      so ask the shop to dress you with that in mind rather than for standing photos alone.
+    </p>
+  </div>
+
+  <FaqBlock items={faqItems} />
+
+  <div class="prose max-w-none text-sumi">
+    <p class="text-sm text-sumi/70 border-t border-warm-gray pt-6">
+      See also: <a href="/questions-before-booking-tea-ceremony-tokyo">10 questions to ask before
+      you book</a> and our <a href="/tea-ceremony-without-seiza">guide for guests who can't sit
+      seiza</a>.
+    </p>
+  </div>
+
+  <EmailCapture />
+  <AuthorBio />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    'headline': TITLE,
+    'description': DESCRIPTION,
+    'datePublished': PUBLISH_DATE,
+    'author': {
+      '@type': 'Person',
+      'name': 'Suzu',
+      'url': 'https://tokyoinseason.com/about',
+    },
+    'publisher': {
+      '@type': 'Organization',
+      'name': 'Tokyo in Season',
+      'url': 'https://tokyoinseason.com',
+    },
+    'mainEntityOfPage': 'https://tokyoinseason.com/what-to-wear-tea-ceremony-tokyo',
+  })} />
+</BaseLayout>
