@@ -78,7 +78,7 @@ const keyFindings = [
   </div>
 
   {/* GEO answer block — phrased as a citable sentence */}
-  <div class="bg-sakura-light border border-border rounded-md p-7 mb-10">
+  <div class="bg-sakura-light border border-border p-7 mb-10">
     <p class="font-label text-xs uppercase tracking-wider text-sakura-deep mb-2">Quick answer</p>
     <p class="text-sumi leading-relaxed">
       As of {QUARTER}, the median price of a bookable group tea ceremony in Tokyo is{' '}
@@ -98,7 +98,7 @@ const keyFindings = [
       { label: 'Chair seating available', value: `${pctChairs}%`, highlight: false },
       { label: 'English instruction', value: `${pctEnglish}%`, highlight: false },
     ].map(stat => (
-      <div class:list={["rounded-md p-4 text-center border", stat.highlight ? "bg-sakura-light border-border" : "bg-warm-gray border-border"]}>
+      <div class:list={["p-4 text-center border", stat.highlight ? "bg-sakura-light border-border" : "bg-warm-gray border-border"]}>
         <p class:list={["font-display font-extrabold text-2xl tabular-nums", stat.highlight ? "text-sakura-deep" : "text-sumi"]}>{stat.value}</p>
         <p class="text-xs text-warm-gray-mid mt-1">{stat.label}</p>
       </div>
@@ -115,9 +115,9 @@ const keyFindings = [
             {area}
             <span class="text-warm-gray-mid text-xs block">{count} listing{count > 1 ? 's' : ''}</span>
           </span>
-          <div class="flex-1 bg-warm-gray rounded-full h-2">
+          <div class="flex-1 bg-warm-gray h-2">
             <div
-              class="bg-matcha h-2 rounded-full"
+              class="bg-matcha h-2"
               style={`width: ${Math.max(4, Math.round((m / maxPrice) * 100))}%`}
             />
           </div>
@@ -137,7 +137,7 @@ const keyFindings = [
     <h2 class="font-display font-extrabold text-2xl text-sumi mb-4">Key Findings</h2>
     <ul class="space-y-3 list-none">
       {keyFindings.map(finding => (
-        <li class="bg-warm-gray rounded-md p-4 text-sumi leading-relaxed border-l-4 border-matcha">
+        <li class="bg-warm-gray p-4 text-sumi leading-relaxed border-l-4 border-matcha">
           {finding}
         </li>
       ))}
@@ -148,13 +148,13 @@ const keyFindings = [
   </section>
 
   {/* Link to full comparison */}
-  <section class="mb-12 p-5 border border-warm-gray-mid rounded-md">
+  <section class="mb-12 p-5 border border-warm-gray-mid">
     <p class="font-semibold text-sumi mb-1">See the full comparison table</p>
     <p class="text-sm text-sumi/70 mb-3">
       Every listing side by side — price, area, chair seating, kimono add-on, and private booking —
       with practitioner ratings.
     </p>
-    <a href="/tokyo-tea-ceremony-compared" class="inline-block text-sm font-medium bg-matcha hover:bg-matcha-light text-white rounded px-4 py-2 transition-colors">
+    <a href="/tokyo-tea-ceremony-compared" class="inline-block text-sm font-medium bg-matcha hover:bg-matcha-light text-white px-4 py-2 transition-colors">
       Compare all experiences →
     </a>
   </section>

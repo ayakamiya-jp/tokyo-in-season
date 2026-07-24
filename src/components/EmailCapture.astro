@@ -4,21 +4,21 @@ const THANK_YOU_URL = 'https://tokyoinseason.com/thank-you';
 
 interface Props {
   variant?: 'inline' | 'exit';
-  fullBleed?: boolean; // homepage: edge-to-edge bar. Article/About: contained rounded block.
+  fullBleed?: boolean; // homepage: edge-to-edge bar. Article/About: contained block.
 }
 const { variant = 'inline', fullBleed = false } = Astro.props;
 ---
 
 <aside
   class:list={[
-    'email-capture bg-ink my-8',
+    'email-capture bg-ink',
     fullBleed
       ? 'relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen'
-      : 'rounded-md',
+      : 'my-8',
     variant === 'exit' && 'ring-2 ring-sakura-cta',
   ]}
 >
-  <div class:list={['mx-auto px-4 sm:px-7 py-8', fullBleed ? 'max-w-3xl' : '']}>
+  <div class:list={['mx-auto px-4 sm:px-7 py-8', fullBleed ? 'max-w-6xl' : '']}>
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
       <div>
         <p class="font-label text-xs uppercase tracking-wider text-sakura mb-1.5">Free guide</p>
@@ -40,11 +40,11 @@ const { variant = 'inline', fullBleed = false } = Astro.props;
             name="email"
             placeholder="your@email.com"
             required
-            class="flex-1 sm:w-56 border border-white/25 rounded px-3.5 py-3 text-[0.92rem] text-white bg-transparent placeholder:text-white/45 focus:outline-none focus:ring-2 focus:ring-sakura-cta"
+            class="flex-1 sm:w-56 border border-white/25 px-3.5 py-3 text-[0.92rem] text-white bg-transparent placeholder:text-white/45 focus:outline-none focus:ring-2 focus:ring-sakura-cta"
           />
           <button
             type="submit"
-            class="bg-sakura-cta hover:bg-sakura-deep text-sakura-cta-ink font-sans font-bold text-[0.95rem] px-6 py-3 rounded transition-colors duration-200 whitespace-nowrap"
+            class="bg-sakura-cta hover:bg-sakura-deep text-sakura-cta-ink font-sans font-bold text-[0.95rem] px-6 py-3 transition-colors duration-200 whitespace-nowrap"
           >
             Send me the guide
           </button>

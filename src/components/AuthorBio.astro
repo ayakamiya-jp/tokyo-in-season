@@ -5,7 +5,7 @@ interface Props {
 const { compact = false } = Astro.props;
 ---
 
-<aside class:list={["author-bio bg-surface border border-border rounded-md", compact ? "p-4" : "p-6 my-8"]}>
+<aside class:list={["author-bio bg-surface border border-border", compact ? "p-4" : "p-6 my-8"]}>
   <div class="flex items-start gap-4">
     <img
       src="/favicon.svg"

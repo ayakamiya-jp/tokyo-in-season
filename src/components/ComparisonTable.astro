@@ -129,11 +129,11 @@ const listItems = sorted
             {/* Name + rating badge */}
             <td class="p-3 align-top">
               <div class="flex flex-wrap gap-1.5 mb-1.5">
-                <span class:list={['inline-block text-xs font-medium rounded px-2 py-0.5', cfg.classes]}>
+                <span class:list={['inline-block text-xs font-medium px-2 py-0.5', cfg.classes]}>
                   {cfg.label}
                 </span>
                 {exp.platform_only && (
-                  <span class="inline-block text-xs rounded px-2 py-0.5 bg-amber-50 text-amber-700 border border-amber-200">
+                  <span class="inline-block text-xs px-2 py-0.5 bg-amber-50 text-amber-700 border border-amber-200">
                     Platform only
                   </span>
                 )}
@@ -198,7 +198,7 @@ const listItems = sorted
                       href={primary.url}
                       target="_blank"
                       rel="noopener sponsored"
-                      class="inline-block text-xs font-bold bg-sakura-cta hover:bg-sakura-deep text-sakura-cta-ink rounded px-3 py-1.5 transition-colors whitespace-nowrap"
+                      class="inline-block text-xs font-bold bg-sakura-cta hover:bg-sakura-deep text-sakura-cta-ink px-3 py-1.5 transition-colors whitespace-nowrap"
                     >
                       Book →
                     </a>
@@ -207,7 +207,7 @@ const listItems = sorted
                         href={variant.url}
                         target="_blank"
                         rel="noopener sponsored"
-                        class="inline-block text-xs font-bold bg-sakura-cta hover:bg-sakura-deep text-sakura-cta-ink rounded px-3 py-1.5 mt-1.5 whitespace-nowrap transition-colors"
+                        class="inline-block text-xs font-bold bg-sakura-cta hover:bg-sakura-deep text-sakura-cta-ink px-3 py-1.5 mt-1.5 whitespace-nowrap transition-colors"
                       >
                         Book ({variant.label}) →
                       </a>
@@ -220,7 +220,7 @@ const listItems = sorted
                       href={exp.official_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="inline-block text-xs font-medium text-matcha border border-matcha hover:bg-matcha/10 rounded px-3 py-1.5 transition-colors whitespace-nowrap"
+                      class="inline-block text-xs font-medium text-matcha border border-matcha hover:bg-matcha/10 px-3 py-1.5 transition-colors whitespace-nowrap"
                     >
                       Official site →
                     </a>

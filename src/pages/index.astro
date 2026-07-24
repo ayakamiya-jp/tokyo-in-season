@@ -121,7 +121,7 @@ const [featuredGuide, ...restGuides] = decisionGuides;
       fetchpriority="high"
     />
     <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,19,16,0)_8%,rgba(20,19,16,.5)_52%,rgba(20,19,16,.88)_100%)]" aria-hidden="true"></div>
-    <div class="relative z-10 w-full max-w-3xl mx-auto px-4 py-8">
+    <div class="relative z-10 w-full max-w-6xl mx-auto px-4 py-8">
       <span class="block font-label text-xs uppercase tracking-wider text-sakura mb-2">Japanese culture, in its right season</span>
       <h1 class="font-display font-extrabold text-4xl sm:text-6xl leading-[.94] tracking-tight text-white mb-5">
         Tokyo<br>in Season
@@ -131,7 +131,7 @@ const [featuredGuide, ...restGuides] = decisionGuides;
           Tea ceremony experiences in Tokyo, compared and priced by an Urasenke practitioner who actually practices.
         </p>
         <div class="flex items-center gap-5 flex-wrap">
-          <a href="/tokyo-tea-ceremony-compared" class="inline-flex items-center gap-2 bg-sakura-cta hover:bg-sakura-deep text-sakura-cta-ink font-sans font-bold text-sm px-6 py-3.5 rounded transition-colors">
+          <a href="/tokyo-tea-ceremony-compared" class="inline-flex items-center gap-2 bg-sakura-cta hover:bg-sakura-deep text-sakura-cta-ink font-sans font-bold text-sm px-6 py-3.5 transition-colors">
             Compare experiences <span>→</span>
           </a>
           <a href="/tokyo-tea-ceremony-price-index" class="text-white font-semibold text-sm border-b border-white/50 hover:border-white transition-colors">
@@ -164,7 +164,7 @@ const [featuredGuide, ...restGuides] = decisionGuides;
           ¥{maxPrice.toLocaleString()} for a private ceremony — the only public dataset of its kind
           for Tokyo tea ceremony experiences.
         </p>
-        <a href="/tokyo-tea-ceremony-price-index" class="inline-flex items-center gap-2 mt-7 bg-sakura-cta hover:bg-sakura-deep text-sakura-cta-ink font-sans font-bold text-sm px-6 py-3.5 rounded transition-colors">
+        <a href="/tokyo-tea-ceremony-price-index" class="inline-flex items-center gap-2 mt-7 bg-sakura-cta hover:bg-sakura-deep text-sakura-cta-ink font-sans font-bold text-sm px-6 py-3.5 transition-colors">
           View the full Index <span>→</span>
         </a>
       </div>
@@ -187,7 +187,7 @@ const [featuredGuide, ...restGuides] = decisionGuides;
             <span class="font-label text-[0.65rem] uppercase tracking-wider text-warm-gray-mid">{cheapestArea?.area} median</span>
           </div>
         </div>
-        <div class="mt-6 w-full max-w-xs aspect-[16/7] rounded overflow-hidden">
+        <div class="mt-6 w-full max-w-xs aspect-[16/7] overflow-hidden">
           <Image
             src={priceIndexHero}
             alt="A bamboo whisk and chawan bowls beside an iron kettle on tatami"
@@ -201,16 +201,16 @@ const [featuredGuide, ...restGuides] = decisionGuides;
     </div>
 
     <!-- Compare block -->
-    <a href="/tokyo-tea-ceremony-compared" class="group block mt-12 bg-sakura-light border border-border rounded-md p-8 sm:p-11">
+    <a href="/tokyo-tea-ceremony-compared" class="group block mt-12 bg-sakura-light border border-border p-8 sm:p-11">
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
         <div>
-          <span class="inline-block font-label text-xs uppercase tracking-wider bg-sakura-cta text-sakura-cta-ink rounded px-2.5 py-1 mb-3">Best first stop</span>
+          <span class="inline-block font-label text-xs uppercase tracking-wider bg-sakura-cta text-sakura-cta-ink px-2.5 py-1 mb-3">Best first stop</span>
           <h3 class="font-display font-extrabold text-3xl text-sumi mb-2">All Tokyo Experiences Compared</h3>
           <p class="max-w-lg text-base text-sumi-soft">
             Side-by-side table: price, area, chairs available, kimono add-on, group vs private.
           </p>
         </div>
-        <span class="inline-flex items-center gap-2 bg-sakura-cta group-hover:bg-sakura-deep text-sakura-cta-ink font-sans font-bold text-sm px-6 py-3.5 rounded transition-colors whitespace-nowrap">
+        <span class="inline-flex items-center gap-2 bg-sakura-cta group-hover:bg-sakura-deep text-sakura-cta-ink font-sans font-bold text-sm px-6 py-3.5 transition-colors whitespace-nowrap">
           Open the table <span class="inline-block transition-transform group-hover:translate-x-1">→</span>
         </span>
       </div>
@@ -224,7 +224,7 @@ const [featuredGuide, ...restGuides] = decisionGuides;
       <span class="font-label text-xs uppercase tracking-wider text-warm-gray-mid">{decisionGuides.length} guides</span>
     </div>
 
-    <a href={featuredGuide.href} class="group relative block h-[22rem] rounded-md overflow-hidden mb-5">
+    <a href={featuredGuide.href} class="group relative block h-[22rem] overflow-hidden mb-5">
       <Image
         src={featuredGuide.image}
         alt={featuredGuide.alt}
@@ -243,7 +243,7 @@ const [featuredGuide, ...restGuides] = decisionGuides;
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
       {restGuides.map(guide => (
-        <a href={guide.href} class="group relative block aspect-[4/5] rounded-md overflow-hidden">
+        <a href={guide.href} class="group relative block aspect-[4/5] overflow-hidden">
           <Image
             src={guide.image}
             alt={guide.alt}
