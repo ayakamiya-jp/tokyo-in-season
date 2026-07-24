@@ -13,7 +13,7 @@ const { items } = Astro.props;
   <h2 class="font-display font-extrabold text-2xl text-sumi mb-6">Frequently Asked Questions</h2>
   <dl class="space-y-4">
     {items.map((item) => (
-      <div class="border border-warm-gray-mid rounded-lg overflow-hidden">
+      <div class="border border-warm-gray-mid rounded-md overflow-hidden">
         <dt class="font-sans font-semibold text-sumi p-4 bg-warm-gray">{item.question}</dt>
         <dd class="p-4 text-sumi leading-relaxed text-sm">{item.answer}</dd>
       </div>

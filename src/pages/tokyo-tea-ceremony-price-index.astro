@@ -98,7 +98,7 @@ const keyFindings = [
       { label: 'Chair seating available', value: `${pctChairs}%`, highlight: false },
       { label: 'English instruction', value: `${pctEnglish}%`, highlight: false },
     ].map(stat => (
-      <div class:list={["rounded-lg p-4 text-center", stat.highlight ? "bg-sakura-light border border-sakura" : "bg-warm-gray"]}>
+      <div class:list={["rounded-md p-4 text-center border", stat.highlight ? "bg-sakura-light border-border" : "bg-warm-gray border-border"]}>
         <p class:list={["font-display font-extrabold text-2xl tabular-nums", stat.highlight ? "text-sakura-deep" : "text-sumi"]}>{stat.value}</p>
         <p class="text-xs text-warm-gray-mid mt-1">{stat.label}</p>
       </div>
@@ -137,7 +137,7 @@ const keyFindings = [
     <h2 class="font-display font-extrabold text-2xl text-sumi mb-4">Key Findings</h2>
     <ul class="space-y-3 list-none">
       {keyFindings.map(finding => (
-        <li class="bg-warm-gray rounded-lg p-4 text-sumi leading-relaxed border-l-4 border-matcha">
+        <li class="bg-warm-gray rounded-md p-4 text-sumi leading-relaxed border-l-4 border-matcha">
           {finding}
         </li>
       ))}
@@ -148,7 +148,7 @@ const keyFindings = [
   </section>
 
   {/* Link to full comparison */}
-  <section class="mb-12 p-5 border border-warm-gray-mid rounded-lg">
+  <section class="mb-12 p-5 border border-warm-gray-mid rounded-md">
     <p class="font-semibold text-sumi mb-1">See the full comparison table</p>
     <p class="text-sm text-sumi/70 mb-3">
       Every listing side by side — price, area, chair seating, kimono add-on, and private booking —
