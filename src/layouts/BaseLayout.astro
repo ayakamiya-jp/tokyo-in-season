@@ -62,7 +62,7 @@ const ogImageUrl = resolvedOgImage ? new URL(resolvedOgImage.src, Astro.site).to
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600&family=Jost:wght@500&display=swap" rel="stylesheet" />
 
   <!-- Site schema -->
   <script type="application/ld+json" set:html={JSON.stringify({
@@ -73,16 +73,25 @@ const ogImageUrl = resolvedOgImage ? new URL(resolvedOgImage.src, Astro.site).to
     "description": tagline,
   })} />
 </head>
-<body class="bg-warm-white text-sumi font-sans antialiased">
-  <header class="sticky top-0 z-50 bg-warm-white border-b border-warm-gray">
+<body class="bg-warm-white text-sumi font-sans antialiased overflow-x-hidden">
+  <header class="sticky top-0 z-50 bg-warm-white/90 backdrop-blur border-b border-border">
     <div class="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
-      <a href="/" class="font-serif font-semibold text-xl text-sumi hover:text-matcha transition-colors">
+      <a href="/" class="font-display font-extrabold text-lg tracking-tight text-sumi">
         Tokyo in Season
       </a>
-      <nav class="hidden sm:flex gap-6 text-sm font-medium">
-        <a href="/tokyo-tea-ceremony-compared" class="underline decoration-warm-gray-mid/40 hover:decoration-matcha hover:text-matcha underline-offset-4 transition-colors">Compare</a>
-        <a href="/tokyo-tea-ceremony-price-index" class="underline decoration-warm-gray-mid/40 hover:decoration-matcha hover:text-matcha underline-offset-4 transition-colors">Price Index</a>
-        <a href="/about" class="underline decoration-warm-gray-mid/40 hover:decoration-matcha hover:text-matcha underline-offset-4 transition-colors">About</a>
+      <nav class="flex gap-5 sm:gap-8 font-label text-xs uppercase tracking-wider">
+        <a href="/tokyo-tea-ceremony-compared" class="group relative pb-0.5">
+          Compare
+          <span class="absolute left-0 bottom-0 h-px w-full bg-sakura-deep scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-200"></span>
+        </a>
+        <a href="/tokyo-tea-ceremony-price-index" class="group relative pb-0.5">
+          Price Index
+          <span class="absolute left-0 bottom-0 h-px w-full bg-sakura-deep scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-200"></span>
+        </a>
+        <a href="/about" class="group relative pb-0.5">
+          About
+          <span class="absolute left-0 bottom-0 h-px w-full bg-sakura-deep scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-200"></span>
+        </a>
       </nav>
     </div>
   </header>
@@ -93,16 +102,36 @@ const ogImageUrl = resolvedOgImage ? new URL(resolvedOgImage.src, Astro.site).to
 
   {showCompareCta && <StickyCompareCta />}
 
-  <footer class="border-t border-warm-gray mt-16">
-    <div class="max-w-3xl mx-auto px-4 py-8 text-xs text-warm-gray-mid space-y-2">
-      <p>© {new Date().getFullYear()} Tokyo in Season · Written by Suzu, an Urasenke practitioner in Tokyo</p>
-      <p>Some links are affiliate links — we may earn a small commission at no extra cost to you.</p>
-      <p>
-        <a href="/about" class="hover:text-matcha underline">About</a> ·
-        <a href="/disclaimer" class="hover:text-matcha underline">Disclaimer</a> ·
-        <a href="/privacy" class="hover:text-matcha underline">Privacy</a> ·
-        <a href="/sitemap-index.xml" class="hover:text-matcha underline">Sitemap</a>
-      </p>
+  <footer class="border-t border-border mt-16 pt-12 pb-8">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="grid grid-cols-1 sm:grid-cols-[1.4fr_1fr_1fr] gap-9">
+        <div>
+          <p class="font-display font-extrabold text-base text-sumi mb-1.5">Tokyo in Season</p>
+          <p class="text-sm text-warm-gray-mid max-w-xs leading-relaxed">
+            Japanese culture, in its right season — from inside the tea room.
+          </p>
+        </div>
+        <div>
+          <p class="font-label text-xs uppercase tracking-wider text-warm-gray-mid mb-3">Explore</p>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/tokyo-tea-ceremony-compared" class="hover:text-sakura-deep transition-colors">Compare</a></li>
+            <li><a href="/tokyo-tea-ceremony-price-index" class="hover:text-sakura-deep transition-colors">Price Index</a></li>
+            <li><a href="/about" class="hover:text-sakura-deep transition-colors">About</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="font-label text-xs uppercase tracking-wider text-warm-gray-mid mb-3">Legal</p>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/disclaimer" class="hover:text-sakura-deep transition-colors">Disclaimer</a></li>
+            <li><a href="/privacy" class="hover:text-sakura-deep transition-colors">Privacy</a></li>
+            <li><a href="/sitemap-index.xml" class="hover:text-sakura-deep transition-colors">Sitemap</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-10 pt-6 border-t border-border text-xs text-legal-gray space-y-1">
+        <p>© {new Date().getFullYear()} Tokyo in Season · Written by Suzu, an Urasenke practitioner in Tokyo</p>
+        <p>Some links are affiliate links — we may earn a small commission at no extra cost to you.</p>
+      </div>
     </div>
   </footer>
 </body>

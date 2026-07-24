@@ -10,7 +10,7 @@ const PUBLISH_DATE = '2026-07-11';
 const dateFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
 const TITLE = '10 Questions to Ask Before You Book a Tea Ceremony in Tokyo (2026)';
-const DESCRIPTION = "Before booking a Tokyo tea ceremony, ask about seating, what's included, solo pricing, group size, and tea room vs studio — the questions behind every bad review, answered.";
+const DESCRIPTION = "Before booking a Tokyo tea ceremony, ask about seating, what's included, solo pricing, group size, and tea room vs. studio — the questions behind every bad review, answered.";
 
 const questions = [
   {
@@ -66,122 +66,155 @@ const questions = [
   <HeroImage
     src={questionsHero}
     alt="A tokonoma alcove with a hanging scroll reading ichi-go ichi-e beside an ikebana flower arrangement, in a traditional tatami tea room"
+    eyebrow="Booking guide"
+    title="10 Questions to Ask Before You Book a Tea Ceremony in Tokyo"
   />
 
-  <p class="text-sm text-warm-gray-mid mb-2">
+  <div class="flex items-center gap-3 flex-wrap text-sm text-warm-gray-mid mb-2">
     <time datetime={PUBLISH_DATE}>{dateFormatter.format(new Date(PUBLISH_DATE))}</time>
-  </p>
+  </div>
   <AffiliateNote />
 
-  <h1 class="font-serif font-semibold text-4xl text-sumi mb-4 leading-tight">
-    10 Questions to Ask Before You Book a Tea Ceremony in Tokyo
-  </h1>
-
-  {/* GEO answer block */}
-  <div class="bg-sakura-light rounded-lg p-5 mb-8 border-l-4 border-sakura-deep">
-    <p class="text-sm font-medium text-sakura-deep mb-1">Quick Answer</p>
-    <p class="text-sumi leading-relaxed text-sm">
-      Before booking any Tokyo tea ceremony, confirm: seating (chairs or seiza?), what's actually
-      included, solo pricing, group size, and whether you're booking a tea room or a studio. Most
-      disappointments we hear about trace back to one of these ten questions nobody asked. All ten
-      below — with what a good answer sounds like, based on data from all 18 venues in our
-      <a href="/tokyo-tea-ceremony-price-index">Tokyo Tea Ceremony Price Index</a>.
+  {/* GEO answer block — same color-block language as the homepage Compare promo, no left accent bar */}
+  <div class="bg-sakura-light border border-border rounded-md p-9 my-8">
+    <p class="font-label text-xs uppercase tracking-wider text-sakura-deep mb-3">Quick answer</p>
+    <p class="font-display font-bold text-[1.35rem] leading-snug text-sumi">
+      Before booking, confirm seating, what's included, solo pricing, group size, and tea room vs. studio.
+    </p>
+    <p class="mt-3.5 text-[0.92rem] leading-relaxed text-sumi-soft">
+      Most disappointments trace back to one of these ten questions nobody asked. All ten below —
+      with data from all 18 venues in our
+      <a href="/tokyo-tea-ceremony-price-index" class="text-matcha underline">Tokyo Tea Ceremony Price Index</a>.
     </p>
   </div>
 
-  <div class="prose max-w-none text-sumi">
+  <div class="prose max-w-none">
     <p>
       I've reviewed every bookable tea ceremony in Tokyo, and here's the pattern behind bad
       reviews: the venue rarely lied — the guest just didn't know what to ask. So ask these. Any
       venue worth your money will answer happily; hesitation is itself an answer.
     </p>
+  </div>
 
-    <h2>1. Are chairs available — and do I need to request them?</h2>
-    <p>
-      Only 4 of 18 Tokyo venues publicly confirm chairs, but most can arrange them
-      <strong>if you ask at booking, not on arrival</strong>. If seiza is a concern, this is
-      question one. (Full details in our
-      <a href="/tea-ceremony-without-seiza">seiza-free guide</a>.)
-    </p>
+  <div class="not-prose grid grid-cols-[3.25rem_1fr] sm:grid-cols-[4.5rem_1fr] gap-5 sm:gap-7 mt-10">
+    <div class="font-display font-extrabold text-4xl sm:text-[3.25rem] leading-[.85] text-sakura-deep tabular-nums">01</div>
+    <div>
+      <h2 class="font-display font-extrabold text-xl sm:text-2xl text-sumi mb-3">Are chairs available — and do I need to request them?</h2>
+      <p class="text-base leading-relaxed text-sumi-soft">
+        Only 4 of 18 Tokyo venues publicly confirm chairs, but most can arrange them
+        <strong class="text-sumi font-semibold">if you ask at booking, not on arrival</strong>. If seiza is a concern, this is
+        question one. (Full details in our
+        <a href="/tea-ceremony-without-seiza" class="text-matcha underline">seiza-free guide</a>.)
+      </p>
+    </div>
 
-    <h2>2. What exactly is included in the price?</h2>
-    <p>
-      "Tea ceremony" can mean one bowl of matcha and a sweet — or kimono dressing, hair styling,
-      sweets-making, and photos. At Maikoya, ¥6,300 includes kimono and hair styling; elsewhere,
-      kimono is a paid add-on or not offered. Ask for the inclusion list before comparing prices,
-      or you're comparing apples to kettles.
-    </p>
+    <div class="font-display font-extrabold text-4xl sm:text-[3.25rem] leading-[.85] text-sakura-deep tabular-nums">02</div>
+    <div>
+      <h2 class="font-display font-extrabold text-xl sm:text-2xl text-sumi mb-3">What exactly is included in the price?</h2>
+      <p class="text-base leading-relaxed text-sumi-soft">
+        "Tea ceremony" can mean one bowl of matcha and a sweet — or kimono dressing, hair styling,
+        sweets-making, and photos. At Maikoya, ¥6,300 includes kimono and hair styling; elsewhere,
+        kimono is a paid add-on or not offered. Ask for the inclusion list before comparing prices,
+        or you're comparing apples to kettles.
+      </p>
+    </div>
 
-    <h2>3. Is there a solo surcharge?</h2>
-    <p>
-      The quiet trap in Tokyo tea pricing: at least one venue charges solo guests ¥11,000 versus
-      ¥5,500 per person for two or more — double, for the same seat. If you're traveling alone,
-      ask "is the per-person price the same for one guest?" before anything else.
-    </p>
+    <div class="font-display font-extrabold text-4xl sm:text-[3.25rem] leading-[.85] text-sakura-deep tabular-nums">03</div>
+    <div>
+      <h2 class="font-display font-extrabold text-xl sm:text-2xl text-sumi mb-3">Is there a solo surcharge?</h2>
+      <p class="text-base leading-relaxed text-sumi-soft">
+        The quiet trap in Tokyo tea pricing: at least one venue charges solo guests ¥11,000 versus
+        ¥5,500 per person for two or more — double, for the same seat. If you're traveling alone,
+        ask "is the per-person price the same for one guest?" before anything else.
+      </p>
+    </div>
 
-    <h2>4. How many guests will be in my session?</h2>
-    <p>
-      The answer changes the entire experience: 20-person sessions feel like a demonstration,
-      8-10 feels like a gathering, private feels like a lesson. Small-group caps (like
-      Jugetsudo's 10) give you most of private's calm at group prices. (More in
-      <a href="/private-vs-group-tea-ceremony-tokyo">Private vs Group</a>.)
-    </p>
+    <div class="font-display font-extrabold text-4xl sm:text-[3.25rem] leading-[.85] text-sakura-deep tabular-nums">04</div>
+    <div>
+      <h2 class="font-display font-extrabold text-xl sm:text-2xl text-sumi mb-3">How many guests will be in my session?</h2>
+      <p class="text-base leading-relaxed text-sumi-soft">
+        The answer changes the entire experience: 20-person sessions feel like a demonstration,
+        8-10 feels like a gathering, private feels like a lesson. Small-group caps (like
+        Jugetsudo's 10) give you most of private's calm at group prices. (More in
+        <a href="/private-vs-group-tea-ceremony-tokyo" class="text-matcha underline">Private vs Group</a>.)
+      </p>
+    </div>
 
-    <h2>5. Is the venue an actual tea room — or a studio?</h2>
-    <p>
-      Both can be enjoyable; they are different products. A purpose-built tea room (Chazen has a
-      tsukubai water basin and nijiriguchi crawl-through entrance) engages the architecture of tea
-      itself. A sixth-floor studio with tatami mats is an event space with props. Ask "is the
-      session held in a traditional tea room?" — a confident venue will tell you exactly what the
-      space is.
-    </p>
+    <div class="font-display font-extrabold text-4xl sm:text-[3.25rem] leading-[.85] text-sakura-deep tabular-nums">05</div>
+    <div>
+      <h2 class="font-display font-extrabold text-xl sm:text-2xl text-sumi mb-3">Is the venue an actual tea room — or a studio?</h2>
+      <p class="text-base leading-relaxed text-sumi-soft">
+        Both can be enjoyable; they are different products. A purpose-built tea room (Chazen has a
+        tsukubai water basin and nijiriguchi crawl-through entrance) engages the architecture of tea
+        itself. A sixth-floor studio with tatami mats is an event space with props. Ask "is the
+        session held in a traditional tea room?" — a confident venue will tell you exactly what the
+        space is.
+      </p>
+    </div>
 
-    <h2>6. Who performs the ceremony?</h2>
-    <p>
-      "Tea master" is a marketing word, not a credential. What you can ask instead: does the host
-      actively practice tea, and in which school (Urasenke, Omotesenke...)? Venues with real
-      practitioners tend to say so proudly. A vague answer usually means trained staff performing
-      a script — fine for a casual visit, worth knowing in advance.
-    </p>
-    <p>
-      A practitioner's tell: ask which school, and listen to the speed of the answer. Someone who
-      actually practices will name their school — Urasenke, Omotesenke — without a beat, the way
-      you'd name your hometown. If the answer wanders into "traditional Japanese style" territory
-      instead of a school name, you've learned what you needed to know.
-    </p>
+    <div class="font-display font-extrabold text-4xl sm:text-[3.25rem] leading-[.85] text-sakura-deep tabular-nums">06</div>
+    <div>
+      <h2 class="font-display font-extrabold text-xl sm:text-2xl text-sumi mb-3">Who performs the ceremony?</h2>
+      <p class="text-base leading-relaxed text-sumi-soft mb-3">
+        "Tea master" is a marketing word, not a credential. What you can ask instead: does the host
+        actively practice tea, and in which school (Urasenke, Omotesenke...)? Venues with real
+        practitioners tend to say so proudly. A vague answer usually means trained staff performing
+        a script — fine for a casual visit, worth knowing in advance.
+      </p>
+      <p class="text-base leading-relaxed text-sumi-soft">
+        A practitioner's tell: ask which school, and listen to the speed of the answer. Someone who
+        actually practices will name their school — Urasenke, Omotesenke — without a beat, the way
+        you'd name your hometown. If the answer wanders into "traditional Japanese style" territory
+        instead of a school name, you've learned what you needed to know.
+      </p>
+    </div>
 
-    <h2>7. Can I take photos — and when?</h2>
-    <p>
-      Almost always yes, but timing matters: photographing mid-temae (during the tea preparation)
-      versus a dedicated photo time at the end are very different asks. Venues that plan photo
-      time into the session (many do) will tell you. Asking in advance means you relax instead of
-      sneaking shots.
-    </p>
+    <div class="font-display font-extrabold text-4xl sm:text-[3.25rem] leading-[.85] text-sakura-deep tabular-nums">07</div>
+    <div>
+      <h2 class="font-display font-extrabold text-xl sm:text-2xl text-sumi mb-3">Can I take photos — and when?</h2>
+      <p class="text-base leading-relaxed text-sumi-soft">
+        Almost always yes, but timing matters: photographing mid-temae (during the tea preparation)
+        versus a dedicated photo time at the end are very different asks. Venues that plan photo
+        time into the session (many do) will tell you. Asking in advance means you relax instead of
+        sneaking shots.
+      </p>
+    </div>
 
-    <h2>8. How much talking is welcome?</h2>
-    <p>
-      Sessions range from lecture-style (listen, then Q&amp;A) to conversational. Questions about
-      the utensils, sweets, and season are welcome almost everywhere — that's the good kind of
-      talking. What varies is casual chatting; when unsure, let the host set the tone. If a lively
-      session matters to you (or a silent one), ask which way the venue leans.
-    </p>
+    <div class="font-display font-extrabold text-4xl sm:text-[3.25rem] leading-[.85] text-sakura-deep tabular-nums">08</div>
+    <div>
+      <h2 class="font-display font-extrabold text-xl sm:text-2xl text-sumi mb-3">How much talking is welcome?</h2>
+      <p class="text-base leading-relaxed text-sumi-soft">
+        Sessions range from lecture-style (listen, then Q&amp;A) to conversational. Questions about
+        the utensils, sweets, and season are welcome almost everywhere — that's the good kind of
+        talking. What varies is casual chatting; when unsure, let the host set the tone. If a lively
+        session matters to you (or a silent one), ask which way the venue leans.
+      </p>
+    </div>
 
-    <h2>9. What's the cancellation policy?</h2>
-    <p>
-      Tokyo experience cancellation windows vary — 24 hours' free cancellation is common on
-      booking platforms, direct bookings vary widely. Trip plans change; know before you pay,
-      especially for private sessions where you're reserving the whole room.
-    </p>
+    <div class="font-display font-extrabold text-4xl sm:text-[3.25rem] leading-[.85] text-sakura-deep tabular-nums">09</div>
+    <div>
+      <h2 class="font-display font-extrabold text-xl sm:text-2xl text-sumi mb-3">What's the cancellation policy?</h2>
+      <p class="text-base leading-relaxed text-sumi-soft">
+        Tokyo experience cancellation windows vary — 24 hours' free cancellation is common on
+        booking platforms, direct bookings vary widely. Trip plans change; know before you pay,
+        especially for private sessions where you're reserving the whole room.
+      </p>
+    </div>
 
-    <h2>10. Is this a tea ceremony — or a matcha tasting?</h2>
-    <p>
-      Not the same thing, and both exist on booking sites under similar names. A tasting serves
-      you tea (sometimes several kinds); a ceremony is a hosted ritual with etiquette, seasonality,
-      and intent. Neither is wrong — but reviews saying "not what I expected" are almost always
-      this question, unasked. One line to the venue clears it up.
-    </p>
+    <div class="font-display font-extrabold text-4xl sm:text-[3.25rem] leading-[.85] text-sakura-deep tabular-nums">10</div>
+    <div>
+      <h2 class="font-display font-extrabold text-xl sm:text-2xl text-sumi mb-3">Is this a tea ceremony — or a matcha tasting?</h2>
+      <p class="text-base leading-relaxed text-sumi-soft">
+        Not the same thing, and both exist on booking sites under similar names. A tasting serves
+        you tea (sometimes several kinds); a ceremony is a hosted ritual with etiquette, seasonality,
+        and intent. Neither is wrong — but reviews saying "not what I expected" are almost always
+        this question, unasked. One line to the venue clears it up.
+      </p>
+    </div>
+  </div>
 
-    <h2>The meta-question</h2>
+  <div class="prose max-w-none mt-10">
+    <h2 class="not-prose font-display font-extrabold text-2xl text-sumi mt-2 mb-4">The meta-question</h2>
     <p>
       If reading these ten feels like homework, here's the shortcut: we've already asked them.
       Every venue in our <a href="/tokyo-tea-ceremony-compared">comparison table</a> is checked
@@ -194,7 +227,7 @@ const questions = [
     </p>
   </div>
 
-  <div class="mt-8 text-sm text-sumi/70 border-t border-warm-gray pt-6">
+  <div class="mt-8 text-sm text-sumi-soft border-t border-border pt-6">
     <p>
       Data from the <a href="/tokyo-tea-ceremony-price-index" class="text-matcha underline">Tokyo Tea Ceremony Price Index</a>,
       checked July 2026, updated quarterly.

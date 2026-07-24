@@ -5,19 +5,55 @@ import type { ImageMetadata } from 'astro';
 interface Props {
   src: ImageMetadata;
   alt: string;
+  eyebrow?: string;
+  title?: string;
+  tall?: boolean; // about page uses a slightly taller band than articles
+  objectPosition?: string; // CSS object-position value, e.g. "center 58%"
 }
 
-const { src, alt } = Astro.props;
+const { src, alt, eyebrow, title, tall = false, objectPosition } = Astro.props;
 ---
 
-<div class="mb-4 sm:mb-10 rounded-xl overflow-hidden">
-  <Image
-    src={src}
-    alt={alt}
-    widths={[480, 800, 1200, 1600]}
-    sizes="(min-width: 1024px) 1152px, 100vw"
-    class="w-full h-auto max-h-[160px] sm:max-h-[420px] object-cover"
-    loading="eager"
-    fetchpriority="high"
-  />
-</div>
+{title ? (
+  <section
+    class:list={[
+      'relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] -mt-6 sm:-mt-12 mb-8 w-screen overflow-hidden flex items-end',
+      tall ? 'h-[48vh] min-h-[340px] max-h-[520px]' : 'h-[46vh] min-h-[320px] max-h-[480px]',
+    ]}
+  >
+    <Image
+      src={src}
+      alt={alt}
+      widths={[640, 1000, 1400, 1800, 2200]}
+      sizes="100vw"
+      class="absolute inset-0 w-full h-full object-cover"
+      style={objectPosition ? `object-position: ${objectPosition}` : undefined}
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div
+      class="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,19,16,0)_12%,rgba(20,19,16,.52)_55%,rgba(20,19,16,.87)_100%)]"
+      aria-hidden="true"
+    ></div>
+    <div class="relative z-10 w-full max-w-3xl mx-auto px-4 py-8">
+      {eyebrow && (
+        <span class="block font-label text-xs uppercase tracking-wider text-sakura mb-2">{eyebrow}</span>
+      )}
+      <h1 class="font-display font-extrabold text-3xl sm:text-5xl leading-[1.04] tracking-tight text-white [text-wrap:balance]">
+        {title}
+      </h1>
+    </div>
+  </section>
+) : (
+  <div class="mb-4 sm:mb-10 rounded-xl overflow-hidden">
+    <Image
+      src={src}
+      alt={alt}
+      widths={[480, 800, 1200, 1600]}
+      sizes="(min-width: 1024px) 1152px, 100vw"
+      class="w-full h-auto max-h-[160px] sm:max-h-[420px] object-cover"
+      loading="eager"
+      fetchpriority="high"
+    />
+  </div>
+)}

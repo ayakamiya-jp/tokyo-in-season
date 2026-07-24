@@ -28,6 +28,8 @@ const priced = experiences.filter(e => e.price_jpy != null).length;
   <HeroImage
     src={comparedHero}
     alt="Handmade chawan tea bowls displayed on a wooden shelf beside a window looking onto a green garden"
+    eyebrow="Compare"
+    title="Tokyo Tea Ceremony Experiences Compared"
   />
 
   <div class="mb-4">
@@ -35,13 +37,9 @@ const priced = experiences.filter(e => e.price_jpy != null).length;
   </div>
   <AffiliateNote />
 
-  <h1 class="font-serif font-semibold text-4xl text-sumi mb-4 leading-tight">
-    Tokyo Tea Ceremony Experiences Compared
-  </h1>
-
   {/* GEO answer block */}
-  <div class="bg-sakura-light rounded-lg p-5 mb-8 border-l-4 border-sakura-deep">
-    <p class="text-sm font-medium text-sakura-deep mb-1">Quick Answer</p>
+  <div class="bg-sakura-light border border-border rounded-md p-7 mb-8">
+    <p class="font-label text-xs uppercase tracking-wider text-sakura-deep mb-2">Quick answer</p>
     <p class="text-sumi leading-relaxed text-sm">
       This table covers {experiences.length} bookable tea ceremony experiences in Tokyo as of {QUARTER},
       with prices confirmed for {priced} of them.

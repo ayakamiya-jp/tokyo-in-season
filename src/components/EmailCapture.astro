@@ -4,38 +4,53 @@ const THANK_YOU_URL = 'https://tokyoinseason.com/thank-you';
 
 interface Props {
   variant?: 'inline' | 'exit';
+  fullBleed?: boolean; // homepage: edge-to-edge bar. Article/About: contained rounded block.
 }
-const { variant = 'inline' } = Astro.props;
+const { variant = 'inline', fullBleed = false } = Astro.props;
 ---
 
-<aside class:list={[
-  "email-capture rounded-xl p-6 my-8 text-center",
-  variant === 'exit' ? "border-2 border-sakura-deep" : "bg-sakura-light border border-sakura",
-]}>
-  <p class="font-serif font-semibold text-xl text-sumi mb-1">
-    Get the free guide: Tea Ceremony Etiquette for First-Time Guests
-  </p>
-  <p class="text-sm text-warm-gray-mid mb-4">
-    The exact do's and don'ts I teach first-time guests — as a practising Urasenke student.
-  </p>
-  <form
-    action={`https://buttondown.com/api/emails/embed-subscribe/${BUTTONDOWN_USERNAME}`}
-    method="post"
-    class="flex flex-col sm:flex-row gap-2 max-w-md mx-auto"
-  >
-    <input
-      type="email"
-      name="email"
-      placeholder="your@email.com"
-      required
-      class="flex-1 border border-sakura rounded px-3 py-2 text-sm text-sumi bg-warm-white focus:outline-none focus:ring-2 focus:ring-sakura-deep"
-    />
-    <button
-      type="submit"
-      class="bg-sakura-deep hover:bg-matcha text-white font-sans font-medium px-5 py-2 rounded text-sm transition-colors duration-200"
-    >
-      Send me the guide
-    </button>
-  </form>
-  <p class="text-xs text-warm-gray-mid mt-3">No spam. Unsubscribe any time.</p>
+<aside
+  class:list={[
+    'email-capture bg-ink my-8',
+    fullBleed
+      ? 'relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen'
+      : 'rounded-md',
+    variant === 'exit' && 'ring-2 ring-sakura-cta',
+  ]}
+>
+  <div class:list={['mx-auto px-4 sm:px-7 py-8', fullBleed ? 'max-w-3xl' : '']}>
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
+      <div>
+        <p class="font-label text-xs uppercase tracking-wider text-sakura mb-1.5">Free guide</p>
+        <p class="font-display font-extrabold text-[1.35rem] leading-tight text-white mb-1">
+          Tea Ceremony Etiquette for First-Time Guests
+        </p>
+        <p class="text-sm text-white/70 max-w-sm">
+          The exact do's and don'ts I teach first-time guests — as a practising Urasenke student.
+        </p>
+      </div>
+      <div>
+        <form
+          action={`https://buttondown.com/api/emails/embed-subscribe/${BUTTONDOWN_USERNAME}`}
+          method="post"
+          class="flex flex-col sm:flex-row gap-2.5"
+        >
+          <input
+            type="email"
+            name="email"
+            placeholder="your@email.com"
+            required
+            class="flex-1 sm:w-56 border border-white/25 rounded px-3.5 py-3 text-[0.92rem] text-white bg-transparent placeholder:text-white/45 focus:outline-none focus:ring-2 focus:ring-sakura-cta"
+          />
+          <button
+            type="submit"
+            class="bg-sakura-cta hover:bg-sakura-deep text-sakura-cta-ink font-sans font-bold text-[0.95rem] px-6 py-3 rounded transition-colors duration-200 whitespace-nowrap"
+          >
+            Send me the guide
+          </button>
+        </form>
+        <p class="text-xs text-white/50 mt-2">No spam. Unsubscribe any time.</p>
+      </div>
+    </div>
+  </div>
 </aside>

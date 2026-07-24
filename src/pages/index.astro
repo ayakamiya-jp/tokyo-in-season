@@ -1,18 +1,105 @@
 ---
+import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import EmailCapture from '../components/EmailCapture.astro';
-import HeroImage from '../components/HeroImage.astro';
 import indexHero from '../assets/hero/index-hero.jpg';
-import indexFooter from '../assets/hero/index-footer.jpg';
 import priceIndexHero from '../assets/hero/price-index-hero.jpg';
-import comparedHero from '../assets/hero/compared-hero.jpg';
 import areaComparisonHero from '../assets/hero/area-comparison-hero.jpg';
 import privateVsGroupHero from '../assets/hero/private-vs-group-hero.jpg';
 import seizaHero from '../assets/hero/seiza-hero.jpg';
 import questionsHero from '../assets/hero/questions-hero.jpg';
 import wagashiTrio from '../assets/content/photo-wagashi-trio.jpeg';
 import whatToWearHero from '../assets/hero/what-to-wear-hero.jpg';
+
+const QUARTER = 'Q3 2026';
+
+const entries = await getCollection('experiences');
+const data = entries.map(e => e.data);
+
+const prices = data
+  .map(e => e.price_jpy)
+  .filter((p): p is number => p != null)
+  .sort((a, b) => a - b);
+
+const median = prices.length ? prices[Math.floor(prices.length / 2)] : 0;
+const minPrice = prices.length ? Math.min(...prices) : 0;
+const maxPrice = prices.length ? Math.max(...prices) : 0;
+const pctChairs = Math.round(
+  (data.filter(e => e.seiza_optional === true).length / data.length) * 100,
+);
+const pctEnglish = Math.round(
+  (data.filter(e => e.english_support === true).length / data.length) * 100,
+);
+
+const byArea: Record<string, number[]> = {};
+for (const e of data) {
+  if (e.price_jpy == null) continue;
+  if (!byArea[e.area]) byArea[e.area] = [];
+  byArea[e.area].push(e.price_jpy);
+}
+const areaMedians = Object.entries(byArea)
+  .map(([area, ps]) => {
+    const sorted = [...ps].sort((a, b) => a - b);
+    return { area, median: sorted[Math.floor(sorted.length / 2)] };
+  })
+  .sort((a, b) => a.median - b.median);
+const cheapestArea = areaMedians[0];
+
+// Decision guides: newest article leads as the featured card (see
+// project_tea_ceremony_homepage_card_order — new articles go to the front).
+const decisionGuides = [
+  {
+    href: '/what-to-wear-tea-ceremony-tokyo',
+    tag: 'Attire',
+    title: 'What to Wear to a Tea Ceremony',
+    desc: 'No kimono required — the dress rules that actually matter, from socks to jewelry.',
+    image: whatToWearHero,
+    alt: 'Two pairs of zori sandals and white tabi socks peeking out from beneath kimono hems',
+    featured: true,
+  },
+  {
+    href: '/wagashi-tea-ceremony-sweets',
+    tag: 'Sweets',
+    title: 'Wagashi 101: The Sweets Served at Tea',
+    desc: 'Namagashi vs higashi, kōhaku-tō, and how to eat them properly.',
+    image: wagashiTrio,
+    alt: 'A trio of soft nerikiri wagashi sweets in seasonal shapes and colors, arranged on a black lacquer tray',
+  },
+  {
+    href: '/questions-before-booking-tea-ceremony-tokyo',
+    tag: 'Booking',
+    title: '10 Questions to Ask Before You Book',
+    desc: 'The questions behind almost every bad review — asked for you.',
+    image: questionsHero,
+    alt: 'A tokonoma alcove with a hanging scroll and ikebana flower arrangement in a tatami tea room',
+  },
+  {
+    href: '/tea-ceremony-asakusa-vs-ginza-omotesando',
+    tag: 'Areas',
+    title: 'Asakusa vs Ginza vs Omotesando',
+    desc: 'Which area fits your trip — price, atmosphere, and depth compared.',
+    image: areaComparisonHero,
+    alt: 'Cherry blossoms framing Senso-ji temple\'s red gate and a paper lantern in Asakusa, Tokyo',
+  },
+  {
+    href: '/private-vs-group-tea-ceremony-tokyo',
+    tag: 'Groups',
+    title: 'Private vs Group: Which to Book?',
+    desc: 'When the extra cost is worth it — and when it isn\'t.',
+    image: privateVsGroupHero,
+    alt: 'A single bowl of matcha and two wagashi sweets on a lacquered tray',
+  },
+  {
+    href: '/tea-ceremony-without-seiza',
+    tag: 'Seating',
+    title: 'Best Ceremonies If You Can\'t Sit Seiza',
+    desc: 'Chair-friendly options for travellers with knee or back issues.',
+    image: seizaHero,
+    alt: 'A quiet traditional Japanese tatami room with open shoji screens looking out onto a garden',
+  },
+];
+const [featuredGuide, ...restGuides] = decisionGuides;
 ---
 
 <BaseLayout
@@ -20,147 +107,183 @@ import whatToWearHero from '../assets/hero/what-to-wear-hero.jpg';
   description="Japanese culture, in its right season — from inside the tea room. Tea ceremony experiences in Tokyo compared and reviewed by an Urasenke practitioner."
   ogImage={priceIndexHero}
 >
-  <HeroImage
-    src={indexHero}
-    alt="Colorful Hyakunin Isshu karuta poem cards scattered on a tatami mat"
-  />
-
   <!-- Hero -->
-  <section class="mb-16 text-center">
-    <h1 class="font-serif font-semibold text-4xl sm:text-5xl text-sumi leading-tight mb-4">
-      Tokyo in Season
-    </h1>
-    <p class="text-lg text-sumi/70 max-w-xl mx-auto leading-relaxed">
-      Japanese culture, in its right season — from inside the tea room.
-    </p>
-    <p class="text-sm text-sumi/70 mt-3 max-w-lg mx-auto">
-      Tea ceremony experiences in Tokyo, compared and priced by an Urasenke practitioner who actually practices.
-    </p>
-  </section>
-
-  <EmailCapture />
-
-  <!-- Money pages grid -->
-  <section class="mb-16">
-    <h2 class="font-serif font-semibold text-2xl text-sumi mb-6">Find the right experience</h2>
-    <div class="grid sm:grid-cols-2 gap-4">
-      {[
-        {
-          href: '/tokyo-tea-ceremony-compared',
-          title: 'All Tokyo Experiences Compared',
-          desc: 'Side-by-side table: price, area, chairs available, kimono add-on, group vs private.',
-          badge: 'Best first stop',
-          image: comparedHero,
-          alt: 'Chawan tea bowls on a shelf beside a garden window',
-        },
-        {
-          href: '/tokyo-tea-ceremony-price-index',
-          title: 'Tokyo Tea Ceremony Price Index',
-          desc: 'Quarterly dataset: median prices by area, full methodology, downloadable CSV.',
-          badge: 'Updated quarterly',
-          image: priceIndexHero,
-          alt: 'An iron kettle, bamboo whisk, and chawan bowls on tatami',
-        },
-      ].map(card => (
-        <a href={card.href} class="group block border border-warm-gray-mid rounded-lg overflow-hidden hover:border-matcha transition-colors">
-          <Image
-            src={card.image}
-            alt={card.alt}
-            widths={[300, 600]}
-            sizes="(min-width: 640px) 368px, 100vw"
-            class="w-full h-28 sm:h-32 object-cover"
-          />
-          <div class="p-5">
-            {card.badge && (
-              <span class="text-xs font-medium text-matcha bg-matcha/10 rounded px-2 py-0.5 mb-2 inline-block">{card.badge}</span>
-            )}
-            <h3 class="font-sans font-semibold text-lg text-sumi group-hover:text-matcha transition-colors mb-1">{card.title}</h3>
-            <p class="text-sm text-sumi/70">{card.desc}</p>
-          </div>
-        </a>
-      ))}
-    </div>
-
-    <h3 class="font-serif font-semibold text-xl text-sumi mt-10 mb-4">Decision guides</h3>
-    <div class="grid sm:grid-cols-3 gap-4">
-      {[
-        {
-          href: '/what-to-wear-tea-ceremony-tokyo',
-          title: 'What to Wear to a Tea Ceremony',
-          desc: 'No kimono required — the dress rules that actually matter, from socks to jewelry.',
-          image: whatToWearHero,
-          alt: 'Two pairs of zori sandals and white tabi socks peeking out from beneath kimono hems',
-        },
-        {
-          href: '/wagashi-tea-ceremony-sweets',
-          title: 'Wagashi 101: The Sweets Served at Tea',
-          desc: 'Namagashi vs higashi, kōhaku-tō, and how to eat them properly.',
-          image: wagashiTrio,
-          alt: 'A trio of soft nerikiri wagashi sweets in seasonal shapes and colors, arranged on a black lacquer tray',
-        },
-        {
-          href: '/questions-before-booking-tea-ceremony-tokyo',
-          title: '10 Questions to Ask Before You Book',
-          desc: 'The questions behind almost every bad review — asked for you.',
-          image: questionsHero,
-          alt: 'A tokonoma alcove with a hanging scroll and ikebana flower arrangement in a tatami tea room',
-        },
-        {
-          href: '/tea-ceremony-asakusa-vs-ginza-omotesando',
-          title: 'Asakusa vs Ginza vs Omotesando',
-          desc: 'Which area fits your trip — price, atmosphere, and depth compared.',
-          image: areaComparisonHero,
-          alt: 'Cherry blossoms framing Senso-ji temple\'s red gate and a paper lantern in Asakusa, Tokyo',
-        },
-        {
-          href: '/private-vs-group-tea-ceremony-tokyo',
-          title: 'Private vs Group: Which to Book?',
-          desc: 'When the extra cost is worth it — and when it isn\'t.',
-          image: privateVsGroupHero,
-          alt: 'A single bowl of matcha and two wagashi sweets on a lacquered tray',
-        },
-        {
-          href: '/tea-ceremony-without-seiza',
-          title: 'Best Ceremonies If You Can\'t Sit Seiza',
-          desc: 'Chair-friendly options for travellers with knee or back issues.',
-          image: seizaHero,
-          alt: 'A quiet traditional Japanese tatami room with open shoji screens looking out onto a garden',
-        },
-      ].map(card => (
-        <a href={card.href} class="group block border border-warm-gray-mid rounded-lg overflow-hidden hover:border-matcha transition-colors">
-          <Image
-            src={card.image}
-            alt={card.alt}
-            widths={[300, 600]}
-            sizes="(min-width: 640px) 240px, 100vw"
-            class="w-full h-28 sm:h-32 object-cover"
-          />
-          <div class="p-5">
-            <h3 class="font-sans font-semibold text-lg text-sumi group-hover:text-matcha transition-colors mb-1">{card.title}</h3>
-            <p class="text-sm text-sumi/70">{card.desc}</p>
-          </div>
-        </a>
-      ))}
-    </div>
-  </section>
-
-  <!-- About the author -->
-  <section class="mt-12 text-sm text-sumi/70 border-t border-warm-gray pt-8">
-    <p>
-      This site is run by Suzu, a Tokyo-based Urasenke tea ceremony student. I started this
-      because most "best tea ceremony" lists are written by people who went once.
-      Every experience I recommend is one I'd send my own guests to.
-      <a href="/about" class="text-matcha underline ml-1">More about me →</a>
-    </p>
-  </section>
-
-  <div class="mt-12 rounded-xl overflow-hidden">
+  <section class="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] -mt-6 sm:-mt-12 mb-0 w-screen h-[64vh] min-h-[400px] max-h-[680px] overflow-hidden flex items-end">
     <Image
-      src={indexFooter}
-      alt="A bowl of matcha tea on a tatami mat"
-      widths={[400, 800, 1200]}
-      sizes="(min-width: 1024px) 768px, 100vw"
-      class="w-full h-auto max-h-[280px] object-cover"
+      src={indexHero}
+      alt="Colorful Hyakunin Isshu karuta poem cards scattered on a tatami mat"
+      widths={[640, 1000, 1400, 1800, 2200]}
+      sizes="100vw"
+      class="absolute inset-0 w-full h-full object-cover"
+      style="object-position: center 78%"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,19,16,0)_8%,rgba(20,19,16,.5)_52%,rgba(20,19,16,.88)_100%)]" aria-hidden="true"></div>
+    <div class="relative z-10 w-full max-w-3xl mx-auto px-4 py-8">
+      <span class="block font-label text-xs uppercase tracking-wider text-sakura mb-2">Japanese culture, in its right season</span>
+      <h1 class="font-display font-extrabold text-4xl sm:text-6xl leading-[.94] tracking-tight text-white mb-5">
+        Tokyo<br>in Season
+      </h1>
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <p class="max-w-md text-[1.05rem] leading-snug text-white/90">
+          Tea ceremony experiences in Tokyo, compared and priced by an Urasenke practitioner who actually practices.
+        </p>
+        <div class="flex items-center gap-5 flex-wrap">
+          <a href="/tokyo-tea-ceremony-compared" class="inline-flex items-center gap-2 bg-sakura-cta hover:bg-sakura-deep text-sakura-cta-ink font-sans font-bold text-sm px-6 py-3.5 rounded transition-colors">
+            Compare experiences <span>→</span>
+          </a>
+          <a href="/tokyo-tea-ceremony-price-index" class="text-white font-semibold text-sm border-b border-white/50 hover:border-white transition-colors">
+            Price Index →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <EmailCapture fullBleed />
+
+  <!-- The Index -->
+  <section class="mt-16 sm:mt-20">
+    <div class="flex items-center justify-between gap-4 mb-8">
+      <h2 class="font-display font-extrabold text-2xl text-sumi">The Index</h2>
+      <span class="font-label text-xs uppercase tracking-wider text-warm-gray-mid whitespace-nowrap">Updated quarterly · {QUARTER}</span>
+    </div>
+
+    <div class="grid lg:grid-cols-[1.3fr_1fr] gap-10 items-center">
+      <div>
+        <span class="block font-label text-xs uppercase tracking-wider text-sakura-deep mb-2">
+          Median price, tracked across {data.length} venues
+        </span>
+        <div class="font-display font-extrabold text-6xl sm:text-[5.5rem] leading-[.9] tracking-tight tabular-nums">
+          ¥{median.toLocaleString()}
+        </div>
+        <p class="mt-5 max-w-md text-base leading-relaxed text-sumi-soft">
+          Prices range from ¥{minPrice.toLocaleString()} for a garden teahouse bowl of matcha to
+          ¥{maxPrice.toLocaleString()} for a private ceremony — the only public dataset of its kind
+          for Tokyo tea ceremony experiences.
+        </p>
+        <a href="/tokyo-tea-ceremony-price-index" class="inline-flex items-center gap-2 mt-7 bg-sakura-cta hover:bg-sakura-deep text-sakura-cta-ink font-sans font-bold text-sm px-6 py-3.5 rounded transition-colors">
+          View the full Index <span>→</span>
+        </a>
+      </div>
+      <div>
+        <div class="grid grid-cols-2 gap-x-8 gap-y-6">
+          <div>
+            <b class="block font-display font-extrabold text-2xl tabular-nums">¥{minPrice.toLocaleString()}–¥{Math.round(maxPrice / 1000)}k</b>
+            <span class="font-label text-[0.65rem] uppercase tracking-wider text-warm-gray-mid">Full range</span>
+          </div>
+          <div>
+            <b class="block font-display font-extrabold text-2xl tabular-nums">{pctChairs}%</b>
+            <span class="font-label text-[0.65rem] uppercase tracking-wider text-warm-gray-mid">Offer chairs</span>
+          </div>
+          <div>
+            <b class="block font-display font-extrabold text-2xl tabular-nums">{pctEnglish}%</b>
+            <span class="font-label text-[0.65rem] uppercase tracking-wider text-warm-gray-mid">English support</span>
+          </div>
+          <div>
+            <b class="block font-display font-extrabold text-2xl tabular-nums">¥{cheapestArea?.median.toLocaleString()}</b>
+            <span class="font-label text-[0.65rem] uppercase tracking-wider text-warm-gray-mid">{cheapestArea?.area} median</span>
+          </div>
+        </div>
+        <div class="mt-6 w-full max-w-xs aspect-[16/7] rounded overflow-hidden">
+          <Image
+            src={priceIndexHero}
+            alt="A bamboo whisk and chawan bowls beside an iron kettle on tatami"
+            widths={[400, 600, 900]}
+            sizes="288px"
+            class="w-full h-full object-cover"
+            style="object-position: 82% 55%"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Compare block -->
+    <a href="/tokyo-tea-ceremony-compared" class="group block mt-12 bg-sakura-light border border-border rounded-md p-8 sm:p-11">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+        <div>
+          <span class="inline-block font-label text-xs uppercase tracking-wider bg-sakura-cta text-sakura-cta-ink rounded px-2.5 py-1 mb-3">Best first stop</span>
+          <h3 class="font-display font-extrabold text-3xl text-sumi mb-2">All Tokyo Experiences Compared</h3>
+          <p class="max-w-lg text-base text-sumi-soft">
+            Side-by-side table: price, area, chairs available, kimono add-on, group vs private.
+          </p>
+        </div>
+        <span class="inline-flex items-center gap-2 bg-sakura-cta group-hover:bg-sakura-deep text-sakura-cta-ink font-sans font-bold text-sm px-6 py-3.5 rounded transition-colors whitespace-nowrap">
+          Open the table <span class="inline-block transition-transform group-hover:translate-x-1">→</span>
+        </span>
+      </div>
+    </a>
+  </section>
+
+  <!-- Decision guides -->
+  <section class="mt-16 sm:mt-20">
+    <div class="flex items-center justify-between gap-4 mb-8">
+      <h2 class="font-display font-extrabold text-2xl text-sumi">Decision Guides</h2>
+      <span class="font-label text-xs uppercase tracking-wider text-warm-gray-mid">{decisionGuides.length} guides</span>
+    </div>
+
+    <a href={featuredGuide.href} class="group relative block h-[22rem] rounded-md overflow-hidden mb-5">
+      <Image
+        src={featuredGuide.image}
+        alt={featuredGuide.alt}
+        widths={[600, 900, 1300, 1800]}
+        sizes="100vw"
+        class="absolute inset-0 w-full h-full object-cover transition-transform duration-[400ms] ease-out group-hover:scale-105"
+      />
+      <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,19,16,0)_35%,rgba(20,19,16,.82)_100%)]" aria-hidden="true"></div>
+      <div class="absolute left-0 right-0 bottom-0 p-6 sm:p-8">
+        <span class="block font-label text-[0.65rem] uppercase tracking-wider text-sakura mb-2">{featuredGuide.tag}</span>
+        <h3 class="font-display font-extrabold text-2xl sm:text-[2rem] leading-tight text-white max-w-xl mb-2">{featuredGuide.title}</h3>
+        <p class="text-sm text-white/85 max-w-md mb-2">{featuredGuide.desc}</p>
+        <span class="text-sm font-semibold text-white border-b border-white/50">Read the guide →</span>
+      </div>
+    </a>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {restGuides.map(guide => (
+        <a href={guide.href} class="group relative block aspect-[4/5] rounded-md overflow-hidden">
+          <Image
+            src={guide.image}
+            alt={guide.alt}
+            widths={[400, 600, 900]}
+            sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-[400ms] ease-out group-hover:scale-105"
+          />
+          <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,19,16,0)_35%,rgba(20,19,16,.82)_100%)]" aria-hidden="true"></div>
+          <div class="absolute left-0 right-0 bottom-0 p-5">
+            <span class="block font-label text-[0.62rem] uppercase tracking-wider text-sakura mb-1.5">{guide.tag}</span>
+            <h3 class="font-display font-extrabold text-lg leading-tight text-white mb-1.5">{guide.title}</h3>
+            <p class="text-xs text-white/85 leading-snug mb-1.5 line-clamp-2">{guide.desc}</p>
+            <span class="text-xs font-semibold text-white border-b border-white/50">Read the guide →</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- About / pull-quote -->
+  <section class="mt-20 py-10 border-t border-b border-border text-center">
+    <div class="relative max-w-xl mx-auto">
+      <span class="absolute -top-7 -left-5 font-display font-extrabold text-8xl leading-none text-sakura-deep opacity-35 pointer-events-none select-none" aria-hidden="true">"</span>
+      <p class="relative font-display font-bold text-2xl leading-snug text-sumi">
+        Most "best tea ceremony" lists are written by people who went once. Every experience I recommend is one I'd send my own guests to.
+      </p>
+      <a href="/about" class="relative inline-block mt-4 text-sm font-semibold text-matcha hover:underline">
+        — Suzu, Urasenke practitioner in Tokyo · More about me →
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer image band -->
+  <div class="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen h-[26vw] min-h-[280px] max-h-[440px] overflow-hidden mt-14">
+    <Image
+      src={priceIndexHero}
+      alt="An iron kettle, bamboo whisk, and chawan bowls arranged on tatami"
+      widths={[800, 1200, 1600, 2000]}
+      sizes="100vw"
+      class="w-full h-full object-cover"
+      style="object-position: center 55%"
     />
   </div>
 </BaseLayout>

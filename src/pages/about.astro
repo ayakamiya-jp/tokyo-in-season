@@ -11,15 +11,16 @@ import aboutHero from '../assets/hero/about-hero.jpg';
   ogType="website"
   ogImage={aboutHero}
 >
-  <h1 class="font-serif font-semibold text-4xl text-sumi mb-2 leading-tight">About</h1>
-  <p class="text-warm-gray-mid text-sm mb-8">Tokyo in Season</p>
-
   <HeroImage
     src={aboutHero}
     alt="A close-up of a pink furisode kimono with an embroidered obi featuring irises, peonies, and a butterfly motif"
+    eyebrow="About"
+    title="Suzu"
+    tall
+    objectPosition="60% 45%"
   />
 
-  <div class="prose max-w-none text-sumi leading-relaxed space-y-6">
+  <div class="prose max-w-none space-y-6">
 
     <p>
       My first bowl of matcha was whisked for me when I was in kindergarten. My mother practiced
@@ -39,7 +40,7 @@ import aboutHero from '../assets/hero/about-hero.jpg';
       finding out. That is rather the point of tea; nobody finishes.
     </p>
 
-    <h2 class="font-serif font-semibold text-2xl text-sumi mt-10 mb-4 not-prose">Why this site exists</h2>
+    <h2 class="not-prose font-display font-extrabold text-2xl sm:text-[1.7rem] text-sumi mt-12 mb-4">Why this site exists</h2>
 
     <p>
       Fifteen years ago, when we lived in the United States, my mother held a small, informal
@@ -61,7 +62,7 @@ import aboutHero from '../assets/hero/about-hero.jpg';
       respect for the people doing it right.
     </p>
 
-    <h2 class="font-serif font-semibold text-2xl text-sumi mt-10 mb-4 not-prose">How I review</h2>
+    <h2 class="not-prose font-display font-extrabold text-2xl sm:text-[1.7rem] text-sumi mt-12 mb-4">How I review</h2>
 
     <p>
       I live in Tokyo, work in English professionally, and practice tea under my own teacher.
@@ -78,24 +79,22 @@ import aboutHero from '../assets/hero/about-hero.jpg';
       I'm glad you found your way here.
     </p>
 
-    <p class="text-right font-serif font-semibold text-lg text-sumi/70 mt-8 not-prose">— Suzu</p>
+    <p class="text-right font-display font-extrabold text-xl sm:text-2xl text-sakura-deep mt-8 not-prose">— Suzu</p>
 
   </div>
 
-  <div class="mt-16 pt-8 border-t border-warm-gray">
-    <div class="flex flex-wrap gap-6 text-sm">
-      <a href="/tokyo-tea-ceremony-compared" class="text-matcha underline">
+  <div class="mt-16 pt-8 border-t border-border">
+    <div class="flex flex-wrap gap-6 text-sm font-semibold">
+      <a href="/tokyo-tea-ceremony-compared" class="text-matcha hover:underline">
         Compare all Tokyo tea ceremonies →
       </a>
-      <a href="/tokyo-tea-ceremony-price-index" class="text-matcha underline">
+      <a href="/tokyo-tea-ceremony-price-index" class="text-matcha hover:underline">
         Price Index →
       </a>
     </div>
   </div>
 
-  <div class="mt-12">
-    <EmailCapture />
-  </div>
+  <EmailCapture />
 
   <script type="application/ld+json" set:html={JSON.stringify({
     '@context': 'https://schema.org',

@@ -68,20 +68,18 @@ const keyFindings = [
   <HeroImage
     src={priceIndexHero}
     alt="A traditional tea ceremony setup on tatami mats, with an iron kettle, bamboo whisk, and chawan bowls"
+    eyebrow="Data"
+    title="Tokyo Tea Ceremony Price Index"
   />
 
-  <div class="mb-4">
+  <div class="flex items-center gap-3 flex-wrap mb-8">
     <IndexBadge quarter={QUARTER} />
+    <span class="text-sm text-warm-gray-mid">{data.length} listings surveyed</span>
   </div>
 
-  <h1 class="font-serif font-semibold text-4xl text-sumi mb-4 leading-tight">
-    Tokyo Tea Ceremony Price Index
-  </h1>
-  <p class="text-sm text-warm-gray-mid mb-8">Updated quarterly · {QUARTER} · {data.length} listings surveyed</p>
-
   {/* GEO answer block — phrased as a citable sentence */}
-  <div class="bg-sakura-light rounded-lg p-5 mb-10 border-l-4 border-sakura-deep">
-    <p class="text-sm font-medium text-sakura-deep mb-1">Quick Answer</p>
+  <div class="bg-sakura-light border border-border rounded-md p-7 mb-10">
+    <p class="font-label text-xs uppercase tracking-wider text-sakura-deep mb-2">Quick answer</p>
     <p class="text-sumi leading-relaxed">
       As of {QUARTER}, the median price of a bookable group tea ceremony in Tokyo is{' '}
       <strong>¥{median.toLocaleString()}</strong>, with options ranging from{' '}
@@ -101,7 +99,7 @@ const keyFindings = [
       { label: 'English instruction', value: `${pctEnglish}%`, highlight: false },
     ].map(stat => (
       <div class:list={["rounded-lg p-4 text-center", stat.highlight ? "bg-sakura-light border border-sakura" : "bg-warm-gray"]}>
-        <p class:list={["font-serif text-2xl font-semibold", stat.highlight ? "text-sakura-deep" : "text-sumi"]}>{stat.value}</p>
+        <p class:list={["font-display font-extrabold text-2xl tabular-nums", stat.highlight ? "text-sakura-deep" : "text-sumi"]}>{stat.value}</p>
         <p class="text-xs text-warm-gray-mid mt-1">{stat.label}</p>
       </div>
     ))}
@@ -109,7 +107,7 @@ const keyFindings = [
 
   {/* Price by area */}
   <section class="mb-12">
-    <h2 class="font-serif font-semibold text-2xl text-sumi mb-6">Median price by area</h2>
+    <h2 class="font-display font-extrabold text-2xl text-sumi mb-6">Median price by area</h2>
     <div class="space-y-3">
       {areaMedians.map(({ area, median: m, count }) => (
         <div class="flex items-center gap-3">
@@ -136,7 +134,7 @@ const keyFindings = [
 
   {/* Key Findings — self-contained, quotable stats */}
   <section class="mb-12">
-    <h2 class="font-serif font-semibold text-2xl text-sumi mb-4">Key Findings</h2>
+    <h2 class="font-display font-extrabold text-2xl text-sumi mb-4">Key Findings</h2>
     <ul class="space-y-3 list-none">
       {keyFindings.map(finding => (
         <li class="bg-warm-gray rounded-lg p-4 text-sumi leading-relaxed border-l-4 border-matcha">
@@ -163,7 +161,7 @@ const keyFindings = [
 
   {/* Methodology */}
   <section class="mb-12" id="methodology">
-    <h2 class="font-serif font-semibold text-2xl text-sumi mb-4">Methodology</h2>
+    <h2 class="font-display font-extrabold text-2xl text-sumi mb-4">Methodology</h2>
     <div class="prose max-w-none text-sumi/80 space-y-3">
       <p>
         The Tokyo Tea Ceremony Price Index is a structured manual survey of bookable tea ceremony

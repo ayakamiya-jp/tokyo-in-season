@@ -5,25 +5,25 @@ interface Props {
 const { compact = false } = Astro.props;
 ---
 
-<aside class:list={["author-bio border-l-4 border-sakura bg-sakura-light rounded-r-lg", compact ? "p-4" : "p-6 my-8"]}>
+<aside class:list={["author-bio bg-surface border border-border rounded-md", compact ? "p-4" : "p-6 my-8"]}>
   <div class="flex items-start gap-4">
     <img
       src="/favicon.svg"
       alt="Suzu, Urasenke tea ceremony practitioner"
-      class="w-16 h-16 rounded-full flex-shrink-0"
+      class="w-14 h-14 rounded-full flex-shrink-0"
       width="64"
       height="64"
     />
     <div>
-      <p class="font-semibold text-sumi text-sm uppercase tracking-wide mb-1">Written by</p>
-      <p class="font-serif font-semibold text-lg text-sumi leading-tight">Suzu</p>
-      <p class="text-sm text-warm-gray-mid mt-1">
+      <p class="font-label text-xs uppercase tracking-wider text-warm-gray-mid mb-1">Written by</p>
+      <p class="font-display font-extrabold text-lg text-sumi leading-tight">Suzu</p>
+      <p class="text-sm text-sumi-soft mt-1.5">
         Urasenke-trained tea ceremony practitioner based in Tokyo. I write about authentic
         Japanese cultural experiences to help travellers find the real thing.
       </p>
       {!compact && (
-        <p class="text-xs text-warm-gray-mid mt-2">
-          <a href="/about" class="underline hover:text-matcha">Learn more about my practice →</a>
+        <p class="text-sm mt-2">
+          <a href="/about" class="text-matcha font-medium hover:underline">Learn more about my practice →</a>
         </p>
       )}
     </div>
