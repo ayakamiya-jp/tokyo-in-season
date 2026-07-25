@@ -75,17 +75,17 @@ const ogImageUrl = resolvedOgImage ? new URL(resolvedOgImage.src, Astro.site).to
 </head>
 <body class="bg-warm-white text-sumi font-sans antialiased overflow-x-hidden">
   <header class="sticky top-0 z-50 bg-warm-white/90 backdrop-blur border-b border-border">
-    <div class="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
-      <a href="/" class="font-display font-extrabold text-lg tracking-tight text-sumi">
+    <div class="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between gap-3">
+      <a href="/" class="font-display font-extrabold text-base sm:text-lg tracking-tight text-sumi whitespace-nowrap">
         Tokyo in Season
       </a>
-      <nav class="flex gap-5 sm:gap-8 font-label text-xs uppercase tracking-wider">
+      <nav class="flex gap-2.5 sm:gap-8 font-label text-[0.65rem] sm:text-xs uppercase tracking-wider whitespace-nowrap">
         <a href="/tokyo-tea-ceremony-compared" class="group relative pb-0.5">
           Compare
           <span class="absolute left-0 bottom-0 h-px w-full bg-sakura-deep scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-200"></span>
         </a>
         <a href="/tokyo-tea-ceremony-price-index" class="group relative pb-0.5">
-          Price Index
+          <span class="sm:hidden">Index</span><span class="hidden sm:inline">Price Index</span>
           <span class="absolute left-0 bottom-0 h-px w-full bg-sakura-deep scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-200"></span>
         </a>
         <a href="/about" class="group relative pb-0.5">
