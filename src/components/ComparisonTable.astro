@@ -71,7 +71,7 @@ const ratingConfig = {
   },
   B: {
     label: 'Good for tourists',
-    classes: 'bg-warm-gray text-sumi border border-warm-gray-mid',
+    classes: 'bg-warm-gray text-sumi border border-border',
   },
   C: {
     label: 'Skip',
@@ -105,16 +105,16 @@ const listItems = sorted
 
   <table class="w-full text-sm border-collapse min-w-[900px]">
     <thead>
-      <tr class="bg-warm-gray text-left text-xs uppercase tracking-wide">
-        <th class="p-3 font-sans font-semibold text-sumi border-b border-warm-gray-mid w-[22%]">Experience</th>
-        <th class="p-3 font-sans font-semibold text-sumi border-b border-warm-gray-mid w-[28%]">Practitioner's note</th>
-        <th class="p-3 font-sans font-semibold text-sumi border-b border-warm-gray-mid">Price</th>
-        <th class="p-3 font-sans font-semibold text-sumi border-b border-warm-gray-mid">Area</th>
-        <th class="p-3 font-sans font-semibold text-sumi border-b border-warm-gray-mid">Duration</th>
-        <th class="p-3 font-sans font-semibold text-sumi border-b border-warm-gray-mid text-center">Chairs</th>
-        <th class="p-3 font-sans font-semibold text-sumi border-b border-warm-gray-mid text-center">Kimono</th>
-        <th class="p-3 font-sans font-semibold text-sumi border-b border-warm-gray-mid text-center">Private</th>
-        <th class="p-3 font-sans font-semibold text-sumi border-b border-warm-gray-mid">Book</th>
+      <tr class="text-left">
+        <th class="p-3 pb-4 font-label text-[0.7rem] uppercase tracking-wider text-warm-gray-mid border-b-2 border-sumi w-[22%]">Experience</th>
+        <th class="p-3 pb-4 font-label text-[0.7rem] uppercase tracking-wider text-warm-gray-mid border-b-2 border-sumi w-[28%]">Practitioner's note</th>
+        <th class="p-3 pb-4 font-label text-[0.7rem] uppercase tracking-wider text-warm-gray-mid border-b-2 border-sumi">Price</th>
+        <th class="p-3 pb-4 font-label text-[0.7rem] uppercase tracking-wider text-warm-gray-mid border-b-2 border-sumi">Area</th>
+        <th class="p-3 pb-4 font-label text-[0.7rem] uppercase tracking-wider text-warm-gray-mid border-b-2 border-sumi">Duration</th>
+        <th class="p-3 pb-4 font-label text-[0.7rem] uppercase tracking-wider text-warm-gray-mid border-b-2 border-sumi text-center">Chairs</th>
+        <th class="p-3 pb-4 font-label text-[0.7rem] uppercase tracking-wider text-warm-gray-mid border-b-2 border-sumi text-center">Kimono</th>
+        <th class="p-3 pb-4 font-label text-[0.7rem] uppercase tracking-wider text-warm-gray-mid border-b-2 border-sumi text-center">Private</th>
+        <th class="p-3 pb-4 font-label text-[0.7rem] uppercase tracking-wider text-warm-gray-mid border-b-2 border-sumi">Book</th>
       </tr>
     </thead>
     <tbody>
@@ -124,21 +124,21 @@ const listItems = sorted
         const variants = variantLinks(exp);
 
         return (
-          <tr class:list={['border-b border-warm-gray-mid', i % 2 === 0 ? 'bg-white' : 'bg-warm-gray/30']}>
+          <tr class="border-b border-border">
 
             {/* Name + rating badge */}
-            <td class="p-3 align-top">
+            <td class="p-3 py-5 align-top">
               <div class="flex flex-wrap gap-1.5 mb-1.5">
-                <span class:list={['inline-block text-xs font-medium px-2 py-0.5', cfg.classes]}>
+                <span class:list={['inline-block font-label text-[0.65rem] uppercase tracking-wider px-2 py-0.5', cfg.classes]}>
                   {cfg.label}
                 </span>
                 {exp.platform_only && (
-                  <span class="inline-block text-xs px-2 py-0.5 bg-amber-50 text-amber-700 border border-amber-200">
+                  <span class="inline-block font-label text-[0.65rem] uppercase tracking-wider px-2 py-0.5 bg-amber-50 text-amber-700 border border-amber-200">
                     Platform only
                   </span>
                 )}
               </div>
-              <p class="font-semibold text-sumi leading-snug">{exp.name}</p>
+              <p class="font-display font-bold text-sumi leading-snug">{exp.name}</p>
               {exp.school !== 'none-stated' && (
                 <p class="text-xs text-matcha mt-0.5">{exp.school}</p>
               )}
@@ -150,47 +150,47 @@ const listItems = sorted
             </td>
 
             {/* Practitioner's note */}
-            <td class="p-3 align-top">
+            <td class="p-3 py-5 align-top">
               <p class="text-sm leading-relaxed text-sumi/70">
                 {exp.editor_note}
               </p>
             </td>
 
             {/* Price */}
-            <td class="p-3 align-top font-semibold text-sumi whitespace-nowrap">
+            <td class="p-3 py-5 align-top font-display font-extrabold text-base text-sumi tabular-nums whitespace-nowrap">
               {exp.price_jpy != null
                 ? `¥${exp.price_jpy.toLocaleString()}`
                 : exp.price_usd != null
                   ? `~$${exp.price_usd}`
-                  : <span class="text-warm-gray-mid font-normal text-xs">TBC</span>
+                  : <span class="text-warm-gray-mid font-sans font-normal text-xs">TBC</span>
               }
             </td>
 
             {/* Area */}
-            <td class="p-3 align-top text-sumi whitespace-nowrap">{exp.area}</td>
+            <td class="p-3 py-5 align-top text-sumi whitespace-nowrap">{exp.area}</td>
 
             {/* Duration */}
-            <td class="p-3 align-top text-sumi whitespace-nowrap">
+            <td class="p-3 py-5 align-top text-sumi whitespace-nowrap">
               {exp.duration_min != null ? `${exp.duration_min} min` : <span class="text-warm-gray-mid">?</span>}
             </td>
 
             {/* Chairs (seiza_optional) */}
-            <td class:list={['p-3 align-top text-center', boolClass(exp.seiza_optional)]}>
+            <td class:list={['p-3 py-5 align-top text-center', boolClass(exp.seiza_optional)]}>
               {bool(exp.seiza_optional)}
             </td>
 
             {/* Kimono addon */}
-            <td class:list={['p-3 align-top text-center', boolClass(exp.kimono_addon)]}>
+            <td class:list={['p-3 py-5 align-top text-center', boolClass(exp.kimono_addon)]}>
               {bool(exp.kimono_addon)}
             </td>
 
             {/* Private available */}
-            <td class:list={['p-3 align-top text-center', boolClass(exp.private_available)]}>
+            <td class:list={['p-3 py-5 align-top text-center', boolClass(exp.private_available)]}>
               {bool(exp.private_available)}
             </td>
 
             {/* Book — one primary link (network name never shown), plus a button per genuine variant (private, sweets-making, etc.) */}
-            <td class="p-3 align-top">
+            <td class="p-3 py-5 align-top">
               {primary
                 ? (
                   <div>

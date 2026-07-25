@@ -52,19 +52,19 @@ const priced = experiences.filter(e => e.price_jpy != null).length;
   <ComparisonTable experiences={experiences} quarter={QUARTER} />
 
   {/* Legend */}
-  <div class="mt-6 mb-12 p-4 bg-warm-gray text-sm space-y-2">
-    <p class="font-semibold text-sumi text-xs uppercase tracking-wide mb-2">Rating key</p>
-    <div class="flex flex-wrap gap-3">
+  <div class="mt-6 mb-12 pt-6 border-t border-border text-sm space-y-3">
+    <p class="font-label text-xs uppercase tracking-wider text-warm-gray-mid">Rating key</p>
+    <div class="flex flex-wrap gap-x-6 gap-y-2.5">
       <div class="flex items-center gap-2">
-        <span class="inline-block text-xs font-medium px-2 py-0.5 bg-matcha text-white">Practitioner's pick</span>
+        <span class="inline-block font-label text-[0.65rem] uppercase tracking-wider px-2 py-0.5 bg-matcha text-white">Practitioner's pick</span>
         <span class="text-xs text-sumi/70">I'd send my own guests here</span>
       </div>
       <div class="flex items-center gap-2">
-        <span class="inline-block text-xs font-medium px-2 py-0.5 bg-warm-gray text-sumi border border-warm-gray-mid">Good for tourists</span>
+        <span class="inline-block font-label text-[0.65rem] uppercase tracking-wider px-2 py-0.5 bg-warm-gray text-sumi border border-border">Good for tourists</span>
         <span class="text-xs text-sumi/70">Solid choice, right expectations</span>
       </div>
       <div class="flex items-center gap-2">
-        <span class="inline-block text-xs font-medium px-2 py-0.5 bg-red-50 text-red-700 border border-red-200">Skip</span>
+        <span class="inline-block font-label text-[0.65rem] uppercase tracking-wider px-2 py-0.5 bg-red-50 text-red-700 border border-red-200">Skip</span>
         <span class="text-xs text-sumi/70">Reason shown in the row</span>
       </div>
     </div>

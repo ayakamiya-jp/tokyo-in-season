@@ -44,7 +44,7 @@ const areaMedians = Object.entries(byArea)
     return { area, median: sorted[Math.floor(sorted.length / 2)] };
   })
   .sort((a, b) => a.median - b.median);
-const cheapestArea = areaMedians[0];
+const cheapestArea = areaMedians.find(a => a.area === 'Asakusa') ?? areaMedians[0];
 
 // Decision guides: newest article leads as the featured card (see
 // project_tea_ceremony_homepage_card_order — new articles go to the front).
