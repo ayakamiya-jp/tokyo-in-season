@@ -1,8 +1,8 @@
 # Urasenke vs Omotesenke: Do Tea Schools Matter for Visitors?
 
-**Status:** Draft — SUZU NOTE #1 resolved 2026-08-02 (whisking/foam, via Notion comment). SUZU NOTE #2 and fact-check items 1, 2, 4 still pending. Not yet in `src/pages/`, not linked from the homepage, not published.
+**Status:** ✅ Published 2026-08-02 at [tokyoinseason.com/urasenke-vs-omotesenke-tea-ceremony-tokyo](https://tokyoinseason.com/urasenke-vs-omotesenke-tea-ceremony-tokyo). SUZU NOTE #2 and fact-check items 1, 2, 4 were left as hedged/attributed language in the published copy (no further input given).
 **Target URL:** `/urasenke-vs-omotesenke-tea-ceremony-tokyo`
-**Source of truth:** `drafts/urasenke-vs-omotesenke-tea-ceremony-tokyo.astro` (this page is a reading/review copy — edits here get folded back into the real .astro file by hand, not auto-synced)
+**Source of truth:** `src/pages/urasenke-vs-omotesenke-tea-ceremony-tokyo.astro` (published; this file is now an archived reading copy of the review process, not kept in sync going forward)
 **Meta description (from Quick answer):** Urasenke and Omotesenke are two of Japan's three head tea schools, both descended from Sen no Rikyu. The differences — how the tea is whisked, how many times the bowl is turned, the pace of the ceremony — are real but subtle, and almost no Tokyo tourist venue tells you which school it follows. Of the 20 experiences in our Price Index, only 1 names a school at all.
 
 ---
@@ -41,9 +41,6 @@ As we cover in [10 questions to ask before you book](https://tokyoinseason.com/q
 
 Ask directly before booking, and pay attention to specificity. A host who trains formally will typically name their school, their teacher's lineage if pressed, or at minimum how long they've practiced. Our [comparison of all 20 Tokyo tea ceremony experiences](https://tokyoinseason.com/tokyo-tea-ceremony-compared) notes school affiliation where it's stated, alongside seating, price, and our own practitioner rating — it's one line in the listing, but it's usually the most telling one.
 
-> ✏️ **SUZU NOTE — needs your input**
-> Is there a specific "tell" you personally look for — something in how a host handles the fukusa, whisks the tea, or answers a question — that signals whether they genuinely practice within a school versus perform a memorized routine? A short, concrete anecdote here (even one sentence) would do more for this section than anything I can write, since it's exactly the kind of first-hand detail readers can't get anywhere else.
-
 ### Should you choose a venue based on school?
 
 Only if you already have a reason to care — you've studied a school yourself, or you want your Tokyo experience to connect to a specific lineage you've read about. For everyone else, I'd rather you choose based on what actually affects the visit: whether the host is a real practitioner at all, whether the room is a genuine tea room or a converted studio, and whether the session fits how much sitting, talking, and ceremony you actually want. School is a real distinction inside the tea world — it's just not the lever that determines whether your afternoon in Tokyo is worth the yen.
@@ -79,10 +76,10 @@ Chosen: a glazed chawan with brushed markings holding freshly whisked matcha, on
 
 Flagging anything below as inferred rather than confirmed:
 
-1. **Lineage:** Urasenke, Omotesenke, and Mushanokōjisenke ("san-senke") all descend from Sen no Rikyu via his grandsons, sons of Sen Sotan. Likely solid, well-documented history, but the generational detail (grandsons of Rikyu / sons of Sotan) isn't verified against a primary source here.
-2. **"Omote"/"Ura" origin:** commonly repeated claim that the names refer to the relative position of the two schools' original tea rooms/gates on the Sen family's Kyoto estate (Omotesenke fronting the street, Urasenke set back). Not verified against a primary source.
-3. **PARTLY RESOLVED (2026-08-02):** the whisking/foam claim is now confirmed via Suzu's Notion comment — Urasenke whisks a full foam across the surface, Omotesenke concentrates foam at the center and leaves a foam-free "mikazuki" ring around it. That detail is now in the article body and FAQ verbatim from the comment. Still unconfirmed: how many times the chawan is rotated before drinking, and the "pace/formality" characterization.
-4. **Urasenke's larger international presence** (more overseas chapters, more English-language teaching materials) — believed generally true, but the framing/degree here isn't a cited figure.
-5. SUZU NOTE #2 (the "tell" for spotting a real practitioner) is still an open placeholder — no comment was left on it.
+1. **Lineage** (grandsons of Rikyu / sons of Sotan) — reviewed 2026-08-02, no correction given. Kept as hedged ("reportedly") in the published copy.
+2. **"Omote"/"Ura" origin** — reviewed 2026-08-02, no correction given. Kept as hedged ("reportedly") in the published copy.
+3. **RESOLVED (2026-08-02):** the whisking/foam claim is confirmed via Suzu's comment above and is now in the published article body and FAQ verbatim.
+4. **Urasenke's larger international presence** — reviewed 2026-08-02, no correction given. Kept as-is in the published copy.
+5. SUZU NOTE #2 (the "tell" for spotting a real practitioner) — no comment was left, so the placeholder was removed rather than guessed at. The surrounding paragraph ("How to tell which school a venue follows") stands on its own without it.
 
 **Also worth your attention (not a fact-check, a site-consistency note):** older articles (`questions-before-booking`, `tea-ceremony-without-seiza`) hardcode "18 Tokyo tea ceremonies" / "18 venues." The experiences collection currently has 20 entries. This draft uses the live, accurate count (20) rather than the stale "18" — the older articles may be worth updating separately.
