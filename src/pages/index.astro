@@ -11,6 +11,7 @@ import seizaHero from '../assets/hero/seiza-hero.jpg';
 import questionsHero from '../assets/hero/questions-hero.jpg';
 import wagashiTrio from '../assets/content/photo-wagashi-trio.jpeg';
 import whatToWearHero from '../assets/hero/what-to-wear-hero.jpg';
+import urasenkeVsOmotesenkeHero from '../assets/hero/urasenke-vs-omotesenke-hero.jpg';
 
 const QUARTER = 'Q3 2026';
 
@@ -50,13 +51,21 @@ const cheapestArea = areaMedians.find(a => a.area === 'Asakusa') ?? areaMedians[
 // project_tea_ceremony_homepage_card_order — new articles go to the front).
 const decisionGuides = [
   {
+    href: '/urasenke-vs-omotesenke-tea-ceremony-tokyo',
+    tag: 'Tradition',
+    title: 'Urasenke vs Omotesenke: Do Schools Matter?',
+    desc: 'The real differences between Tokyo\'s two big tea schools — and why almost no venue tells you which one it follows.',
+    image: urasenkeVsOmotesenkeHero,
+    alt: 'A glazed chawan with brushed markings holds freshly whisked matcha, set on a tatami mat beside a black lacquer dish',
+    featured: true,
+  },
+  {
     href: '/what-to-wear-tea-ceremony-tokyo',
     tag: 'Attire',
     title: 'What to Wear to a Tea Ceremony',
     desc: 'No kimono required — the dress rules that actually matter, from socks to jewelry.',
     image: whatToWearHero,
     alt: 'Two pairs of zori sandals and white tabi socks peeking out from beneath kimono hems',
-    featured: true,
   },
   {
     href: '/wagashi-tea-ceremony-sweets',
