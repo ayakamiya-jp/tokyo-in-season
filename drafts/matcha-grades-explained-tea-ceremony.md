@@ -1,5 +1,10 @@
 # Matcha Grades Explained: What You're Actually Drinking
 
+**Status:** ✅ Published 2026-08-07 at [tokyoinseason.com/matcha-grades-explained-tea-ceremony](https://tokyoinseason.com/matcha-grades-explained-tea-ceremony). All 6 fact-check items were resolved via Notion comments before publishing — no items left hedged/unresolved.
+**Source of truth:** `src/pages/matcha-grades-explained-tea-ceremony.astro` (published; this file is now an archived reading copy of the review process, not kept in sync going forward)
+
+---
+
 ## Quick answer
 
 Matcha is sold in two broad tiers — ceremonial grade and culinary grade — but there's no government or industry body that regulates either term, so the label on a tin tells you almost nothing on its own. What actually determines quality is shading time before harvest, which leaves are picked, and how finely the tea is stone-ground; vivid green color and a soft, rounded sweetness are the real signals, not the word "ceremonial" printed on the package. At a tourist tea ceremony in Tokyo, you're almost always drinking usucha (thin tea), which uses a good but not top-tier grade — the very highest grades are reserved for koicha (thick tea), a style most first-time visitors never encounter.
