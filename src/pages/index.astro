@@ -13,6 +13,7 @@ import wagashiTrio from '../assets/content/photo-wagashi-trio.jpeg';
 import whatToWearHero from '../assets/hero/what-to-wear-hero.jpg';
 import urasenkeVsOmotesenkeHero from '../assets/hero/urasenke-vs-omotesenke-hero.jpg';
 import matchaGradesHero from '../assets/hero/matcha-grades-explained-hero.jpg';
+import seasonsHero from '../assets/hero/tea-ceremony-seasons-tokyo-hero.jpg';
 
 const QUARTER = 'Q3 2026';
 
@@ -52,13 +53,21 @@ const cheapestArea = areaMedians.find(a => a.area === 'Asakusa') ?? areaMedians[
 // project_tea_ceremony_homepage_card_order — new articles go to the front).
 const decisionGuides = [
   {
+    href: '/tea-ceremony-seasons-tokyo',
+    tag: 'Seasons',
+    title: 'A Tea Ceremony in Every Season: What Changes Month to Month',
+    desc: 'Ro vs furo hearths, robiraki in November, and why the flowers and sweets change even when a tourist booking doesn\'t.',
+    image: seasonsHero,
+    alt: 'A narrow garden path in Kamakura lined with blooming blue and purple hydrangea (ajisai), leading toward a traditional tiled roof',
+    featured: true,
+  },
+  {
     href: '/matcha-grades-explained-tea-ceremony',
     tag: 'Ingredients',
     title: "Matcha Grades Explained: What You're Actually Drinking",
     desc: 'Ceremonial vs culinary grade, and why almost every Tokyo tourist ceremony serves usucha rather than the top-tier leaf.',
     image: matchaGradesHero,
     alt: 'A white chawan with a painted floral motif holding freshly whisked usucha, on a dark lacquer table',
-    featured: true,
   },
   {
     href: '/urasenke-vs-omotesenke-tea-ceremony-tokyo',
