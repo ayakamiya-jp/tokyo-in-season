@@ -1,5 +1,10 @@
 # A Tea Ceremony in Every Season: What Changes Month to Month
 
+**Status:** ✅ Published 2026-08-22 at [tokyoinseason.com/tea-ceremony-seasons-tokyo](https://tokyoinseason.com/tea-ceremony-seasons-tokyo). All 5 fact-check items were confirmed as-is via Notion comments before publishing — no items left hedged/unresolved.
+**Source of truth:** `src/pages/tea-ceremony-seasons-tokyo.astro` (published; this file is now an archived reading copy of the review process, not kept in sync going forward)
+
+---
+
 ## Quick answer
 
 Japanese tea ceremony is built around the calendar: the hearth itself changes twice a year — a sunken floor hearth (ro) for the cold months, a portable brazier (furo) for the warm ones — and the flowers, hanging scroll, and sweets change roughly every month to reflect what's blooming or being marked outside. The single biggest seasonal event is robiraki in November, when the ro hearth reopens for the year, an occasion practitioners sometimes call the tea world's own New Year. Most Tokyo tourist-facing experiences run in climate-controlled rooms with a fixed setup, so this rhythm is far more visible in a practitioner's own practice than in a one-off booking — but the flowers and sweets you're served usually still track the season, even when the hearth doesn't change.
