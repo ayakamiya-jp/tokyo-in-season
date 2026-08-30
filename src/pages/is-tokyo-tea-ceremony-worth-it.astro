@@ -1,0 +1,216 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EmailCapture from '../components/EmailCapture.astro';
+import AuthorBio from '../components/AuthorBio.astro';
+import HeroImage from '../components/HeroImage.astro';
+import AffiliateNote from '../components/AffiliateNote.astro';
+import FaqBlock from '../components/FaqBlock.astro';
+import { getCollection } from 'astro:content';
+import heroImage from '../assets/hero/is-tokyo-tea-ceremony-worth-it-hero.jpg';
+
+const experiences = await getCollection('experiences');
+const pricedExperiences = experiences.filter(e => e.data.price_jpy != null);
+const prices = pricedExperiences.map(e => e.data.price_jpy as number).sort((a, b) => a - b);
+const median = prices.length ? prices[Math.floor(prices.length / 2)] : 0;
+const minPrice = prices.length ? Math.min(...prices) : 0;
+const maxPrice = prices.length ? Math.max(...prices) : 0;
+const aCount = experiences.filter(e => e.data.practitioner_rating === 'A').length;
+const bCount = experiences.filter(e => e.data.practitioner_rating === 'B').length;
+const cCount = experiences.filter(e => e.data.practitioner_rating === 'C').length;
+
+const PUBLISH_DATE = '2026-08-30';
+const dateFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const TITLE = "Is a Tokyo Tea Ceremony Worth It? An Insider's Honest Take";
+const DESCRIPTION = `Yes, but only if you pick the right one. Of the ${experiences.length} Tokyo tea ceremony experiences tracked in our Price Index, our practitioner rating calls ${aCount} a genuine pick, ${bCount} solidly good for tourists, and ${cCount} worth skipping — with prices ranging from ¥${minPrice.toLocaleString()} to ¥${maxPrice.toLocaleString()} and a median around ¥${median.toLocaleString()}.`;
+
+const faqItems = [
+  {
+    question: 'Is a Tokyo tea ceremony worth the money?',
+    answer: `Usually, yes — the median price across the ${experiences.length} experiences in our Index is around ¥${median.toLocaleString()}, and most sessions in that range deliver a genuine, unhurried introduction to the ritual. The exceptions are a handful of platform-only bookings we haven't been able to verify, which is why we rate ${cCount} of the ${experiences.length} as worth skipping regardless of price.`,
+  },
+  {
+    question: "What's a fair price for a Tokyo tea ceremony?",
+    answer: "Group sessions typically run ¥3,500–¥6,500, and private sessions or ones with a kimono add-on can reach ¥10,000–¥20,000. Price alone doesn't indicate authenticity — some of the more expensive listings in our Index are rated lower than casual, inexpensive ones.",
+  },
+  {
+    question: 'How do I know if a Tokyo tea ceremony is authentic?',
+    answer: `Look for a named teacher or school, a real tea room rather than a converted studio, and language that clearly distinguishes a ceremony from a tea tasting. Only 1 of the ${experiences.length} experiences we track names a specific school, so the absence of one isn't automatically a red flag — but vague, generic descriptions usually mean a generalist tour operator rather than a practicing teacher.`,
+  },
+  {
+    question: 'Is one hour enough for a tea ceremony?',
+    answer: 'For a first-time introduction, yes — most tourist-facing sessions run 45–60 minutes and are designed to cover the core etiquette (receiving the bowl, turning it, drinking) without requiring prior knowledge. If you want something closer to an actual lesson, look for longer sessions (90+ minutes) with smaller group sizes.',
+  },
+  {
+    question: 'Should I book a group or private tea ceremony?',
+    answer: "It depends on your budget and how much personal attention you want — we compare the tradeoffs directly in our private vs. group guide.",
+  },
+];
+---
+
+<BaseLayout
+  title={TITLE}
+  description={DESCRIPTION}
+  ogType="article"
+  ogImage={heroImage}
+  showCompareCta
+>
+  <HeroImage
+    src={heroImage}
+    alt="A speckled glazed chawan and the tip of a bamboo chasen whisk on white textured paper, with a delicate branch shadow falling across the scene"
+    eyebrow="Worth It?"
+    title={TITLE}
+  />
+
+  <p class="text-sm text-warm-gray-mid mb-2">
+    <time datetime={PUBLISH_DATE}>{dateFormatter.format(new Date(PUBLISH_DATE))}</time>
+  </p>
+  <AffiliateNote />
+
+  {/* GEO answer block */}
+  <div class="bg-sakura-light border border-border p-7 mb-8">
+    <p class="font-label text-xs uppercase tracking-wider text-sakura-deep mb-2">Quick answer</p>
+    <p class="text-sumi leading-relaxed text-sm">
+      Yes, but only if you pick the right one. Of the {experiences.length} Tokyo tea ceremony experiences
+      tracked in our <a href="/tokyo-tea-ceremony-price-index" class="underline">Price Index</a>, our
+      practitioner rating calls {aCount} a genuine pick, {bCount} solidly good for tourists, and {cCount} worth
+      skipping — with prices ranging from ¥{minPrice.toLocaleString()} to ¥{maxPrice.toLocaleString()} and a
+      median around ¥{median.toLocaleString()}. A Tokyo tea ceremony is absolutely worth it if you go in
+      wanting a calm, unhurried first taste of the ritual; it's a poor use of an afternoon if you're
+      expecting a full keiko-style lesson from a ¥3,500 tourist-lounge tasting.
+    </p>
+  </div>
+
+  <div class="prose max-w-none text-sumi">
+    <h2>The honest answer, in one number</h2>
+    <p>
+      People ask me this constantly, and I understand why — matcha, kneeling, someone in a kimono handing
+      you a bowl with both hands, all for a price that can run anywhere from a coffee to a nice dinner.
+      It's hard to know what you're actually paying for until you're sitting on the tatami.
+    </p>
+    <p>
+      So here's the number that actually answers the question: out of the {experiences.length} experiences
+      we track, only {aCount} earn our top "practitioner's pick" rating, {bCount} are genuinely good for a
+      tourist afternoon, and {cCount} we'd tell you to skip. That's not a knock on Tokyo's tea scene —
+      it's just a reminder that "tea ceremony" on a booking page covers a wide range of things, from a
+      45-minute matcha tasting with no ceremonial structure at all to a real keiko lesson under a licensed
+      teacher. Worth it depends entirely on which one you book.
+    </p>
+
+    <h2>What "worth it" actually depends on</h2>
+    <p>
+      The single biggest driver of satisfaction isn't price — it's whether what you booked matches what
+      you expected. A handful of the sessions in our Index are, honestly, matcha tastings wearing a
+      tea-ceremony label. <a href="/tokyo-tea-ceremony-compared">Ocharu Tea Experience</a>, for instance, is
+      a multi-tea tasting (black tea, gyokuro, matcha) rather than a formal ceremony — perfectly nice if
+      that's what you want, a letdown if you came for the ritual.
+    </p>
+    <p>
+      Compare that to <a href="/tokyo-tea-ceremony-compared">Shizu-Kokoro Tea Ceremony School</a>, one of
+      our two "A" picks: the instructor runs an actual tea school and has taught abroad, and guests take
+      turns as both guest and host across seasonal themes — closer to a real keiko lesson than anything
+      else in the tourist-facing market. Same broad category, "tea ceremony experience," completely
+      different product.
+    </p>
+
+    <h2>Price doesn't predict authenticity</h2>
+    <p>
+      This is the part that surprises people most: the ¥{minPrice.toLocaleString()} session and the
+      ¥{maxPrice.toLocaleString()} session aren't reliably different in kind. A relaxed, photos-welcome
+      matcha tasting in Asakusa runs about ¥4,500 and is upfront about being casual rather than formal — a
+      fair deal for what it promises. Meanwhile a couple of the pricier group sessions in Shibuya, in the
+      ¥6,000–6,500 range, are platform-only operators we haven't been able to verify independently, which
+      is why they land in our "skip" tier despite the higher price. Paying more doesn't buy you more
+      authenticity by itself — it sometimes just buys a nicer neighborhood.
+    </p>
+
+    <h2>Signs you picked well (or didn't)</h2>
+    <p>
+      Before you book, it's worth checking a few things that correlate far more with a good experience
+      than price does — we go into these in more depth in{' '}
+      <a href="/questions-before-booking-tea-ceremony-tokyo">10 questions to ask before you book</a>, but
+      the short version:
+    </p>
+    <ul>
+      <li>
+        <strong>Does the listing name an actual teacher or school?</strong> Almost none do (1 of{' '}
+        {experiences.length} in our Index names a school outright), but the ones that describe a specific
+        instructor's background tend to be the real thing.
+      </li>
+      <li>
+        <strong>Is the room a converted studio or a genuine tea room?</strong> Look for mentions of
+        tatami, a tokonoma alcove, or a proper entrance — generic "cultural center" language is a mild
+        yellow flag.
+      </li>
+      <li>
+        <strong>Does the description distinguish tasting from ceremony?</strong> "Learn the etiquette of
+        tea ceremony" and "enjoy a cup of matcha" are different products at similar prices.
+      </li>
+      <li>
+        <strong>Group size and duration.</strong> A 45-minute session for 8+ people is, by definition,
+        not going to get into much depth — that's fine if depth isn't what you're after.
+      </li>
+    </ul>
+
+    <h2>Who should skip it entirely</h2>
+    <p>
+      If sitting on the floor is a dealbreaker, most tourist-facing ceremonies still expect some seiza
+      time even when they call themselves casual — we cover the seiza-optional options separately in{' '}
+      <a href="/tea-ceremony-without-seiza">best tea ceremonies if you can't sit seiza</a>. And if what you
+      actually want is photos in a kimono and a cup of matcha for the memory, several of the casual
+      tastings will serve you better — and cheaper — than booking something billed as a "traditional
+      ceremony" and being disappointed it isn't more elaborate.
+    </p>
+
+    <h2>My honest take as a practitioner</h2>
+    <p>
+      I put this to the test myself at one of the more tourist-accessible sessions — a ryūrei-style
+      ceremony (seated at a table, no kneeling required) that I fully expected to feel more like a
+      demonstration than the real thing. It didn't. The host was genuinely particular about the tea and
+      the wagashi being served, and that care showed up in details I wasn't expecting from something
+      pitched at casual visitors. It's become one of my go-to signals now: a venue that's specific about
+      what it's actually serving you — not just "matcha" and "traditional sweets," but which tea, which
+      confectioner — is often a better tell of the real thing than anything on the booking page.
+    </p>
+    <p>
+      Set your expectations before you book, not during. A tea ceremony experience in Tokyo, chosen well,
+      is one of the few tourist activities that actually slows you down for an hour — that alone is worth
+      the yen for most visitors. Chosen carelessly, it's just an overpriced cup of matcha in a room with
+      tatami mats.
+    </p>
+  </div>
+
+  <FaqBlock items={faqItems} />
+
+  <div class="prose max-w-none text-sumi">
+    <p class="text-sm text-sumi/70 border-t border-warm-gray pt-6">
+      See also: our <a href="/tokyo-tea-ceremony-price-index">Tokyo Tea Ceremony Price Index</a>, the{' '}
+      <a href="/tokyo-tea-ceremony-compared">full comparison of all {experiences.length} experiences</a>,{' '}
+      <a href="/questions-before-booking-tea-ceremony-tokyo">10 questions to ask before you book</a>,{' '}
+      <a href="/tea-ceremony-without-seiza">best ceremonies if you can't sit seiza</a>, and{' '}
+      <a href="/private-vs-group-tea-ceremony-tokyo">private vs. group: which to book</a>.
+    </p>
+  </div>
+
+  <EmailCapture />
+  <AuthorBio />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    'headline': TITLE,
+    'description': DESCRIPTION,
+    'datePublished': PUBLISH_DATE,
+    'author': {
+      '@type': 'Person',
+      'name': 'Suzu',
+      'url': 'https://tokyoinseason.com/about',
+    },
+    'publisher': {
+      '@type': 'Organization',
+      'name': 'Tokyo in Season',
+      'url': 'https://tokyoinseason.com',
+    },
+    'mainEntityOfPage': 'https://tokyoinseason.com/is-tokyo-tea-ceremony-worth-it',
+  })} />
+</BaseLayout>

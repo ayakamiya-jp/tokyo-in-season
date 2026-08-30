@@ -14,6 +14,7 @@ import whatToWearHero from '../assets/hero/what-to-wear-hero.jpg';
 import urasenkeVsOmotesenkeHero from '../assets/hero/urasenke-vs-omotesenke-hero.jpg';
 import matchaGradesHero from '../assets/hero/matcha-grades-explained-hero.jpg';
 import seasonsHero from '../assets/hero/tea-ceremony-seasons-tokyo-hero.jpg';
+import worthItHero from '../assets/hero/is-tokyo-tea-ceremony-worth-it-hero.jpg';
 
 const QUARTER = 'Q3 2026';
 
@@ -53,13 +54,21 @@ const cheapestArea = areaMedians.find(a => a.area === 'Asakusa') ?? areaMedians[
 // project_tea_ceremony_homepage_card_order — new articles go to the front).
 const decisionGuides = [
   {
+    href: '/is-tokyo-tea-ceremony-worth-it',
+    tag: 'Worth It?',
+    title: "Is a Tokyo Tea Ceremony Worth It? An Insider's Honest Take",
+    desc: 'The honest number: of 20 experiences we track, only 2 are a genuine pick and 8 are worth skipping — price alone won\'t tell you which is which.',
+    image: worthItHero,
+    alt: 'A speckled glazed chawan and the tip of a bamboo chasen whisk on white textured paper, with a delicate branch shadow falling across the scene',
+    featured: true,
+  },
+  {
     href: '/tea-ceremony-seasons-tokyo',
     tag: 'Seasons',
     title: 'A Tea Ceremony in Every Season: What Changes Month to Month',
     desc: 'Ro vs furo hearths, robiraki in November, and why the flowers and sweets change even when a tourist booking doesn\'t.',
     image: seasonsHero,
     alt: 'A narrow garden path in Kamakura lined with blooming blue and purple hydrangea (ajisai), leading toward a traditional tiled roof',
-    featured: true,
   },
   {
     href: '/matcha-grades-explained-tea-ceremony',
