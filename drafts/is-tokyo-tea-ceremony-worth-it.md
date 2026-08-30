@@ -1,5 +1,10 @@
 # Is a Tokyo Tea Ceremony Worth It? An Insider's Honest Take
 
+**Status:** ✅ Published 2026-08-30 at [tokyoinseason.com/is-tokyo-tea-ceremony-worth-it](https://tokyoinseason.com/is-tokyo-tea-ceremony-worth-it). Fact-check item 3 ("sessions vary from tasting to real keiko lesson" framing) and item 5 ("almost none name a school") were left as editorial judgment / hedged per no further input; the median-price and SUZU NOTE items were resolved via Notion comments before publishing.
+**Source of truth:** `src/pages/is-tokyo-tea-ceremony-worth-it.astro` (published; this file is now an archived reading copy of the review process, not kept in sync going forward)
+
+---
+
 ## Quick answer
 
 Yes, but only if you pick the right one. Of the 20 Tokyo tea ceremony experiences tracked in our [Price Index](https://tokyoinseason.com/tokyo-tea-ceremony-price-index), our practitioner rating calls 2 a genuine pick, 10 solidly good for tourists, and 8 worth skipping — with prices ranging from ¥850 to ¥20,000 and a median around ¥6,150. A Tokyo tea ceremony is absolutely worth it if you go in wanting a calm, unhurried first taste of the ritual; it's a poor use of an afternoon if you're expecting a full keiko-style lesson from a ¥3,500 tourist-lounge tasting.
