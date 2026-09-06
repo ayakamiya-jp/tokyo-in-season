@@ -77,12 +77,12 @@ TBD — to be selected during the Astro implementation phase. Will check `src/as
 
 ---
 
-## FACT-CHECK — please verify before publishing
+## FACT-CHECK — 公開前にご確認ください
 
-Flagging anything below as inferred or editorial rather than independently confirmed:
+推測で書いた箇所、または編集判断であり独立に確認していない箇所を番号付きで挙げます：
 
-1. **RESOLVED (2026-08-30):** Median price (~¥6,150) — comment asked to double check the experience count. Re-verified against `src/content/experiences/*.json`: there are 20 experiences total, but 2 (`minamikaze-sumida.json`, `urasenke-youwakai.json`) have `price_jpy: null` (price on inquiry) and are excluded from the median. The "18 of 20 have a published price" framing and the ¥6,150 median are confirmed correct as written.
-2. **RESOLVED (2026-08-30):** Rating breakdown (2 A / 10 B / 8 C of 20) — confirmed via comment ("このままでOK"). Kept as-is.
-3. **"Sessions vary from tasting to real keiko lesson" framing** — reviewed 2026-08-30, no correction given. Kept as editorial judgment, grounded in the Ocharu/Shizu-Kokoro `editor_note` examples cited in the body.
-4. **RESOLVED (2026-08-30):** SUZU NOTE placeholder ("My honest take as a practitioner") — replaced with Ayaka's first-hand anecdote (ryūrei-style session, tea/wagashi specificity as an authenticity signal), now in the published-copy body above.
-5. **"Almost none [name a school]" (1 of 20)** — reviewed 2026-08-30, no correction given. Reused from the published Urasenke vs. Omotesenke article; kept as-is.
+1. **RESOLVED（2026-08-30）：** 中央値（約¥6,150）— 体験件数について確認を求めるコメントあり。`src/content/experiences/*.json` を再確認したところ、体験は全20件だが、うち2件（`minamikaze-sumida.json`、`urasenke-youwakai.json`）は `price_jpy: null`（価格応相談）のため中央値算出から除外している。「20件中18件が価格公開」という記述と¥6,150の中央値は、記載どおり正しいと確認済み。
+2. **RESOLVED（2026-08-30）：** 評価内訳（A2件／B10件／C8件、全20件中）— コメント「このままでOK」で確認済み。そのまま維持。
+3. **「体験はタスティングから本格的な稽古まで幅がある」という記述** — 2026-08-30にレビュー済み、修正コメントなし。本文中で挙げたOcharu・Shizu-Kokoroの `editor_note` を根拠とした編集判断として維持。
+4. **RESOLVED（2026-08-30）：** SUZU NOTEのプレースホルダー（「実践者としての本音」セクション）— ayakaの一人称エピソード（立礼スタイルの体験、お茶・お菓子の具体性が本格度のサインになるという内容）に差し替え済み。公開済み本文に反映済み。
+5. **「学校名を明記している施設はほとんどない（20件中1件）」という記述** — 2026-08-30にレビュー済み、修正コメントなし。公開済みのUrasenke vs Omotesenke記事から流用したもので、そのまま維持。
