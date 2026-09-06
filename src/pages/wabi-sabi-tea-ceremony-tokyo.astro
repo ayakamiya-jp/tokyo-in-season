@@ -1,0 +1,205 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EmailCapture from '../components/EmailCapture.astro';
+import AuthorBio from '../components/AuthorBio.astro';
+import HeroImage from '../components/HeroImage.astro';
+import AffiliateNote from '../components/AffiliateNote.astro';
+import FaqBlock from '../components/FaqBlock.astro';
+import heroImage from '../assets/hero/wabi-sabi-tea-ceremony-tokyo-hero.jpg';
+
+const PUBLISH_DATE = '2026-09-06';
+const dateFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const TITLE = 'What Is Wabi-Sabi, Really? (And What Tourists Get Wrong)';
+const DESCRIPTION = "Wabi-sabi is a Japanese aesthetic and philosophical sensibility built around impermanence, imperfection, and restraint — not, as most Pinterest boards suggest, a home-decor style of beige linen and driftwood. It grew up alongside tea ceremony, largely through the influence of the 16th-century tea master Sen no Rikyu, who favored humble, irregular, handmade utensils over expensive, symmetrical ones. The most common tourist mistake is treating \"rustic\" or \"minimalist\" as synonyms for wabi-sabi — the concept is really about finding beauty in things that are transient, incomplete, or quietly worn, not about a look you can buy.";
+
+const faqItems = [
+  {
+    question: 'Is wabi-sabi a design style?',
+    answer: "Not originally — it's a philosophical and aesthetic sensibility about impermanence and imperfection that predates and has little to do with the minimalist interior-design trend that borrowed its name. The design trend takes wabi-sabi's visual vocabulary (natural materials, asymmetry, muted tones) without its underlying premise.",
+  },
+  {
+    question: "What's the actual difference between wabi and sabi?",
+    answer: 'Wabi originally leaned toward the quiet, humble simplicity found in modest circumstances; sabi refers more specifically to the beauty that comes with age and the passage of time, like patina on metal or the weathering of stone. In modern use they\'re almost always paired together rather than distinguished.',
+  },
+  {
+    question: 'Is kintsugi the same thing as wabi-sabi?',
+    answer: "Kintsugi (repairing broken pottery with gold-dusted lacquer) is better understood as one clear expression of wabi-sabi rather than a synonym for it — it demonstrates the idea that damage and repair can become part of an object's value rather than something to hide.",
+  },
+  {
+    question: 'Can I actually see wabi-sabi at a Tokyo tea ceremony?',
+    answer: 'Partially. Most tourist-facing sessions run in comfortable, standardized rooms that don\'t fully capture the weathered, unhurried setting wabi-sabi describes, but smaller signals — an irregular handmade chawan, a single seasonal flower, restrained decor — are often genuinely present if you know to look for them.',
+  },
+  {
+    question: 'Did Sen no Rikyu invent wabi-sabi?',
+    answer: 'Not exactly — the aesthetic ideas existed before him in poetry and other arts, but Rikyu is widely credited with codifying wabi-sabi principles specifically into tea ceremony practice in the 16th century, favoring humble, irregular utensils over displays of wealth.',
+  },
+];
+---
+
+<BaseLayout
+  title={TITLE}
+  description={DESCRIPTION}
+  ogType="article"
+  ogImage={heroImage}
+  showCompareCta
+>
+  <HeroImage
+    src={heroImage}
+    alt="A ceramic plate on a marble surface, cracked and rejoined with visible gold kintsugi repair lines"
+    eyebrow="Philosophy"
+    title={TITLE}
+  />
+
+  <p class="text-sm text-warm-gray-mid mb-2">
+    <time datetime={PUBLISH_DATE}>{dateFormatter.format(new Date(PUBLISH_DATE))}</time>
+  </p>
+  <AffiliateNote />
+
+  {/* GEO answer block */}
+  <div class="bg-sakura-light border border-border p-7 mb-8">
+    <p class="font-label text-xs uppercase tracking-wider text-sakura-deep mb-2">Quick answer</p>
+    <p class="text-sumi leading-relaxed text-sm">
+      Wabi-sabi is a Japanese aesthetic and philosophical sensibility built around impermanence,
+      imperfection, and restraint — not, as most Pinterest boards suggest, a home-decor style of beige
+      linen and driftwood. It grew up alongside tea ceremony, largely through the influence of the
+      16th-century tea master Sen no Rikyu, who favored humble, irregular, handmade utensils over
+      expensive, symmetrical ones. The most common tourist mistake is treating "rustic" or "minimalist"
+      as synonyms for wabi-sabi — the concept is really about finding beauty in things that are
+      transient, incomplete, or quietly worn, not about a look you can buy.
+    </p>
+  </div>
+
+  <div class="prose max-w-none text-sumi">
+    <h2>The honest definition</h2>
+    <p>
+      "Wabi-sabi" is actually two older words fused into one modern shorthand. <em>Wabi</em> originally
+      carried a negative charge — something closer to the loneliness or bleakness of poverty or
+      isolation — that shifted over centuries toward the quiet satisfaction of simplicity and modest,
+      unpretentious beauty. <em>Sabi</em> referred to the beauty that comes with age: the patina on old
+      metal, the way stone weathers, the quiet dignity of something that has been used and has visibly
+      lived. Put together, wabi-sabi points at beauty that includes flaws, asymmetry, and the passage of
+      time, rather than beauty that excludes them.
+    </p>
+    <p>
+      It's a sensibility, not a style guide. There's no official checklist — no certifying body decides
+      what counts as wabi-sabi the way there's no body that regulates "ceremonial grade" matcha, as we
+      cover in <a href="/matcha-grades-explained-tea-ceremony">our matcha grades guide</a>. That
+      looseness is exactly why the term travels so easily and gets flattened so often once it leaves
+      Japan.
+    </p>
+
+    <h2>Mistake #1: treating it as an interior design trend</h2>
+    <p>
+      The version of wabi-sabi most visitors arrive with is the one sold by home decor media over the
+      past decade: pale wood, linen, a single dried branch in a vase, everything intentionally imperfect
+      in a very expensive, curated way. That aesthetic borrows wabi-sabi's <em>vocabulary</em> —
+      asymmetry, natural materials, muted tones — without its actual premise, which is about accepting
+      imperfection and transience as meaningful, not about arranging objects to look tastefully undone. A
+      wabi-sabi tea bowl isn't imperfect because a stylist chose it to be; it's imperfect because it was
+      made by hand, used for years, and sometimes repaired.
+    </p>
+
+    <h2>Mistake #2: assuming "old" or "shabby" automatically qualifies</h2>
+    <p>
+      The second common mix-up is treating wabi-sabi as simply meaning rustic, worn, or run-down — an
+      old building is wabi-sabi, a broken thing is wabi-sabi, anything unpolished counts. That's closer
+      to just describing decay. Wabi-sabi specifically involves accepting and even valuing the
+      imperfection or wear as part of the object's character, not merely tolerating disrepair. The
+      clearest example most visitors have already heard of is kintsugi, the practice of repairing broken
+      pottery with gold-dusted lacquer — the break isn't hidden or treated as a flaw to erase, it's
+      highlighted as part of the object's history. That's the actual mechanism of wabi-sabi: the
+      imperfection becomes part of what makes the piece worth keeping, not something apologized for.
+    </p>
+
+    <h2>Where it actually shows up in a tea ceremony</h2>
+    <p>
+      Tea ceremony is the practice most responsible for codifying wabi-sabi into something teachable,
+      largely credited to Sen no Rikyu's reforms in the 16th century, which pushed against the gaudier,
+      imported-luxury-goods taste of his era in favor of deliberately humble, often Japanese-made or
+      irregular utensils. A few concrete places it shows up in an actual tea room:
+    </p>
+    <p>
+      <strong>The chawan (tea bowl).</strong> A good chawan is often intentionally irregular — a
+      slightly uneven rim, a glaze that pools unevenly, a shape that isn't quite symmetrical. That's not
+      a manufacturing flaw; it's frequently the point.
+    </p>
+    <p>
+      <strong>The roji (garden path).</strong> The stepping-stone path leading to a tea room is
+      deliberately unglamorous and slightly uneven underfoot, meant to shift a guest's attention away
+      from status and toward the present moment before they arrive.
+    </p>
+    <p>
+      <strong>Seasonal impermanence.</strong> As we cover in{' '}
+      <a href="/tea-ceremony-seasons-tokyo">our seasonal guide</a>, the single flower in the alcove is
+      chosen because it's in season <em>right now</em> and will wilt within days — its temporariness is
+      part of the point, not a flaw to prevent.
+    </p>
+    <p>
+      <strong>Restraint in the tea room itself.</strong> A traditional tea room is small, unornamented,
+      and quiet by design — nothing is there to impress a guest with wealth or scale.
+    </p>
+
+    <h2>Can you actually experience wabi-sabi in a one-hour tourist tea ceremony?</h2>
+    <p>
+      Honestly, only partially — and it's worth saying so plainly rather than oversell it. Most
+      tourist-facing sessions in Tokyo run in clean, climate-controlled rooms on a fixed schedule, which
+      is close to the opposite of the unhurried, weather-exposed, imperfect setting wabi-sabi describes.
+      That's not a criticism of those venues — a tight schedule and a comfortable room are reasonable
+      trade-offs for a first-time visitor. But if experiencing wabi-sabi specifically (not just tasting
+      matcha) is your goal, look for smaller signals rather than expecting the whole atmosphere: ask
+      whether the bowls are handmade and irregular rather than a matched set, whether the flower
+      arrangement changes with the season, and whether the host explains the utensils' age or history
+      rather than just their price.
+    </p>
+
+    <h2>My honest take as a practitioner</h2>
+    <p>
+      One thing that genuinely surprised me when I started practicing was how simple the tea flowers
+      are. There's no bouquet, no flower-arrangement flourish — Rikyu is said to have taught that flowers
+      should be displayed <em>as they are in the field</em> (花は野にあるように), and in practice that
+      means a single seasonal stem, placed almost carelessly, not anything you'd call "arranged." It's a
+      small detail, but it's one of the clearest places I've actually seen wabi-sabi lived out rather
+      than just talked about.
+    </p>
+    <p>
+      Wabi-sabi isn't a mood board. It's closer to a discipline of paying attention to things as they
+      actually are — worn, temporary, slightly uneven — instead of how you'd stage them for a photo. You
+      don't need a tea ceremony to notice it, but a good one makes it easier to slow down long enough to.
+    </p>
+  </div>
+
+  <FaqBlock items={faqItems} />
+
+  <div class="prose max-w-none text-sumi">
+    <p class="text-sm text-sumi/70 border-t border-warm-gray pt-6">
+      See also: our <a href="/tokyo-tea-ceremony-compared">comparison of Tokyo tea ceremony
+      experiences</a>, the <a href="/tokyo-tea-ceremony-price-index">Tokyo Tea Ceremony Price
+      Index</a>, our <a href="/matcha-grades-explained-tea-ceremony">matcha grades guide</a>,{' '}
+      <a href="/tea-ceremony-seasons-tokyo">a tea ceremony in every season</a>, and{' '}
+      <a href="/urasenke-vs-omotesenke-tea-ceremony-tokyo">Urasenke vs Omotesenke</a>.
+    </p>
+  </div>
+
+  <EmailCapture />
+  <AuthorBio />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    'headline': TITLE,
+    'description': DESCRIPTION,
+    'datePublished': PUBLISH_DATE,
+    'author': {
+      '@type': 'Person',
+      'name': 'Suzu',
+      'url': 'https://tokyoinseason.com/about',
+    },
+    'publisher': {
+      '@type': 'Organization',
+      'name': 'Tokyo in Season',
+      'url': 'https://tokyoinseason.com',
+    },
+    'mainEntityOfPage': 'https://tokyoinseason.com/wabi-sabi-tea-ceremony-tokyo',
+  })} />
+</BaseLayout>

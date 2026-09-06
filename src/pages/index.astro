@@ -15,6 +15,7 @@ import urasenkeVsOmotesenkeHero from '../assets/hero/urasenke-vs-omotesenke-hero
 import matchaGradesHero from '../assets/hero/matcha-grades-explained-hero.jpg';
 import seasonsHero from '../assets/hero/tea-ceremony-seasons-tokyo-hero.jpg';
 import worthItHero from '../assets/hero/is-tokyo-tea-ceremony-worth-it-hero.jpg';
+import wabiSabiHero from '../assets/hero/wabi-sabi-tea-ceremony-tokyo-hero.jpg';
 
 const QUARTER = 'Q3 2026';
 
@@ -54,13 +55,21 @@ const cheapestArea = areaMedians.find(a => a.area === 'Asakusa') ?? areaMedians[
 // project_tea_ceremony_homepage_card_order — new articles go to the front).
 const decisionGuides = [
   {
+    href: '/wabi-sabi-tea-ceremony-tokyo',
+    tag: 'Philosophy',
+    title: 'What Is Wabi-Sabi, Really? (And What Tourists Get Wrong)',
+    desc: "It's not a home-decor style of beige linen and driftwood — it's a sensibility about imperfection and impermanence that most visitors never see explained.",
+    image: wabiSabiHero,
+    alt: 'A ceramic plate on a marble surface, cracked and rejoined with visible gold kintsugi repair lines',
+    featured: true,
+  },
+  {
     href: '/is-tokyo-tea-ceremony-worth-it',
     tag: 'Worth It?',
     title: "Is a Tokyo Tea Ceremony Worth It? An Insider's Honest Take",
     desc: 'The honest number: of 20 experiences we track, only 2 are a genuine pick and 8 are worth skipping — price alone won\'t tell you which is which.',
     image: worthItHero,
     alt: 'A speckled glazed chawan and the tip of a bamboo chasen whisk on white textured paper, with a delicate branch shadow falling across the scene',
-    featured: true,
   },
   {
     href: '/tea-ceremony-seasons-tokyo',

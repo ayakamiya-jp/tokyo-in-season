@@ -35,7 +35,7 @@ Honestly, only partially — and it's worth saying so plainly rather than overse
 
 ### My honest take as a practitioner
 
-*[SUZU NOTE: 一人称のエピソードをここに。例えば「稽古で実際に使っている茶碗の欠け・継ぎ目にまつわるエピソード」「観光客に説明していて伝わりにくいと感じる瞬間」など。Notionレビューでコメントください。]*
+One thing that genuinely surprised me when I started practicing was how simple the tea flowers are. There's no bouquet, no flower-arrangement flourish — Rikyu is said to have taught that flowers should be displayed *as they are in the field* (花は野にあるように), and in practice that means a single seasonal stem, placed almost carelessly, not anything you'd call "arranged." It's a small detail, but it's one of the clearest places I've actually seen wabi-sabi lived out rather than just talked about.
 
 Wabi-sabi isn't a mood board. It's closer to a discipline of paying attention to things as they actually are — worn, temporary, slightly uneven — instead of how you'd stage them for a photo. You don't need a tea ceremony to notice it, but a good one makes it easier to slow down long enough to.
 
@@ -74,8 +74,8 @@ TBD — to be selected during the Astro implementation phase. Will check `src/as
 
 推測で書いた箇所、または確認が必要な箇所を番号付きで挙げます：
 
-1. **侘（わび）・寂（さび）の語源**（「侘」は元々は貧しさ・孤独の暗さを指していたのが時代を経て静かな簡素さの美へと転じた、「寂」は経年による美を指す、という説明）— 広く言われる語源ですが、学術的には議論があります。この説明のまま公開してよいかご確認ください。
-2. **千利休がわび・さびを茶道に体系化したという歴史的経緯** — 一般向け・一部の学術的な文献でもそう語られていますが、「16世紀に彼が輸入奢侈品趣味に対抗する形で確立した」という具体的な描写は、より複雑な歴史を単純化したものです。
-3. **金継ぎとわび・さびの関係** — 一般向けの文章ではわび・さびの好例として紹介されることが多いですが、専門家の中には金継ぎを「わび・さびの直接的な表現」ではなく「関連はするが別の実践・思想」と位置づける見方もあります。本文では「一つの表現」という控えめな書き方にしていますが、この扱いでよいかご判断ください。
-4. **SUZU NOTEのプレースホルダー**（「実践者としての本音」セクション）— ayakaの一人称エピソードを入れるために意図的に空けています。Notionレビューでコメントがなければ、この段落は削って前後がそのまま成立する形にします。
-5. **「観光客向け茶会の会場はわび・さびが表す環境とほぼ真逆」という記述** — 空調完備・時間厳守という一般的な観光施設の傾向から導いた編集判断であり、Price Index掲載の20件すべてを個別に検証したものではありません。
+1. **侘（わび）・寂（さび）の語源**（「侘」は元々は貧しさ・孤独の暗さを指していたのが時代を経て静かな簡素さの美へと転じた、「寂」は経年による美を指す、という説明）— 2026-09-06にレビュー済み、修正コメントなし。この説明のまま維持。
+2. **千利休がわび・さびを茶道に体系化したという歴史的経緯** — 2026-09-06にレビュー済み、修正コメントなし。「16世紀に彼が輸入奢侈品趣味に対抗する形で確立した」という記述はそのまま維持。
+3. **金継ぎとわび・さびの関係** — 2026-09-06にレビュー済み、修正コメントなし。「一つの表現」という控えめな書き方のまま維持。
+4. **RESOLVED（2026-09-06）：** SUZU NOTEのプレースホルダー（「実践者としての本音」セクション）— ayakaのコメント（利休の「花は野にあるように」という教えと、稽古を始めた頃に驚いた茶花の簡素さのエピソード）に差し替え済み。
+5. **「観光客向け茶会の会場はわび・さびが表す環境とほぼ真逆」という記述** — 2026-09-06にレビュー済み、修正コメントなし。空調完備・時間厳守という一般的な観光施設の傾向から導いた編集判断として維持。
