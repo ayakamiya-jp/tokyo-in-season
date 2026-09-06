@@ -1,5 +1,10 @@
 # What Is Wabi-Sabi, Really? (And What Tourists Get Wrong)
 
+**Status:** ✅ Published 2026-09-06 at [tokyoinseason.com/wabi-sabi-tea-ceremony-tokyo](https://tokyoinseason.com/wabi-sabi-tea-ceremony-tokyo)。FACT-CHECK項目1・2・3・5はレビュー済みで修正コメントなく編集判断のまま公開、項目4（SUZU NOTE）はayakaのエピソードで解決済み。
+**Source of truth:** `src/pages/wabi-sabi-tea-ceremony-tokyo.astro`（published; このファイルはレビュー記録のアーカイブとして残すのみで、以後同期しない）
+
+---
+
 ## Quick answer
 
 Wabi-sabi is a Japanese aesthetic and philosophical sensibility built around impermanence, imperfection, and restraint — not, as most Pinterest boards suggest, a home-decor style of beige linen and driftwood. It grew up alongside tea ceremony, largely through the influence of the 16th-century tea master Sen no Rikyu, who favored humble, irregular, handmade utensils over expensive, symmetrical ones. The most common tourist mistake is treating "rustic" or "minimalist" as synonyms for wabi-sabi — the concept is really about finding beauty in things that are transient, incomplete, or quietly worn, not about a look you can buy.
