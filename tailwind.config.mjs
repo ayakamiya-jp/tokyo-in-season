@@ -18,7 +18,9 @@ export default {
         'sakura-deep': '#bc5c6f',
         'sakura-cta': '#f2a8bc',
         'sakura-cta-ink': '#1d1c19',
-        ink: '#1d1c19',
+        // softened from #1d1c19 (near-black) — same role (the one deliberately
+        // dark bar, EmailCapture.astro), less stark against the warm-white page
+        ink: '#37322c',
         // #727272 on warm-white (#f4f3ef) = 4.5:1+ — the darkest gray that still clears WCAG AA at small text sizes
         'legal-gray': '#727272',
       },
