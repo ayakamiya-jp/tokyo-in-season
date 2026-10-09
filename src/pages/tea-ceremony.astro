@@ -1,0 +1,77 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { decisionGuides } from '../data/decisionGuides';
+
+const featuredGuide = decisionGuides.find(g => g.featured) ?? decisionGuides[0];
+const restGuides = decisionGuides.filter(g => g !== featuredGuide);
+---
+
+<BaseLayout
+  title="Tea Ceremony Guides"
+  description="Every tea ceremony decision guide on Tokyo in Season — worth-it verdicts, area and school comparisons, attire, seasons, and what to ask before you book."
+  ogImage={featuredGuide.image}
+  wide
+>
+  <section class="pt-2 sm:pt-6 pb-10 sm:pb-14">
+    <span class="block font-label text-xs uppercase tracking-wider text-sakura-deep mb-5">Tea Ceremony</span>
+    <h1 class="font-display font-extrabold text-4xl sm:text-5xl leading-[1.04] tracking-tight text-sumi mb-6" style="text-wrap:balance">
+      All Tea Ceremony Guides
+    </h1>
+    <p class="max-w-md text-[1.1rem] leading-snug text-sumi-soft mb-8">
+      {decisionGuides.length} decision guides, written by an Urasenke practitioner — from whether it's worth it at all to what to wear once you've booked.
+    </p>
+    <div class="flex items-center gap-6 flex-wrap">
+      <a href="/tokyo-tea-ceremony-compared" class="inline-flex items-center gap-2 bg-sakura-cta hover:bg-sakura-deep border border-sakura-deep text-sakura-cta-ink font-sans font-bold text-sm px-6 py-3.5 transition-colors">
+        Compare experiences <span>→</span>
+      </a>
+      <a href="/tokyo-tea-ceremony-price-index" class="text-sumi font-semibold text-sm border-b border-sumi/40 hover:border-sumi transition-colors">
+        Price Index →
+      </a>
+    </div>
+  </section>
+
+  <section class="mt-6">
+    <a href={featuredGuide.href} class="group grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-6 lg:gap-10 items-center mb-14">
+      <div class="aspect-[4/3] lg:aspect-[4/5] overflow-hidden border border-border bg-surface">
+        <Image
+          src={featuredGuide.image}
+          alt={featuredGuide.alt}
+          widths={[600, 900, 1300, 1800]}
+          sizes="(min-width: 1024px) 560px, 100vw"
+          class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+        />
+      </div>
+      <div>
+        <span class="block font-label text-[0.65rem] uppercase tracking-wider text-sakura-deep mb-3">{featuredGuide.tag}</span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-[2.1rem] leading-tight text-sumi mb-3">{featuredGuide.title}</h2>
+        <p class="text-base text-sumi-soft max-w-md mb-3">{featuredGuide.desc}</p>
+        <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-sumi border-b border-sumi/40">
+          Read the guide <span class="inline-block transition-transform group-hover:translate-x-1">→</span>
+        </span>
+      </div>
+    </a>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10">
+      {restGuides.map(guide => (
+        <a href={guide.href} class="group block">
+          <div class="aspect-[4/5] overflow-hidden border border-border bg-surface mb-4">
+            <Image
+              src={guide.image}
+              alt={guide.alt}
+              widths={[400, 600, 900]}
+              sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
+              class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+            />
+          </div>
+          <span class="block font-label text-[0.62rem] uppercase tracking-wider text-sakura-deep mb-1.5">{guide.tag}</span>
+          <h3 class="font-display font-extrabold text-lg leading-tight text-sumi mb-1.5">{guide.title}</h3>
+          <p class="text-sm text-sumi-soft leading-snug mb-1.5 line-clamp-2">{guide.desc}</p>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-sumi border-b border-sumi/40">
+            Read the guide <span class="inline-block transition-transform group-hover:translate-x-1">→</span>
+          </span>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
