@@ -177,7 +177,8 @@ const [featuredGuide, ...restGuides] = decisionGuides;
     </div>
 
     <figure class="rise-d relative">
-      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="relative overflow-hidden">
+        <div class="hero-glow" aria-hidden="true"></div>
       <div class="relative aspect-[4/5] overflow-hidden border border-border bg-surface" id="hero-frame">
         <Image
           src={indexHero}
@@ -190,6 +191,7 @@ const [featuredGuide, ...restGuides] = decisionGuides;
           fetchpriority="high"
         />
         <div class="hero-trail" id="hero-trail" aria-hidden="true"></div>
+      </div>
       </div>
       <figcaption class="mt-3 text-sm text-warm-gray-mid max-w-xs">
         Hyakunin Isshu cards on tatami — the same unhurried pace a tea room asks of its guests.
@@ -458,7 +460,13 @@ const [featuredGuide, ...restGuides] = decisionGuides;
           }
         });
       },
-      { threshold: 0.12 },
+      // threshold as a FRACTION of the target's own height breaks for any
+      // section taller than ~8x the viewport (max possible visible ratio is
+      // viewportHeight/targetHeight) — Decision Guides (11 stacked cards on
+      // mobile) is ~7000px tall, so a 0.12 threshold could mathematically
+      // never be reached and the section would stay invisible forever.
+      // 0 fires as soon as even one pixel is visible, which works at any size.
+      { threshold: 0 },
     );
     revealEls.forEach((el) => io.observe(el));
   } else {
