@@ -351,13 +351,16 @@ const [featuredGuide, ...restGuides] = decisionGuides;
 <style>
   /* quiet paper grain, homepage only — not touching BaseLayout for other pages */
   .grain-overlay {
+    /* no mix-blend-mode here: a page-wide blended layer sitting over photos and
+       large bold headings is a known mobile Safari compositing bug — large
+       elements underneath it can fail to paint at all (seen on this page's
+       Decision Guide card images/titles). Plain low opacity is safe everywhere. */
     position: fixed;
     inset: 0;
     z-index: 1;
     pointer-events: none;
-    opacity: 0.035;
+    opacity: 0.025;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    mix-blend-mode: multiply;
   }
 
   @keyframes rise {
@@ -384,17 +387,18 @@ const [featuredGuide, ...restGuides] = decisionGuides;
     50% { transform: translate(3%, -3%); }
   }
   .hero-trail {
+    /* desktop-only (gated by JS to fine pointers); kept blend-mode-free for the
+       same reason as .grain-overlay above */
     position: absolute;
     top: 0;
     left: 0;
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    background: radial-gradient(circle, #f4f3ef 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(244, 243, 239, 0.5) 0%, transparent 70%);
     opacity: 0;
     pointer-events: none;
     will-change: transform;
-    mix-blend-mode: overlay;
   }
 
   .breathe-num {
