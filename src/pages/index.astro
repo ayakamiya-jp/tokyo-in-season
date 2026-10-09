@@ -6,6 +6,7 @@ import EmailCapture from '../components/EmailCapture.astro';
 import indexHero from '../assets/hero/index-hero.jpg';
 import priceIndexHero from '../assets/hero/price-index-hero.jpg';
 import kintsugiCollectionFooter from '../assets/hero/kintsugi-collection-footer.jpg';
+import kimonoRentalHero from '../assets/hero/kimono-rental-tokyo-hero.jpg';
 import { decisionGuides } from '../data/decisionGuides';
 
 const QUARTER = 'Q3 2026';
@@ -243,10 +244,7 @@ const homeGuides = homeGuideHrefs
     </a>
   </section>
 
-  <!-- Kimono pillar: second content pillar alongside tea ceremony. Swap this
-       placeholder panel for a real featured-guide card (same markup as the
-       tea section's featuredGuide card above) once the first kimono article
-       is published, linking it to that slug. -->
+  <!-- Kimono pillar: second content pillar alongside tea ceremony. -->
   <section id="kimono" class="mt-16 sm:mt-20 scroll-mt-24" data-reveal>
     <div class="flex items-center justify-between gap-4 mb-6">
       <h2 class="font-display font-extrabold text-2xl text-sumi">Kimono</h2>
@@ -255,13 +253,27 @@ const homeGuides = homeGuideHrefs
     <p class="max-w-md text-base leading-relaxed text-sumi-soft mb-8">
       The tea room isn't the only place season shows up — awase vs hitoe, and where to actually rent one in Tokyo.
     </p>
-    <div class="border border-border bg-sakura-light p-8 sm:p-11">
-      <span class="inline-block font-label text-xs uppercase tracking-wider bg-surface text-sumi-soft px-2.5 py-1 mb-3">Coming soon</span>
-      <h3 class="font-display font-extrabold text-2xl text-sumi mb-2">The first kimono guide is in progress</h3>
-      <p class="max-w-lg text-base text-sumi-soft">
-        Same approach as the tea coverage — written by someone who actually wears one, not a rental-shop ad.
-      </p>
-    </div>
+    <a href="/kimono-rental-tokyo" class="group grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-6 lg:gap-10 items-center">
+      <div class="aspect-[4/3] lg:aspect-[4/5] overflow-hidden border border-border bg-surface">
+        <Image
+          src={kimonoRentalHero}
+          alt="A close-up of an ornate floral textile pattern in white, red, and blue"
+          widths={[600, 900, 1300, 1800]}
+          sizes="(min-width: 1024px) 560px, 100vw"
+          class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+        />
+      </div>
+      <div>
+        <span class="block font-label text-[0.65rem] uppercase tracking-wider text-sakura-deep mb-3">Rental Guide</span>
+        <h3 class="font-display font-extrabold text-3xl sm:text-[2.1rem] leading-tight text-sumi mb-3">Kimono Rental in Tokyo: A Wearer's Honest Guide</h3>
+        <p class="text-base text-sumi-soft max-w-md mb-3">
+          What separates a good rental from a tourist trap, rough prices by area, and the vintage/antique option most visitors never hear about.
+        </p>
+        <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-sumi border-b border-sumi/40">
+          Read the guide <span class="inline-block transition-transform group-hover:translate-x-1">→</span>
+        </span>
+      </div>
+    </a>
   </section>
 
   <!-- About / pull-quote -->
