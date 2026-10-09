@@ -5,6 +5,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import EmailCapture from '../components/EmailCapture.astro';
 import indexHero from '../assets/hero/index-hero.jpg';
 import priceIndexHero from '../assets/hero/price-index-hero.jpg';
+import kintsugiCollectionFooter from '../assets/hero/kintsugi-collection-footer.jpg';
 import { decisionGuides } from '../data/decisionGuides';
 
 const QUARTER = 'Q3 2026';
@@ -279,12 +280,12 @@ const homeGuides = homeGuideHrefs
   <!-- Footer image band -->
   <div class="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen h-[26vw] min-h-[280px] max-h-[440px] overflow-hidden mt-14">
     <Image
-      src={priceIndexHero}
-      alt="An iron kettle, bamboo whisk, and chawan bowls arranged on tatami"
+      src={kintsugiCollectionFooter}
+      alt="A flat-lay of ceramic bowls and plates mended with gold kintsugi repairs, arranged across a wooden table"
       widths={[800, 1200, 1600, 2000]}
       sizes="100vw"
       class="w-full h-full object-cover"
-      style="object-position: center 55%"
+      style="object-position: center 18%"
     />
   </div>
 </BaseLayout>
