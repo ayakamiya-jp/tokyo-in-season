@@ -52,9 +52,9 @@ const featuredGuide = decisionGuides.find(g => g.featured) ?? decisionGuides[0];
 const featuredKimono = kimonoGuides.find(g => g.featured) ?? kimonoGuides[0];
 const restKimono = kimonoGuides.filter(g => g !== featuredKimono);
 const homeGuideHrefs = [
-  '/is-tokyo-tea-ceremony-worth-it',
-  '/private-vs-group-tea-ceremony-tokyo',
-  '/questions-before-booking-tea-ceremony-tokyo',
+  '/is-tokyo-tea-ceremony-worth-it/',
+  '/private-vs-group-tea-ceremony-tokyo/',
+  '/questions-before-booking-tea-ceremony-tokyo/',
 ];
 const homeGuides = homeGuideHrefs
   .map(href => decisionGuides.find(g => g.href === href))
@@ -81,10 +81,10 @@ const homeGuides = homeGuideHrefs
         Tea ceremony experiences in Tokyo, compared and priced by an Urasenke practitioner who actually practices.
       </p>
       <div class="rise-b flex items-center gap-6 flex-wrap">
-        <a href="/tokyo-tea-ceremony-compared" class="inline-flex items-center gap-2 btn-line font-sans text-[15px] px-7 py-3.5">
+        <a href="/tokyo-tea-ceremony-compared/" class="inline-flex items-center gap-2 btn-line font-sans text-[15px] px-7 py-3.5">
           Compare experiences <span class="btn-arrow">→</span>
         </a>
-        <a href="/tokyo-tea-ceremony-price-index" class="text-sumi font-semibold text-sm border-b border-sumi/40 hover:border-sumi transition-colors">
+        <a href="/tokyo-tea-ceremony-price-index/" class="text-sumi font-semibold text-sm border-b border-sumi/40 hover:border-sumi transition-colors">
           Price Index →
         </a>
       </div>
@@ -135,7 +135,7 @@ const homeGuides = homeGuideHrefs
           ¥{maxPrice.toLocaleString()} for a private ceremony — the only public dataset of its kind
           for Tokyo tea ceremony experiences.
         </p>
-        <a href="/tokyo-tea-ceremony-price-index" class="flex sm:inline-flex items-center justify-center gap-2 w-full sm:w-auto mt-7 btn-line font-sans text-[15px] px-7 py-3.5">
+        <a href="/tokyo-tea-ceremony-price-index/" class="flex sm:inline-flex items-center justify-center gap-2 w-full sm:w-auto mt-7 btn-line font-sans text-[15px] px-7 py-3.5">
           View the full Index <span class="btn-arrow">→</span>
         </a>
       </div>
@@ -172,7 +172,7 @@ const homeGuides = homeGuideHrefs
     </div>
 
     <!-- Compare block -->
-    <a href="/tokyo-tea-ceremony-compared" class="group block mt-12 bg-sakura-light border border-border p-8 sm:p-11">
+    <a href="/tokyo-tea-ceremony-compared/" class="group block mt-12 bg-sakura-light border border-border p-8 sm:p-11">
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
         <div>
           <span class="block font-label text-xs uppercase tracking-wider text-sakura-deep mb-3">Best first stop</span>
@@ -238,7 +238,7 @@ const homeGuides = homeGuideHrefs
       ))}
     </div>
 
-    <a href="/tea-ceremony" class="group flex items-center justify-between gap-4 mt-10 pt-6 border-t border-border">
+    <a href="/tea-ceremony/" class="group flex items-center justify-between gap-4 mt-10 pt-6 border-t border-border">
       <span class="text-sm font-semibold text-sumi">View all {decisionGuides.length} tea ceremony guides</span>
       <span class="inline-flex items-center text-base font-semibold text-sumi">
         <span class="inline-block transition-transform group-hover:translate-x-1">→</span>
@@ -293,7 +293,7 @@ const homeGuides = homeGuideHrefs
       ))}
     </div>
 
-    <a href="/kimono" class="group flex items-center justify-between gap-4 mt-10 pt-6 border-t border-border">
+    <a href="/kimono/" class="group flex items-center justify-between gap-4 mt-10 pt-6 border-t border-border">
       <span class="text-sm font-semibold text-sumi">View all {kimonoGuides.length} kimono guides</span>
       <span class="inline-flex items-center text-base font-semibold text-sumi">
         <span class="inline-block transition-transform group-hover:translate-x-1">→</span>
@@ -308,7 +308,7 @@ const homeGuides = homeGuideHrefs
       <p class="relative font-display font-bold text-2xl leading-snug text-sumi">
         Most "best tea ceremony" lists are written by people who went once. Every experience I recommend is one I'd send my own guests to.
       </p>
-      <a href="/about" class="relative inline-block mt-4 text-sm font-semibold text-matcha hover:underline">
+      <a href="/about/" class="relative inline-block mt-4 text-sm font-semibold text-matcha hover:underline">
         — Suzu, Urasenke practitioner in Tokyo · More about me →
       </a>
     </div>

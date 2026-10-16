@@ -7,7 +7,7 @@ import kimonoRentalHero from '../assets/hero/kimono-rental-tokyo-hero.jpg';
 // and the /kimono hub.
 export const kimonoGuides: DecisionGuide[] = [
   {
-    href: '/kimono-rental-asakusa-vs-ginza-kamakura',
+    href: '/kimono-rental-asakusa-vs-ginza-kamakura/',
     tag: 'Area Comparison',
     title: 'Kimono Rental Near Tokyo Compared: Asakusa vs Ginza vs Kamakura',
     desc: "Where to rent depends on the day you want: easy temple photos, a calm Ginza afternoon, or a full day of Kamakura's hills and seasonal flowers.",
@@ -16,7 +16,7 @@ export const kimonoGuides: DecisionGuide[] = [
     featured: true,
   },
   {
-    href: '/kimono-rental-tokyo',
+    href: '/kimono-rental-tokyo/',
     tag: 'Rental Guide',
     title: "Kimono Rental in Tokyo: A Wearer's Honest Guide",
     desc: 'What separates a good rental from a tourist trap, rough prices, and the vintage option.',
