@@ -1,0 +1,246 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EmailCapture from '../components/EmailCapture.astro';
+import AuthorBio from '../components/AuthorBio.astro';
+import HeroImage from '../components/HeroImage.astro';
+import AffiliateNote from '../components/AffiliateNote.astro';
+import FaqBlock from '../components/FaqBlock.astro';
+import kimonoAreaHero from '../assets/hero/kimono-rental-asakusa-vs-ginza-kamakura-hero.jpg';
+
+const PUBLISH_DATE = '2026-10-16';
+const dateFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const TITLE = 'Kimono Rental Near Tokyo Compared: Asakusa vs Ginza vs Kamakura';
+const DESCRIPTION = "Pick Asakusa if you want the most rental shops, the lowest prices, and Senso-ji within a few minutes' walk — it's the easiest first kimono day in the Tokyo area. Pick Ginza if you'd rather have a calmer, more grown-up day and plan to pair your kimono with Kabuki or a tea ceremony. Pick Kamakura, about an hour from central Tokyo, if you want temples, bamboo groves and seasonal flowers instead of city streets — but expect hills, stone steps, and a longer day in zori sandals.";
+
+const comparisonRows = [
+  { label: 'Best for', asakusa: 'First-timers, classic temple photos', ginza: 'A calm, polished day; Kabuki or tea', kamakura: 'Temples, nature, seasonal flowers' },
+  { label: 'Number of shops', asakusa: 'Most in the Tokyo area', ginza: 'Few', kamakura: 'Many, clustered near the station' },
+  { label: 'Price level', asakusa: 'Lowest (most competition)', ginza: 'Higher', kamakura: 'Similar to Asakusa' },
+  { label: 'Walking in kimono', asakusa: 'Flat, short distances', ginza: 'Flat, wide sidewalks', kamakura: 'Hills, stone steps, longer distances' },
+  { label: 'Crowds', asakusa: 'Very heavy around Senso-ji', ginza: 'Moderate', kamakura: 'Heavy on weekends and in flower season' },
+  { label: 'Getting there', asakusa: 'Central Tokyo', ginza: 'Central Tokyo', kamakura: 'About an hour by train from Tokyo' },
+];
+
+const faqItems = [
+  {
+    question: 'Can I rent a kimono in Tokyo and wear it to Kamakura?',
+    answer: "You can, but most people don't. It means about an hour on the train in kimono, and you'd have to be back at the Tokyo shop before closing. Renting at a shop near Kamakura Station is simpler and gives you more time to actually walk around.",
+  },
+  {
+    question: 'Which area is cheapest for kimono rental?',
+    answer: 'Asakusa, generally, because the number of shops keeps prices competitive. Kamakura is in a similar range. Ginza is usually the most expensive of the three. For typical price ranges by set type, see our kimono rental guide.',
+  },
+  {
+    question: 'Is Kamakura too hard to walk around in kimono?',
+    answer: "It's harder than Asakusa or Ginza, not impossible. The main approach to Tsurugaoka Hachimangu and Komachi-dori are manageable, but steps and hills add up over a day. Pick a shorter route, wear well-fitting zori, and leave time to rest.",
+  },
+  {
+    question: 'When is the best season to wear kimono in Kamakura?',
+    answer: 'June for hydrangeas and late November to early December for autumn color are the most popular, and also the most crowded. Spring cherry blossom season is lovely too. Midsummer is hot and humid for walking hills in kimono, even in a summer-weight one.',
+  },
+];
+---
+
+<BaseLayout
+  title={TITLE}
+  description={DESCRIPTION}
+  ogType="article"
+  ogImage={kimonoAreaHero}
+>
+  <HeroImage
+    src={kimonoAreaHero}
+    alt="The vermilion main shrine of Tsurugaoka Hachimangu in Kamakura at the top of its stone staircase, framed by green trees"
+    eyebrow="Kimono"
+    title={TITLE}
+  />
+
+  <p class="text-sm text-warm-gray-mid mb-2">
+    <time datetime={PUBLISH_DATE}>{dateFormatter.format(new Date(PUBLISH_DATE))}</time>
+  </p>
+  <AffiliateNote />
+
+  {/* GEO answer block */}
+  <div class="bg-sakura-light border border-border p-7 mb-8">
+    <p class="font-label text-xs uppercase tracking-wider text-sakura-deep mb-2">Quick answer</p>
+    <p class="text-sumi leading-relaxed text-sm">
+      Pick Asakusa if you want the most rental shops, the lowest prices, and Senso-ji within a few
+      minutes' walk — it's the easiest first kimono day in the Tokyo area. Pick Ginza if you'd
+      rather have a calmer, more grown-up day and plan to pair your kimono with Kabuki or a tea
+      ceremony. Pick Kamakura, about an hour from central Tokyo, if you want temples, bamboo groves
+      and seasonal flowers instead of city streets — but expect hills, stone steps, and a longer
+      day in zori sandals.
+    </p>
+  </div>
+
+  <div class="prose max-w-none text-sumi">
+    <h2>The short version</h2>
+  </div>
+
+  <div class="overflow-x-auto my-6 -mx-4 sm:mx-0">
+    <table class="w-full min-w-[560px] text-sm text-sumi border-collapse">
+      <thead>
+        <tr>
+          <th class="p-3 border-b-2 border-sumi"></th>
+          <th class="p-3 border-b-2 border-sumi text-left font-label text-[0.7rem] uppercase tracking-wider">Asakusa</th>
+          <th class="p-3 border-b-2 border-sumi text-left font-label text-[0.7rem] uppercase tracking-wider">Ginza</th>
+          <th class="p-3 border-b-2 border-sumi text-left font-label text-[0.7rem] uppercase tracking-wider">Kamakura</th>
+        </tr>
+      </thead>
+      <tbody>
+        {comparisonRows.map((row) => (
+          <tr class="border-b border-border align-top">
+            <th scope="row" class="p-3 text-left font-semibold">{row.label}</th>
+            <td class="p-3">{row.asakusa}</td>
+            <td class="p-3">{row.ginza}</td>
+            <td class="p-3">{row.kamakura}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="prose max-w-none text-sumi">
+    <p>
+      The rest of this guide explains the tradeoffs behind each row. For how to tell a good shop
+      from a bad one once you've picked an area — fit, fabric, obi tension, what's included — see
+      our <a href="/kimono-rental-tokyo">wearer's guide to kimono rental in Tokyo</a>. That advice
+      applies in all three places.
+    </p>
+
+    <h2>Asakusa: the easiest first kimono day</h2>
+    <p>
+      Asakusa is where most visitors rent a kimono, and for good reason. There are more rental
+      shops here than anywhere else in Tokyo, which keeps prices low and walk-in availability high.
+      And the walking is easy: from most shops, Kaminarimon and Nakamise-dori are a few minutes
+      away on flat streets, and Senso-ji's main hall is at the end of that same straight line. If
+      you've never walked in zori before, this matters more than you'd think.
+    </p>
+    <p>
+      The downside of all that competition is the one I covered in the
+      <a href="/kimono-rental-tokyo">first kimono guide</a>: the cheapest shops in Asakusa are also
+      where corners get cut, usually in the dressing time and the fit. The fix is simply to use the
+      checklist at the counter, not to avoid Asakusa.
+    </p>
+    <p>
+      The other downside is crowds. Nakamise-dori at midday is shoulder to shoulder, which makes
+      for difficult photos and, in kimono, slow and slightly nerve-wracking walking. If you can,
+      book an early slot and reach Senso-ji before late morning, then drift toward the quieter side
+      streets or the Sumida riverside once the crowds build.
+    </p>
+    <p>
+      Asakusa also pairs naturally with a tea ceremony. Several of the experiences in our
+      <a href="/tea-ceremony-asakusa-vs-ginza-omotesando">Asakusa vs Ginza vs Omotesando tea ceremony comparison</a>
+      are within walking distance, and some offer a kimono add-on so you can skip a separate rental
+      altogether.
+    </p>
+
+    <h2>Ginza: fewer shops, a calmer day</h2>
+    <p>
+      Ginza is the opposite trade. There are only a handful of kimono rental shops, and they tend to
+      position themselves as a quieter, more considered experience rather than a high-volume
+      operation. Expect to pay more, and expect to book ahead, because there's no row of
+      alternatives next door if your first choice is full.
+    </p>
+    <p>
+      What you get in return is a different kind of day. Ginza's wide, flat sidewalks are
+      comfortable in kimono, and on weekend afternoons the main street, Chuo-dori, is closed to
+      cars, which gives you room to walk without weaving through traffic. You won't find a single
+      famous photo backdrop the way you do at Senso-ji. The appeal is more about wearing kimono
+      somewhere it looks at home: Kabuki-za in Higashi-Ginza, the old-established shops along the
+      side streets, or the Hama-rikyu garden, about a 15–20 minute walk away.
+    </p>
+    <p>
+      In my experience, Ginza is the area where kimono feels least like a costume. People here are
+      used to seeing it worn for a theater evening or a formal lunch, so you blend in rather than
+      stand out. If that sounds more appealing than a photo tour, Ginza is worth the extra cost. It
+      also pairs well with a
+      <a href="/tea-ceremony-asakusa-vs-ginza-omotesando">Ginza tea ceremony</a>, and a tea room is
+      somewhere kimono makes complete sense.
+    </p>
+
+    <h2>Kamakura: temples and nature, with more walking</h2>
+    <p>
+      Kamakura isn't in Tokyo. It's a coastal city in Kanagawa, about an hour south by train, but
+      it's such a common kimono day trip from Tokyo that it belongs in this comparison. Rental shops
+      cluster near Kamakura Station and along Komachi-dori, the shopping street leading toward
+      Tsurugaoka Hachimangu shrine, so you can arrive in normal clothes and change on arrival.
+    </p>
+    <p>
+      The appeal is the scenery. Instead of city streets, you get the approach to Tsurugaoka
+      Hachimangu, bamboo groves, moss-covered temple grounds, and in the right season, some of the
+      best flower viewing near Tokyo. Hydrangeas in June, at temples like Meigetsu-in and
+      Hase-dera, are the classic Kamakura kimono season, and autumn color usually arrives later here
+      than in the city, around late November into early December.
+    </p>
+    <p>
+      The tradeoff is physical. Kamakura's sights are spread out, many involve stone steps or uphill
+      paths, and getting to Hase means a short ride on the small Enoden line. A full day of that in
+      zori, with an obi tied snugly, is more tiring than an afternoon in Asakusa. Two practical
+      points: ask the shop for the softest, best-fitting zori they have, and check the return time
+      before you leave the shop. Rentals usually have to be returned by late afternoon, which
+      matters more when your sights are spread across town.
+    </p>
+    <p>
+      Kamakura is also the area most affected by weather. Asakusa and Ginza have plenty of covered
+      places to wait out a shower, but in Kamakura the best spots are outdoor temple grounds. If
+      rain is forecast, ask about the rain plan when you book.
+    </p>
+
+    <h2>Which one should you choose?</h2>
+    <ul>
+      <li>
+        <strong>First time in kimono, short on time, or on a budget:</strong> Asakusa. The most
+        choice, the easiest walking, and Senso-ji right there.
+      </li>
+      <li>
+        <strong>You want a calm, polished day, or you're pairing it with Kabuki or a tea
+        ceremony:</strong> Ginza. Book ahead and budget a little more.
+      </li>
+      <li>
+        <strong>You care more about scenery than the city, and you're visiting in hydrangea or
+        autumn season:</strong> Kamakura. Plan a full day and go easy on the itinerary.
+      </li>
+      <li>
+        <strong>You want kimono mainly for a tea ceremony:</strong> consider skipping the separate
+        rental. Our <a href="/tokyo-tea-ceremony-price-index">Price Index</a> shows which tea
+        ceremony experiences include a kimono option, and the
+        <a href="/tokyo-tea-ceremony-compared">full comparison</a> lets you filter by area.
+      </li>
+    </ul>
+  </div>
+
+  <FaqBlock items={faqItems} />
+
+  <div class="prose max-w-none text-sumi">
+    <p class="text-sm text-sumi/70 border-t border-warm-gray pt-6">
+      See also: <a href="/kimono-rental-tokyo">kimono rental in Tokyo: a wearer's honest guide</a>,{' '}
+      our <a href="/tokyo-tea-ceremony-price-index">Tokyo Tea Ceremony Price Index</a>,{' '}
+      <a href="/tokyo-tea-ceremony-compared">every Tokyo tea ceremony compared</a>,{' '}
+      <a href="/tea-ceremony-asakusa-vs-ginza-omotesando">tea ceremony in Asakusa vs Ginza vs Omotesando</a>, and{' '}
+      <a href="/what-to-wear-tea-ceremony-tokyo">what to wear to a tea ceremony</a>.
+    </p>
+  </div>
+
+  <EmailCapture />
+  <AuthorBio />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    'headline': TITLE,
+    'description': DESCRIPTION,
+    'datePublished': PUBLISH_DATE,
+    'author': {
+      '@type': 'Person',
+      'name': 'Suzu',
+      'url': 'https://tokyoinseason.com/about',
+    },
+    'publisher': {
+      '@type': 'Organization',
+      'name': 'Tokyo in Season',
+      'url': 'https://tokyoinseason.com',
+    },
+    'mainEntityOfPage': 'https://tokyoinseason.com/kimono-rental-asakusa-vs-ginza-kamakura',
+  })} />
+</BaseLayout>
