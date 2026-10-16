@@ -122,7 +122,7 @@ const homeGuides = homeGuideHrefs
       <span class="font-label text-xs uppercase tracking-wider text-warm-gray-mid whitespace-nowrap">Updated quarterly · {QUARTER}</span>
     </div>
 
-    <div class="grid lg:grid-cols-[1.3fr_1fr] gap-10 items-center">
+    <div class="grid lg:grid-cols-[1.3fr_1fr] gap-10 items-stretch">
       <div>
         <span class="block font-label text-xs uppercase tracking-wider text-sakura-deep mb-2">
           Median price, tracked across {data.length} venues
@@ -139,7 +139,7 @@ const homeGuides = homeGuideHrefs
           View the full Index <span class="btn-arrow">→</span>
         </a>
       </div>
-      <div>
+      <div class="flex flex-col">
         <div class="grid grid-cols-2 gap-x-8 gap-y-6">
           <div>
             <b class="block font-display font-extrabold text-2xl tabular-nums">¥{minPrice.toLocaleString()}–¥{Math.round(maxPrice / 1000)}k</b>
@@ -158,12 +158,12 @@ const homeGuides = homeGuideHrefs
             <span class="font-label text-[0.65rem] uppercase tracking-wider text-warm-gray-mid">{cheapestArea?.area} median</span>
           </div>
         </div>
-        <div class="mt-6 w-full lg:max-w-xs aspect-[16/7] overflow-hidden">
+        <div class="mt-8 w-full aspect-[16/9] lg:aspect-auto lg:flex-1 lg:min-h-[160px] overflow-hidden border border-border bg-surface">
           <Image
             src={priceIndexHero}
             alt="A bamboo whisk and chawan bowls beside an iron kettle on tatami"
-            widths={[400, 600, 900]}
-            sizes="288px"
+            widths={[400, 600, 900, 1200]}
+            sizes="(min-width: 1024px) 460px, 100vw"
             class="w-full h-full object-cover"
             style="object-position: 82% 55%"
           />
@@ -219,7 +219,7 @@ const homeGuides = homeGuideHrefs
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10">
       {homeGuides.map(guide => (
         <a href={guide.href} class="group block">
-          <div class="aspect-[4/5] overflow-hidden border border-border bg-surface mb-4">
+          <div class="aspect-[4/3] lg:aspect-[4/5] overflow-hidden border border-border bg-surface mb-4">
             <Image
               src={guide.image}
               alt={guide.alt}
@@ -274,7 +274,7 @@ const homeGuides = homeGuideHrefs
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10">
       {restKimono.map(guide => (
         <a href={guide.href} class="group block">
-          <div class="aspect-[4/5] overflow-hidden border border-border bg-surface mb-4">
+          <div class="aspect-[4/3] lg:aspect-[4/5] overflow-hidden border border-border bg-surface mb-4">
             <Image
               src={guide.image}
               alt={guide.alt}
