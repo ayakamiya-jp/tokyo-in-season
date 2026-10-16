@@ -6,9 +6,8 @@ import EmailCapture from '../components/EmailCapture.astro';
 import indexHero from '../assets/hero/index-hero.jpg';
 import priceIndexHero from '../assets/hero/price-index-hero.jpg';
 import kintsugiCollectionFooter from '../assets/hero/kintsugi-collection-footer.jpg';
-import kimonoRentalHero from '../assets/hero/kimono-rental-tokyo-hero.jpg';
-import kimonoAreaHero from '../assets/hero/kimono-rental-asakusa-vs-ginza-kamakura-hero.jpg';
 import { decisionGuides } from '../data/decisionGuides';
+import { kimonoGuides } from '../data/kimonoGuides';
 
 const QUARTER = 'Q3 2026';
 
@@ -50,6 +49,8 @@ const cheapestArea = areaMedians.find(a => a.area === 'Asakusa') ?? areaMedians[
 // affiliate clicks downstream of this page actually come from. The full set
 // lives at /tea-ceremony.
 const featuredGuide = decisionGuides.find(g => g.featured) ?? decisionGuides[0];
+const featuredKimono = kimonoGuides.find(g => g.featured) ?? kimonoGuides[0];
+const restKimono = kimonoGuides.filter(g => g !== featuredKimono);
 const homeGuideHrefs = [
   '/is-tokyo-tea-ceremony-worth-it',
   '/private-vs-group-tea-ceremony-tokyo',
@@ -249,49 +250,57 @@ const homeGuides = homeGuideHrefs
   <section id="kimono" class="mt-16 sm:mt-20 scroll-mt-24" data-reveal>
     <div class="flex items-center justify-between gap-4 mb-6">
       <h2 class="font-display font-extrabold text-2xl text-sumi">Kimono</h2>
-      <span class="font-label text-xs uppercase tracking-wider text-warm-gray-mid whitespace-nowrap">New pillar</span>
+      <span class="font-label text-xs uppercase tracking-wider text-warm-gray-mid whitespace-nowrap">{kimonoGuides.length} guides</span>
     </div>
     <p class="max-w-md text-base leading-relaxed text-sumi-soft mb-8">
       The tea room isn't the only place season shows up — awase vs hitoe, and where to actually rent one in Tokyo.
     </p>
-    <a href="/kimono-rental-asakusa-vs-ginza-kamakura" class="group grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-6 lg:gap-10 items-center">
+    <a href={featuredKimono.href} class="group grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-6 lg:gap-10 items-center mb-14">
       <div class="aspect-[4/3] lg:aspect-[4/5] overflow-hidden border border-border bg-surface">
         <Image
-          src={kimonoAreaHero}
-          alt="The vermilion main shrine of Tsurugaoka Hachimangu in Kamakura at the top of its stone staircase, framed by green trees"
+          src={featuredKimono.image}
+          alt={featuredKimono.alt}
           widths={[600, 900, 1300, 1800]}
           sizes="(min-width: 1024px) 560px, 100vw"
           class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
         />
       </div>
       <div>
-        <span class="block font-label text-[0.65rem] uppercase tracking-wider text-sakura-deep mb-3">Area Comparison</span>
-        <h3 class="font-display font-extrabold text-3xl sm:text-[2.1rem] leading-tight text-sumi mb-3">Kimono Rental Near Tokyo Compared: Asakusa vs Ginza vs Kamakura</h3>
-        <p class="text-base text-sumi-soft max-w-md mb-3">
-          Where to rent depends on the day you want: easy temple photos, a calm Ginza afternoon, or a full day of Kamakura's hills and seasonal flowers.
-        </p>
+        <span class="block font-label text-[0.65rem] uppercase tracking-wider text-sakura-deep mb-3">{featuredKimono.tag}</span>
+        <h3 class="font-display font-extrabold text-3xl sm:text-[2.1rem] leading-tight text-sumi mb-3">{featuredKimono.title}</h3>
+        <p class="text-base text-sumi-soft max-w-md mb-3">{featuredKimono.desc}</p>
         <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-sumi border-b border-sumi/40">
           Read the guide <span class="inline-block transition-transform group-hover:translate-x-1">→</span>
         </span>
       </div>
     </a>
-    <a href="/kimono-rental-tokyo" class="group mt-10 pt-8 border-t border-border grid grid-cols-[96px_1fr] sm:grid-cols-[140px_1fr] gap-5 items-center">
-      <div class="aspect-square overflow-hidden border border-border bg-surface">
-        <Image
-          src={kimonoRentalHero}
-          alt="A close-up of an ornate floral textile pattern in white, red, and blue"
-          widths={[200, 300]}
-          sizes="140px"
-          class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-        />
-      </div>
-      <div>
-        <span class="block font-label text-[0.65rem] uppercase tracking-wider text-sakura-deep mb-2">Rental Guide</span>
-        <h3 class="font-display font-bold text-lg sm:text-xl leading-snug text-sumi mb-1 group-hover:text-sakura-deep transition-colors">Kimono Rental in Tokyo: A Wearer's Honest Guide</h3>
-        <p class="text-sm text-sumi-soft max-w-md">
-          What separates a good rental from a tourist trap, rough prices, and the vintage option.
-        </p>
-      </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10">
+      {restKimono.map(guide => (
+        <a href={guide.href} class="group block">
+          <div class="aspect-[4/5] overflow-hidden border border-border bg-surface mb-4">
+            <Image
+              src={guide.image}
+              alt={guide.alt}
+              widths={[400, 600, 900]}
+              sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
+              class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+            />
+          </div>
+          <span class="block font-label text-[0.62rem] uppercase tracking-wider text-sakura-deep mb-1.5">{guide.tag}</span>
+          <h3 class="font-display font-extrabold text-lg leading-tight text-sumi mb-1.5">{guide.title}</h3>
+          <p class="text-sm text-sumi-soft leading-snug mb-1.5 line-clamp-2">{guide.desc}</p>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-sumi border-b border-sumi/40">
+            Read the guide <span class="inline-block transition-transform group-hover:translate-x-1">→</span>
+          </span>
+        </a>
+      ))}
+    </div>
+
+    <a href="/kimono" class="group flex items-center justify-between gap-4 mt-10 pt-6 border-t border-border">
+      <span class="text-sm font-semibold text-sumi">View all {kimonoGuides.length} kimono guides</span>
+      <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-sumi border-b border-sumi/40">
+        <span class="inline-block transition-transform group-hover:translate-x-1">→</span>
+      </span>
     </a>
   </section>
 
