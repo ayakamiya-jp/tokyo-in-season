@@ -11,9 +11,9 @@ const { variant = 'inline', fullBleed = false } = Astro.props;
 
 <aside
   class:list={[
-    'email-capture bg-surface border border-border',
+    'email-capture bg-warm-gray',
     fullBleed
-      ? 'relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen border-x-0'
+      ? 'relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen'
       : 'my-8',
     variant === 'exit' && 'ring-2 ring-sakura-cta',
   ]}
@@ -40,7 +40,7 @@ const { variant = 'inline', fullBleed = false } = Astro.props;
             name="email"
             placeholder="your@email.com"
             required
-            class="flex-1 sm:w-56 border border-border px-3.5 py-3 text-[0.92rem] text-sumi bg-warm-white placeholder:text-warm-gray-mid focus:outline-none focus:border-sumi"
+            class="flex-1 sm:w-56 border border-border px-3.5 py-3 text-[0.92rem] text-sumi bg-surface placeholder:text-warm-gray-mid focus:outline-none focus:border-sumi"
           />
           <button
             type="submit"
