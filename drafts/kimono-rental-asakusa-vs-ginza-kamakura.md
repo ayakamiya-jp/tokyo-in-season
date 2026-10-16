@@ -1,6 +1,7 @@
 # Kimono Rental Near Tokyo Compared: Asakusa vs Ginza vs Kamakura
 
-**Status:** 📝 Draft (2026-10-16) — Notionレビュー反映済み（2026-10-16）。タイトルを「Near Tokyo」に変更、SUZU NOTEはコメントなしのため削除、その他のFACT-CHECK項目はコメントなしのため原文のまま。
+**Status:** ✅ Published 2026-10-16 at [tokyoinseason.com/kimono-rental-asakusa-vs-ginza-kamakura](https://tokyoinseason.com/kimono-rental-asakusa-vs-ginza-kamakura). FACT-CHECK 1（タイトル）はコメントに基づき「Near Tokyo」に修正済み。SUZU NOTEはコメントなしのため削除。コメントが付かなかった項目（2〜10）は原文のまま（hedgeした表現・編集判断）で公開。ヒーロー画像は鶴岡八幡宮（Unsplash: Hd_Auxv6MSo、ayaka選定）。
+**Source of truth:** `src/pages/kimono-rental-asakusa-vs-ginza-kamakura.astro`（published; このファイルはレビュー記録のアーカイブとして残すのみで、以後同期しない）
 **Target URL:** `/kimono-rental-asakusa-vs-ginza-kamakura`
 **Pillar:** Kimono (2本目)。1本目 [`/kimono-rental-tokyo`](https://tokyoinseason.com/kimono-rental-tokyo) は「良いレンタル店の見分け方」が主題で、エリアは1節で軽く触れただけ。本記事はその1節を「どのエリアで借りるか」の判断ガイドとして深掘りする位置づけ（内容の重複を避けるため、フィット・生地・価格帯の詳細は1本目へリンクで逃がす）。
 
