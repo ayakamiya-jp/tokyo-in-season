@@ -14,7 +14,7 @@ const PUBLISH_DATE = '2026-08-07';
 const dateFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
 const TITLE = "Matcha Grades Explained: What You're Actually Drinking";
-const DESCRIPTION = `Matcha is sold in two broad tiers — ceremonial grade and culinary grade — but there's no government or industry body that regulates either term, so the label on a tin tells you almost nothing on its own. At a tourist tea ceremony in Tokyo, you're almost always drinking usucha (thin tea), which uses a good but not top-tier grade — the very highest grades are reserved for koicha (thick tea), a style most first-time visitors never encounter.`;
+const DESCRIPTION = "Matcha grades explained: ceremonial vs culinary isn't a regulated label. What separates good matcha, and what you'll drink at a Tokyo tea ceremony.";
 
 const faqItems = [
   {
@@ -171,13 +171,20 @@ const faqItems = [
       training in{' '}
       <a href="/questions-before-booking-tea-ceremony-tokyo">10 questions to ask before you book</a>.
     </p>
+    <p>
+      If you'd rather choose on what venues do publish — price, area, chair seating, kimono
+      add-ons, group or private — our{' '}
+      <a href="/tokyo-tea-ceremony-compared">side-by-side comparison of every Tokyo tea ceremony we track</a>{' '}
+      puts all {experiences.length} in one table.
+    </p>
   </div>
 
   <FaqBlock items={faqItems} />
 
   <div class="prose max-w-none text-sumi">
     <p class="text-sm text-sumi/70 border-t border-warm-gray pt-6">
-      See also: our <a href="/tokyo-tea-ceremony-price-index">Tokyo Tea Ceremony Price Index</a>,{' '}
+      See also: <a href="/tokyo-tea-ceremony-compared">all Tokyo tea ceremony experiences compared</a>,{' '}
+      our <a href="/tokyo-tea-ceremony-price-index">Tokyo Tea Ceremony Price Index</a>,{' '}
       <a href="/wagashi-tea-ceremony-sweets">Wagashi 101: the sweets served at tea</a>,{' '}
       <a href="/questions-before-booking-tea-ceremony-tokyo">10 questions to ask before you book</a>,
       and <a href="/about">more about Suzu's own Urasenke practice</a>.
