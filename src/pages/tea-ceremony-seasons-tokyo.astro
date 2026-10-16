@@ -11,7 +11,8 @@ const PUBLISH_DATE = '2026-08-22';
 const dateFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
 const TITLE = 'A Tea Ceremony in Every Season: What Changes Month to Month';
-const DESCRIPTION = "Japanese tea ceremony is built around the calendar: the hearth itself changes twice a year — a sunken floor hearth (ro) for the cold months, a portable brazier (furo) for the warm ones — and the flowers, hanging scroll, and sweets change roughly every month. The single biggest seasonal event is robiraki in November, when the ro hearth reopens for the year, an occasion practitioners sometimes call the tea world's own New Year.";
+const META_TITLE = 'Robiraki & the Tea Ceremony Year: Ro vs Furo, Month by Month';
+const DESCRIPTION = "When the tea room changes: furo (May–Oct) vs ro (Nov–Apr), robiraki in November, and what each month brings — from an Urasenke practitioner in Tokyo.";
 
 const faqItems = [
   {
@@ -38,7 +39,7 @@ const faqItems = [
 ---
 
 <BaseLayout
-  title={TITLE}
+  title={META_TITLE}
   description={DESCRIPTION}
   ogType="article"
   ogImage={heroImage}

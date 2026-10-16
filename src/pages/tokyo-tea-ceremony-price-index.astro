@@ -60,8 +60,8 @@ const keyFindings = [
 ---
 
 <BaseLayout
-  title={`Tokyo Tea Ceremony Price Index — ${QUARTER}`}
-  description={`As of ${QUARTER}, the median price of a bookable tea ceremony in Tokyo is ¥${median.toLocaleString()}, ranging from ¥${minPrice.toLocaleString()} to ¥${maxPrice.toLocaleString()}. Data from the Tokyo Tea Ceremony Price Index, updated quarterly.`}
+  title={`How Much Is a Tea Ceremony in Tokyo? Prices for ${data.length} Venues (${QUARTER})`}
+  description={`Tokyo tea ceremonies cost ¥${minPrice.toLocaleString()}–¥${maxPrice.toLocaleString()}, median ¥${median.toLocaleString()}. Compare prices by area, private vs group and kimono add-ons — ${data.length} venues, updated quarterly.`}
   ogType="website"
   ogImage={priceIndexHero}
 >

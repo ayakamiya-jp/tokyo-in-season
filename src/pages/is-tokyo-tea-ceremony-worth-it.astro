@@ -22,7 +22,8 @@ const PUBLISH_DATE = '2026-08-30';
 const dateFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
 const TITLE = "Is a Tokyo Tea Ceremony Worth It? An Insider's Honest Take";
-const DESCRIPTION = `Yes, but only if you pick the right one. Of the ${experiences.length} Tokyo tea ceremony experiences tracked in our Price Index, our practitioner rating calls ${aCount} a genuine pick, ${bCount} solidly good for tourists, and ${cCount} worth skipping — with prices ranging from ¥${minPrice.toLocaleString()} to ¥${maxPrice.toLocaleString()} and a median around ¥${median.toLocaleString()}.`;
+const META_TITLE = `Is a Tokyo Tea Ceremony Worth It? A Practitioner Rates ${experiences.length} Venues`;
+const DESCRIPTION = `Yes, if you pick well. An Urasenke practitioner rated ${experiences.length} Tokyo tea ceremonies: ${aCount} genuine picks, ${bCount} good for tourists, ${cCount} to skip. Here's how to tell.`;
 
 const faqItems = [
   {
@@ -49,7 +50,7 @@ const faqItems = [
 ---
 
 <BaseLayout
-  title={TITLE}
+  title={META_TITLE}
   description={DESCRIPTION}
   ogType="article"
   ogImage={heroImage}
