@@ -146,3 +146,43 @@ const ogImageUrl = resolvedOgImage ? new URL(resolvedOgImage.src, Astro.site).to
   </footer>
 </body>
 </html>
+
+<style is:global>
+  /* Site-wide CTA: monochrome outline at rest; a cool pink sweeps in diagonally
+     on hover (ref: posts-tokyo.com). Colour appears only on interaction. */
+  .btn-line {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    border: 1px solid #2a2a27;
+    color: #2a2a27;
+    font-weight: 500;
+    transition: color .35s, border-color .45s;
+  }
+  .btn-line::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -15%;
+    width: 130%;
+    z-index: -1;
+    background: #ad6b84;
+    transform: translateX(-105%) skewX(-20deg);
+    transition: transform .45s cubic-bezier(.2, .7, .2, 1);
+  }
+  .btn-line:hover, .btn-line:focus-visible, .group:hover .btn-line {
+    color: #fff;
+    border-color: #ad6b84;
+  }
+  .btn-line:hover::before, .btn-line:focus-visible::before, .group:hover .btn-line::before {
+    transform: translateX(0) skewX(-20deg);
+  }
+  .btn-line .btn-arrow { display: inline-block; transition: transform .3s; }
+  .btn-line:hover .btn-arrow, .group:hover .btn-line .btn-arrow { transform: translateX(4px); }
+  /* On the dark EmailCapture bar */
+  .btn-line-light { border-color: rgb(255 255 255 / .6); color: #fff; }
+  @media (prefers-reduced-motion: reduce) {
+    .btn-line, .btn-line::before, .btn-line .btn-arrow { transition: none; }
+  }
+</style>
