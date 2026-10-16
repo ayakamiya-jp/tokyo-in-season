@@ -55,7 +55,7 @@ const restGuides = decisionGuides.filter(g => g !== featuredGuide);
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10">
       {restGuides.map(guide => (
         <a href={guide.href} class="group block">
-          <div class="aspect-[4/5] overflow-hidden border border-border bg-surface mb-4">
+          <div class="aspect-[4/3] lg:aspect-[4/5] overflow-hidden border border-border bg-surface mb-4">
             <Image
               src={guide.image}
               alt={guide.alt}
