@@ -11,9 +11,9 @@ const { variant = 'inline', fullBleed = false } = Astro.props;
 
 <aside
   class:list={[
-    'email-capture bg-ink',
+    'email-capture bg-surface border border-border',
     fullBleed
-      ? 'relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen'
+      ? 'relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen border-x-0'
       : 'my-8',
     variant === 'exit' && 'ring-2 ring-sakura-cta',
   ]}
@@ -21,11 +21,11 @@ const { variant = 'inline', fullBleed = false } = Astro.props;
   <div class:list={['mx-auto px-4 sm:px-7 py-8', fullBleed ? 'max-w-6xl' : '']}>
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
       <div>
-        <p class="font-label text-xs uppercase tracking-wider text-sakura mb-1.5">Free guide</p>
-        <p class="font-display font-extrabold text-[1.35rem] leading-tight text-white mb-1">
+        <p class="font-label text-xs uppercase tracking-wider text-sakura-deep mb-1.5">Free guide</p>
+        <p class="font-display font-extrabold text-[1.35rem] leading-tight text-sumi mb-1">
           Tea Ceremony Etiquette for First-Time Guests
         </p>
-        <p class="text-sm text-white/70 max-w-sm">
+        <p class="text-sm text-sumi-soft max-w-sm">
           The exact do's and don'ts I teach first-time guests — as a practising Urasenke student.
         </p>
       </div>
@@ -40,16 +40,16 @@ const { variant = 'inline', fullBleed = false } = Astro.props;
             name="email"
             placeholder="your@email.com"
             required
-            class="flex-1 sm:w-56 border border-white/25 px-3.5 py-3 text-[0.92rem] text-white bg-transparent placeholder:text-white/45 focus:outline-none focus:ring-2 focus:ring-sakura-cta"
+            class="flex-1 sm:w-56 border border-border px-3.5 py-3 text-[0.92rem] text-sumi bg-warm-white placeholder:text-warm-gray-mid focus:outline-none focus:border-sumi"
           />
           <button
             type="submit"
-            class="btn-line btn-line-light font-sans text-[0.95rem] px-6 py-3 whitespace-nowrap"
+            class="btn-line font-sans text-[0.95rem] px-6 py-3 whitespace-nowrap"
           >
             Send me the guide
           </button>
         </form>
-        <p class="text-xs text-white/50 mt-2">No spam. Unsubscribe any time.</p>
+        <p class="text-xs text-legal-gray mt-2">No spam. Unsubscribe any time.</p>
       </div>
     </div>
   </div>
