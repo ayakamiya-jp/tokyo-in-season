@@ -1,0 +1,300 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EmailCapture from '../components/EmailCapture.astro';
+import AuthorBio from '../components/AuthorBio.astro';
+import HeroImage from '../components/HeroImage.astro';
+import AffiliateNote from '../components/AffiliateNote.astro';
+import FaqBlock from '../components/FaqBlock.astro';
+import kimonoChecklistHero from '../assets/hero/kimono-rental-checklist-hero.jpg';
+
+const PUBLISH_DATE = '2026-10-25';
+const dateFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const TITLE = "What to Look for in a Kimono Rental (A Wearer's Checklist)";
+const DESCRIPTION = "Most kimono rental problems can be caught before you leave the shop. Before booking, check what's included, the return time, and the rain and stain policy. While you're being dressed, watch for a left-over-right front, a collar that sits slightly away from the back of your neck, and an obi that's snug but lets you breathe. Then, before you walk out, take two minutes to sit down, walk, climb a step and raise your arms in the shop. Anything that feels wrong then will feel worse by mid-afternoon.";
+
+const faqItems = [
+  {
+    question: 'How long does it take to get dressed at a kimono rental shop?',
+    answer: "Plan on about an hour in total for choosing, dressing and hair styling if it's included. The dressing itself usually takes 15–20 minutes. Add more time in peak seasons when the shop is busy.",
+  },
+  {
+    question: 'What should I wear underneath a rental kimono?',
+    answer: "Wear thin, close-fitting underwear and a camisole or a tank top with a wide neck that won't show at the collar. Many shops provide a slip or under-layer. Avoid thick tops, because they make the collar and the waist bulky.",
+  },
+  {
+    question: 'Can I bring my own bag?',
+    answer: 'You can bring a small bag, but a large backpack looks out of place and can crush the obi knot. Most shops include a small bag along with the zori.',
+  },
+  {
+    question: 'What if the kimono feels too tight after I leave the shop?',
+    answer: "Go back if you can. Most shops will adjust it for free. Don't untie anything yourself.",
+  },
+];
+---
+
+<BaseLayout
+  title={TITLE}
+  description={DESCRIPTION}
+  ogType="article"
+  ogImage={kimonoChecklistHero}
+>
+  <HeroImage
+    src={kimonoChecklistHero}
+    alt="The back of a beige kimono with an orange and gold floral obi tied in a drum knot, in a softly lit Japanese interior"
+    eyebrow="Kimono"
+    title={TITLE}
+  />
+
+  <p class="text-sm text-warm-gray-mid mb-2">
+    <time datetime={PUBLISH_DATE}>{dateFormatter.format(new Date(PUBLISH_DATE))}</time>
+  </p>
+  <AffiliateNote />
+
+  {/* GEO answer block */}
+  <div class="bg-sakura-light border border-border p-7 mb-8">
+    <p class="font-label text-xs uppercase tracking-wider text-sakura-deep mb-2">Quick answer</p>
+    <p class="text-sumi leading-relaxed text-sm">
+      Most kimono rental problems can be caught before you leave the shop. Before booking, check
+      what's included, the return time, and the rain and stain policy. While you're being dressed,
+      watch for a left-over-right front, a collar that sits slightly away from the back of your
+      neck, and an obi that's snug but lets you breathe. Then, before you walk out, take two
+      minutes to sit down, walk, climb a step and raise your arms in the shop. Anything that feels
+      wrong then will feel worse by mid-afternoon.
+    </p>
+  </div>
+
+  <div class="prose max-w-none text-sumi">
+    <h2>How to use this checklist</h2>
+    <p>
+      I wear kimono to tea lessons, so I've been dressed by other people often enough to know
+      which small things decide whether a day goes well. Almost none of them are about the pattern
+      you pick. They're about fit, timing, and knowing the shop's rules before you need them.
+    </p>
+    <p>
+      This checklist runs in the order you'll actually meet each step. For rough prices and how to
+      spot a tourist-trap shop, see our
+      <a href="/kimono-rental-tokyo/">wearer's guide to kimono rental in Tokyo</a>. If you haven't
+      picked a neighborhood yet, start with
+      <a href="/kimono-rental-asakusa-vs-ginza-kamakura/">Asakusa vs Ginza vs Kamakura</a>.
+    </p>
+
+    <h2>1. Before you book (on the booking page)</h2>
+    <ul>
+      <li>
+        <strong>What the price includes.</strong> Hair styling, the bag, tabi socks and zori
+        sandals are sometimes bundled and sometimes separate. Compare the all-in price, not the
+        headline number.
+      </li>
+      <li>
+        <strong>Return time.</strong> Most shops want the kimono back by late afternoon or early
+        evening. If you plan a dinner or a sunset photo, check whether a next-day return option
+        exists and what it costs.
+      </li>
+      <li>
+        <strong>Late return fee.</strong> Ask what happens if you're 30 minutes late. Some shops
+        charge by the hour.
+      </li>
+      <li>
+        <strong>Rain policy.</strong> Can you reschedule for free if it rains? Do they lend an
+        umbrella or a rain cover?
+      </li>
+      <li>
+        <strong>Stain and damage policy.</strong> Spills happen, especially with street food. Know
+        whether small stains are covered in the price or charged afterward.
+      </li>
+      <li>
+        <strong>Seasonal weight.</strong> If you're visiting near a season change, ask whether
+        they've switched to lined (awase) or unlined (hitoe) stock yet. The calendar and the
+        wardrobe don't always move together.
+      </li>
+      <li>
+        <strong>Size range.</strong> If you're tall, very short, or have larger feet, email first.
+        Rental fleets cover a range, but the edges fill up fast.
+      </li>
+    </ul>
+
+    <h2>2. At the counter (choosing your kimono)</h2>
+    <ul>
+      <li>
+        <strong>Pick the kimono first, then the obi.</strong> The obi changes the whole look, and
+        good staff will suggest two or three that work with your kimono.
+      </li>
+      <li>
+        <strong>Ask what it's made of.</strong> Polyester is normal and practical for rental. You
+        just want to know what you're wearing, especially if you were sold "silk."
+      </li>
+      <li>
+        <strong>Look at the hem and sleeve edges.</strong> These wear first. Fraying or a visible
+        stain on the hem means the set hasn't been well maintained.
+      </li>
+      <li>
+        <strong>Try the zori before anything else.</strong> Your feet will decide how long your day
+        lasts. Your heel can hang slightly off the back — that's normal — but the thong between
+        your toes shouldn't pinch.
+      </li>
+      <li>
+        <strong>Ask for tabi in your size.</strong> Loose tabi twist and rub. Too-small tabi are
+        worse.
+      </li>
+    </ul>
+
+    <h2>3. While you're being dressed</h2>
+    <p>You can't see most of this happening, but you can check it in the mirror and ask.</p>
+    <ul>
+      <li>
+        <strong>Left over right.</strong> The left side of the kimono should cross over the right
+        side when you look down at yourself. Right over left is only for dressing the dead, and a
+        good shop will never get this wrong. It's still worth a glance.
+      </li>
+      <li>
+        <strong>A small gap at the back of the collar.</strong> The collar should sit slightly away
+        from the back of your neck (this is called <em>emon</em>). How wide depends on the style;
+        for a casual rental, roughly two or three fingers is typical. If it's tight against your
+        neck, the whole kimono tends to shift forward through the day.
+      </li>
+      <li>
+        <strong>The under-collar shows evenly.</strong> A thin, even strip of the white
+        under-collar (<em>han-eri</em>) should show at the front of your neck, the same width on
+        both sides.
+      </li>
+      <li>
+        <strong>The fold at the waist is neat.</strong> The extra length is folded at the waist
+        under the obi (<em>ohashori</em>). It should be a straight, flat fold about a hand's width
+        deep, not bunched.
+      </li>
+      <li>
+        <strong>The ties aren't too tight.</strong> Several thin cords (<em>koshihimo</em>) go on
+        under the obi. If one is digging in at the ribs or hips, say so now. It's a 30-second fix
+        in the shop and impossible to fix on the street.
+      </li>
+    </ul>
+
+    <h2>4. Before you walk out (the two-minute test)</h2>
+    <p>Do this in the shop, while the staff are still there to adjust things.</p>
+    <ul>
+      <li>
+        <strong>Breathe and bend.</strong> Take a full breath and lean forward as if picking up a
+        bag. The obi should hold you, not squeeze you.
+      </li>
+      <li>
+        <strong>Sit down.</strong> Sit on a chair, then stand up again. If the front opens or the
+        obi digs into your stomach, ask for an adjustment.
+      </li>
+      <li>
+        <strong>Walk ten steps.</strong> Small steps, toes slightly inward. The hem should stay
+        just above your ankles and not open at the front.
+      </li>
+      <li>
+        <strong>Climb one step.</strong> Stairs and train steps are where a too-long hem catches.
+      </li>
+      <li>
+        <strong>Raise your arms.</strong> Reach up as if holding a strap on a train. The sleeves
+        will move; the collar shouldn't.
+      </li>
+      <li>
+        <strong>Check the back.</strong> Ask to see the back in a mirror, or ask the staff to take
+        a photo. The obi knot should be centered and the collar gap should look even.
+      </li>
+    </ul>
+
+    <h2>5. During the day (small fixes)</h2>
+    <ul>
+      <li>
+        <strong>The front collar loosens.</strong> Reach under the obi at your side and gently pull
+        the fold at your waist downward. This tightens the collar again.
+      </li>
+      <li>
+        <strong>The hem starts to drop.</strong> Lift it slightly back into the waist fold, or ask
+        a shop near you. Many rental shops will help even if you didn't rent from them, but don't
+        count on it.
+      </li>
+      <li>
+        <strong>Sleeves.</strong> Hold the sleeve with your other hand when reaching across a
+        table, for food, or for a train strap.
+      </li>
+      <li>
+        <strong>Stairs.</strong> Lift the front of the kimono slightly with one hand and take the
+        stairs one step at a time.
+      </li>
+      <li>
+        <strong>Restrooms.</strong> Tuck the long sleeves into the obi and lift the layers in
+        order.
+      </li>
+      <li>
+        <strong>Food.</strong> Put a handkerchief on your lap and avoid sauce-heavy street food
+        near light-colored kimono.
+      </li>
+    </ul>
+    <p>
+      If you're wearing your rental to a tea ceremony, the main extra concern is kneeling. Our
+      guide to <a href="/what-to-wear-tea-ceremony-tokyo/">what to wear to a tea ceremony</a>
+      covers that, and some venues in our
+      <a href="/tokyo-tea-ceremony-price-index/">Price Index</a> include a kimono option so you're
+      dressed on site.
+    </p>
+
+    <h2>6. Returning the kimono</h2>
+    <ul>
+      <li>
+        <strong>Allow 15–20 minutes before closing.</strong> Undressing is quicker than dressing,
+        but there may be a line.
+      </li>
+      <li>
+        <strong>Keep everything together.</strong> Small items like the obi cord or the bag are
+        easy to leave in a café.
+      </li>
+      <li>
+        <strong>Mention any stain yourself.</strong> It's easier to talk about it at the counter
+        than to receive a bill later.
+      </li>
+      <li>
+        <strong>Collect your own things.</strong> Shops store your clothes and bags while you're
+        out. Check you have your umbrella and any shopping bags.
+      </li>
+    </ul>
+
+    <h2>The short version</h2>
+    <ol>
+      <li>Before booking: what's included, return time, late fee, rain and stain policy.</li>
+      <li>At the counter: kimono first, then obi; check the hem; try the zori early.</li>
+      <li>While dressing: left over right, a small gap at the back of the collar, nothing digging in.</li>
+      <li>Before leaving: sit, walk, climb, raise your arms, check the back.</li>
+      <li>During the day: pull the waist fold to fix the collar; hold your sleeves.</li>
+      <li>Returning: arrive early and mention stains yourself.</li>
+    </ol>
+  </div>
+
+  <FaqBlock items={faqItems} />
+
+  <div class="prose max-w-none text-sumi">
+    <p class="text-sm text-sumi/70 border-t border-warm-gray pt-6">
+      See also: <a href="/kimono-rental-tokyo/">kimono rental in Tokyo: a wearer's honest guide</a>,{' '}
+      <a href="/kimono-rental-asakusa-vs-ginza-kamakura/">kimono rental in Asakusa vs Ginza vs Kamakura</a>,{' '}
+      our <a href="/tokyo-tea-ceremony-price-index/">Tokyo Tea Ceremony Price Index</a>, and{' '}
+      <a href="/what-to-wear-tea-ceremony-tokyo/">what to wear to a tea ceremony</a>.
+    </p>
+  </div>
+
+  <EmailCapture />
+  <AuthorBio />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    'headline': TITLE,
+    'description': DESCRIPTION,
+    'datePublished': PUBLISH_DATE,
+    'author': {
+      '@type': 'Person',
+      'name': 'Suzu',
+      'url': 'https://tokyoinseason.com/about/',
+    },
+    'publisher': {
+      '@type': 'Organization',
+      'name': 'Tokyo in Season',
+      'url': 'https://tokyoinseason.com',
+    },
+    'mainEntityOfPage': 'https://tokyoinseason.com/kimono-rental-checklist/',
+  })} />
+</BaseLayout>
