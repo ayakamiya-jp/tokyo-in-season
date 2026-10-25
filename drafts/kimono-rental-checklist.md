@@ -1,6 +1,7 @@
 # What to Look for in a Kimono Rental (A Wearer's Checklist)
 
-**Status:** 📝 Draft (2026-10-23) — Notionレビュー反映済み（2026-10-23）、実装待ち
+**Status:** ✅ Published 2026-10-25 at [tokyoinseason.com/kimono-rental-checklist](https://tokyoinseason.com/kimono-rental-checklist). コメントに基づきFACT-CHECK 9（スニーカー）・10（トイレ用クリップ、Web上で明記なし）・11（帯を前で下げる）を削除。コメントが付かなかった項目（1〜8・12）は原文のまま（hedgeした表現）で公開。ヒーロー画像は帯の後ろ姿（Unsplash: -vKK7kpVnAA、ayaka選定）。
+**Source of truth:** `src/pages/kimono-rental-checklist.astro`（published; このファイルはレビュー記録のアーカイブとして残すのみで、以後同期しない）
 **Target URL:** `/kimono-rental-checklist`
 **Pillar:** Kimono (3本目)。1本目 [`/kimono-rental-tokyo`](https://tokyoinseason.com/kimono-rental-tokyo) にも5項目の簡易チェック（Fit over look / Fabric / Obi tension / Included vs extra / Weather plan）があるため、本記事はそれを「予約前 → カウンター → 着付け中 → 店を出る前 → 当日 → 返却」の時系列チェックリストに展開する位置づけ。価格帯・エリア選び・ヴィンテージの話は1本目・2本目へリンクで逃がし、重複させない。
 
