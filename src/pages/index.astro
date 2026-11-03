@@ -9,7 +9,7 @@ import kintsugiCollectionFooter from '../assets/hero/kintsugi-collection-footer.
 import { decisionGuides } from '../data/decisionGuides';
 import { kimonoGuides } from '../data/kimonoGuides';
 
-const QUARTER = 'Q3 2026';
+import { CURRENT_QUARTER as QUARTER } from '../lib/priceIndex';
 
 const entries = await getCollection('experiences');
 const data = entries.map(e => e.data);

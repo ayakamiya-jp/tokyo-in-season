@@ -1,0 +1,89 @@
+---
+// Frozen past editions of the Price Index, generated from data/snapshots/<yyyy>-q<n>.json.
+// The main /tokyo-tea-ceremony-price-index URL always shows the current quarter.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { snapshots, yen, CURRENT_QUARTER, type Snapshot } from '../../lib/priceIndex';
+
+export function getStaticPaths() {
+  return snapshots.map(snapshot => ({ params: { quarter: snapshot.slug }, props: { snapshot } }));
+}
+
+const { snapshot } = Astro.props as { snapshot: Snapshot };
+const { quarter, stats } = snapshot;
+const rows = Object.values(snapshot.experiences).sort(
+  (a, b) => (a.price_jpy ?? Infinity) - (b.price_jpy ?? Infinity) || a.name.localeCompare(b.name),
+);
+---
+
+<BaseLayout
+  title={`Tokyo Tea Ceremony Price Index — ${quarter} edition (archived)`}
+  description={`Archived ${quarter} edition of the Tokyo Tea Ceremony Price Index: median ${yen(stats.median)}, range ${yen(stats.minPrice)}–${yen(stats.maxPrice)}, ${stats.listings} listings. See the current edition for up-to-date prices.`}
+>
+  <p class="font-label text-xs uppercase tracking-wider text-sakura-deep mb-2">Archived edition</p>
+  <h1 class="font-display font-extrabold text-3xl sm:text-4xl text-sumi mb-6">
+    Tokyo Tea Ceremony Price Index — {quarter}
+  </h1>
+
+  <div class="bg-warm-gray border border-border p-5 mb-10 text-sm text-sumi leading-relaxed">
+    These are the figures as published for {quarter} and are kept here unchanged so past citations
+    can be checked. Prices have changed since —{' '}
+    <a href="/tokyo-tea-ceremony-price-index/" class="text-matcha underline hover:text-matcha-light">
+      see the current edition ({CURRENT_QUARTER})
+    </a>.
+  </div>
+
+  <section class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-12">
+    {[
+      { label: 'Median price', value: yen(stats.median) },
+      { label: 'Price range', value: `${yen(stats.minPrice)}–${yen(stats.maxPrice)}` },
+      { label: 'Chair seating available', value: `${stats.pctChairs}%` },
+      { label: 'English instruction', value: `${stats.pctEnglish}%` },
+    ].map(stat => (
+      <div class="p-4 text-center border bg-warm-gray border-border">
+        <p class="font-display font-extrabold text-2xl tabular-nums text-sumi">{stat.value}</p>
+        <p class="text-xs text-warm-gray-mid mt-1">{stat.label}</p>
+      </div>
+    ))}
+  </section>
+
+  <section class="mb-12">
+    <h2 class="font-display font-extrabold text-2xl text-sumi mb-4">Median price by area</h2>
+    <ul class="list-none border-t border-border text-sm">
+      {stats.areas.map(a => (
+        <li class="py-3 border-b border-border flex justify-between gap-4">
+          <span>{a.area} <span class="text-warm-gray-mid">({a.count} listing{a.count > 1 ? 's' : ''})</span></span>
+          <span class="tabular-nums">{yen(a.median)}</span>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="font-display font-extrabold text-2xl text-sumi mb-4">All listings, {quarter}</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border-collapse">
+        <thead>
+          <tr class="border-b border-sumi text-left">
+            <th class="py-2 pr-4">Experience</th>
+            <th class="py-2 pr-4">Area</th>
+            <th class="py-2 pr-4 text-right">Price</th>
+            <th class="py-2">Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map(e => (
+            <tr class="border-b border-border">
+              <td class="py-2 pr-4">{e.name}</td>
+              <td class="py-2 pr-4">{e.area}</td>
+              <td class="py-2 pr-4 text-right tabular-nums whitespace-nowrap">{e.price_jpy != null ? yen(e.price_jpy) : 'On inquiry'}</td>
+              <td class="py-2">{e.practitioner_rating}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-xs text-warm-gray-mid mt-4">
+      {stats.priced} of {stats.listings} listings published a price. Lowest published adult per-person rate, in JPY.
+    </p>
+  </section>
+</BaseLayout>

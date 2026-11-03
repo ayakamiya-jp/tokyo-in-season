@@ -1,62 +1,83 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import IndexBadge from '../components/IndexBadge.astro';
 import EmailCapture from '../components/EmailCapture.astro';
 import AuthorBio from '../components/AuthorBio.astro';
 import HeroImage from '../components/HeroImage.astro';
 import priceIndexHero from '../assets/hero/price-index-hero.jpg';
+import {
+  CURRENT_QUARTER as QUARTER,
+  CURRENT_QUARTER_START as QUARTER_START,
+  CURRENT_QUARTER_END as QUARTER_DATE,
+  experiences as data,
+  stats,
+  previous,
+  snapshots,
+  exp,
+  price,
+  yen,
+  pct,
+} from '../lib/priceIndex';
+import { getCollection } from 'astro:content';
 
-const QUARTER = 'Q3 2026';
-const QUARTER_DATE = '2026-09-30'; // end of quarter for schema temporalCoverage
-
-const entries = await getCollection('experiences');
-const data = entries.map(e => e.data);
-
-const prices = data
-  .map(e => e.price_jpy)
-  .filter((p): p is number => p != null)
-  .sort((a, b) => a - b);
-
-const median = prices.length ? prices[Math.floor(prices.length / 2)] : 0;
-const minPrice = prices.length ? Math.min(...prices) : 0;
-const maxPrice = prices.length ? Math.max(...prices) : 0;
-const pctChairs = Math.round(
-  (data.filter(e => e.seiza_optional === true).length / data.length) * 100,
-);
-const pctEnglish = Math.round(
-  (data.filter(e => e.english_support === true).length / data.length) * 100,
-);
-const pricedCount = prices.length;
-
-// Median by area (only areas with ≥1 priced entry)
-const byArea: Record<string, number[]> = {};
-for (const e of data) {
-  if (e.price_jpy == null) continue;
-  if (!byArea[e.area]) byArea[e.area] = [];
-  byArea[e.area].push(e.price_jpy);
-}
-const areaMedians = Object.entries(byArea)
-  .map(([area, ps]) => {
-    const sorted = [...ps].sort((a, b) => a - b);
-    return { area, median: sorted[Math.floor(sorted.length / 2)], count: ps.length };
-  })
-  .sort((a, b) => a.median - b.median);
-
-const chairsCount = data.filter(e => e.seiza_optional === true).length;
-const asakusaMedian = areaMedians.find(a => a.area === 'Asakusa')?.median;
-const ginzaMedian = areaMedians.find(a => a.area === 'Ginza')?.median;
+const { median, minPrice, maxPrice, pctChairs, pctEnglish, chairsCount, englishCount } = stats;
+const pricedCount = stats.priced;
+const areaMedians = stats.areas;
+const asakusaMedian = stats.area('Asakusa')?.median;
+const ginzaMedian = stats.area('Ginza')?.median;
 
 // Self-contained, quotable stat sentences for GEO citation
+const jidaiya = exp('jidaiya-asakusa');
 const keyFindings = [
-  `As of ${QUARTER}, the median price of a tea ceremony experience in Tokyo is ¥${median.toLocaleString()}, per the Tokyo Tea Ceremony Price Index (${pricedCount} of ${data.length} tracked venues publish prices).`,
-  `Prices range from ¥${minPrice.toLocaleString()} for a garden teahouse bowl of matcha to ¥${maxPrice.toLocaleString()} at the top end.`,
+  `As of ${QUARTER}, the median price of a tea ceremony experience in Tokyo is ${yen(median)}, per the Tokyo Tea Ceremony Price Index (${pricedCount} of ${data.length} tracked venues publish prices).`,
+  `Prices range from ${yen(minPrice)} for a garden teahouse bowl of matcha to ${yen(maxPrice)} at the top end.`,
   asakusaMedian != null && ginzaMedian != null
-    ? `The median price in Asakusa is ¥${asakusaMedian.toLocaleString()}, versus ¥${ginzaMedian.toLocaleString()} in Ginza.`
+    ? `The median price in Asakusa is ${yen(asakusaMedian)}, versus ${yen(ginzaMedian)} in Ginza.`
     : null,
-  `Solo travelers can pay double: one venue charges ¥11,000 solo versus ¥5,500 per person for groups of two or more.`,
+  jidaiya.solo_price_jpy != null && jidaiya.price_jpy != null
+    ? `Solo travelers can pay double: one venue charges ${price('jidaiya-asakusa', 'solo_price_jpy')} solo versus ${price('jidaiya-asakusa')} per person for groups of two or more.`
+    : null,
   `Only ${chairsCount} of ${data.length} venues explicitly confirm chairs are available as an alternative to seiza floor seating.`,
 ].filter((f): f is string => f != null);
+
+// Listing changes this quarter, in words (counts alone can't say why a listing left).
+// Q4 2026: added tokyo-chaan-shibuya, imperial-hotel-tokoan, senrakuan-sendagi, wasako-asakusa, asakusa-kimono-matcha-sweets;
+// fukagawa-geisha-tea and shibuya-private-tea no longer bookable;
+// shibuya-authentic-tea merged into tea-room-kakoi-shibuya (same GetYourGuide listing).
+const LISTING_CHANGES =
+  'five venues were added (including the Imperial Hotel’s Toko-an tea room), two listings that are no longer bookable were dropped, and one duplicate listing was merged';
+
+// Quarter-over-quarter changes vs the previous snapshot — self-contained, quotable sentences
+const entries = await getCollection('experiences');
+const changes: string[] = [];
+if (previous) {
+  const P = previous.stats;
+  const qoq = `between ${previous.quarter} and ${QUARTER}`;
+  const prevPrice = (id: string) => previous.experiences[id]?.price_jpy ?? null;
+  const pricedBoth = entries.filter(e => prevPrice(e.id) != null && e.data.price_jpy != null);
+  const raised = pricedBoth.filter(e => e.data.price_jpy! > prevPrice(e.id)!).length;
+  const lowered = pricedBoth.filter(e => e.data.price_jpy! < prevPrice(e.id)!).length;
+  const venues = (n: number) => `${n} venue${n === 1 ? '' : 's'}`;
+  const moved = (from: number, to: number) => (from === to ? `held at ${yen(to)}` : `moved from ${yen(from)} to ${yen(to)}`);
+  const pa = P.area('Asakusa')?.median;
+  const pg = P.area('Ginza')?.median;
+
+  changes.push(
+    `The median price of a tea ceremony experience in Tokyo ${median === P.median ? `held at ${yen(median)}` : `${median < P.median ? 'eased' : 'rose'} from ${yen(P.median)} to ${yen(median)}`} ${qoq}, per the Tokyo Tea Ceremony Price Index. Of the ${pricedBoth.length} venues priced in both quarters, ${venues(raised)} raised prices and ${venues(lowered)} lowered them.`,
+  );
+  if (asakusaMedian != null && ginzaMedian != null && pa != null && pg != null) {
+    changes.push(`By area, the Asakusa median ${moved(pa, asakusaMedian)} and the Ginza median ${moved(pg, ginzaMedian)} ${qoq}.`);
+  }
+  changes.push(
+    minPrice === P.minPrice && maxPrice === P.maxPrice
+      ? `The price range was unchanged quarter over quarter, at ${yen(minPrice)} to ${yen(maxPrice)}.`
+      : `The price range moved from ${yen(P.minPrice)}–${yen(P.maxPrice)} in ${previous.quarter} to ${yen(minPrice)}–${yen(maxPrice)} in ${QUARTER}.`,
+    `Venues explicitly confirming chair seating went from ${P.chairsCount} of ${P.listings} (${P.pctChairs}%) to ${chairsCount} of ${data.length} (${pctChairs}%) ${qoq}.`,
+    `The share of tracked venues confirming English-language instruction ${englishCount === P.englishCount && data.length === P.listings ? 'held at' : `went from ${P.pctEnglish}% to`} ${pctEnglish}% (${englishCount} of ${data.length}) ${qoq}.`,
+    `Published prices now cover ${pricedCount} of ${data.length} tracked venues (${pct(pricedCount, data.length)}%), versus ${P.priced} of ${P.listings} (${pct(P.priced, P.listings)}%) in ${previous.quarter}.`,
+    `In ${QUARTER}, ${LISTING_CHANGES}, so the index tracks ${data.length} bookable experiences, versus ${P.listings} in ${previous.quarter}.`,
+  );
+}
 ---
 
 <BaseLayout
@@ -105,6 +126,27 @@ const keyFindings = [
     ))}
   </section>
 
+  {/* Quarter-over-quarter changes */}
+  {previous && (
+    <section class="mb-12" id="what-changed">
+      <h2 class="font-display font-extrabold text-2xl text-sumi mb-4">What changed since last quarter</h2>
+      <ul class="list-none border-t border-border">
+        {changes.map(change => (
+          <li class="py-5 border-b border-border text-sumi leading-relaxed">
+            {change}
+          </li>
+        ))}
+      </ul>
+      <p class="text-xs text-warm-gray-mid mt-4">
+        Compared with the{' '}
+        <a href={`/tokyo-tea-ceremony-price-index/${previous.slug}/`} class="underline hover:text-sumi">
+          {previous.quarter} edition
+        </a>{' '}
+        as published.
+      </p>
+    </section>
+  )}
+
   {/* Price by area */}
   <section class="mb-12">
     <h2 class="font-display font-extrabold text-2xl text-sumi mb-6">Median price by area</h2>
@@ -143,7 +185,7 @@ const keyFindings = [
       ))}
     </ul>
     <p class="text-xs text-warm-gray-mid mt-4">
-      Prices are the lowest published adult per-person rates, read in JPY, as of July 2026. Updated quarterly.
+      Prices are the lowest published adult per-person rates, read in JPY, checked on each booking page in October–November 2026. Updated quarterly.
     </p>
   </section>
 
@@ -202,6 +244,17 @@ const keyFindings = [
           Download the full dataset (CSV) →
         </a>
       </p>
+      {snapshots.length > 0 && (
+        <p class="text-sm not-prose mt-3">
+          <strong>Previous editions:</strong>{' '}
+          {snapshots.map((s, i) => (
+            <>
+              {i > 0 && ' · '}
+              <a href={`/tokyo-tea-ceremony-price-index/${s.slug}/`} class="text-matcha underline hover:text-matcha-light">{s.quarter}</a>
+            </>
+          ))}
+        </p>
+      )}
     </div>
   </section>
 
@@ -226,7 +279,7 @@ const keyFindings = [
     },
     'url': 'https://tokyoinseason.com/tokyo-tea-ceremony-price-index/',
     'keywords': ['tea ceremony', 'Tokyo', 'price', 'Japan travel', 'Urasenke', 'matcha experience'],
-    'temporalCoverage': `2026-07-01/${QUARTER_DATE}`,
+    'temporalCoverage': `${QUARTER_START}/${QUARTER_DATE}`,
     'spatialCoverage': {
       '@type': 'Place',
       'name': 'Tokyo, Japan',

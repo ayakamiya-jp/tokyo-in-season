@@ -10,6 +10,9 @@ import matchaGradesHero from '../assets/hero/matcha-grades-explained-hero.jpg';
 import seasonsHero from '../assets/hero/tea-ceremony-seasons-tokyo-hero.jpg';
 import worthItHero from '../assets/hero/is-tokyo-tea-ceremony-worth-it-hero.jpg';
 import wabiSabiHero from '../assets/hero/wabi-sabi-tea-ceremony-tokyo-hero.jpg';
+import { experiences } from '../lib/priceIndex';
+
+const ratingCount = (r: 'A' | 'B' | 'C') => experiences.filter(e => e.practitioner_rating === r).length;
 
 export interface DecisionGuide {
   href: string;
@@ -38,7 +41,7 @@ export const decisionGuides: DecisionGuide[] = [
     href: '/is-tokyo-tea-ceremony-worth-it/',
     tag: 'Worth It?',
     title: "Is a Tokyo Tea Ceremony Worth It? An Insider's Honest Take",
-    desc: 'The honest number: of 20 experiences we track, only 2 are a genuine pick and 8 are worth skipping — price alone won\'t tell you which is which.',
+    desc: `The honest number: of ${experiences.length} experiences we track, only ${ratingCount('A')} are a genuine pick and ${ratingCount('C')} are worth skipping — price alone won't tell you which is which.`,
     image: worthItHero,
     alt: 'A speckled glazed chawan and the tip of a bamboo chasen whisk on white textured paper, with a delicate branch shadow falling across the scene',
   },

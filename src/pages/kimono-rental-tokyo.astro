@@ -6,6 +6,9 @@ import HeroImage from '../components/HeroImage.astro';
 import AffiliateNote from '../components/AffiliateNote.astro';
 import FaqBlock from '../components/FaqBlock.astro';
 import kimonoRentalHero from '../assets/hero/kimono-rental-tokyo-hero.jpg';
+import { experiences, stats } from '../lib/priceIndex';
+
+const kimonoOptionCount = experiences.filter(e => e.kimono_addon === true).length;
 
 const PUBLISH_DATE = '2026-10-10';
 const dateFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
@@ -173,14 +176,11 @@ const faqItems = [
       <li><strong>Standard kimono set with hair styling:</strong> ¥5,000–10,000</li>
       <li><strong>Premium / silk-look / photography package:</strong> ¥10,000–20,000+</li>
       <li>
-        <strong>Kimono as a tea ceremony add-on:</strong> this is already common — 10 of the 20
+        <strong>Kimono as a tea ceremony add-on:</strong> this is already common — {kimonoOptionCount} of the {stats.listings}
         experiences in our <a href="/tokyo-tea-ceremony-price-index/">Price Index</a> list a kimono
-        option (checked 2026-10-09; this number will drift as the Index is updated), and we've seen
-        it priced as low as ~¥6,300 including hair styling, per our
-        <a href="/what-to-wear-tea-ceremony-tokyo/">what to wear to a tea ceremony</a> guide (that
-        figure as of that article's 2026-07-24 publish date). If you want both the tea and the
-        kimono photos in one booking, this is often the better value than renting separately
-        beforehand.
+        option (see our <a href="/what-to-wear-tea-ceremony-tokyo/">what to wear to a tea
+        ceremony</a> guide). If you want both the tea and the kimono photos in one booking, this is
+        often the better value than renting separately beforehand.
       </li>
     </ul>
 

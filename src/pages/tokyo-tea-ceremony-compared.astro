@@ -10,7 +10,7 @@ import HeroImage from '../components/HeroImage.astro';
 import AffiliateNote from '../components/AffiliateNote.astro';
 import comparedHero from '../assets/hero/compared-hero.jpg';
 
-const QUARTER = 'Q3 2026';
+import { CURRENT_QUARTER as QUARTER } from '../lib/priceIndex';
 
 const entries = await getCollection('experiences');
 const experiences = entries.map(e => e.data);

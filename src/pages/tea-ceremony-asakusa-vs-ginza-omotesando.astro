@@ -7,17 +7,27 @@ import AffiliateButton from '../components/AffiliateButton.astro';
 import AffiliateNote from '../components/AffiliateNote.astro';
 import FaqBlock from '../components/FaqBlock.astro';
 import areaComparisonHero from '../assets/hero/area-comparison-hero.jpg';
+import { CURRENT_QUARTER, stats, exp, price, yen } from '../lib/priceIndex';
 
 const PUBLISH_DATE = '2026-07-05';
 const dateFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
+// Area numbers come from the Price Index, so comparisons are worded from the live data.
+const asakusa = stats.area('Asakusa')!;
+const ginza = stats.area('Ginza')!;
+const ginzaCheaper = ginza.median < asakusa.median;
+const ratio = ginza.median / asakusa.median;
+const ginzaVsAsakusa =
+  ratio > 1.05 ? `about ${ratio.toFixed(1)}x Asakusa` : ratio < 0.95 ? 'below the Asakusa median' : 'about the same as Asakusa';
+const asakusaHasMost = stats.areas.every(a => a.count <= asakusa.count);
+
 const TITLE = 'Tea Ceremony in Asakusa vs Ginza vs Omotesando: Which Area Should You Choose? (2026)';
-const DESCRIPTION = "Choose Asakusa for the classic old-Tokyo day and the widest choice at the lowest prices (median ¥4,620). Choose Ginza for a calmer, more polished setting paired with Kabuki (median ¥6,000). Omotesando/Aoyama is the quiet outlier — fewer options, but real tea schools over tourist programs.";
+const DESCRIPTION = `Choose Asakusa for the classic old-Tokyo day and the widest choice of venues (median ${yen(asakusa.median)}). Choose Ginza for a calmer, more polished setting paired with Kabuki (median ${yen(ginza.median)}). Omotesando/Aoyama is the quiet outlier — fewer options, but real tea schools over tourist programs.`;
 
 const faqItems = [
   {
     question: 'Is a tea ceremony cheaper in Asakusa or Ginza?',
-    answer: 'Asakusa — the median price there is ¥4,620 versus ¥6,000 in Ginza, and Asakusa has more budget options overall.',
+    answer: `${ginzaCheaper ? 'Ginza' : 'Asakusa'}, as of ${CURRENT_QUARTER} — the median price is ${yen(ginza.median)} in Ginza versus ${yen(asakusa.median)} in Asakusa. Asakusa has more venues to choose from (${asakusa.count} versus ${ginza.count}), so the cheapest single option can be in either area; compare specific venues before booking.`,
   },
   {
     question: 'Which area has the most authentic tea ceremony?',
@@ -54,10 +64,10 @@ const faqItems = [
     <p class="font-label text-xs uppercase tracking-wider text-sakura-deep mb-2">Quick answer</p>
     <p class="text-sumi leading-relaxed text-sm">
       Choose <strong>Asakusa</strong> if you want the classic old-Tokyo day — tea ceremony plus
-      temple, kimono streets, and the widest choice of venues at the lowest prices (median
-      ¥4,620). Choose <strong>Ginza</strong> if you prefer a calmer, more polished setting and want
-      to pair tea with Kabuki — you'll pay more (median ¥6,000) for fewer crowds and refined
-      venues. <strong>Omotesando/Aoyama</strong> is the quiet outlier: fewer options, but home to
+      temple, kimono streets, and the widest choice of venues (median {yen(asakusa.median)}).
+      Choose <strong>Ginza</strong> if you prefer a calmer, more polished setting and want to pair
+      tea with Kabuki — fewer crowds and refined venues, at a median of {yen(ginza.median)}
+      ({ginzaCheaper ? 'lower than' : 'higher than'} Asakusa as of {CURRENT_QUARTER}). <strong>Omotesando/Aoyama</strong> is the quiet outlier: fewer options, but home to
       serious tea schools rather than tourist programs — the choice for travelers who want depth
       over convenience.
     </p>
@@ -66,16 +76,16 @@ const faqItems = [
   <div class="prose max-w-none text-sumi">
     <h2>The numbers first</h2>
     <p>
-      From the <a href="/tokyo-tea-ceremony-price-index/">Tokyo Tea Ceremony Price Index</a> (Q3 2026):
+      From the <a href="/tokyo-tea-ceremony-price-index/">Tokyo Tea Ceremony Price Index</a> ({CURRENT_QUARTER}):
     </p>
     <ul>
       <li>
-        <strong>Asakusa:</strong> the highest concentration of venues on our index — from ¥2,700
-        budget sessions to full kimono-and-tea bundles. Median ¥4,620.
+        <strong>Asakusa:</strong> {asakusaHasMost ? 'the highest concentration of venues on our index' : `${asakusa.count} venues on our index`} — from
+        {yen(asakusa.min)} sessions to {yen(asakusa.max)} kimono-and-tea bundles. Median {yen(asakusa.median)}.
       </li>
       <li>
-        <strong>Ginza:</strong> fewer venues, higher polish. ¥3,500–¥10,000 range, median ¥6,000 —
-        about 1.3x Asakusa.
+        <strong>Ginza:</strong> fewer venues, higher polish. {yen(ginza.min)}–{yen(ginza.max)} range,
+        median {yen(ginza.median)} — {ginzaVsAsakusa}.
       </li>
       <li>
         <strong>Omotesando/Aoyama:</strong> thin on tourist programs; what's here leans toward real
@@ -114,13 +124,12 @@ const faqItems = [
       <h3 class="font-sans font-semibold text-lg text-sumi mb-2">Maikoya — Asakusa</h3>
       <p class="text-sm text-sumi/80 mb-4">
         Chairs always available, kimono dressing, private bookings, even nerikiri sweet-making
-        add-ons — ¥6,300 with kimono including hair styling. The broad cultural bundle for a first
-        Asakusa visit.
+        add-ons — from {price('maikoya-asakusa')}. The broad cultural bundle for a first Asakusa visit.
       </p>
       <AffiliateButton
         network="klook"
         affiliate_url="https://www.klook.com/en-US/activity/137057-tea-ceremony-with-kimono-experience-in-tokyo/?aid=1326641"
-        price_jpy={6300}
+        price_jpy={exp('maikoya-asakusa').price_jpy}
       />
     </div>
   </div>
@@ -135,8 +144,8 @@ const faqItems = [
       meaning behind each utensil.
     </p>
     <p>
-      The trade-off is price and choice: fewer venues, higher median, less of the festival
-      atmosphere some travelers love.
+      The trade-off is choice: fewer venues{ginzaCheaper ? '' : ', a higher median'}, and less of
+      the festival atmosphere some travelers love.
     </p>
     <p><strong>Best for:</strong> couples, travelers who dislike crowds, Kabuki-goers, second-time visitors who've already done Asakusa.</p>
   </div>
@@ -146,12 +155,13 @@ const faqItems = [
       <h3 class="font-sans font-semibold text-lg text-sumi mb-2">Chazen — Ginza (main branch)</h3>
       <p class="text-sm text-sumi/80 mb-4">
         A properly built tea room with tsukubai and nijiriguchi, next door to the Kabuki-za
-        theatre — easy to make a full day of traditional culture. ¥3,500 shared, ¥4,500 private.
+        theatre — easy to make a full day of traditional culture. {price('chazen-ginza')} shared, from
+        {price('chazen-ginza', 'private_price_jpy')} private.
       </p>
       <AffiliateButton
         network="direct"
         official_url="https://teaceremony-tokyo.jp/"
-        price_jpy={3500}
+        price_jpy={exp('chazen-ginza').price_jpy}
         label="Book Chazen Ginza Direct"
       />
     </div>
@@ -160,12 +170,12 @@ const faqItems = [
       <h3 class="font-sans font-semibold text-lg text-sumi mb-2">HiSUi TOKYO — Ginza</h3>
       <p class="text-sm text-sumi/80 mb-4">
         A multi-discipline cultural school; hosts take time to explain the seasonal meaning behind
-        each utensil and the spirit of hospitality. ¥10,000 including kimono.
+        each utensil and the spirit of hospitality. Tea ceremony from {price('hisui-tokyo-ginza')}.
       </p>
       <AffiliateButton
         network="direct"
         official_url="https://hisui-tokyo.com/en/plan/"
-        price_jpy={10000}
+        price_jpy={exp('hisui-tokyo-ginza').price_jpy}
       />
     </div>
   </div>
@@ -216,7 +226,7 @@ const faqItems = [
   <div class="mt-8 text-sm text-sumi/70 border-t border-warm-gray pt-6">
     <p>
       Prices from the <a href="/tokyo-tea-ceremony-price-index/" class="text-matcha underline">Tokyo Tea Ceremony Price Index</a>,
-      checked July 2026, updated quarterly.
+      {CURRENT_QUARTER} edition, updated quarterly.
     </p>
     <p class="mt-2">
       See also: <a href="/private-vs-group-tea-ceremony-tokyo/" class="text-matcha underline">Private vs Group: Which to Book?</a>

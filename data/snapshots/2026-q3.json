@@ -1,8 +1,9 @@
 {
   "quarter": "Q3 2026",
-  "snapshot_date": "2026-07-04",
-  "source": "src/content/experiences",
-  "listings_count": 18,
+  "snapshot_date": "2026-07-08",
+  "source": "src/content/experiences at commit 6df7548 (as published through Q3 2026)",
+  "listings_count": 20,
+  "notes": "Rebuilt 2026-11-03 to match the figures published on the Price Index page during Q3 2026. The initial 2026-07-04 snapshot (18 listings, before two venues were added on 2026-07-08) is kept at data/snapshots/history/2026-q3-2026-07-04.json.",
   "experiences": {
     "casual-tea-asakusa": {
       "name": "Casual Tea Ceremony (Tokyo Tourist Lounge Asakusa)",
@@ -218,7 +219,18 @@
       "editor_note": "Kimono dressing, private bookings, even nerikiri sweet-making add-ons — the pick if you want a broad cultural bundle rather than tea alone.",
       "last_checked": "2026-07-04",
       "price_note": "¥6,300 with kimono including hair styling (women). Source: third-party articles, July 2026.",
-      "klook_affiliate_url": "https://www.klook.com/en-US/activity/137057-tea-ceremony-with-kimono-experience-in-tokyo/?aid=1326641"
+      "klook_affiliate_url": "https://www.klook.com/en-US/activity/137057-tea-ceremony-with-kimono-experience-in-tokyo/?aid=1326641",
+      "viator_product_url": "https://www.viator.com/tours/Asakusa/Tea-Ceremony-and-Kimono-Experience-Tokyo-Maikoya/d59194-51440P108",
+      "viator_variants": [
+        {
+          "label": "Private",
+          "url": "https://www.viator.com/tours/Asakusa/PRIVATE-Kimono-Tea-Ceremony-in-Tokyo-Maikoya/d59194-51440P111"
+        },
+        {
+          "label": "Sweets Making",
+          "url": "https://www.viator.com/tours/Tokyo/Japanese-sweets-making-and-Tea-Ceremony-in-Tokyo-Maikoya/d334-51440P107"
+        }
+      ]
     },
     "maikoya-shinjuku": {
       "name": "Maikoya Shinjuku — Kimono Tea Ceremony",
@@ -238,10 +250,52 @@
       "editor_note": "Same broad bundle as the Asakusa branch — kimono, private options, sweet-making — with the bonus of being walkable from Shinjuku Station.",
       "last_checked": "2026-07-04",
       "price_note": "¥6,300 with kimono including hair styling (women). Source: third-party articles, July 2026.",
-      "klook_affiliate_url": "https://www.klook.com/en-US/activity/137057-tea-ceremony-with-kimono-experience-in-tokyo/?aid=1326641"
+      "klook_affiliate_url": "https://www.klook.com/en-US/activity/137057-tea-ceremony-with-kimono-experience-in-tokyo/?aid=1326641",
+      "viator_product_url": "https://www.viator.com/tours/Tokyo/Kimono-Tea-Ceremony-at-Tokyo-Shinjuku-Maikoya/d334-51440P132"
+    },
+    "matcha-kimono-tea-shinjuku": {
+      "name": "Matcha Kimono Tea Ceremony (Shinjuku)",
+      "provider": "viator",
+      "affiliate_url": null,
+      "official_url": null,
+      "price_jpy": 9000,
+      "duration_min": 90,
+      "area": "Shinjuku",
+      "english_support": true,
+      "seiza_optional": true,
+      "kimono_addon": true,
+      "private_available": null,
+      "group_size": "small group",
+      "school": "none-stated",
+      "practitioner_rating": "B",
+      "editor_note": "Easy access from Shinjuku, with matcha and wagashi in a relaxed session. Tables and cushions rather than tatami make it comfortable for visitors unused to floor seating.",
+      "last_checked": "2026-07-08",
+      "price_note": "¥9,000 and up per person, confirmed by Ayaka July 2026 (corrected from an earlier USD-estimate figure).",
+      "viator_product_url": "https://www.viator.com/tours/Tokyo/TOKYO-Matcha-and-Kimono-Experience/d334-453479P1"
+    },
+    "minamikaze-sumida": {
+      "name": "Teahouse Minamikaze (Sumida)",
+      "provider": "viator",
+      "affiliate_url": null,
+      "official_url": null,
+      "price_jpy": null,
+      "duration_min": null,
+      "area": "Sumida",
+      "english_support": true,
+      "seiza_optional": true,
+      "kimono_addon": true,
+      "private_available": null,
+      "group_size": "up to 15, usually kept to 8-12",
+      "school": "none-stated",
+      "practitioner_rating": "B",
+      "editor_note": "Chairs rather than tatami, and you whisk your own bowl after watching the host prepare the first — an easy, hands-on session for visitors. But skip the tatami room and this won't give you the atmosphere of a real tea room or its utensils.",
+      "last_checked": "2026-07-08",
+      "notes": "292 Viator reviews, 'Top 1%' badge. Two-bowl format: guest first drinks tea prepared by host, then prepares their own. 6th-floor building near Asakusa/Skytree, not a dedicated teahouse.",
+      "price_note": "Price not yet confirmed — check listing directly.",
+      "viator_product_url": "https://www.viator.com/tours/Tokyo/%E6%B5%85%E8%8D%89-%E3%82%B9%E3%82%AB%E3%82%A4%E3%83%84%E3%83%AA%E8%BF%91%E3%81%8F%E3%81%A6-%E5%B0%91%E4%BA%BA%E6%95%B0%E5%88%B6%E3%81%AE%E3%81%8A%E3%82%82%E3%81%A6%E3%81%AA%E3%81%97%E8%8C%B6%E9%81%93%E4%BD%93%E9%A8%93-%E8%A6%B3%E5%85%89%E3%81%AE%E5%90%88%E9%96%93%E3%81%AB%E5%BF%83%E6%BA%80%E3%81%9F%E3%81%99%E3%81%B2%E3%81%A8%E3%81%A8%E3%81%8D%E3%82%92/d334-5558402P1"
     },
     "ocharu-nezu": {
-      "name": "Ocharu Tea Experience (near Tokyo University / Nezu)",
+      "name": "Ocharu Tea Experience (near The University of Tokyo / Nezu)",
       "provider": "gyg",
       "affiliate_url": "https://www.getyourguide.com/tokyo-l193/tokyo-traditional-tea-ceremony-with-a-tea-master-t789683/?partner_id=V4M9L5E",
       "official_url": "https://www.getyourguide.com/tokyo-l193/tokyo-traditional-tea-ceremony-with-a-tea-master-t789683/",

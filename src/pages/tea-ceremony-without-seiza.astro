@@ -7,6 +7,7 @@ import AffiliateButton from '../components/AffiliateButton.astro';
 import AffiliateNote from '../components/AffiliateNote.astro';
 import FaqBlock from '../components/FaqBlock.astro';
 import seizaHero from '../assets/hero/seiza-hero.jpg';
+import { CURRENT_QUARTER, stats, exp, price } from '../lib/priceIndex';
 
 const PUBLISH_DATE = '2026-07-04';
 const dateFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
@@ -63,8 +64,8 @@ const faqItems = [
   <div class="prose max-w-none text-sumi">
     <p>
       Here's a number that surprised even me while compiling the
-      <a href="/tokyo-tea-ceremony-price-index/">Tokyo Tea Ceremony Price Index</a>: of the 20
-      venues we track, <strong>only 6 explicitly confirm that chairs are available</strong> as an
+      <a href="/tokyo-tea-ceremony-price-index/">Tokyo Tea Ceremony Price Index</a>: of the {stats.listings}
+      venues we track, <strong>only {stats.chairsCount} explicitly confirm that chairs are available</strong> as an
       alternative to seiza floor seating. It's not that the others refuse — most will accommodate
       you — but almost nobody publishes their seating policy. For travelers with bad knees, hip
       replacements, or simply no practice sitting on their heels, that silence is enough to make
@@ -97,41 +98,41 @@ const faqItems = [
       <h3 class="font-sans font-semibold text-lg text-sumi mb-2">Maikoya — Asakusa &amp; Shinjuku</h3>
       <p class="text-sm text-sumi/80 mb-4">
         Chairs are always available, stated plainly in their program. Sessions run 45–90 minutes
-        with optional kimono dressing (¥6,300 with kimono and hair styling). If you want the full
+        with optional kimono dressing (tea-only sessions from {price('maikoya-shinjuku')} in Shinjuku). If you want the full
         cultural bundle with zero seating anxiety, this is the safe pick.
       </p>
       <AffiliateButton
         network="klook"
         affiliate_url="https://www.klook.com/en-US/activity/137057-tea-ceremony-with-kimono-experience-in-tokyo/?aid=1326641"
-        price_jpy={6300}
+        price_jpy={exp('maikoya-asakusa').price_jpy}
       />
     </div>
 
     <div class="border border-warm-gray-mid p-5">
       <h3 class="font-sans font-semibold text-lg text-sumi mb-2">Casual Tea Ceremony — Tokyo Tourist Lounge, Asakusa</h3>
       <p class="text-sm text-sumi/80 mb-4">
-        Around ¥4,500, one hour, photos welcome — and the venue is wheelchair accessible with
+        Around {price('casual-tea-asakusa')}, one hour, photos welcome — and the venue is wheelchair accessible with
         chairs available. It's honest about being casual rather than formal, which we respect.
         Book it knowing it's a relaxed session, not a formal ceremony.
       </p>
       <AffiliateButton
         network="getyourguide"
         affiliate_url="https://www.getyourguide.com/tokyo-l193/tokyo-casual-japanese-tea-ceremony-with-matcha-tasting-t1094221/?partner_id=V4M9L5E"
-        price_jpy={4500}
+        price_jpy={exp('casual-tea-asakusa').price_jpy}
       />
     </div>
 
     <div class="border border-warm-gray-mid p-5">
       <h3 class="font-sans font-semibold text-lg text-sumi mb-2">Nakajima-no-Ochaya — Hamarikyu Gardens</h3>
       <p class="text-sm text-sumi/80 mb-4">
-        Not a ceremony at all: a historic garden teahouse where ¥850 (plus ¥300 garden entry) buys
+        Not a ceremony at all: a historic garden teahouse where {price('hamarikyu-nakajima')} (plus garden entry) buys
         you a bowl of matcha and a seasonal sweet at a table, overlooking a pond built for shoguns.
         If your knees vetoed the ceremony but you still want the taste and the calm, start here.
       </p>
       <AffiliateButton
         network="direct"
         official_url="https://tabelog.com/tokyo/A1314/A131401/13036639/"
-        price_jpy={850}
+        price_jpy={exp('hamarikyu-nakajima').price_jpy}
       />
     </div>
 
@@ -145,6 +146,7 @@ const faqItems = [
       <AffiliateButton
         network="viator"
         affiliate_url="https://www.viator.com/tours/Tokyo/%E6%B5%85%E8%8D%89-%E3%82%B9%E3%82%AB%E3%82%A4%E3%83%84%E3%83%AA%E8%BF%91%E3%81%8F%E3%81%A6-%E5%B0%91%E4%BA%BA%E6%95%B0%E5%88%B6%E3%81%AE%E3%81%8A%E3%82%82%E3%81%A6%E3%81%AA%E3%81%97%E8%8C%B6%E9%81%93%E4%BD%93%E9%A8%93-%E8%A6%B3%E5%85%89%E3%81%AE%E5%90%88%E9%96%93%E3%81%AB%E5%BF%83%E6%BA%80%E3%81%9F%E3%81%99%E3%81%B2%E3%81%A8%E3%81%A8%E3%81%8D%E3%82%92/d334-5558402P1?pid=P00308827&mcid=42383&medium=link"
+        price_jpy={exp('minamikaze-sumida').price_jpy}
       />
     </div>
 
@@ -152,12 +154,12 @@ const faqItems = [
       <h3 class="font-sans font-semibold text-lg text-sumi mb-2">Matcha Kimono Tea Ceremony — Shinjuku</h3>
       <p class="text-sm text-sumi/80 mb-4">
         Tables and cushions rather than floor seating, plus matcha and wagashi in a relaxed,
-        small-group format — easy walking distance from Shinjuku Station. ¥9,000 and up per person.
+        small-group format — easy walking distance from Shinjuku Station. {price('matcha-kimono-tea-shinjuku')} and up per person.
       </p>
       <AffiliateButton
         network="viator"
         affiliate_url="https://www.viator.com/tours/Tokyo/TOKYO-Matcha-and-Kimono-Experience/d334-453479P1?pid=P00308827&mcid=42383&medium=link"
-        price_jpy={9000}
+        price_jpy={exp('matcha-kimono-tea-shinjuku').price_jpy}
       />
     </div>
   </div>
@@ -199,7 +201,7 @@ const faqItems = [
   <div class="mt-8 text-sm text-sumi/70 border-t border-warm-gray pt-6">
     <p>
       Prices and seating data from the <a href="/tokyo-tea-ceremony-price-index/" class="text-matcha underline">Tokyo Tea Ceremony Price Index</a>,
-      checked July 2026, updated quarterly.
+      {CURRENT_QUARTER} edition, updated quarterly.
     </p>
     <p class="mt-2">
       See also: <a href="/questions-before-booking-tea-ceremony-tokyo/" class="text-matcha underline">10 questions to ask before you book</a>

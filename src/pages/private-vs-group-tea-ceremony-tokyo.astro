@@ -7,17 +7,25 @@ import AffiliateButton from '../components/AffiliateButton.astro';
 import AffiliateNote from '../components/AffiliateNote.astro';
 import FaqBlock from '../components/FaqBlock.astro';
 import privateVsGroupHero from '../assets/hero/private-vs-group-hero.jpg';
+import { CURRENT_QUARTER, stats, exp, price, yen } from '../lib/priceIndex';
 
 const PUBLISH_DATE = '2026-07-04';
 const dateFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
+const chazenShared = exp('chazen-ginza').price_jpy!;
+const chazenPrivate = exp('chazen-ginza').private_price_jpy!;
+const chazenPremium = yen(chazenPrivate - chazenShared);
+const koboji = exp('koboji-temple-private').price_jpy!;
+const kobojiRatio = koboji / stats.median;
+const kobojiMultiple = `${Number.isInteger(kobojiRatio) ? '' : 'more than '}${Math.floor(kobojiRatio)}x`;
+
 const TITLE = 'Private vs Group Tea Ceremony in Tokyo: Which Should You Book? (2026)';
-const DESCRIPTION = "Group is cheaper (median ~¥6,000, some from ¥3,500) and takes the pressure off first-timers. Private suits occasions and control — but the premium ranges from ¥1,000 to double the price, so check the venue's math first.";
+const DESCRIPTION = `Group is cheaper (median ~${yen(stats.median)}, some from ${yen(chazenShared)}) and takes the pressure off first-timers. Private suits occasions and control — but the premium ranges from ${chazenPremium} to double the price, so check the venue's math first.`;
 
 const faqItems = [
   {
     question: 'Is a private tea ceremony worth the extra money?',
-    answer: 'If the premium is small (e.g. ¥1,000 at Chazen) and you want to ask questions or control the pace — yes, easily. If it\'s several times the group price, it\'s worth it for occasions, not for a standard first visit.',
+    answer: `If the premium is small (e.g. ${chazenPremium} at Chazen Ginza) and you want to ask questions or control the pace — yes, easily. If it\'s several times the group price, it\'s worth it for occasions, not for a standard first visit.`,
   },
   {
     question: 'Can solo travelers join group tea ceremonies in Tokyo?',
@@ -54,10 +62,10 @@ const faqItems = [
     <p class="font-label text-xs uppercase tracking-wider text-sakura-deep mb-2">Quick answer</p>
     <p class="text-sumi leading-relaxed text-sm">
       Book a group session if this is your first tea ceremony and you mainly want to experience
-      the ritual — it's cheaper (median around ¥6,000, some from ¥3,500) and the presence of other
+      the ritual — it's cheaper (median around {yen(stats.median)}, some from {yen(chazenShared)}) and the presence of other
       guests actually takes pressure off you. Book private if you're marking an occasion, need
       control over pace and seating, or want to ask real questions — but check the math first: the
-      private premium ranges from about ¥1,000 extra at some venues to more than double the
+      private premium ranges from about {chazenPremium} extra at some venues to more than double the
       per-person price at others.
     </p>
   </div>
@@ -70,16 +78,15 @@ const faqItems = [
     </p>
     <ul>
       <li>
-        <strong>Chazen (Asakusa/Ginza):</strong> shared session ¥3,500 → private ¥4,500. A ¥1,000
-        premium — one of the best private deals in the city.
+        <strong>Chazen (Ginza):</strong> shared session {yen(chazenShared)} → private from
+        {yen(chazenPrivate)}. A {chazenPremium} premium — one of the best private deals in the city.
       </li>
       <li>
-        <strong>Asakusa Jidaiya:</strong> ¥5,500 per person for two or more → ¥11,000 if you're
-        solo. Solo travelers effectively pay the private premium whether they want privacy or not.
+        <strong>Asakusa Jidaiya:</strong> {price('jidaiya-asakusa')} per person for two or more →
+        {price('jidaiya-asakusa', 'solo_price_jpy')} if you're solo. Solo travelers effectively pay the private premium whether they want privacy or not.
       </li>
       <li>
-        <strong>Kobohji Temple (Mita):</strong> private ceremony at ¥20,000 per person — the top
-        of our index.
+        <strong>Kobohji Temple (Mita):</strong> private ceremony at {yen(koboji)} per person{koboji === stats.maxPrice ? ' — the top of our index' : ''}.
       </li>
       <li>
         <strong>Maikoya, Shizu-Kokoro, Shibuya venues:</strong> private options exist; pricing
@@ -87,8 +94,8 @@ const faqItems = [
       </li>
     </ul>
     <p>
-      The pattern: <strong>private is not one product</strong>. At one venue it's a ¥1,000
-      upgrade; at another it's a luxury experience at 5x the group median. Never assume — check
+      The pattern: <strong>private is not one product</strong>. At one venue it's a {chazenPremium}
+      upgrade; at another it's a luxury experience at {kobojiMultiple} the group median. Never assume — check
       the specific venue's math on our <a href="/tokyo-tea-ceremony-compared/">comparison table</a>.
     </p>
   </div>
@@ -98,13 +105,13 @@ const faqItems = [
       <h3 class="font-sans font-semibold text-lg text-sumi mb-2">Chazen — Asakusa</h3>
       <p class="text-sm text-sumi/80 mb-4">
         A properly built tea room with tsukubai water basin and nijiriguchi crawl-through entrance
-        — rare among tourist venues. ¥3,500 shared, ¥4,500 private. The Ginza branch runs the same
-        pricing next door to the Kabuki-za theatre.
+        — rare among tourist venues. {price('chazen-asakusa')} shared, with private sessions also
+        offered (from {yen(chazenPrivate)} at the Ginza branch, next door to the Kabuki-za theatre).
       </p>
       <AffiliateButton
         network="direct"
         official_url="https://teaceremony-tokyo.jp/asakusa/"
-        price_jpy={4500}
+        price_jpy={exp('chazen-asakusa').price_jpy}
         label="Book Chazen Direct"
       />
     </div>
@@ -113,13 +120,13 @@ const faqItems = [
       <h3 class="font-sans font-semibold text-lg text-sumi mb-2">Asakusa Jidaiya</h3>
       <p class="text-sm text-sumi/80 mb-4">
         Kimono and tea with chairs available, though the space is a studio rather than a tea room
-        — an enjoyable "experience" rather than a formal setting. ¥5,500 pp for two or more;
-        ¥11,000 solo.
+        — an enjoyable "experience" rather than a formal setting. {price('jidaiya-asakusa')} pp for two
+        or more; {price('jidaiya-asakusa', 'solo_price_jpy')} solo.
       </p>
       <AffiliateButton
         network="direct"
         official_url="https://jidaiya.biz/japanese_culture/tea-ceremony"
-        price_jpy={5500}
+        price_jpy={exp('jidaiya-asakusa').price_jpy}
         label="Book Jidaiya Direct"
       />
     </div>
@@ -127,13 +134,13 @@ const faqItems = [
     <div class="border border-warm-gray-mid p-5">
       <h3 class="font-sans font-semibold text-lg text-sumi mb-2">Private Tea Ceremony — Kobohji Temple, Mita</h3>
       <p class="text-sm text-sumi/80 mb-4">
-        ¥20,000 per person, with the rare option to wear an Oshima Tsumugi silk haori — a genuine
+        {yen(koboji)} per person, with the rare option to wear an Oshima Tsumugi silk haori — a genuine
         luxury booking rather than a first-timer's ceremony.
       </p>
       <AffiliateButton
         network="getyourguide"
         affiliate_url="https://www.getyourguide.com/tokyo-l193/tokyo-private-japanese-traditional-tea-ceremony-t590976/?partner_id=V4M9L5E"
-        price_jpy={20000}
+        price_jpy={koboji}
       />
     </div>
   </div>
@@ -195,13 +202,14 @@ const faqItems = [
     <div class="border border-warm-gray-mid p-5">
       <h3 class="font-sans font-semibold text-lg text-sumi mb-2">Maikoya — Asakusa &amp; Shinjuku</h3>
       <p class="text-sm text-sumi/80 mb-4">
-        Private bookings, kimono dressing, even nerikiri sweet-making add-ons — ¥6,300 with kimono
-        including hair styling. Ask about per-group pricing if you're booking as a party.
+        Private bookings, kimono dressing, even nerikiri sweet-making add-ons — from
+        {price('maikoya-shinjuku')} in Shinjuku (tea only) or {price('maikoya-asakusa')} in Asakusa.
+        Ask about per-group pricing if you're booking as a party.
       </p>
       <AffiliateButton
         network="klook"
         affiliate_url="https://www.klook.com/en-US/activity/137057-tea-ceremony-with-kimono-experience-in-tokyo/?aid=1326641"
-        price_jpy={6300}
+        price_jpy={exp('maikoya-asakusa').price_jpy}
       />
     </div>
 
@@ -215,20 +223,7 @@ const faqItems = [
       <AffiliateButton
         network="direct"
         official_url="https://www.teaceremony.co/"
-        price_jpy={4620}
-      />
-    </div>
-
-    <div class="border border-warm-gray-mid p-5">
-      <h3 class="font-sans font-semibold text-lg text-sumi mb-2">Private Tea Ceremony — Shibuya</h3>
-      <p class="text-sm text-sumi/80 mb-4">
-        A 1–4 person private format at ¥3,900 per person — one of the more affordable ways into a
-        private room. Platform-only operator, not independently verified by us yet.
-      </p>
-      <AffiliateButton
-        network="getyourguide"
-        affiliate_url="https://www.getyourguide.com/tokyo-l193/tokyo-tea-ceremony-in-shibuya-tokyo-t610317/?partner_id=V4M9L5E"
-        price_jpy={3900}
+        price_jpy={exp('shizu-kokoro-asakusa').price_jpy}
       />
     </div>
   </div>
@@ -247,26 +242,26 @@ const faqItems = [
     <div class="border border-warm-gray-mid p-5">
       <h3 class="font-sans font-semibold text-lg text-sumi mb-2">Casual Tea Ceremony — Tokyo Tourist Lounge, Asakusa</h3>
       <p class="text-sm text-sumi/80 mb-4">
-        Capped at 8 guests, ¥4,500, one hour, photos welcome and wheelchair accessible. Honest
+        Capped at 8 guests, {price('casual-tea-asakusa')}, one hour, photos welcome and wheelchair accessible. Honest
         about being casual rather than formal — book it knowing it's relaxed, not ceremonial.
       </p>
       <AffiliateButton
         network="getyourguide"
         affiliate_url="https://www.getyourguide.com/tokyo-l193/tokyo-casual-japanese-tea-ceremony-with-matcha-tasting-t1094221/?partner_id=V4M9L5E"
-        price_jpy={4500}
+        price_jpy={exp('casual-tea-asakusa').price_jpy}
       />
     </div>
 
     <div class="border border-warm-gray-mid p-5">
       <h3 class="font-sans font-semibold text-lg text-sumi mb-2">Jugetsudo — Kabukiza Tower, Ginza</h3>
       <p class="text-sm text-sumi/80 mb-4">
-        Capped at 10 guests, ¥6,000, in a Kengo Kuma-designed space with a matcha starter set
+        Capped at 10 guests, {price('jugetsudo-ginza')}, in a Kengo Kuma-designed space with a matcha starter set
         included. A light, simplified tasting rather than a full ceremony.
       </p>
       <AffiliateButton
         network="direct"
         official_url="https://reserva.be/jugetsudo"
-        price_jpy={6000}
+        price_jpy={exp('jugetsudo-ginza').price_jpy}
       />
     </div>
   </div>
@@ -276,7 +271,7 @@ const faqItems = [
   <div class="mt-8 text-sm text-sumi/70 border-t border-warm-gray pt-6">
     <p>
       Prices from the <a href="/tokyo-tea-ceremony-price-index/" class="text-matcha underline">Tokyo Tea Ceremony Price Index</a>,
-      checked July 2026, updated quarterly.
+      {CURRENT_QUARTER} edition, updated quarterly.
     </p>
     <p class="mt-2">
       See also: <a href="/questions-before-booking-tea-ceremony-tokyo/" class="text-matcha underline">10 questions to ask before you book</a>

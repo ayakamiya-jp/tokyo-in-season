@@ -7,6 +7,7 @@ import AffiliateNote from '../components/AffiliateNote.astro';
 import FaqBlock from '../components/FaqBlock.astro';
 import { getCollection } from 'astro:content';
 import heroImage from '../assets/hero/is-tokyo-tea-ceremony-worth-it-hero.jpg';
+import { price } from '../lib/priceIndex';
 
 const experiences = await getCollection('experiences');
 const pricedExperiences = experiences.filter(e => e.data.price_jpy != null);
@@ -17,6 +18,7 @@ const maxPrice = prices.length ? Math.max(...prices) : 0;
 const aCount = experiences.filter(e => e.data.practitioner_rating === 'A').length;
 const bCount = experiences.filter(e => e.data.practitioner_rating === 'B').length;
 const cCount = experiences.filter(e => e.data.practitioner_rating === 'C').length;
+const schoolNamedCount = experiences.filter(e => e.data.school !== 'none-stated').length;
 
 const PUBLISH_DATE = '2026-08-30';
 const dateFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
@@ -36,7 +38,7 @@ const faqItems = [
   },
   {
     question: 'How do I know if a Tokyo tea ceremony is authentic?',
-    answer: `Look for a named teacher or school, a real tea room rather than a converted studio, and language that clearly distinguishes a ceremony from a tea tasting. Only 1 of the ${experiences.length} experiences we track names a specific school, so the absence of one isn't automatically a red flag — but vague, generic descriptions usually mean a generalist tour operator rather than a practicing teacher.`,
+    answer: `Look for a named teacher or school, a real tea room rather than a converted studio, and language that clearly distinguishes a ceremony from a tea tasting. Only ${schoolNamedCount} of the ${experiences.length} experiences we track ${schoolNamedCount === 1 ? 'names' : 'name'} a specific school, so the absence of one isn't automatically a red flag — but vague, generic descriptions usually mean a generalist tour operator rather than a practicing teacher.`,
   },
   {
     question: 'Is one hour enough for a tea ceremony?',
@@ -78,7 +80,7 @@ const faqItems = [
       skipping — with prices ranging from ¥{minPrice.toLocaleString()} to ¥{maxPrice.toLocaleString()} and a
       median around ¥{median.toLocaleString()}. A Tokyo tea ceremony is absolutely worth it if you go in
       wanting a calm, unhurried first taste of the ritual; it's a poor use of an afternoon if you're
-      expecting a full keiko-style lesson from a ¥3,500 tourist-lounge tasting.
+      expecting a full keiko-style lesson from a {price('casual-tea-asakusa')} tourist-lounge tasting.
     </p>
   </div>
 
@@ -118,10 +120,10 @@ const faqItems = [
     <p>
       This is the part that surprises people most: the ¥{minPrice.toLocaleString()} session and the
       ¥{maxPrice.toLocaleString()} session aren't reliably different in kind. A relaxed, photos-welcome
-      matcha tasting in Asakusa runs about ¥4,500 and is upfront about being casual rather than formal — a
-      fair deal for what it promises. Meanwhile a couple of the pricier group sessions in Shibuya, in the
-      ¥6,000–6,500 range, are platform-only operators we haven't been able to verify independently, which
-      is why they land in our "skip" tier despite the higher price. Paying more doesn't buy you more
+      matcha tasting in Asakusa runs about {price('casual-tea-asakusa')} and is upfront about being casual rather than formal — a
+      fair deal for what it promises. Meanwhile a pricier group session in Shibuya, at {price('tea-room-kakoi-shibuya')}, is a
+      platform-only operator we haven't been able to verify independently, which is why it lands in our
+      "skip" tier despite the higher price. Paying more doesn't buy you more
       authenticity by itself — it sometimes just buys a nicer neighborhood.
     </p>
 

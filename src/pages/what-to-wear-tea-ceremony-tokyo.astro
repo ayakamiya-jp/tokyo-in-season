@@ -6,6 +6,7 @@ import HeroImage from '../components/HeroImage.astro';
 import AffiliateNote from '../components/AffiliateNote.astro';
 import FaqBlock from '../components/FaqBlock.astro';
 import whatToWearHero from '../assets/hero/what-to-wear-hero.jpg';
+import { stats } from '../lib/priceIndex';
 
 const PUBLISH_DATE = '2026-07-24';
 const dateFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
@@ -125,12 +126,12 @@ const faqItems = [
     <h2>Do you need to wear a kimono?</h2>
     <p>
       No. Not one venue in our
-      <a href="/tokyo-tea-ceremony-compared/">comparison of 18 Tokyo tea ceremonies</a> requires it,
+      <a href="/tokyo-tea-ceremony-compared/">comparison of {stats.listings} Tokyo tea ceremonies</a> requires it,
       and guests in ordinary clothes are entirely normal.
     </p>
     <p>
-      That said, kimono dressing is offered as an add-on at several venues — around ¥6,300 at
-      Maikoya including hair styling, and as a paid option at Chazen and others. Whether it's worth
+      That said, kimono dressing is offered as an add-on at several venues, including Maikoya
+      and Chazen — check each venue's booking page for what the kimono price covers. Whether it's worth
       it depends on what you want out of the day: a kimono makes the photographs, not the tea.
     </p>
     <p>
