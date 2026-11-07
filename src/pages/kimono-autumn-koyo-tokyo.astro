@@ -1,0 +1,277 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EmailCapture from '../components/EmailCapture.astro';
+import AuthorBio from '../components/AuthorBio.astro';
+import HeroImage from '../components/HeroImage.astro';
+import AffiliateNote from '../components/AffiliateNote.astro';
+import FaqBlock from '../components/FaqBlock.astro';
+import kimonoAutumnHero from '../assets/hero/kimono-autumn-koyo-tokyo-hero.jpg';
+
+const PUBLISH_DATE = '2026-11-07';
+const dateFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const TITLE = 'Kimono for Autumn: What to Wear for Koyo Season in Tokyo';
+const DESCRIPTION = 'In Tokyo, autumn leaves usually peak from late November into early December, and by then a rental kimono should be the lined kind (awase). Autumn colors and motifs like maple, ginkgo and chrysanthemum are all in season, but for photos among red leaves, a kimono in navy, cream or deep green stands out better than a red one. Days are mild but evenings get cold, so wear a thin thermal with a wide neck underneath and ask for a shawl or haori. Plan your photos for late morning to early afternoon: the sun sets around 4:30 pm.';
+
+const faqItems = [
+  {
+    question: 'Is it too cold to wear kimono in Tokyo in November?',
+    answer: 'No. November is one of the most comfortable months for kimono. A lined kimono with the obi is warm around the body, and a thin thermal underneath plus a shawl for the cold morning and late afternoon is usually enough. Early December is colder, so add leggings and warmer tabi.',
+  },
+  {
+    question: 'Do I need a haori or a coat?',
+    answer: "Not during the middle of the day in November, but it helps in the morning, after 3 pm and on windy days. Many rental shops lend a shawl, and some rent haori jackets. Ask when you book whether it's included.",
+  },
+  {
+    question: 'What color kimono should I wear for autumn photos?',
+    answer: 'Any autumn color works, but against red maples a red kimono tends to blend in. Navy, cream, deep green or grey stand out better. You can bring autumn colors in through the obi.',
+  },
+  {
+    question: 'When should I book a kimono rental for koyo season?',
+    answer: 'Book a few days ahead for weekends in late November, which are the busiest days. Weekday mornings are the easiest to get, and the quietest for photos too.',
+  },
+];
+---
+
+<BaseLayout
+  title={TITLE}
+  description={DESCRIPTION}
+  ogType="article"
+  ogImage={kimonoAutumnHero}
+>
+  <HeroImage
+    src={kimonoAutumnHero}
+    alt="A woman in a deep green kimono, seen from the side and behind, reaching toward yellow and orange maple leaves in a Japanese garden"
+    eyebrow="Kimono"
+    title={TITLE}
+  />
+
+  <p class="text-sm text-warm-gray-mid mb-2">
+    <time datetime={PUBLISH_DATE}>{dateFormatter.format(new Date(PUBLISH_DATE))}</time>
+  </p>
+  <AffiliateNote />
+
+  {/* GEO answer block */}
+  <div class="bg-sakura-light border border-border p-7 mb-8">
+    <p class="font-label text-xs uppercase tracking-wider text-sakura-deep mb-2">Quick answer</p>
+    <p class="text-sumi leading-relaxed text-sm">
+      In Tokyo, autumn leaves usually peak from late November into early December, and by then a
+      rental kimono should be the lined kind (awase). Autumn colors and motifs like maple, ginkgo
+      and chrysanthemum are all in season, but for photos among red leaves, a kimono in navy, cream
+      or deep green stands out better than a red one. Days are mild but evenings get cold, so wear
+      a thin thermal with a wide neck underneath and ask for a shawl or haori. Plan your photos for
+      late morning to early afternoon: the sun sets around 4:30 pm.
+    </p>
+  </div>
+
+  <div class="prose max-w-none text-sumi">
+    <h2>Why autumn is a different kimono day</h2>
+    <p>
+      Autumn is my favorite season to wear kimono. The heat has gone, and a lined kimono finally
+      feels comfortable instead of heavy. It's also the season when a few choices that don't
+      matter in spring suddenly do: how warm you'll be at 4 pm, what your kimono looks like
+      against a wall of red leaves, and how slippery a path of wet ginkgo leaves is in zori.
+    </p>
+    <p>
+      This guide covers only what changes in autumn. For how to choose a rental shop and what it
+      should cost, see our
+      <a href="/kimono-rental-tokyo/">wearer's guide to kimono rental in Tokyo</a>. For what to
+      check at the counter and before you leave the shop, use the
+      <a href="/kimono-rental-checklist/">kimono rental checklist</a>.
+    </p>
+
+    <h2>When koyo season actually is in Tokyo</h2>
+    <p>
+      Autumn color arrives later in central Tokyo than many visitors expect. Ginkgo trees usually
+      turn yellow from mid to late November, and maples tend to peak from late November into early
+      December. Kamakura is usually a little later again. Exact timing changes every year with the
+      weather, so check a current foliage forecast the week before you go.
+    </p>
+    <p>
+      That timing matters for kimono because it's also when rental shops are busiest. Weekends in
+      late November fill up, so book a few days ahead if you have a fixed date.
+    </p>
+
+    <h2>Lined or unlined: which kimono you'll get</h2>
+    <p>
+      Traditionally, the lined kimono (<em>awase</em>) is worn from October through May, and the
+      unlined one (<em>hitoe</em>) in June and September. By the time the leaves turn in Tokyo,
+      you're well inside awase season, and any good rental shop will have switched over.
+    </p>
+    <p>
+      The exception is early October. Warm days are still common, and some shops keep a few
+      unlined kimono in stock for them. If you're visiting in the first half of October and the
+      forecast is warm, ask which they recommend. From November, awase is the right choice, and
+      it's warmer too.
+    </p>
+
+    <h2>Colors and motifs for autumn</h2>
+    <p>
+      Autumn kimono tend toward deeper colors: rust, mustard, deep red, plum, moss green, brown.
+      Common autumn motifs include:
+    </p>
+    <ul>
+      <li><strong>Maple leaves</strong> (<em>momiji</em>)</li>
+      <li><strong>Ginkgo leaves</strong> (<em>icho</em>)</li>
+      <li><strong>Chrysanthemums</strong> (<em>kiku</em>)</li>
+      <li>
+        <strong>Autumn grasses and flowers</strong> (<em>aki no nanakusa</em>), such as bush clover
+        and pampas grass
+      </li>
+    </ul>
+    <p>
+      There's an old idea in kimono that you wear a seasonal motif slightly ahead of the season,
+      and move on once the real thing is at its peak. Some wearers stop wearing maple leaves once
+      the trees are bare, for example. On a rental day no one will judge you for any of this. It's
+      just nice to know why the shop might suggest chrysanthemums instead of maples in early
+      December.
+    </p>
+    <p>
+      <strong>One practical tip for photos:</strong> a red kimono in front of red maples tends to
+      disappear. If the photos matter to you, choose a color that contrasts with the leaves. Navy,
+      cream, deep green and grey all stand out well against red and yellow. Then bring the autumn
+      colors in through the obi.
+    </p>
+
+    <h2>Staying warm</h2>
+    <p>
+      Tokyo in November is usually mild in the middle of the day, around 15–18°C (59–64°F), but
+      mornings are cold, often below 10°C (50°F), and it cools quickly again after 3 pm. Early
+      December is colder still. If you take an early dressing slot (which I recommend below),
+      you'll be walking to the shop and taking your first photos at the coldest time of day. A
+      lined kimono plus the obi is warmer than it looks around the middle of your body. The cold
+      reaches you through the neck, the wrists and the feet.
+    </p>
+    <ul>
+      <li>
+        <strong>A thin thermal underneath.</strong> Wear a thin thermal top with a wide, deep neck
+        so it doesn't show at the collar. Choose one with sleeves that end above the elbow, so they
+        don't peek out of the kimono sleeves.
+      </li>
+      <li>
+        <strong>Thermal leggings.</strong> They're invisible under the kimono and make a real
+        difference in the late afternoon.
+      </li>
+      <li>
+        <strong>A shawl or haori.</strong> Many shops lend a shawl, and some rent a
+        <em>haori</em> (a short jacket worn over the kimono). Ask whether it's included or extra. A
+        haori is also nice in photos.
+      </li>
+      <li>
+        <strong>Warm tabi.</strong> Ask whether the shop has lined or thicker tabi socks. Stone
+        paths in gardens get cold.
+      </li>
+      <li>
+        <strong>Disposable hand warmers</strong> (<em>kairo</em>). Convenience stores sell them
+        everywhere. Keep one in your bag or sleeve, not against your skin.
+      </li>
+    </ul>
+
+    <h2>Watch your step on fallen leaves</h2>
+    <p>
+      Fallen leaves look lovely and are slippery in zori, especially after rain. Ginkgo leaves are
+      the worst, and in places with many female ginkgo trees, the fallen nuts are squashed into the
+      path and smell strongly. Walk around both, and lift the front of your hem slightly on wet
+      paths so it doesn't pick up mud.
+    </p>
+    <p>
+      If rain is forecast, ask the shop about its rain policy when you book (the
+      <a href="/kimono-rental-checklist/">checklist</a> covers this).
+    </p>
+
+    <h2>Plan your day around the light</h2>
+    <p>
+      The sun sets around 4:30 pm in late November. The light is warmest from late morning to
+      early afternoon, and gardens start to feel dark well before closing time. So:
+    </p>
+    <ul>
+      <li><strong>Book an early dressing time</strong> so you're out by about 10 am.</li>
+      <li><strong>Take your photos first</strong>, and leave cafés and shopping for later.</li>
+      <li>
+        <strong>Check the return time against any evening plans.</strong> Some gardens hold
+        evening light-ups in autumn. If you want to go to one in kimono, check whether the shop has
+        a late or next-day return option before you book.
+      </li>
+    </ul>
+
+    <h2>Where to wear it</h2>
+    <p>A few places in and near Tokyo that work well in kimono in autumn:</p>
+    <ul>
+      <li>
+        <strong>Rikugien</strong> in Komagome: a classic Edo-period strolling garden with maples
+        around the pond.
+      </li>
+      <li>
+        <strong>The ginkgo avenue at Meiji Jingu Gaien</strong>: a long, straight avenue of yellow
+        ginkgo. It's very crowded on weekends, so go early.
+      </li>
+      <li>
+        <strong>Koishikawa Korakuen</strong>: another Edo-period garden, close to central Tokyo.
+      </li>
+      <li>
+        <strong>Kamakura</strong>: temples and hills, with color that usually comes a little later
+        than in Tokyo. See
+        <a href="/kimono-rental-asakusa-vs-ginza-kamakura/">Asakusa vs Ginza vs Kamakura</a> for
+        how a Kamakura kimono day compares.
+      </li>
+    </ul>
+
+    <h2>If you're wearing it to a tea ceremony</h2>
+    <p>
+      November is a special month in the tea room. It's when the sunken hearth (<em>ro</em>) is
+      opened for the cold season, and practitioners often call it the new year of tea. The sweets
+      and the flowers change with it. Our
+      <a href="/tea-ceremony-seasons-tokyo/">guide to the tea ceremony through the seasons</a>
+      explains what you'll see. For kneeling in kimono and what to wear to a tea ceremony in
+      general, see
+      <a href="/what-to-wear-tea-ceremony-tokyo/">what to wear to a tea ceremony in Tokyo</a>.
+      Some experiences in our <a href="/tokyo-tea-ceremony-price-index/">Price Index</a> include
+      a kimono option, so you're dressed on site.
+    </p>
+
+    <h2>The short version</h2>
+    <ol>
+      <li>Timing: ginkgo from mid to late November, maples from late November into early December.</li>
+      <li>Fabric: lined (awase) from November. Ask about unlined only for warm days in early October.</li>
+      <li>Color: for photos, choose a kimono that contrasts with the leaves, and bring autumn colors in through the obi.</li>
+      <li>Warmth: a wide-necked thermal, leggings, warm tabi, and a shawl or haori for the cold morning and after 3 pm.</li>
+      <li>Footing: walk around wet leaves and ginkgo nuts.</li>
+      <li>Light: dress early and take photos before 2 pm. The sun sets around 4:30.</li>
+    </ol>
+  </div>
+
+  <FaqBlock items={faqItems} />
+
+  <div class="prose max-w-none text-sumi">
+    <p class="text-sm text-sumi/70 border-t border-warm-gray pt-6">
+      See also: <a href="/kimono-rental-tokyo/">kimono rental in Tokyo: a wearer's honest guide</a>,{' '}
+      <a href="/kimono-rental-checklist/">what to look for in a kimono rental</a>,{' '}
+      <a href="/kimono-rental-asakusa-vs-ginza-kamakura/">kimono rental in Asakusa vs Ginza vs Kamakura</a>,{' '}
+      <a href="/tea-ceremony-seasons-tokyo/">the tea ceremony through the seasons</a>,{' '}
+      our <a href="/tokyo-tea-ceremony-price-index/">Tokyo Tea Ceremony Price Index</a>, and{' '}
+      <a href="/what-to-wear-tea-ceremony-tokyo/">what to wear to a tea ceremony</a>.
+    </p>
+  </div>
+
+  <EmailCapture />
+  <AuthorBio />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    'headline': TITLE,
+    'description': DESCRIPTION,
+    'datePublished': PUBLISH_DATE,
+    'author': {
+      '@type': 'Person',
+      'name': 'Suzu',
+      'url': 'https://tokyoinseason.com/about/',
+    },
+    'publisher': {
+      '@type': 'Organization',
+      'name': 'Tokyo in Season',
+      'url': 'https://tokyoinseason.com',
+    },
+    'mainEntityOfPage': 'https://tokyoinseason.com/kimono-autumn-koyo-tokyo/',
+  })} />
+</BaseLayout>
